@@ -1,0 +1,499 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.roncoo.recharge.common.dao.impl.mapper.DdProductMapper" >
+  <resultMap id="BaseResultMap" type="com.roncoo.recharge.common.entity.DdProduct" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="product_name" property="productName" jdbcType="VARCHAR" />
+    <result column="product_code" property="productCode" jdbcType="VARCHAR" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="amount_min" property="amountMin" jdbcType="BIGINT" />
+    <result column="amount_max" property="amountMax" jdbcType="BIGINT" />
+    <result column="loan_term" property="loanTerm" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="TINYINT" />
+    <result column="icon_url" property="iconUrl" jdbcType="VARCHAR" />
+    <result column="repay_type" property="repayType" jdbcType="TINYINT" />
+    <result column="interest_min" property="interestMin" jdbcType="DECIMAL" />
+    <result column="interest_max" property="interestMax" jdbcType="DECIMAL" />
+    <result column="interest_unit" property="interestUnit" jdbcType="VARCHAR" />
+    <result column="term_min" property="termMin" jdbcType="VARCHAR" />
+    <result column="term_max" property="termMax" jdbcType="VARCHAR" />
+    <result column="term_unit" property="termUnit" jdbcType="VARCHAR" />
+    <result column="apply_condition" property="applyCondition" jdbcType="VARCHAR" />
+    <result column="apply_material" property="applyMaterial" jdbcType="VARCHAR" />
+    <result column="auth_config" property="authConfig" jdbcType="VARCHAR" />
+    <result column="create_person" property="createPerson" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_person" property="updatePerson" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, product_name, product_code, description, amount_min, amount_max, loan_term, status, 
+    icon_url, repay_type, interest_min, interest_max, interest_unit, term_min, term_max, 
+    term_unit, apply_condition, apply_material, auth_config, create_person, create_time, 
+    update_person, update_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.roncoo.recharge.common.entity.DdProductExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from dd_product
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitStart >= 0" >
+      limit ${limitStart} , ${pageSize}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from dd_product
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from dd_product
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.roncoo.recharge.common.entity.DdProductExample" >
+    delete from dd_product
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.roncoo.recharge.common.entity.DdProduct" >
+    insert into dd_product (id, product_name, product_code, 
+      description, amount_min, amount_max, 
+      loan_term, status, icon_url, 
+      repay_type, interest_min, interest_max, 
+      interest_unit, term_min, term_max, 
+      term_unit, apply_condition, apply_material, 
+      auth_config, create_person, create_time, 
+      update_person, update_time)
+    values (#{id,jdbcType=BIGINT}, #{productName,jdbcType=VARCHAR}, #{productCode,jdbcType=VARCHAR}, 
+      #{description,jdbcType=VARCHAR}, #{amountMin,jdbcType=BIGINT}, #{amountMax,jdbcType=BIGINT}, 
+      #{loanTerm,jdbcType=VARCHAR}, #{status,jdbcType=TINYINT}, #{iconUrl,jdbcType=VARCHAR}, 
+      #{repayType,jdbcType=TINYINT}, #{interestMin,jdbcType=DECIMAL}, #{interestMax,jdbcType=DECIMAL}, 
+      #{interestUnit,jdbcType=VARCHAR}, #{termMin,jdbcType=VARCHAR}, #{termMax,jdbcType=VARCHAR}, 
+      #{termUnit,jdbcType=VARCHAR}, #{applyCondition,jdbcType=VARCHAR}, #{applyMaterial,jdbcType=VARCHAR}, 
+      #{authConfig,jdbcType=VARCHAR}, #{createPerson,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updatePerson,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.roncoo.recharge.common.entity.DdProduct" >
+    insert into dd_product
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="productName != null" >
+        product_name,
+      </if>
+      <if test="productCode != null" >
+        product_code,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+      <if test="amountMin != null" >
+        amount_min,
+      </if>
+      <if test="amountMax != null" >
+        amount_max,
+      </if>
+      <if test="loanTerm != null" >
+        loan_term,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="iconUrl != null" >
+        icon_url,
+      </if>
+      <if test="repayType != null" >
+        repay_type,
+      </if>
+      <if test="interestMin != null" >
+        interest_min,
+      </if>
+      <if test="interestMax != null" >
+        interest_max,
+      </if>
+      <if test="interestUnit != null" >
+        interest_unit,
+      </if>
+      <if test="termMin != null" >
+        term_min,
+      </if>
+      <if test="termMax != null" >
+        term_max,
+      </if>
+      <if test="termUnit != null" >
+        term_unit,
+      </if>
+      <if test="applyCondition != null" >
+        apply_condition,
+      </if>
+      <if test="applyMaterial != null" >
+        apply_material,
+      </if>
+      <if test="authConfig != null" >
+        auth_config,
+      </if>
+      <if test="createPerson != null" >
+        create_person,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updatePerson != null" >
+        update_person,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="productName != null" >
+        #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="productCode != null" >
+        #{productCode,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="amountMin != null" >
+        #{amountMin,jdbcType=BIGINT},
+      </if>
+      <if test="amountMax != null" >
+        #{amountMax,jdbcType=BIGINT},
+      </if>
+      <if test="loanTerm != null" >
+        #{loanTerm,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="iconUrl != null" >
+        #{iconUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="repayType != null" >
+        #{repayType,jdbcType=TINYINT},
+      </if>
+      <if test="interestMin != null" >
+        #{interestMin,jdbcType=DECIMAL},
+      </if>
+      <if test="interestMax != null" >
+        #{interestMax,jdbcType=DECIMAL},
+      </if>
+      <if test="interestUnit != null" >
+        #{interestUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="termMin != null" >
+        #{termMin,jdbcType=VARCHAR},
+      </if>
+      <if test="termMax != null" >
+        #{termMax,jdbcType=VARCHAR},
+      </if>
+      <if test="termUnit != null" >
+        #{termUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="applyCondition != null" >
+        #{applyCondition,jdbcType=VARCHAR},
+      </if>
+      <if test="applyMaterial != null" >
+        #{applyMaterial,jdbcType=VARCHAR},
+      </if>
+      <if test="authConfig != null" >
+        #{authConfig,jdbcType=VARCHAR},
+      </if>
+      <if test="createPerson != null" >
+        #{createPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatePerson != null" >
+        #{updatePerson,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.roncoo.recharge.common.entity.DdProductExample" resultType="java.lang.Integer" >
+    select count(*) from dd_product
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update dd_product
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.productName != null" >
+        product_name = #{record.productName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.productCode != null" >
+        product_code = #{record.productCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.description != null" >
+        description = #{record.description,jdbcType=VARCHAR},
+      </if>
+      <if test="record.amountMin != null" >
+        amount_min = #{record.amountMin,jdbcType=BIGINT},
+      </if>
+      <if test="record.amountMax != null" >
+        amount_max = #{record.amountMax,jdbcType=BIGINT},
+      </if>
+      <if test="record.loanTerm != null" >
+        loan_term = #{record.loanTerm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=TINYINT},
+      </if>
+      <if test="record.iconUrl != null" >
+        icon_url = #{record.iconUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.repayType != null" >
+        repay_type = #{record.repayType,jdbcType=TINYINT},
+      </if>
+      <if test="record.interestMin != null" >
+        interest_min = #{record.interestMin,jdbcType=DECIMAL},
+      </if>
+      <if test="record.interestMax != null" >
+        interest_max = #{record.interestMax,jdbcType=DECIMAL},
+      </if>
+      <if test="record.interestUnit != null" >
+        interest_unit = #{record.interestUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.termMin != null" >
+        term_min = #{record.termMin,jdbcType=VARCHAR},
+      </if>
+      <if test="record.termMax != null" >
+        term_max = #{record.termMax,jdbcType=VARCHAR},
+      </if>
+      <if test="record.termUnit != null" >
+        term_unit = #{record.termUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.applyCondition != null" >
+        apply_condition = #{record.applyCondition,jdbcType=VARCHAR},
+      </if>
+      <if test="record.applyMaterial != null" >
+        apply_material = #{record.applyMaterial,jdbcType=VARCHAR},
+      </if>
+      <if test="record.authConfig != null" >
+        auth_config = #{record.authConfig,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createPerson != null" >
+        create_person = #{record.createPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updatePerson != null" >
+        update_person = #{record.updatePerson,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update dd_product
+    set id = #{record.id,jdbcType=BIGINT},
+      product_name = #{record.productName,jdbcType=VARCHAR},
+      product_code = #{record.productCode,jdbcType=VARCHAR},
+      description = #{record.description,jdbcType=VARCHAR},
+      amount_min = #{record.amountMin,jdbcType=BIGINT},
+      amount_max = #{record.amountMax,jdbcType=BIGINT},
+      loan_term = #{record.loanTerm,jdbcType=VARCHAR},
+      status = #{record.status,jdbcType=TINYINT},
+      icon_url = #{record.iconUrl,jdbcType=VARCHAR},
+      repay_type = #{record.repayType,jdbcType=TINYINT},
+      interest_min = #{record.interestMin,jdbcType=DECIMAL},
+      interest_max = #{record.interestMax,jdbcType=DECIMAL},
+      interest_unit = #{record.interestUnit,jdbcType=VARCHAR},
+      term_min = #{record.termMin,jdbcType=VARCHAR},
+      term_max = #{record.termMax,jdbcType=VARCHAR},
+      term_unit = #{record.termUnit,jdbcType=VARCHAR},
+      apply_condition = #{record.applyCondition,jdbcType=VARCHAR},
+      apply_material = #{record.applyMaterial,jdbcType=VARCHAR},
+      auth_config = #{record.authConfig,jdbcType=VARCHAR},
+      create_person = #{record.createPerson,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_person = #{record.updatePerson,jdbcType=VARCHAR},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.roncoo.recharge.common.entity.DdProduct" >
+    update dd_product
+    <set >
+      <if test="productName != null" >
+        product_name = #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="productCode != null" >
+        product_code = #{productCode,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="amountMin != null" >
+        amount_min = #{amountMin,jdbcType=BIGINT},
+      </if>
+      <if test="amountMax != null" >
+        amount_max = #{amountMax,jdbcType=BIGINT},
+      </if>
+      <if test="loanTerm != null" >
+        loan_term = #{loanTerm,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="iconUrl != null" >
+        icon_url = #{iconUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="repayType != null" >
+        repay_type = #{repayType,jdbcType=TINYINT},
+      </if>
+      <if test="interestMin != null" >
+        interest_min = #{interestMin,jdbcType=DECIMAL},
+      </if>
+      <if test="interestMax != null" >
+        interest_max = #{interestMax,jdbcType=DECIMAL},
+      </if>
+      <if test="interestUnit != null" >
+        interest_unit = #{interestUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="termMin != null" >
+        term_min = #{termMin,jdbcType=VARCHAR},
+      </if>
+      <if test="termMax != null" >
+        term_max = #{termMax,jdbcType=VARCHAR},
+      </if>
+      <if test="termUnit != null" >
+        term_unit = #{termUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="applyCondition != null" >
+        apply_condition = #{applyCondition,jdbcType=VARCHAR},
+      </if>
+      <if test="applyMaterial != null" >
+        apply_material = #{applyMaterial,jdbcType=VARCHAR},
+      </if>
+      <if test="authConfig != null" >
+        auth_config = #{authConfig,jdbcType=VARCHAR},
+      </if>
+      <if test="createPerson != null" >
+        create_person = #{createPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatePerson != null" >
+        update_person = #{updatePerson,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.roncoo.recharge.common.entity.DdProduct" >
+    update dd_product
+    set product_name = #{productName,jdbcType=VARCHAR},
+      product_code = #{productCode,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      amount_min = #{amountMin,jdbcType=BIGINT},
+      amount_max = #{amountMax,jdbcType=BIGINT},
+      loan_term = #{loanTerm,jdbcType=VARCHAR},
+      status = #{status,jdbcType=TINYINT},
+      icon_url = #{iconUrl,jdbcType=VARCHAR},
+      repay_type = #{repayType,jdbcType=TINYINT},
+      interest_min = #{interestMin,jdbcType=DECIMAL},
+      interest_max = #{interestMax,jdbcType=DECIMAL},
+      interest_unit = #{interestUnit,jdbcType=VARCHAR},
+      term_min = #{termMin,jdbcType=VARCHAR},
+      term_max = #{termMax,jdbcType=VARCHAR},
+      term_unit = #{termUnit,jdbcType=VARCHAR},
+      apply_condition = #{applyCondition,jdbcType=VARCHAR},
+      apply_material = #{applyMaterial,jdbcType=VARCHAR},
+      auth_config = #{authConfig,jdbcType=VARCHAR},
+      create_person = #{createPerson,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_person = #{updatePerson,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
