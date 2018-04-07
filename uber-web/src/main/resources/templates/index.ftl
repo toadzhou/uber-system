@@ -346,7 +346,7 @@
 			</div>
 		</div>
 		<footer id="bjui-footer">
-			Copyright &copy; 2015 - <span id="y"></span> <a href="http://www.roncoo.com/" target="_blank">龙果学院</a>
+			Copyright &copy; 2015 - <span id="y"></span> <a href="http://www.roncoo.com/" target="_blank">uber</a>
 			<script language="javascript">document.getElementById("y").innerHTML = new Date().getFullYear();</script>
 		</footer>
 	</div>
