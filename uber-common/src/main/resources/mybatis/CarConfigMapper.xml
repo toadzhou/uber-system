@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.roncoo.recharge.common.dao.impl.mapper.CarConfigMapper" >
+  <resultMap id="BaseResultMap" type="com.roncoo.recharge.common.entity.CarConfig" >
+    <id column="CarConfig_id" property="id" jdbcType="BIGINT" />
+    <result column="CarConfig_son_Id" property="sonId" jdbcType="INTEGER" />
+    <result column="CarConfig_parent_id" property="parentId" jdbcType="INTEGER" />
+    <result column="CarConfig_name" property="name" jdbcType="VARCHAR" />
+    <result column="CarConfig_full_name" property="fullName" jdbcType="VARCHAR" />
+    <result column="CarConfig_initial" property="initial" jdbcType="VARCHAR" />
+    <result column="CarConfig_logo" property="logo" jdbcType="VARCHAR" />
+    <result column="CarConfig_depth" property="depth" jdbcType="TINYINT" />
+    <result column="CarConfig_sale_state" property="saleState" jdbcType="VARCHAR" />
+    <result column="CarConfig_price" property="price" jdbcType="VARCHAR" />
+    <result column="CarConfig_year_type" property="yearType" jdbcType="VARCHAR" />
+    <result column="CarConfig_production_state" property="productionState" jdbcType="VARCHAR" />
+    <result column="CarConfig_size_type" property="sizeType" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    CarConfig.id as CarConfig_id, CarConfig.son_Id as CarConfig_son_Id, CarConfig.parent_id as CarConfig_parent_id, 
+    CarConfig.name as CarConfig_name, CarConfig.full_name as CarConfig_full_name, CarConfig.initial as CarConfig_initial, 
+    CarConfig.logo as CarConfig_logo, CarConfig.depth as CarConfig_depth, CarConfig.sale_state as CarConfig_sale_state, 
+    CarConfig.price as CarConfig_price, CarConfig.year_type as CarConfig_year_type, CarConfig.production_state as CarConfig_production_state, 
+    CarConfig.size_type as CarConfig_size_type
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.roncoo.recharge.common.entity.CarConfigExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from car_config CarConfig
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitStart >= 0" >
+      limit ${limitStart} , ${pageSize}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from car_config CarConfig
+    where CarConfig.id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from car_config
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.roncoo.recharge.common.entity.CarConfigExample" >
+    delete from car_config CarConfig
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.roncoo.recharge.common.entity.CarConfig" >
+    insert into car_config (id, son_Id, parent_id, 
+      name, full_name, initial, 
+      logo, depth, sale_state, 
+      price, year_type, production_state, 
+      size_type)
+    values (#{id,jdbcType=BIGINT}, #{sonId,jdbcType=INTEGER}, #{parentId,jdbcType=INTEGER}, 
+      #{name,jdbcType=VARCHAR}, #{fullName,jdbcType=VARCHAR}, #{initial,jdbcType=VARCHAR}, 
+      #{logo,jdbcType=VARCHAR}, #{depth,jdbcType=TINYINT}, #{saleState,jdbcType=VARCHAR}, 
+      #{price,jdbcType=VARCHAR}, #{yearType,jdbcType=VARCHAR}, #{productionState,jdbcType=VARCHAR}, 
+      #{sizeType,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.roncoo.recharge.common.entity.CarConfig" >
+    insert into car_config
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="sonId != null" >
+        son_Id,
+      </if>
+      <if test="parentId != null" >
+        parent_id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="fullName != null" >
+        full_name,
+      </if>
+      <if test="initial != null" >
+        initial,
+      </if>
+      <if test="logo != null" >
+        logo,
+      </if>
+      <if test="depth != null" >
+        depth,
+      </if>
+      <if test="saleState != null" >
+        sale_state,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="yearType != null" >
+        year_type,
+      </if>
+      <if test="productionState != null" >
+        production_state,
+      </if>
+      <if test="sizeType != null" >
+        size_type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="sonId != null" >
+        #{sonId,jdbcType=INTEGER},
+      </if>
+      <if test="parentId != null" >
+        #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="fullName != null" >
+        #{fullName,jdbcType=VARCHAR},
+      </if>
+      <if test="initial != null" >
+        #{initial,jdbcType=VARCHAR},
+      </if>
+      <if test="logo != null" >
+        #{logo,jdbcType=VARCHAR},
+      </if>
+      <if test="depth != null" >
+        #{depth,jdbcType=TINYINT},
+      </if>
+      <if test="saleState != null" >
+        #{saleState,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=VARCHAR},
+      </if>
+      <if test="yearType != null" >
+        #{yearType,jdbcType=VARCHAR},
+      </if>
+      <if test="productionState != null" >
+        #{productionState,jdbcType=VARCHAR},
+      </if>
+      <if test="sizeType != null" >
+        #{sizeType,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.roncoo.recharge.common.entity.CarConfigExample" resultType="java.lang.Integer" >
+    select count(*) from car_config CarConfig
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update car_config CarConfig
+    <set >
+      <if test="record.id != null" >
+        CarConfig.id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.sonId != null" >
+        CarConfig.son_Id = #{record.sonId,jdbcType=INTEGER},
+      </if>
+      <if test="record.parentId != null" >
+        CarConfig.parent_id = #{record.parentId,jdbcType=INTEGER},
+      </if>
+      <if test="record.name != null" >
+        CarConfig.name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fullName != null" >
+        CarConfig.full_name = #{record.fullName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.initial != null" >
+        CarConfig.initial = #{record.initial,jdbcType=VARCHAR},
+      </if>
+      <if test="record.logo != null" >
+        CarConfig.logo = #{record.logo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.depth != null" >
+        CarConfig.depth = #{record.depth,jdbcType=TINYINT},
+      </if>
+      <if test="record.saleState != null" >
+        CarConfig.sale_state = #{record.saleState,jdbcType=VARCHAR},
+      </if>
+      <if test="record.price != null" >
+        CarConfig.price = #{record.price,jdbcType=VARCHAR},
+      </if>
+      <if test="record.yearType != null" >
+        CarConfig.year_type = #{record.yearType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.productionState != null" >
+        CarConfig.production_state = #{record.productionState,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sizeType != null" >
+        CarConfig.size_type = #{record.sizeType,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update car_config CarConfig
+    set CarConfig.id = #{record.id,jdbcType=BIGINT},
+      CarConfig.son_Id = #{record.sonId,jdbcType=INTEGER},
+      CarConfig.parent_id = #{record.parentId,jdbcType=INTEGER},
+      CarConfig.name = #{record.name,jdbcType=VARCHAR},
+      CarConfig.full_name = #{record.fullName,jdbcType=VARCHAR},
+      CarConfig.initial = #{record.initial,jdbcType=VARCHAR},
+      CarConfig.logo = #{record.logo,jdbcType=VARCHAR},
+      CarConfig.depth = #{record.depth,jdbcType=TINYINT},
+      CarConfig.sale_state = #{record.saleState,jdbcType=VARCHAR},
+      CarConfig.price = #{record.price,jdbcType=VARCHAR},
+      CarConfig.year_type = #{record.yearType,jdbcType=VARCHAR},
+      CarConfig.production_state = #{record.productionState,jdbcType=VARCHAR},
+      CarConfig.size_type = #{record.sizeType,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.roncoo.recharge.common.entity.CarConfig" >
+    update car_config
+    <set >
+      <if test="sonId != null" >
+        son_Id = #{sonId,jdbcType=INTEGER},
+      </if>
+      <if test="parentId != null" >
+        parent_id = #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="fullName != null" >
+        full_name = #{fullName,jdbcType=VARCHAR},
+      </if>
+      <if test="initial != null" >
+        initial = #{initial,jdbcType=VARCHAR},
+      </if>
+      <if test="logo != null" >
+        logo = #{logo,jdbcType=VARCHAR},
+      </if>
+      <if test="depth != null" >
+        depth = #{depth,jdbcType=TINYINT},
+      </if>
+      <if test="saleState != null" >
+        sale_state = #{saleState,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=VARCHAR},
+      </if>
+      <if test="yearType != null" >
+        year_type = #{yearType,jdbcType=VARCHAR},
+      </if>
+      <if test="productionState != null" >
+        production_state = #{productionState,jdbcType=VARCHAR},
+      </if>
+      <if test="sizeType != null" >
+        size_type = #{sizeType,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.roncoo.recharge.common.entity.CarConfig" >
+    update car_config
+    set son_Id = #{sonId,jdbcType=INTEGER},
+      parent_id = #{parentId,jdbcType=INTEGER},
+      name = #{name,jdbcType=VARCHAR},
+      full_name = #{fullName,jdbcType=VARCHAR},
+      initial = #{initial,jdbcType=VARCHAR},
+      logo = #{logo,jdbcType=VARCHAR},
+      depth = #{depth,jdbcType=TINYINT},
+      sale_state = #{saleState,jdbcType=VARCHAR},
+      price = #{price,jdbcType=VARCHAR},
+      year_type = #{yearType,jdbcType=VARCHAR},
+      production_state = #{productionState,jdbcType=VARCHAR},
+      size_type = #{sizeType,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
