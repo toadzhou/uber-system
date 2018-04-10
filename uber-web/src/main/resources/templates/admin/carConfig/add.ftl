@@ -30,6 +30,22 @@
                 <label>车型(紧凑)：</label>
                 <input type="text" name="sizeType" value="" placeholder="车型(紧凑)" size="20" />
             </p>
+    		<p>
+                <label>创建人：</label>
+                <input type="text" name="createPerson" value="" placeholder="创建人" size="20" />
+            </p>
+    		<p>
+                <label>创建时间：</label>
+                <input type="text" name="createTime" value="" placeholder="创建时间" size="20" />
+            </p>
+    		<p>
+                <label>更新人：</label>
+                <input type="text" name="updatePerson" value="" placeholder="更新人" size="20" />
+            </p>
+    		<p>
+                <label>修改时间：</label>
+                <input type="text" name="updateTime" value="" placeholder="修改时间" size="20" />
+            </p>
         </div>
         <div class="formBar">
             <ul>

@@ -42,6 +42,10 @@
                     <th>年份</th>
                     <th>是否在产</th>
                     <th>车型(紧凑)</th>
+                    <th>创建人</th>
+                    <th>创建时间</th>
+                    <th>更新人</th>
+                    <th>修改时间</th>
                     <th>操作</th>
                 </tr>
             </thead>
@@ -57,6 +61,10 @@
                     <td>${bean.yearType}</td>
                     <td>${bean.productionState}</td>
                     <td>${bean.sizeType}</td>
+                    <td>${bean.createPerson}</td>
+                    <td>${bean.createTime}</td>
+                    <td>${bean.updatePerson}</td>
+                    <td>${bean.updateTime}</td>
                     <td>
                         <a title="查看" target="dialog" href="${base}/admin/carConfig/view?id=${bean.id}" class="btnView">查看 </a>
                         <a title="编辑" target="dialog" href="${base}/admin/carConfig/edit?id=${bean.id}" class="btnEdit">修改 </a>

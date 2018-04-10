@@ -22,6 +22,18 @@
         <p>
             <label>车型(紧凑)：</label>${bean.sizeType}
         </p>
+        <p>
+            <label>创建人：</label>${bean.createPerson}
+        </p>
+        <p>
+            <label>创建时间：</label>${bean.createTime}
+        </p>
+        <p>
+            <label>更新人：</label>${bean.updatePerson}
+        </p>
+        <p>
+            <label>修改时间：</label>${bean.updateTime}
+        </p>
     </div>
     <div class="formBar">
         <ul>

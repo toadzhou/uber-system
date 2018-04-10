@@ -16,12 +16,11 @@ import com.roncoo.recharge.util.base.BaseController;
  * 车型基础数据 
  *
  * @author mark
- * @since 2018-04-09
+ * @since 2018-04-10
  */
 @Controller
 @RequestMapping(value = "/admin/carConfig")
 public class CarConfigController extends BaseController {
-
 
 	private final static String TARGETID = "admin-carConfig";
 

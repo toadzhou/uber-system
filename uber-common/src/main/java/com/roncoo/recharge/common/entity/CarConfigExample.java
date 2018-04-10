@@ -1,6 +1,7 @@
 package com.roncoo.recharge.common.entity;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class CarConfigExample {
@@ -991,6 +992,266 @@ public class CarConfigExample {
 
         public Criteria andSizeTypeNotBetween(String value1, String value2) {
             addCriterion("CarConfig.size_type not between", value1, value2, "sizeType");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreatePersonIsNull() {
+            addCriterion("CarConfig.create_person is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreatePersonIsNotNull() {
+            addCriterion("CarConfig.create_person is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreatePersonEqualTo(String value) {
+            addCriterion("CarConfig.create_person =", value, "createPerson");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreatePersonNotEqualTo(String value) {
+            addCriterion("CarConfig.create_person <>", value, "createPerson");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreatePersonGreaterThan(String value) {
+            addCriterion("CarConfig.create_person >", value, "createPerson");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreatePersonGreaterThanOrEqualTo(String value) {
+            addCriterion("CarConfig.create_person >=", value, "createPerson");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreatePersonLessThan(String value) {
+            addCriterion("CarConfig.create_person <", value, "createPerson");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreatePersonLessThanOrEqualTo(String value) {
+            addCriterion("CarConfig.create_person <=", value, "createPerson");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreatePersonLike(String value) {
+            addCriterion("CarConfig.create_person like", value, "createPerson");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreatePersonNotLike(String value) {
+            addCriterion("CarConfig.create_person not like", value, "createPerson");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreatePersonIn(List<String> values) {
+            addCriterion("CarConfig.create_person in", values, "createPerson");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreatePersonNotIn(List<String> values) {
+            addCriterion("CarConfig.create_person not in", values, "createPerson");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreatePersonBetween(String value1, String value2) {
+            addCriterion("CarConfig.create_person between", value1, value2, "createPerson");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreatePersonNotBetween(String value1, String value2) {
+            addCriterion("CarConfig.create_person not between", value1, value2, "createPerson");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateTimeIsNull() {
+            addCriterion("CarConfig.create_time is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateTimeIsNotNull() {
+            addCriterion("CarConfig.create_time is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateTimeEqualTo(Date value) {
+            addCriterion("CarConfig.create_time =", value, "createTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateTimeNotEqualTo(Date value) {
+            addCriterion("CarConfig.create_time <>", value, "createTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateTimeGreaterThan(Date value) {
+            addCriterion("CarConfig.create_time >", value, "createTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateTimeGreaterThanOrEqualTo(Date value) {
+            addCriterion("CarConfig.create_time >=", value, "createTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateTimeLessThan(Date value) {
+            addCriterion("CarConfig.create_time <", value, "createTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateTimeLessThanOrEqualTo(Date value) {
+            addCriterion("CarConfig.create_time <=", value, "createTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateTimeIn(List<Date> values) {
+            addCriterion("CarConfig.create_time in", values, "createTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateTimeNotIn(List<Date> values) {
+            addCriterion("CarConfig.create_time not in", values, "createTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateTimeBetween(Date value1, Date value2) {
+            addCriterion("CarConfig.create_time between", value1, value2, "createTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateTimeNotBetween(Date value1, Date value2) {
+            addCriterion("CarConfig.create_time not between", value1, value2, "createTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdatePersonIsNull() {
+            addCriterion("CarConfig.update_person is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdatePersonIsNotNull() {
+            addCriterion("CarConfig.update_person is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdatePersonEqualTo(String value) {
+            addCriterion("CarConfig.update_person =", value, "updatePerson");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdatePersonNotEqualTo(String value) {
+            addCriterion("CarConfig.update_person <>", value, "updatePerson");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdatePersonGreaterThan(String value) {
+            addCriterion("CarConfig.update_person >", value, "updatePerson");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdatePersonGreaterThanOrEqualTo(String value) {
+            addCriterion("CarConfig.update_person >=", value, "updatePerson");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdatePersonLessThan(String value) {
+            addCriterion("CarConfig.update_person <", value, "updatePerson");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdatePersonLessThanOrEqualTo(String value) {
+            addCriterion("CarConfig.update_person <=", value, "updatePerson");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdatePersonLike(String value) {
+            addCriterion("CarConfig.update_person like", value, "updatePerson");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdatePersonNotLike(String value) {
+            addCriterion("CarConfig.update_person not like", value, "updatePerson");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdatePersonIn(List<String> values) {
+            addCriterion("CarConfig.update_person in", values, "updatePerson");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdatePersonNotIn(List<String> values) {
+            addCriterion("CarConfig.update_person not in", values, "updatePerson");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdatePersonBetween(String value1, String value2) {
+            addCriterion("CarConfig.update_person between", value1, value2, "updatePerson");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdatePersonNotBetween(String value1, String value2) {
+            addCriterion("CarConfig.update_person not between", value1, value2, "updatePerson");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateTimeIsNull() {
+            addCriterion("CarConfig.update_time is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateTimeIsNotNull() {
+            addCriterion("CarConfig.update_time is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateTimeEqualTo(Date value) {
+            addCriterion("CarConfig.update_time =", value, "updateTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateTimeNotEqualTo(Date value) {
+            addCriterion("CarConfig.update_time <>", value, "updateTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateTimeGreaterThan(Date value) {
+            addCriterion("CarConfig.update_time >", value, "updateTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateTimeGreaterThanOrEqualTo(Date value) {
+            addCriterion("CarConfig.update_time >=", value, "updateTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateTimeLessThan(Date value) {
+            addCriterion("CarConfig.update_time <", value, "updateTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateTimeLessThanOrEqualTo(Date value) {
+            addCriterion("CarConfig.update_time <=", value, "updateTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateTimeIn(List<Date> values) {
+            addCriterion("CarConfig.update_time in", values, "updateTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateTimeNotIn(List<Date> values) {
+            addCriterion("CarConfig.update_time not in", values, "updateTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateTimeBetween(Date value1, Date value2) {
+            addCriterion("CarConfig.update_time between", value1, value2, "updateTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateTimeNotBetween(Date value1, Date value2) {
+            addCriterion("CarConfig.update_time not between", value1, value2, "updateTime");
             return (Criteria) this;
         }
     }

@@ -12,7 +12,7 @@ import lombok.experimental.Accessors;
  * </p>
  *
  * @author mark
- * @since 2018-04-09
+ * @since 2018-04-10
  */
 @Data
 @Accessors(chain = true)
@@ -51,4 +51,20 @@ public class CarConfigQO implements Serializable {
      * 车型(紧凑)
      */
     private String sizeType;
+    /**
+     * 创建人
+     */
+    private String createPerson;
+    /**
+     * 创建时间
+     */
+    private Date createTime;
+    /**
+     * 更新人
+     */
+    private String updatePerson;
+    /**
+     * 修改时间
+     */
+    private Date updateTime;
 }

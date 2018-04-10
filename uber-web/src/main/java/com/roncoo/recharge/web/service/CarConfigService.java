@@ -17,7 +17,7 @@ import com.roncoo.recharge.common.entity.CarConfigExample.Criteria;
  * 车型基础数据 
  *
  * @author mark
- * @since 2018-04-09
+ * @since 2018-04-10
  */
 @Component
 public class CarConfigService {
