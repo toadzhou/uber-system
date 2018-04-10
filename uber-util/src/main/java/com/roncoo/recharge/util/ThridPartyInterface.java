@@ -1,6 +1,5 @@
 package com.roncoo.recharge.util;
 
-
 import org.apache.http.HttpResponse;
 import org.apache.http.util.EntityUtils;
 
@@ -8,23 +7,21 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
+ * 第三方接口调用工具
  * @author xierongli
- * @version $$Id: uber-system, v 0.1 2018/4/7 上午9:39 mark1xie Exp $$
+ * @version $$Id: uber-system, v 0.1 2018/4/10 上午10:04 mark1xie Exp $$
  */
+public class ThridPartyInterface {
 
-public class Test {
+    public final static String carBrand = "/car/brand";
 
-    public static void main(String[] args) {
+    public static  String invokeAliCloudApi(String path, Map<String, String> querys){
         String host = "http://jisucxdq.market.alicloudapi.com";
-        String path = "/car/brand";
         String method = "GET";
         String appcode = "279d07726e68440ea1b820dd1132ee66";
         Map<String, String> headers = new HashMap<String, String>();
         //最后在header中的格式(中间是英文空格)为Authorization:APPCODE 83359fd73fe94948385f570e3c139105
         headers.put("Authorization", "APPCODE " + appcode);
-        Map<String, String> querys = new HashMap<String, String>();
-
-
         try {
             /**
              * 重要提示如下:
@@ -36,11 +33,14 @@ public class Test {
              * https://github.com/aliyun/api-gateway-demo-sign-java/blob/master/pom.xml
              */
             HttpResponse response = HttpUtils.doGet(host, path, method, headers, querys);
-            System.out.println(response.toString());
             //获取response的body
-            System.out.println(EntityUtils.toString(response.getEntity()));
+            String result =EntityUtils.toString(response.getEntity());
+            return result;
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return "";
     }
+
+
 }

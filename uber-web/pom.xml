@@ -20,16 +20,10 @@
 			<groupId>com.uber</groupId>
 			<artifactId>uber-common</artifactId>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/com.xiaoleilu/hutool-geo -->
-		<dependency>
-			<groupId>com.xiaoleilu</groupId>
-			<artifactId>hutool-geo</artifactId>
-		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-freemarker</artifactId>
 		</dependency>
-
 		<!-- shiro -->
 		<dependency>
 			<groupId>com.roncoo</groupId>
