@@ -14,7 +14,8 @@ import java.util.Map;
 public class ThridPartyInterface {
 
     public final static String carBrand = "/car/brand";
-    public final static String carList = "/car/list";
+    public final static String CAR_LIST = "/car/carlist";
+    public final static String CAR_DETAIL ="/car/detail";
 
 
     public static  String invokeAliCloudApi(String path, Map<String, String> querys){

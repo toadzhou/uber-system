@@ -21,7 +21,7 @@
         <thead>
             <tr>
                 <th width="30">序号</th>
-                <th width="60">logo</th>
+                <th width="30">logo</th>
                 <th width="80">品牌名称</th>
                 <th width="80">简写</th>
                 <th>操作</th>
@@ -32,7 +32,7 @@
             <#list page.list as bean>
             <tr>
                 <td align="center">${bean_index+1}</td>
-                <td><img src="${bean.logo}" width="60" height="60"></td>
+                <td><img src="${bean.logo}" width="30" height="30"></td>
                 <td>${bean.name}</td>
                 <td>${bean.initial}</td>
                 <td>

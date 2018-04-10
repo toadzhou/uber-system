@@ -40,7 +40,7 @@ public class WebMvcConfigurer extends WebMvcConfigurerAdapter {
 
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
-		//registry.addInterceptor(shiroInterceptor()).addPathPatterns("/admin/**");
+//		registry.addInterceptor(shiroInterceptor()).addPathPatterns("/admin/**");
 		super.addInterceptors(registry);
 	}
 }

@@ -5,6 +5,7 @@ import com.google.common.collect.Maps;
 import com.roncoo.recharge.util.ThridPartyInterface;
 import com.roncoo.recharge.util.bean.AliCloudResult;
 import com.roncoo.recharge.util.bean.CarConfigRes;
+import com.roncoo.recharge.util.bean.CarListRes;
 import com.roncoo.recharge.web.bean.qo.CarConfigQO;
 import com.roncoo.recharge.web.service.CarConfigService;
 import org.junit.Test;
@@ -48,9 +49,34 @@ public class CarConfigTest {
     @Test
     public void insetCarList(){
         Map<String,String> querys = Maps.newHashMap();
-        querys.put("parentid","28");
-        String json = ThridPartyInterface.invokeAliCloudApi(ThridPartyInterface.carList,querys);
-        System.out.println(json);
+        querys.put("parentid","1");
+        String json = ThridPartyInterface.invokeAliCloudApi(ThridPartyInterface.CAR_LIST,querys);
+        AliCloudResult<List<CarListRes>> resAliCloudResult = JSON.parseObject(json,AliCloudResult.class);
+        if(resAliCloudResult != null){
+            String parentJson = JSON.toJSONString(resAliCloudResult.getResult());
+            List<CarListRes> carListResList = JSON.parseArray(parentJson,CarListRes.class);
+            for(CarListRes carListRes : carListResList){
+                CarConfigQO carConfigQO = new CarConfigQO();
+                carConfigQO.setSonId(carListRes.getId());
+                carConfigQO.setDepth(carListRes.getDepth());
+                carConfigQO.setName(carListRes.getName());
+                carConfigQO.setInitial(carListRes.getInitial());
+                carConfigQO.setParentId(carListRes.getParentId());
+                carConfigService.save(carConfigQO);
+
+                for(CarConfigRes carConfigRes : carListRes.getCarList()){
+                    CarConfigQO carConfigQO1 = new CarConfigQO();
+                    carConfigQO1.setSonId(carConfigRes.getId());
+                    carConfigQO1.setDepth(carConfigRes.getDepth());
+                    carConfigQO1.setName(carConfigRes.getName());
+                    carConfigQO1.setInitial(carConfigRes.getInitial());
+                    carConfigQO1.setLogo(carConfigRes.getLogo());
+                    carConfigQO1.setParentId(carConfigRes.getParentId());
+                    carConfigService.save(carConfigQO1);
+                }
+            }
+        }
+
     }
 
 
