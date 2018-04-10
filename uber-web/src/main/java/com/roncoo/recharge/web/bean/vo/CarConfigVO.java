@@ -23,9 +23,21 @@ public class CarConfigVO implements Serializable {
     private Long id;
     private Integer sonId;
     private Integer parentId;
+    /**
+     * 名称
+     */
     private String name;
+    /**
+     * 全名
+     */
     private String fullName;
+    /**
+     * 简写
+     */
     private String initial;
+    /**
+     * logo
+     */
     private String logo;
     /**
      * 1级为车品牌，2级为车品牌子公司，3级为车型，4级为具体的车款
@@ -48,7 +60,7 @@ public class CarConfigVO implements Serializable {
      */
     private String productionState;
     /**
-     * 车型(紧凑)
+     * 车型
      */
     private String sizeType;
     /**

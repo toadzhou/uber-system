@@ -1,5 +1,6 @@
 package com.roncoo.recharge.web.service;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -28,6 +29,12 @@ public class CarConfigService {
 	public Page<CarConfigVO> listForPage(int pageCurrent, int pageSize, CarConfigQO qo) {
 	    CarConfigExample example = new CarConfigExample();
 	    Criteria c = example.createCriteria();
+	    if(StringUtils.isNotBlank(qo.getName())){
+			c.andNameLike(qo.getName()).andParentIdEqualTo(0);
+		}
+		if(StringUtils.isNotBlank(qo.getInitial())){
+			c.andInitialEqualTo(qo.getInitial()).andParentIdEqualTo(0);
+		}
 	    example.setOrderByClause(" id desc ");
         Page<CarConfig> page = dao.listForPage(pageCurrent, pageSize, example);
         return PageUtil.transform(page, CarConfigVO.class);

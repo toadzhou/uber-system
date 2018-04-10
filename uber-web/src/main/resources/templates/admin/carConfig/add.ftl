@@ -11,8 +11,8 @@
                 <input type="text" name="parentId" value="" placeholder="" size="20" />
             </p>
     		<p>
-                <label>：</label>
-                <input type="text" name="fullName" value="" placeholder="" size="20" />
+                <label>全名：</label>
+                <input type="text" name="fullName" value="" placeholder="全名" size="20" />
             </p>
     		<p>
                 <label>销售状态：</label>
@@ -27,8 +27,8 @@
                 <input type="text" name="productionState" value="" placeholder="是否在产" size="20" />
             </p>
     		<p>
-                <label>车型(紧凑)：</label>
-                <input type="text" name="sizeType" value="" placeholder="车型(紧凑)" size="20" />
+                <label>车型：</label>
+                <input type="text" name="sizeType" value="" placeholder="车型" size="20" />
             </p>
     		<p>
                 <label>创建人：</label>

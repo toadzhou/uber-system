@@ -8,7 +8,7 @@
             <label>：</label>${bean.parentId}
         </p>
         <p>
-            <label>：</label>${bean.fullName}
+            <label>全名：</label>${bean.fullName}
         </p>
         <p>
             <label>销售状态：</label>${bean.saleState}
@@ -20,7 +20,7 @@
             <label>是否在产：</label>${bean.productionState}
         </p>
         <p>
-            <label>车型(紧凑)：</label>${bean.sizeType}
+            <label>车型：</label>${bean.sizeType}
         </p>
         <p>
             <label>创建人：</label>${bean.createPerson}
