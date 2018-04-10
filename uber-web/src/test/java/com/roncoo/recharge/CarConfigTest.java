@@ -1,6 +1,7 @@
 package com.roncoo.recharge;
 
 import com.alibaba.fastjson.JSON;
+import com.google.common.collect.Maps;
 import com.roncoo.recharge.util.ThridPartyInterface;
 import com.roncoo.recharge.util.bean.AliCloudResult;
 import com.roncoo.recharge.util.bean.CarConfigRes;
@@ -12,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author xierongli
@@ -41,6 +43,14 @@ public class CarConfigTest {
                 carConfigService.save(carConfigQO);
             }
         }
+    }
+
+    @Test
+    public void insetCarList(){
+        Map<String,String> querys = Maps.newHashMap();
+        querys.put("parentid","28");
+        String json = ThridPartyInterface.invokeAliCloudApi(ThridPartyInterface.carList,querys);
+        System.out.println(json);
     }
 
 
