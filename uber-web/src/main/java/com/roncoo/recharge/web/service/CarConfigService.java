@@ -29,11 +29,24 @@ public class CarConfigService {
 	public Page<CarConfigVO> listForPage(int pageCurrent, int pageSize, CarConfigQO qo) {
 	    CarConfigExample example = new CarConfigExample();
 	    Criteria c = example.createCriteria();
-	    if(StringUtils.isNotBlank(qo.getName())){
-			c.andNameLike(qo.getName()).andParentIdEqualTo(0);
-		}
-		if(StringUtils.isNotBlank(qo.getInitial())){
-			c.andInitialEqualTo(qo.getInitial()).andParentIdEqualTo(0);
+	    if(qo.getDepth() == null){
+	    	c.andParentIdEqualTo(0).andDepthEqualTo(new Byte("1"));
+		}else{
+			//品牌查询
+			if(qo.getDepth()!= null && qo.getDepth() == 1){
+				if(StringUtils.isNotBlank(qo.getName())){
+					c.andNameLike(qo.getName()).andParentIdEqualTo(0).andDepthEqualTo(new Byte("1"));
+				}
+				if(StringUtils.isNotBlank(qo.getInitial())){
+					c.andInitialEqualTo(qo.getInitial()).andParentIdEqualTo(0).andDepthEqualTo(new Byte("1"));
+				}
+			}
+			//车型查询
+			if(qo.getDepth()!= null && qo.getDepth() == 4){
+				if(StringUtils.isNotBlank(qo.getName()) && qo.getParentId() != null){
+					c.andParentIdEqualTo(1).andNameLike(qo.getName()).andDepthEqualTo(new Byte("4"));
+				}
+			}
 		}
 	    example.setOrderByClause(" id desc ");
         Page<CarConfig> page = dao.listForPage(pageCurrent, pageSize, example);

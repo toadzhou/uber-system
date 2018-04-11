@@ -34,7 +34,16 @@ public class CarConfigController extends BaseController {
 		modelMap.put("pageSize", pageSize);
 		modelMap.put("bean", qo);
 	}
-	
+
+	@RequestMapping(value = "/car_list")
+	public void carList(@RequestParam(value = "pageCurrent", defaultValue = "1") int pageCurrent, @RequestParam(value = "pageSize", defaultValue = "20") int pageSize, @ModelAttribute CarConfigQO qo, ModelMap modelMap){
+		modelMap.put("page", service.listForPage(pageCurrent, pageSize, qo));
+		modelMap.put("pageCurrent", pageCurrent);
+		modelMap.put("pageSize", pageSize);
+		modelMap.put("bean", qo);
+		modelMap.put("parentId", qo.getParentId());
+	}
+
 	@RequestMapping(value = "/add")
 	public void add(){
 	
