@@ -37,18 +37,18 @@
             <#list page.list as bean>
             <tr>
                 <td align="center">${bean_index+1}</td>
-                <td><img src="${bean.logo}" width="30" height="30"></td>
-                <td>${bean.name}</td>
-                <td>${bean.initial}</td>
+                <td><img src="${bean.logo!}" width="30" height="30"></td>
+                <td>${bean.name!}</td>
+                <td>${bean.initial!}</td>
 
-                <td>${bean.price}</td>
-                <td>${bean.yearType}</td>
-                <td>${bean.productionState}</td>
-                <td>${bean.saleState}</td>
-                <td>${bean.sizeType}</td>
+                <td>${bean.price!}</td>
+                <td>${bean.yearType!}</td>
+                <td>${bean.productionState!}</td>
+                <td>${bean.saleState!}</td>
+                <td>${bean.sizeType!}</td>
                 <td>
-                    <a href="${base}/admin/itemSupply/relevance?id=${bean.id}" class="btn btn-green" data-toggle="dialog" data-id="item-edit" data-options="{title:'关联供货商', height:500}">品牌子公司 </a>
-                    <a href="${base}/admin/itemSupply/list?itemId=${bean.id}" class="btn btn-red" data-toggle="navtab" data-id="admin-itemSupply">全部车型 </a>
+                    <#--<a href="${base}/admin/itemSupply/relevance?id=${bean.id}" class="btn btn-green" data-toggle="dialog" data-id="item-edit" data-options="{title:'关联供货商', height:500}">品牌子公司 </a>-->
+                    <#--<a href="${base}/admin/itemSupply/list?itemId=${bean.id}" class="btn btn-red" data-toggle="navtab" data-id="admin-itemSupply">全部车型 </a>-->
                 <#--<a title="查看" target="dialog" href="${base}/admin/carConfig/view?id=${bean.id}" class="btnView">查看 </a>-->
                 <#--<a title="编辑" target="dialog" href="${base}/admin/carConfig/edit?id=${bean.id}" class="btnEdit">修改 </a>-->
                 <#--<a title="确定要删除吗？" target="ajaxTodo" href="${base}/admin/carConfig/delete?id=${bean.id}" class="btnDel">删除</a>-->

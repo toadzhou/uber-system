@@ -14,6 +14,9 @@ import com.roncoo.recharge.common.entity.CarConfig;
 import com.roncoo.recharge.common.entity.CarConfigExample;
 import com.roncoo.recharge.common.entity.CarConfigExample.Criteria;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 /**
  * 车型基础数据 
  *
@@ -42,10 +45,17 @@ public class CarConfigService {
 				}
 			}
 			//车型查询
-			if(qo.getDepth()!= null && qo.getDepth() == 4){
-				if(StringUtils.isNotBlank(qo.getName()) && qo.getParentId() != null){
-					c.andParentIdEqualTo(1).andNameLike(qo.getName()).andDepthEqualTo(new Byte("4"));
-				}
+			if(qo.getDepth()!= null && qo.getDepth() == 4 && qo.getParentId() != null){
+				//先查品牌子公司
+                List<CarConfig> carConfigList = queryByParentIdAndDepth(qo.getParentId(),2);
+                if(!carConfigList.isEmpty()) {
+                    List<Integer> parentIds = carConfigList.stream().map(carConfig -> carConfig.getSonId()).collect(Collectors.toList());
+                    //查询车型
+                    c.andParentIdIn(parentIds).andDepthEqualTo(new Byte("4"));
+                    if (StringUtils.isNotBlank(qo.getName())) {
+                        c.andNameLike(qo.getName());
+                    }
+                }
 			}
 		}
 	    example.setOrderByClause(" id desc ");
@@ -53,9 +63,16 @@ public class CarConfigService {
         return PageUtil.transform(page, CarConfigVO.class);
 	}
 
+	public List<CarConfig> queryByParentIdAndDepth(Integer parentId, Integer depth){
+        CarConfigExample carConfigExample = new CarConfigExample();
+        carConfigExample.createCriteria().andParentIdEqualTo(parentId).andDepthEqualTo(depth.byteValue());
+        return dao.listByExample(carConfigExample);
+    }
+
 	public int save(CarConfigQO qo) {
 	    CarConfig record = new CarConfig();
         BeanUtils.copyProperties(qo, record);
+        record.setDepth(qo.getDepth().byteValue());
 		return dao.save(record);
 	}
 
