@@ -40,7 +40,6 @@
                 <td><img src="${bean.logo!}" width="30" height="30"></td>
                 <td>${bean.name!}</td>
                 <td>${bean.initial!}</td>
-
                 <td>${bean.price!}</td>
                 <td>${bean.yearType!}</td>
                 <td>${bean.productionState!}</td>

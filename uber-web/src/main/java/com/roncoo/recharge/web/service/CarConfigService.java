@@ -64,6 +64,16 @@ public class CarConfigService {
                 example.setOrderByClause(" id desc ");
                 page = dao.listForPage(pageCurrent, pageSize, example);
 			}
+			//车款查询
+			if(qo.getDepth()!= null && qo.getDepth() == 4 && qo.getParentId() != null){
+				//查询全部车款
+				c.andParentIdEqualTo(qo.getParentId()).andDepthEqualTo(new Byte("4"));
+				if (StringUtils.isNotBlank(qo.getName())) {
+					c.andNameLike(qo.getName());
+				}
+				example.setOrderByClause(" id desc ");
+				page = dao.listForPage(pageCurrent, pageSize, example);
+			}
 		}
         return PageUtil.transform(page, CarConfigVO.class);
 	}

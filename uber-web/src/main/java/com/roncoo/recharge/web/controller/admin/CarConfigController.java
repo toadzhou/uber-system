@@ -34,13 +34,21 @@ public class CarConfigController extends BaseController {
 	}
 
 	@RequestMapping(value = "/car_type_list")
-	public void carList(@RequestParam(value = "pageCurrent", defaultValue = "1") int pageCurrent, @RequestParam(value = "pageSize", defaultValue = "20") int pageSize, @ModelAttribute CarConfigQO qo, ModelMap modelMap){
-		modelMap.put("page", service.listForPage(pageCurrent, pageSize, qo));
-		modelMap.put("pageCurrent", pageCurrent);
-		modelMap.put("pageSize", pageSize);
-		modelMap.put("bean", qo);
-		modelMap.put("parentId", qo.getParentId());
+	public void carTypeList(@RequestParam(value = "pageCurrent", defaultValue = "1") int pageCurrent, @RequestParam(value = "pageSize", defaultValue = "20") int pageSize, @ModelAttribute CarConfigQO qo, ModelMap modelMap){
+        queryCarInfo(pageCurrent,pageSize,qo,modelMap);
 	}
+
+    @RequestMapping(value = "/car_style_list")
+    public void carStyleList(@RequestParam(value = "pageCurrent", defaultValue = "1") int pageCurrent, @RequestParam(value = "pageSize", defaultValue = "20") int pageSize, @ModelAttribute CarConfigQO qo, ModelMap modelMap){
+        queryCarInfo(pageCurrent,pageSize,qo,modelMap);
+    }
+    public void queryCarInfo(@RequestParam(value = "pageCurrent", defaultValue = "1") int pageCurrent, @RequestParam(value = "pageSize", defaultValue = "20") int pageSize, @ModelAttribute CarConfigQO qo, ModelMap modelMap){
+        modelMap.put("page", service.listForPage(pageCurrent, pageSize, qo));
+        modelMap.put("pageCurrent", pageCurrent);
+        modelMap.put("pageSize", pageSize);
+        modelMap.put("bean", qo);
+        modelMap.put("parentId", qo.getParentId());
+    }
 
 	@RequestMapping(value = "/add")
 	public void add(){
