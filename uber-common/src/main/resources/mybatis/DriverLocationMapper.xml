@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.roncoo.recharge.common.dao.impl.mapper.LocationMapper" >
-  <resultMap id="BaseResultMap" type="com.roncoo.recharge.common.entity.Location" >
+<mapper namespace="com.roncoo.recharge.common.dao.impl.mapper.DriverLocationMapper" >
+  <resultMap id="BaseResultMap" type="com.roncoo.recharge.common.entity.DriverLocation" >
     <id column="id" property="id" jdbcType="BIGINT" />
-    <result column="latitude" property="latitude" jdbcType="VARCHAR" />
-    <result column="longitude" property="longitude" jdbcType="VARCHAR" />
-    <result column="geo_hash" property="geoHash" jdbcType="VARCHAR" />
-    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="driver_id" property="driverId" jdbcType="BIGINT" />
+    <result column="location_id" property="locationId" jdbcType="BIGINT" />
+    <result column="status" property="status" jdbcType="TINYINT" />
     <result column="create_person" property="createPerson" jdbcType="VARCHAR" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
     <result column="update_person" property="updatePerson" jdbcType="VARCHAR" />
@@ -71,16 +70,15 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, latitude, longitude, geo_hash, address, create_person, create_time, update_person, 
-    update_time
+    id, driver_id, location_id, status, create_person, create_time, update_person, update_time
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.roncoo.recharge.common.entity.LocationExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.roncoo.recharge.common.entity.DriverLocationExample" >
     select
     <if test="distinct" >
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from location
+    from driver_location
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -94,46 +92,41 @@
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
     <include refid="Base_Column_List" />
-    from location
+    from driver_location
     where id = #{id,jdbcType=BIGINT}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
-    delete from location
+    delete from driver_location
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <delete id="deleteByExample" parameterType="com.roncoo.recharge.common.entity.LocationExample" >
-    delete from location
+  <delete id="deleteByExample" parameterType="com.roncoo.recharge.common.entity.DriverLocationExample" >
+    delete from driver_location
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.roncoo.recharge.common.entity.Location" >
-    insert into location (id, latitude, longitude, 
-      geo_hash, address, create_person, 
-      create_time, update_person, update_time
-      )
-    values (#{id,jdbcType=BIGINT}, #{latitude,jdbcType=VARCHAR}, #{longitude,jdbcType=VARCHAR}, 
-      #{geoHash,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{createPerson,jdbcType=VARCHAR}, 
-      #{createTime,jdbcType=TIMESTAMP}, #{updatePerson,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}
-      )
+  <insert id="insert" parameterType="com.roncoo.recharge.common.entity.DriverLocation" >
+    insert into driver_location (id, driver_id, location_id, 
+      status, create_person, create_time, 
+      update_person, update_time)
+    values (#{id,jdbcType=BIGINT}, #{driverId,jdbcType=BIGINT}, #{locationId,jdbcType=BIGINT}, 
+      #{status,jdbcType=TINYINT}, #{createPerson,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updatePerson,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective"  keyColumn="id" keyProperty="id"  useGeneratedKeys="true" parameterType="com.roncoo.recharge.common.entity.Location" >
-    insert into location
+  <insert id="insertSelective" parameterType="com.roncoo.recharge.common.entity.DriverLocation" >
+    insert into driver_location
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
       </if>
-      <if test="latitude != null" >
-        latitude,
+      <if test="driverId != null" >
+        driver_id,
       </if>
-      <if test="longitude != null" >
-        longitude,
+      <if test="locationId != null" >
+        location_id,
       </if>
-      <if test="geoHash != null" >
-        geo_hash,
-      </if>
-      <if test="address != null" >
-        address,
+      <if test="status != null" >
+        status,
       </if>
       <if test="createPerson != null" >
         create_person,
@@ -152,17 +145,14 @@
       <if test="id != null" >
         #{id,jdbcType=BIGINT},
       </if>
-      <if test="latitude != null" >
-        #{latitude,jdbcType=VARCHAR},
+      <if test="driverId != null" >
+        #{driverId,jdbcType=BIGINT},
       </if>
-      <if test="longitude != null" >
-        #{longitude,jdbcType=VARCHAR},
+      <if test="locationId != null" >
+        #{locationId,jdbcType=BIGINT},
       </if>
-      <if test="geoHash != null" >
-        #{geoHash,jdbcType=VARCHAR},
-      </if>
-      <if test="address != null" >
-        #{address,jdbcType=VARCHAR},
+      <if test="status != null" >
+        #{status,jdbcType=TINYINT},
       </if>
       <if test="createPerson != null" >
         #{createPerson,jdbcType=VARCHAR},
@@ -178,29 +168,26 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.roncoo.recharge.common.entity.LocationExample" resultType="java.lang.Integer" >
-    select count(*) from location
+  <select id="countByExample" parameterType="com.roncoo.recharge.common.entity.DriverLocationExample" resultType="java.lang.Integer" >
+    select count(*) from driver_location
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map" >
-    update location
+    update driver_location
     <set >
       <if test="record.id != null" >
         id = #{record.id,jdbcType=BIGINT},
       </if>
-      <if test="record.latitude != null" >
-        latitude = #{record.latitude,jdbcType=VARCHAR},
+      <if test="record.driverId != null" >
+        driver_id = #{record.driverId,jdbcType=BIGINT},
       </if>
-      <if test="record.longitude != null" >
-        longitude = #{record.longitude,jdbcType=VARCHAR},
+      <if test="record.locationId != null" >
+        location_id = #{record.locationId,jdbcType=BIGINT},
       </if>
-      <if test="record.geoHash != null" >
-        geo_hash = #{record.geoHash,jdbcType=VARCHAR},
-      </if>
-      <if test="record.address != null" >
-        address = #{record.address,jdbcType=VARCHAR},
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=TINYINT},
       </if>
       <if test="record.createPerson != null" >
         create_person = #{record.createPerson,jdbcType=VARCHAR},
@@ -220,12 +207,11 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map" >
-    update location
+    update driver_location
     set id = #{record.id,jdbcType=BIGINT},
-      latitude = #{record.latitude,jdbcType=VARCHAR},
-      longitude = #{record.longitude,jdbcType=VARCHAR},
-      geo_hash = #{record.geoHash,jdbcType=VARCHAR},
-      address = #{record.address,jdbcType=VARCHAR},
+      driver_id = #{record.driverId,jdbcType=BIGINT},
+      location_id = #{record.locationId,jdbcType=BIGINT},
+      status = #{record.status,jdbcType=TINYINT},
       create_person = #{record.createPerson,jdbcType=VARCHAR},
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
       update_person = #{record.updatePerson,jdbcType=VARCHAR},
@@ -234,20 +220,17 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.roncoo.recharge.common.entity.Location" >
-    update location
+  <update id="updateByPrimaryKeySelective" parameterType="com.roncoo.recharge.common.entity.DriverLocation" >
+    update driver_location
     <set >
-      <if test="latitude != null" >
-        latitude = #{latitude,jdbcType=VARCHAR},
+      <if test="driverId != null" >
+        driver_id = #{driverId,jdbcType=BIGINT},
       </if>
-      <if test="longitude != null" >
-        longitude = #{longitude,jdbcType=VARCHAR},
+      <if test="locationId != null" >
+        location_id = #{locationId,jdbcType=BIGINT},
       </if>
-      <if test="geoHash != null" >
-        geo_hash = #{geoHash,jdbcType=VARCHAR},
-      </if>
-      <if test="address != null" >
-        address = #{address,jdbcType=VARCHAR},
+      <if test="status != null" >
+        status = #{status,jdbcType=TINYINT},
       </if>
       <if test="createPerson != null" >
         create_person = #{createPerson,jdbcType=VARCHAR},
@@ -264,12 +247,11 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.roncoo.recharge.common.entity.Location" >
-    update location
-    set latitude = #{latitude,jdbcType=VARCHAR},
-      longitude = #{longitude,jdbcType=VARCHAR},
-      geo_hash = #{geoHash,jdbcType=VARCHAR},
-      address = #{address,jdbcType=VARCHAR},
+  <update id="updateByPrimaryKey" parameterType="com.roncoo.recharge.common.entity.DriverLocation" >
+    update driver_location
+    set driver_id = #{driverId,jdbcType=BIGINT},
+      location_id = #{locationId,jdbcType=BIGINT},
+      status = #{status,jdbcType=TINYINT},
       create_person = #{createPerson,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       update_person = #{updatePerson,jdbcType=VARCHAR},

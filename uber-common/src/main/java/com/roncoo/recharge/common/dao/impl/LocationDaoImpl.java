@@ -15,8 +15,9 @@ public class LocationDaoImpl implements LocationDao {
     @Autowired
     private LocationMapper locationMapper;
 
-    public int save(Location record) {
-        return this.locationMapper.insertSelective(record);
+    public Long save(Location record) {
+        this.locationMapper.insertSelective(record);
+        return record.getId();
     }
 
     public int deleteById(Long id) {

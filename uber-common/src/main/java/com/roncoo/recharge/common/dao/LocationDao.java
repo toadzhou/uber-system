@@ -6,7 +6,7 @@ import com.roncoo.recharge.util.bjui.Page;
 import java.util.List;
 
 public interface LocationDao {
-    int save(Location record);
+    Long save(Location record);
 
     int deleteById(Long id);
 

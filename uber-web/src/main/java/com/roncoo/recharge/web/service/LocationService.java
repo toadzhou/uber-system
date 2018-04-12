@@ -33,7 +33,7 @@ public class LocationService {
         return PageUtil.transform(page, LocationVO.class);
 	}
 
-	public int save(LocationQO qo) {
+	public Long save(LocationQO qo) {
 	    Location record = new Location();
         BeanUtils.copyProperties(qo, record);
 		return dao.save(record);
