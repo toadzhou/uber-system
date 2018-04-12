@@ -7,12 +7,11 @@
             <input type="text" name="name" value="${bean.name!}" class="form-control" size="12">&nbsp;
             <label>手机号：</label>
             <input type="text" name="phone" value="${bean.phone!}" class="form-control" size="12">&nbsp;
-
             <button type="submit" class="btn-default" data-icon="search">查询</button>&nbsp;
             <a class="btn btn-orange" href="javascript:;" data-toggle="reloadsearch" data-clear-query="true" data-icon="undo">清空查询</a>
             <br />
             <br />
-            <a href="${base}/admin/driver/add" class="btn btn-default" data-toggle="dialog" data-icon="plus" data-id="driver-add" data-options="{title:'添加', height:500}">添加 </a>
+            <a href="${base}/admin/driver/add" class="btn btn-default" data-toggle="dialog" data-icon="plus" data-id="driver-add" data-options="{title:'添加', height:300}">添加 </a>
         </div>
     </form>
 </div>
@@ -40,9 +39,8 @@
                 <td>${bean.workingHours}</td>
                 <td>${bean.createTime?datetime}</td>
                 <td>
-                    <a title="查看" target="dialog" href="${base}/admin/driver/view?id=${bean.id}" class="btnView">查看 </a>
-                    <a title="编辑" target="dialog" href="${base}/admin/driver/edit?id=${bean.id}" class="btnEdit">修改 </a>
-                    <a title="确定要删除吗？" target="ajaxTodo" href="${base}/admin/driver/delete?id=${bean.id}" class="btnDel">删除</a>
+                    <a href="${base}/admin/driver/delete?id=${bean.id}" class="btn btn-red" data-toggle="doajax" data-id="driver-delete" data-confirm-msg="确定要删除吗？">删除</a>
+                    <a href="${base}/admin/driver/list?driverId=${bean.id}" class="btn btn-green" data-toggle="navtab" data-id="admin-driver">所属车辆</a>
                 </td>
             </tr>
             </#list>

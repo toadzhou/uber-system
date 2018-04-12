@@ -1,5 +1,7 @@
 package com.roncoo.recharge.web.service;
 
+import com.roncoo.recharge.common.dao.CarConfigDao;
+import com.roncoo.recharge.common.dao.DriverCarDao;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -24,6 +26,10 @@ public class DriverService {
 
 	@Autowired
 	private DriverDao dao;
+	@Autowired
+	private DriverCarDao driverCarDao;
+	@Autowired
+	private CarConfigDao carConfigDao;
 
 	public Page<DriverVO> listForPage(int pageCurrent, int pageSize, DriverQO qo) {
 	    DriverExample example = new DriverExample();
@@ -32,6 +38,8 @@ public class DriverService {
         Page<Driver> page = dao.listForPage(pageCurrent, pageSize, example);
         return PageUtil.transform(page, DriverVO.class);
 	}
+
+
 
 	public int save(DriverQO qo) {
 	    Driver record = new Driver();

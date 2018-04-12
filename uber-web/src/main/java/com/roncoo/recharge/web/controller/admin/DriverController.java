@@ -34,6 +34,10 @@ public class DriverController extends BaseController {
 		modelMap.put("pageSize", pageSize);
 		modelMap.put("bean", qo);
 	}
+	@RequestMapping(value = "/driver_car_list")
+	public void driverCarList(){
+
+	}
 	
 	@RequestMapping(value = "/add")
 	public void add(){
