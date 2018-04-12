@@ -37,7 +37,7 @@
                 <td>${bean.name}</td>
                 <td>${bean.initial}</td>
                 <td>
-                    <a href="${base}/admin/carConfig/car_list?parentId=${bean.sonId}&depth=4" class="btn btn-red" data-toggle="navtab" data-id="admin-itemSupply">全部车型 </a>
+                    <a href="${base}/admin/carConfig/car_type_list?parentId=${bean.sonId}&depth=3" class="btn btn-red" data-toggle="navtab" data-id="admin-itemSupply">全部车型 </a>
                 </td>
             </tr>
             </#list>

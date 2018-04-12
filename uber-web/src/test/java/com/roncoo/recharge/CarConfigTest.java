@@ -72,23 +72,27 @@ public class CarConfigTest {
                     carConfigQO1.setInitial(depthThree.getInitial());
                     carConfigQO1.setParentId(depthThree.getParentid());
                     carConfigQO1.setSaleState(depthThree.getSalestate());
+                    carConfigQO1.setLogo(depthThree.getLogo());
                     carConfigService.save(carConfigQO1);
+                    if(!depthThree.getList().isEmpty()){
+                        for(DepthFour depthFour : depthThree.getList()){
+                            CarConfigQO carConfigQO2 = new CarConfigQO();
+                            carConfigQO2.setSonId(depthFour.getId());
+                            carConfigQO2.setDepth(depthFour.getDepth());
+                            carConfigQO2.setName(depthFour.getName());
+                            carConfigQO2.setInitial(depthFour.getInitial());
+                            carConfigQO2.setParentId(depthFour.getParentid());
+                            carConfigQO2.setLogo(depthFour.getLogo());
 
-                    for(DepthFour depthFour : depthThree.getList()){
-                        CarConfigQO carConfigQO2 = new CarConfigQO();
-                        carConfigQO2.setSonId(depthFour.getId());
-                        carConfigQO2.setDepth(depthFour.getDepth());
-                        carConfigQO2.setName(depthFour.getName());
-                        carConfigQO2.setInitial(depthFour.getInitial());
-                        carConfigQO2.setParentId(depthFour.getParentid());
-
-                        carConfigQO2.setSaleState(depthFour.getSalestate());
-                        carConfigQO2.setSizeType(depthFour.getSizetype());
-                        carConfigQO2.setYearType(depthFour.getYeartype());
-                        carConfigQO2.setProductionState(depthFour.getProductionstate());
-                        carConfigQO2.setPrice(depthFour.getPrice());
-                        carConfigService.save(carConfigQO2);
+                            carConfigQO2.setSaleState(depthFour.getSalestate());
+                            carConfigQO2.setSizeType(depthFour.getSizetype());
+                            carConfigQO2.setYearType(depthFour.getYeartype());
+                            carConfigQO2.setProductionState(depthFour.getProductionstate());
+                            carConfigQO2.setPrice(depthFour.getPrice());
+                            carConfigService.save(carConfigQO2);
+                        }
                     }
+
                 }
             }
         }

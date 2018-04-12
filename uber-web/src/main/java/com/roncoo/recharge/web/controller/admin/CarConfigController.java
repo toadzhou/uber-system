@@ -7,11 +7,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import com.roncoo.recharge.web.service.CarConfigService;
 import com.roncoo.recharge.web.bean.qo.CarConfigQO;
 import com.roncoo.recharge.util.base.BaseController;
-
 /**
  * 车型基础数据 
  *
@@ -35,7 +33,7 @@ public class CarConfigController extends BaseController {
 		modelMap.put("bean", qo);
 	}
 
-	@RequestMapping(value = "/car_list")
+	@RequestMapping(value = "/car_type_list")
 	public void carList(@RequestParam(value = "pageCurrent", defaultValue = "1") int pageCurrent, @RequestParam(value = "pageSize", defaultValue = "20") int pageSize, @ModelAttribute CarConfigQO qo, ModelMap modelMap){
 		modelMap.put("page", service.listForPage(pageCurrent, pageSize, qo));
 		modelMap.put("pageCurrent", pageCurrent);

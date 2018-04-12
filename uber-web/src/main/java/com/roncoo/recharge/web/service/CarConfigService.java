@@ -30,10 +30,13 @@ public class CarConfigService {
 	private CarConfigDao dao;
 
 	public Page<CarConfigVO> listForPage(int pageCurrent, int pageSize, CarConfigQO qo) {
+        Page<CarConfig> page = null;
 	    CarConfigExample example = new CarConfigExample();
 	    Criteria c = example.createCriteria();
 	    if(qo.getDepth() == null){
 	    	c.andParentIdEqualTo(0).andDepthEqualTo(new Byte("1"));
+            example.setOrderByClause(" id desc ");
+            page = dao.listForPage(pageCurrent, pageSize, example);
 		}else{
 			//品牌查询
 			if(qo.getDepth()!= null && qo.getDepth() == 1){
@@ -43,23 +46,25 @@ public class CarConfigService {
 				if(StringUtils.isNotBlank(qo.getInitial())){
 					c.andInitialEqualTo(qo.getInitial()).andParentIdEqualTo(0).andDepthEqualTo(new Byte("1"));
 				}
+                example.setOrderByClause(" id desc ");
+                page = dao.listForPage(pageCurrent, pageSize, example);
 			}
 			//车型查询
-			if(qo.getDepth()!= null && qo.getDepth() == 4 && qo.getParentId() != null){
-				//先查品牌子公司
-                List<CarConfig> carConfigList = queryByParentIdAndDepth(qo.getParentId(),2);
+			if(qo.getDepth()!= null && qo.getDepth() == 3 && qo.getParentId() != null){
+				//先查品牌子公司,默认奥迪
+                List<CarConfig> carConfigList = queryByParentIdAndDepth(1,2);
                 if(!carConfigList.isEmpty()) {
                     List<Integer> parentIds = carConfigList.stream().map(carConfig -> carConfig.getSonId()).collect(Collectors.toList());
-                    //查询车型
-                    c.andParentIdIn(parentIds).andDepthEqualTo(new Byte("4"));
+                    //查询全部车型
+                    c.andParentIdIn(parentIds).andDepthEqualTo(new Byte("3"));
                     if (StringUtils.isNotBlank(qo.getName())) {
                         c.andNameLike(qo.getName());
                     }
                 }
+                example.setOrderByClause(" id desc ");
+                page = dao.listForPage(pageCurrent, pageSize, example);
 			}
 		}
-	    example.setOrderByClause(" id desc ");
-        Page<CarConfig> page = dao.listForPage(pageCurrent, pageSize, example);
         return PageUtil.transform(page, CarConfigVO.class);
 	}
 
