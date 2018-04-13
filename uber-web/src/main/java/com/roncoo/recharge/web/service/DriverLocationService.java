@@ -13,6 +13,8 @@ import com.roncoo.recharge.common.entity.DriverLocation;
 import com.roncoo.recharge.common.entity.DriverLocationExample;
 import com.roncoo.recharge.common.entity.DriverLocationExample.Criteria;
 
+import java.util.List;
+
 /**
  * 司机位置 
  *
@@ -36,6 +38,7 @@ public class DriverLocationService {
 	public int save(DriverLocationQO qo) {
 	    DriverLocation record = new DriverLocation();
         BeanUtils.copyProperties(qo, record);
+        record.setStatus(qo.getStatus().byteValue());
 		return dao.save(record);
 	}
 
@@ -54,6 +57,12 @@ public class DriverLocationService {
 	    DriverLocation record = new DriverLocation();
         BeanUtils.copyProperties(qo, record);
 		return dao.updateById(record);
+	}
+
+	public List<DriverLocation> queryForList(Long driverId){
+		DriverLocationExample driverLocationExample = new DriverLocationExample();
+		driverLocationExample.createCriteria().andDriverIdEqualTo(driverId);
+		return dao.listByExample(driverLocationExample);
 	}
 	
 }
