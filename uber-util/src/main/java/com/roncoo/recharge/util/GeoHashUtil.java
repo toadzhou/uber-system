@@ -2,6 +2,7 @@ package com.roncoo.recharge.util;
 
 import com.alibaba.fastjson.JSON;
 import com.roncoo.recharge.util.bean.LocationBean;
+import com.xiaoleilu.hutool.geo.GeoHash;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -12,7 +13,7 @@ import java.util.List;
  * @version $$Id: uber-system, v 0.1 2018/4/10 上午9:39 mark1xie Exp $$
  */
 
-public class GeoHash {
+public class GeoHashUtil {
     private LocationBean location;
     /**
      * 1 2500km;2 630km;3 78km;4 30km
@@ -28,7 +29,7 @@ public class GeoHash {
             '8', '9', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'j', 'k', 'm', 'n',
             'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
 
-    public GeoHash(double lat, double lng) {
+    public GeoHashUtil(double lat, double lng) {
         location = new LocationBean(lat, lng);
         setMinLatLng();
     }
@@ -249,7 +250,7 @@ public class GeoHash {
 
     public static void main(String[] args) {
         // TODO Auto-generated method stub
-        GeoHash g = new GeoHash(40.222012, 116.248283);
+        GeoHashUtil g = new GeoHashUtil(30.306312,120.114451);
         System.out.println(g.getGeoHashBase32());
         System.out.println(JSON.toJSONString(g.getGeoHashBase32For9()));
     }

@@ -1,6 +1,6 @@
 package com.roncoo.recharge.web.service;
 
-import com.roncoo.recharge.util.GeoHash;
+import com.roncoo.recharge.util.GeoHashUtil;
 import com.roncoo.recharge.web.bean.qo.DriverLocationQO;
 import com.roncoo.recharge.web.bean.qo.DriverSendLocationQO;
 import com.roncoo.recharge.web.bean.qo.LocationQO;
@@ -23,7 +23,7 @@ public class DispatchService {
 
     public void insertDriverLocation(DriverSendLocationQO driverSendLocationQO){
         //插入location
-        GeoHash g = new GeoHash(driverSendLocationQO.getLatitude(),driverSendLocationQO.getLongitude());
+        GeoHashUtil g = new GeoHashUtil(driverSendLocationQO.getLongitude(),driverSendLocationQO.getLatitude());
         String hashCode = g.getGeoHashBase32();
 
         LocationQO locationQO = new LocationQO();
