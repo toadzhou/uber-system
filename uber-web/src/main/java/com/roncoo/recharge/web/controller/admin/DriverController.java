@@ -1,5 +1,8 @@
 package com.roncoo.recharge.web.controller.admin;
 
+import com.roncoo.recharge.common.entity.DriverLocation;
+import com.roncoo.recharge.web.bean.res.DriverLocationRes;
+import com.roncoo.recharge.web.service.DriverLocationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -26,6 +29,8 @@ public class DriverController extends BaseController {
 
 	@Autowired
 	private DriverService service;
+	@Autowired
+	private DriverLocationService driverLocationService;
 	
 	@RequestMapping(value = "/list")
 	public void list(@RequestParam(value = "pageCurrent", defaultValue = "1") int pageCurrent, @RequestParam(value = "pageSize", defaultValue = "20") int pageSize, @ModelAttribute DriverQO qo, ModelMap modelMap){
@@ -42,6 +47,13 @@ public class DriverController extends BaseController {
 	@RequestMapping(value = "/add")
 	public void add(){
 	
+	}
+	@RequestMapping(value = "/map")
+	public void map(Long driverId, ModelMap modelMap){
+		DriverLocationRes driverLocationRes = driverLocationService.getLocationByDriverId(driverId);
+		modelMap.put("lat",driverLocationRes.getLat());
+		modelMap.put("lng",driverLocationRes.getLng());
+		modelMap.put("address",driverLocationRes.getAddress());
 	}
 	
 	@ResponseBody

@@ -41,6 +41,7 @@
                 <td>
                     <a href="${base}/admin/driver/delete?id=${bean.id}" class="btn btn-red" data-toggle="doajax" data-id="driver-delete" data-confirm-msg="确定要删除吗？">删除</a>
                     <a href="${base}/admin/driver/list?driverId=${bean.id}" class="btn btn-green" data-toggle="navtab" data-id="admin-driver">所属车辆</a>
+                    <a href="${base}/admin/driver/map?driverId=${bean.id}" class="btn btn-red" data-toggle="dialog" data-icon="map" data-id="driver-map" data-options="{title:'地图', height:300}">位置</a>
                 </td>
             </tr>
             </#list>

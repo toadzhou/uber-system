@@ -14,10 +14,6 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>com.xiaoleilu</groupId>
-			<artifactId>hutool-geo</artifactId>
-		</dependency>
-		<dependency>
 			<groupId>com.alibaba</groupId>
 			<artifactId>fastjson</artifactId>
 		</dependency>

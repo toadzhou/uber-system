@@ -34,6 +34,8 @@
 <!-- jquery -->
 <script src="BJUI/js/jquery-1.7.2.min.js"></script>
 <script src="BJUI/js/jquery.cookie.js"></script>
+<script src="BJUI/js/gmap3.min.5.js"></script>
+<script type="text/javascript" src="http://ditu.google.cn/maps/api/js?sensor=false&language=zh-CN"></script>
 <!--[if lte IE 9]>
 <script src="BJUI/other/jquery.iframe-transport.js"></script>    
 <![endif]-->
