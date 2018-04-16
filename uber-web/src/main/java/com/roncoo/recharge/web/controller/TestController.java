@@ -19,12 +19,19 @@ public class TestController {
 
     @RequestMapping("driver")
     public String driver(){
-
         return "driver";
     }
+    @RequestMapping("passenger")
+    public void passenger(){}
+
     @RequestMapping("driver_location")
     public void insertDriverLocation(DriverSendLocationQO driverSendLocationQO){
         dispatchService.insertDriverLocation(driverSendLocationQO);
+    }
+
+    @RequestMapping("request_info")
+    public void insertRequestInfo(){
+
     }
 
 }
