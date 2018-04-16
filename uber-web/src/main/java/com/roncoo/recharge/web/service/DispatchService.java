@@ -65,7 +65,7 @@ public class DispatchService {
         GeoHashUtil departureGeo = new GeoHashUtil(requestInfoReq.getDepartureLat(),requestInfoReq.getDepartureLng());
         String departureHashCode = departureGeo.getGeoHashBase32();
         GeoHashUtil destinationGeo = new GeoHashUtil(requestInfoReq.getDestinationLat(),requestInfoReq.getDestinationLng());
-        String destinationHashCode = departureGeo.getGeoHashBase32();
+        String destinationHashCode = destinationGeo.getGeoHashBase32();
 
         //departure
         LocationQO locationQO = new LocationQO();
@@ -80,7 +80,7 @@ public class DispatchService {
         locationQO1.setAddress(requestInfoReq.getDestinationAddress());
         locationQO1.setLatitude(requestInfoReq.getDestinationLat().toString());
         locationQO1.setLongitude(requestInfoReq.getDestinationLng().toString());
-        locationQO1.setGeoHash(departureHashCode);
+        locationQO1.setGeoHash(destinationHashCode);
         Long destinationId = locationService.save(locationQO1);
 
         //插入request_info

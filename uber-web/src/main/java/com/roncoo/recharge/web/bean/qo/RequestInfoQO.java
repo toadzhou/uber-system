@@ -22,6 +22,22 @@ public class RequestInfoQO implements Serializable {
 
     private Long id;
     /**
+     * 流水号
+     */
+    private String serialNo;
+    /**
+     * 状态: 0-挂起  1-成功 2-失败
+     */
+    private Integer status;
+    /**
+     * 手机号
+     */
+    private String phone;
+    /**
+     * 乘客Id
+     */
+    private Long passengerId;
+    /**
      * 出发地
      */
     private Long departureId;
@@ -29,10 +45,6 @@ public class RequestInfoQO implements Serializable {
      * 出发地
      */
     private Long destinationId;
-    /**
-     * 乘客Id
-     */
-    private Long passengerId;
     /**
      * 是否加价: 0 否 1 是
      */

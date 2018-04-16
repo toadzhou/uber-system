@@ -3,9 +3,12 @@
 <mapper namespace="com.roncoo.recharge.common.dao.impl.mapper.RequestInfoMapper" >
   <resultMap id="BaseResultMap" type="com.roncoo.recharge.common.entity.RequestInfo" >
     <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="serial_no" property="serialNo" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="passenger_id" property="passengerId" jdbcType="BIGINT" />
     <result column="departure_id" property="departureId" jdbcType="BIGINT" />
     <result column="destination_id" property="destinationId" jdbcType="BIGINT" />
-    <result column="passenger_id" property="passengerId" jdbcType="BIGINT" />
     <result column="surge" property="surge" jdbcType="INTEGER" />
     <result column="create_person" property="createPerson" jdbcType="VARCHAR" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
@@ -71,8 +74,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, departure_id, destination_id, passenger_id, surge, create_person, create_time, 
-    update_person, update_time
+    id, serial_no, status, phone, passenger_id, departure_id, destination_id, surge, 
+    create_person, create_time, update_person, update_time
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.roncoo.recharge.common.entity.RequestInfoExample" >
     select
@@ -108,12 +111,14 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.roncoo.recharge.common.entity.RequestInfo" >
-    insert into request_info (id, departure_id, destination_id, 
-      passenger_id, surge, create_person, 
+    insert into request_info (id, serial_no, status, 
+      phone, passenger_id, departure_id, 
+      destination_id, surge, create_person, 
       create_time, update_person, update_time
       )
-    values (#{id,jdbcType=BIGINT}, #{departureId,jdbcType=BIGINT}, #{destinationId,jdbcType=BIGINT}, 
-      #{passengerId,jdbcType=BIGINT}, #{surge,jdbcType=INTEGER}, #{createPerson,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=BIGINT}, #{serialNo,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
+      #{phone,jdbcType=VARCHAR}, #{passengerId,jdbcType=BIGINT}, #{departureId,jdbcType=BIGINT}, 
+      #{destinationId,jdbcType=BIGINT}, #{surge,jdbcType=INTEGER}, #{createPerson,jdbcType=VARCHAR}, 
       #{createTime,jdbcType=TIMESTAMP}, #{updatePerson,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}
       )
   </insert>
@@ -123,14 +128,23 @@
       <if test="id != null" >
         id,
       </if>
+      <if test="serialNo != null" >
+        serial_no,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="passengerId != null" >
+        passenger_id,
+      </if>
       <if test="departureId != null" >
         departure_id,
       </if>
       <if test="destinationId != null" >
         destination_id,
-      </if>
-      <if test="passengerId != null" >
-        passenger_id,
       </if>
       <if test="surge != null" >
         surge,
@@ -152,14 +166,23 @@
       <if test="id != null" >
         #{id,jdbcType=BIGINT},
       </if>
+      <if test="serialNo != null" >
+        #{serialNo,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="passengerId != null" >
+        #{passengerId,jdbcType=BIGINT},
+      </if>
       <if test="departureId != null" >
         #{departureId,jdbcType=BIGINT},
       </if>
       <if test="destinationId != null" >
         #{destinationId,jdbcType=BIGINT},
-      </if>
-      <if test="passengerId != null" >
-        #{passengerId,jdbcType=BIGINT},
       </if>
       <if test="surge != null" >
         #{surge,jdbcType=INTEGER},
@@ -190,14 +213,23 @@
       <if test="record.id != null" >
         id = #{record.id,jdbcType=BIGINT},
       </if>
+      <if test="record.serialNo != null" >
+        serial_no = #{record.serialNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=INTEGER},
+      </if>
+      <if test="record.phone != null" >
+        phone = #{record.phone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.passengerId != null" >
+        passenger_id = #{record.passengerId,jdbcType=BIGINT},
+      </if>
       <if test="record.departureId != null" >
         departure_id = #{record.departureId,jdbcType=BIGINT},
       </if>
       <if test="record.destinationId != null" >
         destination_id = #{record.destinationId,jdbcType=BIGINT},
-      </if>
-      <if test="record.passengerId != null" >
-        passenger_id = #{record.passengerId,jdbcType=BIGINT},
       </if>
       <if test="record.surge != null" >
         surge = #{record.surge,jdbcType=INTEGER},
@@ -222,9 +254,12 @@
   <update id="updateByExample" parameterType="map" >
     update request_info
     set id = #{record.id,jdbcType=BIGINT},
+      serial_no = #{record.serialNo,jdbcType=VARCHAR},
+      status = #{record.status,jdbcType=INTEGER},
+      phone = #{record.phone,jdbcType=VARCHAR},
+      passenger_id = #{record.passengerId,jdbcType=BIGINT},
       departure_id = #{record.departureId,jdbcType=BIGINT},
       destination_id = #{record.destinationId,jdbcType=BIGINT},
-      passenger_id = #{record.passengerId,jdbcType=BIGINT},
       surge = #{record.surge,jdbcType=INTEGER},
       create_person = #{record.createPerson,jdbcType=VARCHAR},
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
@@ -237,14 +272,23 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.roncoo.recharge.common.entity.RequestInfo" >
     update request_info
     <set >
+      <if test="serialNo != null" >
+        serial_no = #{serialNo,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="passengerId != null" >
+        passenger_id = #{passengerId,jdbcType=BIGINT},
+      </if>
       <if test="departureId != null" >
         departure_id = #{departureId,jdbcType=BIGINT},
       </if>
       <if test="destinationId != null" >
         destination_id = #{destinationId,jdbcType=BIGINT},
-      </if>
-      <if test="passengerId != null" >
-        passenger_id = #{passengerId,jdbcType=BIGINT},
       </if>
       <if test="surge != null" >
         surge = #{surge,jdbcType=INTEGER},
@@ -266,9 +310,12 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.roncoo.recharge.common.entity.RequestInfo" >
     update request_info
-    set departure_id = #{departureId,jdbcType=BIGINT},
-      destination_id = #{destinationId,jdbcType=BIGINT},
+    set serial_no = #{serialNo,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      phone = #{phone,jdbcType=VARCHAR},
       passenger_id = #{passengerId,jdbcType=BIGINT},
+      departure_id = #{departureId,jdbcType=BIGINT},
+      destination_id = #{destinationId,jdbcType=BIGINT},
       surge = #{surge,jdbcType=INTEGER},
       create_person = #{createPerson,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},

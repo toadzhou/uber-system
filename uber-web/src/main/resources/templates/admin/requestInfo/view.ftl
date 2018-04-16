@@ -2,13 +2,16 @@
 <div class="pageContent">
     <div class="pageFormContent" layoutH="58">
         <p>
+            <label>流水号：</label>${bean.serialNo}
+        </p>
+        <p>
+            <label>乘客Id：</label>${bean.passengerId}
+        </p>
+        <p>
             <label>出发地：</label>${bean.departureId}
         </p>
         <p>
             <label>出发地：</label>${bean.destinationId}
-        </p>
-        <p>
-            <label>乘客Id：</label>${bean.passengerId}
         </p>
         <p>
             <label>创建人：</label>${bean.createPerson}

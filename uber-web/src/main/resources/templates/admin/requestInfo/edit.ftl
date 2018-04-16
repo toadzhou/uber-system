@@ -4,16 +4,20 @@
 		<div class="pageFormContent" layoutH="58">
             <input type="hidden" name="id" value="${bean.id}"/>
     		<p>
+                <label>流水号：</label>
+                <input type="text" name="serialNo" value="${bean.serialNo}" placeholder="流水号" size="20" />
+            </p>
+    		<p>
+                <label>乘客Id：</label>
+                <input type="text" name="passengerId" value="${bean.passengerId}" placeholder="乘客Id" size="20" />
+            </p>
+    		<p>
                 <label>出发地：</label>
                 <input type="text" name="departureId" value="${bean.departureId}" placeholder="出发地" size="20" />
             </p>
     		<p>
                 <label>出发地：</label>
                 <input type="text" name="destinationId" value="${bean.destinationId}" placeholder="出发地" size="20" />
-            </p>
-    		<p>
-                <label>乘客Id：</label>
-                <input type="text" name="passengerId" value="${bean.passengerId}" placeholder="乘客Id" size="20" />
             </p>
     		<p>
                 <label>创建人：</label>

@@ -1,72 +1,55 @@
 <#include "/macro/base.ftl" />
-<form id="pagerForm" method="post" action="${base}/admin/requestInfo/list">
-    <@pagerForm />
-</form>
-
-<div class="pageHeader">
-    <form rel="pagerForm" onsubmit="return navTabSearch(this);" action="${base}/admin/requestInfo/list" method="post">
-        <div class="searchBar">
-            <ul class="searchContent">
-                <li>
-                    <label>字段KEY：</label>
-                    <input type="text" name="fieldKey" value="${(bean.fieldKey)!}"/>
-                </li>
-            </ul>
-            <div class="subBar">
-                <ul>
-                    <li><div class="buttonActive"><div class="buttonContent"><button type="submit">查询</button></div></div></li>
-                    <li><div class="button"><div class="buttonContent"><button type="reset">清空重输</button></div></div></li>
-                </ul>
-            </div>
+<div class="bjui-pageHeader">
+    <form id="pagerForm" data-toggle="ajaxsearch" action="${base}/admin/requestInfo/list" method="post">
+		<@pageHeadr />
+        <div class="bjui-searchBar">
+            <label>流水号：</label>
+            <input type="text" name="name" value="${bean.name!}" class="form-control" size="12">&nbsp;
+            <label>乘客手机号：</label>
+            <input type="text" name="phone" value="${bean.phone!}" class="form-control" size="12">&nbsp;
+            <button type="submit" class="btn-default" data-icon="search">查询</button>&nbsp;
+            <a class="btn btn-orange" href="javascript:;" data-toggle="reloadsearch" data-clear-query="true" data-icon="undo">清空查询</a>
+            <br />
+            <br />
+            <a href="${base}/admin/requestInfo/add" class="btn btn-default" data-toggle="dialog" data-icon="plus" data-id="requestInfo-add" data-options="{title:'添加', height:300}">添加 </a>
         </div>
     </form>
 </div>
-
-<div class="pageContent">
-    <div class="panelBar">
-        <ul class="toolBar">
-            <li class="line">line</li>
-            <li><a class="add" href="${base}/admin/requestInfo/add" target="dialog"><span>添加</span></a></li>
-            <li class="line">line</li>
-        </ul>
-    </div>
-    <div id="w_list_print">
-        <table class="list" width="100%" targetType="navTab" asc="asc" desc="desc" layoutH="116">
-            <thead>
-                <tr>
-                    <th width="30">序号</th>
-                    <th>出发地</th>
-                    <th>出发地</th>
-                    <th>乘客Id</th>
-                    <th>创建人</th>
-                    <th>创建时间</th>
-                    <th>更新人</th>
-                    <th>修改时间</th>
-                    <th>操作</th>
-                </tr>
-            </thead>
-            <tbody>
-                <#if page??>
-                <#list page.list as bean>
-                <tr>
-                    <td align="center">${bean_index+1}</td>
-                    <td>${bean.departureId}</td>
-                    <td>${bean.destinationId}</td>
-                    <td>${bean.passengerId}</td>
-                    <td>${bean.createPerson}</td>
-                    <td>${bean.createTime}</td>
-                    <td>${bean.updatePerson}</td>
-                    <td>${bean.updateTime}</td>
-                    <td>
-                        <a title="查看" target="dialog" href="${base}/admin/requestInfo/view?id=${bean.id}" class="btnView">查看 </a>
-                        <a title="编辑" target="dialog" href="${base}/admin/requestInfo/edit?id=${bean.id}" class="btnEdit">修改 </a>
-                        <a title="确定要删除吗？" target="ajaxTodo" href="${base}/admin/requestInfo/delete?id=${bean.id}" class="btnDel">删除</a>
-                    </td>
-                </tr>
-                </#list>
-                </#if>
-            </tbody>
-        </table>
-    </div>
-    <@pages />
+<div class="bjui-pageContent tableContent">
+    <table class="table table-bordered table-hover table-top" data-toggle="tablefixed" data-selected-multi="true">
+        <thead>
+        <tr>
+            <th width="30">序号</th>
+            <th>流水号</th>
+            <th>手机</th>
+            <th>出发地</th>
+            <th>目的地</th>
+            <th>是否加价</th>
+            <th>创建时间</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+            <#if page??>
+            <#list page.list as bean>
+            <tr>
+                <td align="center">${bean_index+1}</td>
+                <td>${bean.serialNo}</td>
+                <td>${bean.phone}</td>
+                <td>${bean.departureId}</td>
+                <td>${bean.destinationId}</td>
+                <td>${bean.surge}</td>
+                <td>${bean.createTime?datetime}</td>
+                <td>
+                    <a href="${base}/admin/requestInfo/delete?id=${bean.id}" class="btn btn-red" data-toggle="doajax" data-id="requestInfo-delete" data-confirm-msg="确定要删除吗？">删除</a>
+                    <a href="${base}/admin/requestInfo/list?requestInfoId=${bean.id}" class="btn btn-green" data-toggle="navtab" data-id="admin-requestInfo">所属车辆</a>
+                    <a href="${base}/admin/requestInfo/map?requestInfoId=${bean.id}" class="btn btn-red" data-toggle="dialog" data-icon="map" data-id="requestInfo-map" data-options="{title:'地图', height:300}">位置</a>
+                </td>
+            </tr>
+            </#list>
+            </#if>
+        </tbody>
+    </table>
 </div>
+<@pageFooter />
+

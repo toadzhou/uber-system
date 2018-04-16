@@ -18,7 +18,7 @@
             </div>
         </div>
         <div class="form-group">
-            <label for="address" class="col-md-2 control-label ">乘客姓名</label>
+            <label for="address" class="col-md-2 control-label ">乘客</label>
             <div class="col-md-10">
                 <select name="passengerId" class="form-control input-lg">
                     <option value="1" selected="selected">test</option>

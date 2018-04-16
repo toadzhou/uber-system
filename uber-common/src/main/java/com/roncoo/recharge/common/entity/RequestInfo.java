@@ -6,11 +6,17 @@ import java.util.Date;
 public class RequestInfo implements Serializable {
     private Long id;
 
+    private String serialNo;
+
+    private Integer status;
+
+    private String phone;
+
+    private Long passengerId;
+
     private Long departureId;
 
     private Long destinationId;
-
-    private Long passengerId;
 
     private Integer surge;
 
@@ -32,6 +38,38 @@ public class RequestInfo implements Serializable {
         this.id = id;
     }
 
+    public String getSerialNo() {
+        return serialNo;
+    }
+
+    public void setSerialNo(String serialNo) {
+        this.serialNo = serialNo == null ? null : serialNo.trim();
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone == null ? null : phone.trim();
+    }
+
+    public Long getPassengerId() {
+        return passengerId;
+    }
+
+    public void setPassengerId(Long passengerId) {
+        this.passengerId = passengerId;
+    }
+
     public Long getDepartureId() {
         return departureId;
     }
@@ -46,14 +84,6 @@ public class RequestInfo implements Serializable {
 
     public void setDestinationId(Long destinationId) {
         this.destinationId = destinationId;
-    }
-
-    public Long getPassengerId() {
-        return passengerId;
-    }
-
-    public void setPassengerId(Long passengerId) {
-        this.passengerId = passengerId;
     }
 
     public Integer getSurge() {
@@ -103,9 +133,12 @@ public class RequestInfo implements Serializable {
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
         sb.append(", id=").append(id);
+        sb.append(", serialNo=").append(serialNo);
+        sb.append(", status=").append(status);
+        sb.append(", phone=").append(phone);
+        sb.append(", passengerId=").append(passengerId);
         sb.append(", departureId=").append(departureId);
         sb.append(", destinationId=").append(destinationId);
-        sb.append(", passengerId=").append(passengerId);
         sb.append(", surge=").append(surge);
         sb.append(", createPerson=").append(createPerson);
         sb.append(", createTime=").append(createTime);
