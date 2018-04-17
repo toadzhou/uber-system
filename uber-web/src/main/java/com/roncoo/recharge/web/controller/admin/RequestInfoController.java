@@ -1,5 +1,8 @@
 package com.roncoo.recharge.web.controller.admin;
 
+import com.roncoo.recharge.web.bean.vo.LocationVO;
+import com.roncoo.recharge.web.bean.vo.RequestInfoVO;
+import com.roncoo.recharge.web.service.LocationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -26,6 +29,23 @@ public class RequestInfoController extends BaseController {
 
 	@Autowired
 	private RequestInfoService service;
+	@Autowired
+	private LocationService locationService;
+
+
+	@RequestMapping("map")
+	public void showMap(Long requestInfoId ,ModelMap modelMap){
+		RequestInfoVO requestInfoVO = service.getById(requestInfoId);
+		if(requestInfoVO != null){
+			LocationVO departure = locationService.getById(requestInfoVO.getDepartureId());
+			LocationVO destination =  locationService.getById(requestInfoVO.getDestinationId());
+			modelMap.put("dep_x",departure.getLatitude());
+			modelMap.put("dep_y",departure.getLongitude());
+			modelMap.put("des_x",destination.getLatitude());
+			modelMap.put("des_y",destination.getLongitude());
+		}
+	}
+
 	
 	@RequestMapping(value = "/list")
 	public void list(@RequestParam(value = "pageCurrent", defaultValue = "1") int pageCurrent, @RequestParam(value = "pageSize", defaultValue = "20") int pageSize, @ModelAttribute RequestInfoQO qo, ModelMap modelMap){

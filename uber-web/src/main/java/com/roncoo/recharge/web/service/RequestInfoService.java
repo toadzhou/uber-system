@@ -55,5 +55,7 @@ public class RequestInfoService {
         BeanUtils.copyProperties(qo, record);
 		return dao.updateById(record);
 	}
+
+
 	
 }

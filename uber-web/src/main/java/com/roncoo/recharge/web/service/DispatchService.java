@@ -71,7 +71,7 @@ public class DispatchService {
         LocationQO locationQO = new LocationQO();
         locationQO.setAddress(requestInfoReq.getDepartureAddress());
         locationQO.setLatitude(requestInfoReq.getDepartureLat().toString());
-        locationQO.setLongitude(requestInfoReq.getDestinationLng().toString());
+        locationQO.setLongitude(requestInfoReq.getDepartureLng().toString());
         locationQO.setGeoHash(departureHashCode);
         Long departureId = locationService.save(locationQO);
 

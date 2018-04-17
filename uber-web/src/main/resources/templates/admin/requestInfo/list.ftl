@@ -22,8 +22,7 @@
             <th width="30">序号</th>
             <th>流水号</th>
             <th>手机</th>
-            <th>出发地</th>
-            <th>目的地</th>
+            <th>状态</th>
             <th>是否加价</th>
             <th>创建时间</th>
             <th>操作</th>
@@ -36,14 +35,25 @@
                 <td align="center">${bean_index+1}</td>
                 <td>${bean.serialNo}</td>
                 <td>${bean.phone}</td>
-                <td>${bean.departureId}</td>
-                <td>${bean.destinationId}</td>
-                <td>${bean.surge}</td>
+                <td>
+                    <#if bean.status==0>
+                        挂起
+                        <#elseif bean.status==1>
+                                成功
+                        <#elseif bean.status==2>
+                                失败
+                    </#if>
+                </td>
+                <td>
+                    <#if bean.surge==1>
+                        是
+                        <#elseif bean.surge==0>
+                            否
+                    </#if>
+                </td>
                 <td>${bean.createTime?datetime}</td>
                 <td>
-                    <a href="${base}/admin/requestInfo/delete?id=${bean.id}" class="btn btn-red" data-toggle="doajax" data-id="requestInfo-delete" data-confirm-msg="确定要删除吗？">删除</a>
-                    <a href="${base}/admin/requestInfo/list?requestInfoId=${bean.id}" class="btn btn-green" data-toggle="navtab" data-id="admin-requestInfo">所属车辆</a>
-                    <a href="${base}/admin/requestInfo/map?requestInfoId=${bean.id}" class="btn btn-red" data-toggle="dialog" data-icon="map" data-id="requestInfo-map" data-options="{title:'地图', height:300}">位置</a>
+                    <a href="${base}/admin/requestInfo/map?requestInfoId=${bean.id}" class="btn btn-red" data-toggle="dialog" data-icon="map" data-id="requestInfo-map" data-options="{title:'地图', height:500}">路线地图</a>
                 </td>
             </tr>
             </#list>
