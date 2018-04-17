@@ -1,17 +1,18 @@
 package com.roncoo.recharge.web.service;
 
 import com.roncoo.recharge.common.entity.DriverLocation;
-import com.roncoo.recharge.common.entity.RequestInfo;
 import com.roncoo.recharge.util.GeoHashUtil;
+import com.roncoo.recharge.util.base.Result;
 import com.roncoo.recharge.web.bean.qo.DriverLocationQO;
 import com.roncoo.recharge.web.bean.qo.DriverSendLocationQO;
 import com.roncoo.recharge.web.bean.qo.LocationQO;
 import com.roncoo.recharge.web.bean.qo.RequestInfoQO;
+import com.roncoo.recharge.web.bean.req.DispatchReq;
+import com.roncoo.recharge.web.bean.res.MatchResult;
 import com.roncoo.recharge.web.bean.res.RequestInfoReq;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
 import java.util.List;
 
 /**
@@ -28,6 +29,21 @@ public class DispatchService {
     private LocationService locationService;
     @Autowired
     private RequestInfoService requestInfoService;
+
+    /**
+     * 调用算法(最短距离)
+     * @param
+     * @return
+     * @author xierongli
+     * @date 2018/4/17 下午5:22
+     */
+    public Result<MatchResult> dispatch(DispatchReq dispatchReq){
+        //计算GeoHash
+        //查询周边区域的geohash
+        //计算距离并排序
+        //选取符合条件的车辆
+        return null;
+    }
 
 
     public void insertDriverLocation(DriverSendLocationQO driverSendLocationQO){
@@ -91,6 +107,10 @@ public class DispatchService {
         requestInfoQO.setSurge(0);
         requestInfoService.save(requestInfoQO);
     }
+
+
+
+
 
 
 
