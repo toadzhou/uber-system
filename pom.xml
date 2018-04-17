@@ -36,8 +36,6 @@
 				<artifactId>uber-common</artifactId>
 				<version>1.0-SNAPSHOT</version>
 			</dependency>
-
-
 			<!-- roncoo -->
 			<dependency>
 				<groupId>com.roncoo</groupId>
