@@ -3,6 +3,8 @@ package com.roncoo.recharge.common.dao.impl.mapper;
 import com.roncoo.recharge.common.entity.Location;
 import com.roncoo.recharge.common.entity.LocationExample;
 import java.util.List;
+
+import com.roncoo.recharge.common.model.MatchModel;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -29,4 +31,7 @@ public interface LocationMapper {
     int updateByPrimaryKeySelective(Location record);
 
     int updateByPrimaryKey(Location record);
+
+    List<MatchModel> queryByGeoHash(@Param("geoHash") String geoHash);
+
 }

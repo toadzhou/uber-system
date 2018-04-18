@@ -11,9 +11,7 @@ import lombok.experimental.Accessors;
 @Data
 @Accessors(chain = true)
 public class DispatchReq {
-
+    private Long passengerId;
     private Double latitude;
     private Double longitude;
-
-
 }

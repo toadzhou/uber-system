@@ -4,6 +4,7 @@ import com.roncoo.recharge.common.dao.LocationDao;
 import com.roncoo.recharge.common.dao.impl.mapper.LocationMapper;
 import com.roncoo.recharge.common.entity.Location;
 import com.roncoo.recharge.common.entity.LocationExample;
+import com.roncoo.recharge.common.model.MatchModel;
 import com.roncoo.recharge.util.bjui.Page;
 import com.roncoo.recharge.util.bjui.PageUtil;
 import java.util.List;
@@ -45,4 +46,9 @@ public class LocationDaoImpl implements LocationDao {
         example.setPageSize(pageSize);
         return new Page<Location>(count, totalPage, pageCurrent, pageSize, this.locationMapper.selectByExample(example));
     }
+
+    public List<MatchModel> queryByGeoHash(String geoHash){
+        return locationMapper.queryByGeoHash(geoHash);
+    }
+
 }

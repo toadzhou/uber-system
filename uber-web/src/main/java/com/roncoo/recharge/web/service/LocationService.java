@@ -1,5 +1,6 @@
 package com.roncoo.recharge.web.service;
 
+import com.roncoo.recharge.common.model.MatchModel;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -12,6 +13,8 @@ import com.roncoo.recharge.common.dao.LocationDao;
 import com.roncoo.recharge.common.entity.Location;
 import com.roncoo.recharge.common.entity.LocationExample;
 import com.roncoo.recharge.common.entity.LocationExample.Criteria;
+
+import java.util.List;
 
 /**
  * 地理信息表 
@@ -54,6 +57,10 @@ public class LocationService {
 	    Location record = new Location();
         BeanUtils.copyProperties(qo, record);
 		return dao.updateById(record);
+	}
+
+	public List<MatchModel> queryByGeoHash(String geoHash){
+		return dao.queryByGeoHash(geoHash);
 	}
 	
 }

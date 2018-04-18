@@ -1,15 +1,20 @@
 package com.roncoo.recharge.web.service;
 
+import com.alibaba.fastjson.JSON;
+import com.google.common.collect.Lists;
 import com.roncoo.recharge.common.entity.DriverLocation;
+import com.roncoo.recharge.common.model.MatchModel;
 import com.roncoo.recharge.util.GeoHashUtil;
+import com.roncoo.recharge.util.ObjectConvert;
 import com.roncoo.recharge.util.base.Result;
 import com.roncoo.recharge.web.bean.qo.DriverLocationQO;
 import com.roncoo.recharge.web.bean.qo.DriverSendLocationQO;
 import com.roncoo.recharge.web.bean.qo.LocationQO;
 import com.roncoo.recharge.web.bean.qo.RequestInfoQO;
 import com.roncoo.recharge.web.bean.req.DispatchReq;
-import com.roncoo.recharge.web.bean.res.MatchResult;
+import com.roncoo.recharge.web.bean.res.MatchRes;
 import com.roncoo.recharge.web.bean.res.RequestInfoReq;
+import org.apache.commons.collections.CollectionUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -37,9 +42,24 @@ public class DispatchService {
      * @author xierongli
      * @date 2018/4/17 下午5:22
      */
-    public Result<MatchResult> dispatch(DispatchReq dispatchReq){
-        //计算GeoHash
-        //查询周边区域的geohash
+    public Result<MatchRes> dispatch(DispatchReq dispatchReq){
+        //得到这点的hash值
+        GeoHashUtil g = new GeoHashUtil(dispatchReq.getLatitude(),dispatchReq.getLongitude());
+        String initGeo = g.getGeoHashBase32();
+        //取出相邻八个区域
+        List<String> neighbors = g.getGeoHashBase32For9();
+        //取出2km内所有符合要求的司机
+        List<MatchModel> allDrivers = Lists.newArrayList();
+        if(CollectionUtils.isNotEmpty(neighbors)){
+            List<MatchModel> initModel = locationService.queryByGeoHash(initGeo);
+            allDrivers.addAll(initModel);
+            for(String geo : neighbors){
+                List<MatchModel> matchModels = locationService.queryByGeoHash(geo.substring(0,4));
+                allDrivers.addAll(matchModels);
+            }
+        }
+        List<MatchRes> matchResList = ObjectConvert.convertList(allDrivers,MatchRes.class);
+        System.out.println(JSON.toJSONString(matchResList));
         //计算距离并排序
         //选取符合条件的车辆
         return null;
