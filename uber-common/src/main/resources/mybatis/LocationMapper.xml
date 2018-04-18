@@ -13,7 +13,7 @@
     <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
   </resultMap>
 
-  <resultMap id="matchResultMap" type="com.roncoo.recharge.web.bean.res.MatchModel">
+  <resultMap id="matchResultMap" type="com.roncoo.recharge.common.model.MatchModel">
     <result column="driver_id" property="driverId" jdbcType="BIGINT" />
     <result column="driver_name" property="driverName" jdbcType="VARCHAR" />
     <result column="phone" property="phone" jdbcType="VARCHAR" />
