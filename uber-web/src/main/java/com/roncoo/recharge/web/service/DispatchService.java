@@ -14,11 +14,16 @@ import com.roncoo.recharge.web.bean.qo.RequestInfoQO;
 import com.roncoo.recharge.web.bean.req.DispatchReq;
 import com.roncoo.recharge.web.bean.res.MatchRes;
 import com.roncoo.recharge.web.bean.res.RequestInfoReq;
+import com.roncoo.recharge.web.bean.vo.PassengerVO;
+import com.xiaoleilu.hutool.date.DateUtil;
 import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.lang.ObjectUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * 调度服务
@@ -34,7 +39,8 @@ public class DispatchService {
     private LocationService locationService;
     @Autowired
     private RequestInfoService requestInfoService;
-
+    @Autowired
+    private PassengerService passengerService;
     /**
      * 调用算法(最短距离)
      * @param
@@ -82,7 +88,7 @@ public class DispatchService {
         if(!driverLocationList.isEmpty()){
             DriverLocation driverLocation = driverLocationList.get(0);
             DriverLocationQO driverLocationQO = new DriverLocationQO();
-            BeanUtils.copyProperties(driverLocationQO, driverLocation);
+            BeanUtils.copyProperties(driverLocation,driverLocationQO);
             driverLocationQO.setLocationId(locationId);
             driverLocationService.updateById(driverLocationQO);
         }else{
@@ -94,7 +100,6 @@ public class DispatchService {
             driverLocationService.save(driverLocationQO);
         }
     }
-
 
     public void insertRequestInfo(RequestInfoReq requestInfoReq){
         //插入location
@@ -119,19 +124,15 @@ public class DispatchService {
         locationQO1.setGeoHash(destinationHashCode);
         Long destinationId = locationService.save(locationQO1);
 
+        PassengerVO passengerVO = passengerService.getById(requestInfoReq.getPassengerId());
         //插入request_info
         RequestInfoQO requestInfoQO = new RequestInfoQO();
         requestInfoQO.setPassengerId(requestInfoReq.getPassengerId());
+        requestInfoQO.setSerialNo(DateUtil.format(new Date(),"yyyymmdd")+ UUID.randomUUID().toString().split("-")[0]);
+        requestInfoQO.setPhone(ObjectUtils.defaultIfNull(passengerVO.getPhone(),"").toString());
         requestInfoQO.setDepartureId(departureId);
         requestInfoQO.setDestinationId(destinationId);
         requestInfoQO.setSurge(0);
         requestInfoService.save(requestInfoQO);
     }
-
-
-
-
-
-
-
 }

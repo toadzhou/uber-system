@@ -1,6 +1,7 @@
 package com.roncoo.recharge.web.controller;
 
 import com.roncoo.recharge.web.bean.qo.DriverSendLocationQO;
+import com.roncoo.recharge.web.bean.req.DispatchReq;
 import com.roncoo.recharge.web.bean.res.RequestInfoReq;
 import com.roncoo.recharge.web.service.DispatchService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +36,12 @@ public class TestController {
     @RequestMapping("request_info")
     public void insertRequestInfo(RequestInfoReq requestInfoReq){
         dispatchService.insertRequestInfo(requestInfoReq);
+
+        DispatchReq dispatchReq = new DispatchReq();
+        dispatchReq.setPassengerId(requestInfoReq.getPassengerId());
+        dispatchReq.setLatitude(requestInfoReq.getDepartureLat());
+        dispatchReq.setLongitude(requestInfoReq.getDepartureLng());
+        dispatchService.dispatch(dispatchReq);
     }
 
 }
