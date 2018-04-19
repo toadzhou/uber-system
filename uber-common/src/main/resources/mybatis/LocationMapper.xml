@@ -287,8 +287,8 @@
     where id = #{id,jdbcType=BIGINT}
   </update>
   <select id="queryByGeoHash" resultMap="matchResultMap">
-    select t1.id as driver_id, t1.name,t1.phone,t3.latitude,t3.longitude,t3.address
+    select t1.id as driver_id, t1.name as driver_name,t1.phone,t3.latitude,t3.longitude,t3.address
     from driver t1, driver_location t2, location  t3
-    where t1.id=t2.driver_id and t2.location_id=t3.id and t2.status=1 and t3.geo_hash like  concat(concat('%',#{geoHash}),'%')
+    where t1.id=t2.driver_id and t2.location_id=t3.id and t2.status=1 and t3.geo_hash like  concat(#{geoHash},'%')
   </select>
 </mapper>
