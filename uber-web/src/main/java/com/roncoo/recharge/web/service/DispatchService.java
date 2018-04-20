@@ -1,10 +1,11 @@
 package com.roncoo.recharge.web.service;
 
-import com.alibaba.fastjson.JSON;
 import com.google.common.collect.Lists;
 import com.roncoo.recharge.common.entity.DriverLocation;
 import com.roncoo.recharge.common.model.MatchModel;
+import com.roncoo.recharge.util.DistanceHepler;
 import com.roncoo.recharge.util.GeoHashUtil;
+import com.roncoo.recharge.util.Money;
 import com.roncoo.recharge.util.ObjectConvert;
 import com.roncoo.recharge.util.base.Result;
 import com.roncoo.recharge.web.bean.qo.DriverLocationQO;
@@ -21,9 +22,9 @@ import org.apache.commons.lang.ObjectUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import java.util.Date;
-import java.util.List;
-import java.util.UUID;
+
+import java.math.BigDecimal;
+import java.util.*;
 
 /**
  * 调度服务
@@ -64,11 +65,25 @@ public class DispatchService {
                 allDrivers.addAll(matchModels);
             }
         }
-        List<MatchRes> matchResList = ObjectConvert.convertList(allDrivers,MatchRes.class);
-        System.out.println(JSON.toJSONString(matchResList));
+        //去除重复的记录
+        List<MatchRes> matchResList = removeDuplicate(ObjectConvert.convertList(allDrivers,MatchRes.class));
+        MatchRes matchRes = matchResList.get(0);
         //计算距离并排序
-        //选取符合条件的车辆
-        return null;
+        double distance = DistanceHepler.distance(dispatchReq.getLatitude(),dispatchReq.getLongitude(),Double.parseDouble(matchRes.getLatitude()),Double.parseDouble(matchRes.getLongitude()));
+        matchRes.setDistance(new BigDecimal(distance).setScale(2,BigDecimal.ROUND_HALF_UP).doubleValue());
+        //设置价格
+        matchRes.setPrice(Money.ofCent(10000));
+        return Result.success(matchRes);
+    }
+
+    public static List removeDuplicate(List list){
+        List listTemp = new ArrayList();
+        for(int i=0;i<list.size();i++){
+            if(!listTemp.contains(list.get(i))){
+                listTemp.add(list.get(i));
+            }
+        }
+        return listTemp;
     }
 
 

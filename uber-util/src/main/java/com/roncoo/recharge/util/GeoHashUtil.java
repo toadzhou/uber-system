@@ -248,7 +248,7 @@ public class GeoHashUtil {
 
     public static void main(String[] args) {
         // TODO Auto-generated method stub
-        GeoHashUtil g = new GeoHashUtil(30.306312,120.114451);
+        GeoHashUtil g = new GeoHashUtil(44.9999,116.3967);
         System.out.println(g.getGeoHashBase32());
         System.out.println(JSON.toJSONString(g.getGeoHashBase32For9()));
     }

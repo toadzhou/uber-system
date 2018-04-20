@@ -21,4 +21,6 @@ public class MatchRes implements Serializable {
     private String address;
 
     private Money price;
+    private double distance;
+
 }
