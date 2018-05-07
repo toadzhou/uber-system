@@ -69,8 +69,6 @@
 					</execution>
 				</executions>
 				<configuration>
-					<mainClass>com.roncoo.recharge.Application</mainClass>
-					<layout>ZIP</layout>
 					<executable>true</executable>
 				</configuration>
 			</plugin>
