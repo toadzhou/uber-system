@@ -72,7 +72,8 @@ public class DispatchService {
         double distance = DistanceHepler.distance(dispatchReq.getLatitude(),dispatchReq.getLongitude(),Double.parseDouble(matchRes.getLatitude()),Double.parseDouble(matchRes.getLongitude()));
         matchRes.setDistance(new BigDecimal(distance).setScale(2,BigDecimal.ROUND_HALF_UP).doubleValue());
         //设置价格
-        matchRes.setPrice(Money.ofCent(10000));
+        matchRes.setPrice(Money.ofCent(10000).getYuan());
+        System.out.println(Result.success(matchRes));
         return Result.success(matchRes);
     }
 

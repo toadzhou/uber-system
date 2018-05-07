@@ -20,7 +20,7 @@ public class MatchRes implements Serializable {
     private String longitude;
     private String address;
 
-    private Money price;
+    private double price;
     private double distance;
 
 }
