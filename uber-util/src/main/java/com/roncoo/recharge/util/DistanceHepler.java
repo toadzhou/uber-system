@@ -24,7 +24,5 @@ public class DistanceHepler {
         return realDistance;
     }
 
-    public static void main(String[] args) {
-        System.out.println(DistanceHepler.distance(39.992907, 116.391728, 39.985336, 116.37736));
-    }
+
 }
