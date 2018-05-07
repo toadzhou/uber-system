@@ -10,7 +10,7 @@
 	</parent>
 
 	<artifactId>uber-web</artifactId>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 
 	<name>uber-web</name>
 	<description>uber打车系统</description>
@@ -68,8 +68,11 @@
 						</goals>
 					</execution>
 				</executions>
+				<!--<configuration>-->
+					<!--<executable>true</executable>-->
+				<!--</configuration>-->
 				<configuration>
-					<executable>true</executable>
+					<mainClass>com.roncoo.recharge.Application</mainClass>
 				</configuration>
 			</plugin>
 		</plugins>
