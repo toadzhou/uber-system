@@ -47,12 +47,7 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-devtools</artifactId>
-			<version>2.0.1.RELEASE</version>
-			<optional>true</optional>
-		</dependency>
+
 
 	</dependencies>
 
@@ -68,12 +63,10 @@
 						</goals>
 					</execution>
 				</executions>
-				<!--<configuration>-->
-					<!--<executable>true</executable>-->
-				<!--</configuration>-->
 				<configuration>
-					<mainClass>com.roncoo.recharge.Application</mainClass>
+					<executable>true</executable>
 				</configuration>
+
 			</plugin>
 		</plugins>
 	</build>
