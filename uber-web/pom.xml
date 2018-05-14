@@ -10,7 +10,7 @@
 	</parent>
 
 	<artifactId>uber-web</artifactId>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 
 	<name>uber-web</name>
 	<description>uber打车系统</description>
