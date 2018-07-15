@@ -41,4 +41,7 @@ public class IndexController {
 		modelMap.put("osName", System.getProperty("os.name"));
 	}
 
+
+
+
 }
