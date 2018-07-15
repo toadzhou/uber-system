@@ -18,7 +18,7 @@
 						<h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i>饼/漏斗图 </h3>
 					</div>
 					<div class="panel-body">
-						<br><br><br><br><br><br><br><br><br><br>
+						<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 					</div>
 				</div>
 
@@ -31,12 +31,36 @@
                     <div class="panel-body">
                         <div style="mini-width:440px;height:230px"
                              data-toggle="echarts" data-type="pie" data-theme="blue"
-                             data-url="http://localhost:8888/test/pie"></div>
+                             data-url="http://localhost:8899/test/pie"></div>
                     </div>
                 </div>
 
 			</div>
 		</div>
+        <div class="row" style="padding: 0 8px;">
+            <div class="col-md-8">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i>饼/漏斗图 </h3>
+                    </div>
+                    <div class="panel-body">
+                        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i>饼/漏斗图 </h3>
+                    </div>
+                    <div class="panel-body">
+                        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                    </div>
+                </div>
+
+            </div>
+		<div>
 
 	</div>
 
