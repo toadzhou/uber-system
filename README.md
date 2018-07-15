@@ -20,5 +20,4 @@ nohup java -jar  uber-web-1.0-SNAPSHOT.jar
 
 echo "release success...."
 
-
 ```
