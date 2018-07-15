@@ -9,7 +9,6 @@
 		</div>
 	</div>
 </div>
-
 <div class="bjui-pageContent">
 	<div style="padding:0; height: 1900px;">
         <div class="row" style="padding: 0 8px;">
