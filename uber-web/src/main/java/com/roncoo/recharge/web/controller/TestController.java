@@ -66,10 +66,6 @@ public class TestController {
         Option basic = new Option();
         basic.tooltip().trigger(Trigger.item).formatter("{a} <br/>{b} : {c} ({d}%)");
         basic.legend().data("Chrome", "Firefox", "Safari", "IE8-");
-//        basic.toolbox().show(true).feature(Tool.mark, Tool.dataView, Tool.restore, Tool.saveAsImage, new MagicType(Magic.pie, Magic.funnel)
-//                .option(new MagicType.Option().funnel(
-//                        new Funnel().x("25%").width("50%").funnelAlign(X.left).max(1548))));
-
         int idx = 1;
         Pie pie = getPie(idx++).center("50%", "45%").radius("50%");
         pie.label().normal().show(true).formatter("{b}{c}({d}%)");
@@ -84,6 +80,25 @@ public class TestController {
                 new PieData("Firefox", idx * 64 + 160),
                 new PieData("Safari", idx * 32 + 320),
                 new PieData("IE8-", idx * 8 + 1280));
+    }
+    @ResponseBody
+    @RequestMapping("pie2")
+    public String pie2(){
+        Option basic = new Option();
+        basic.tooltip().trigger(Trigger.item).formatter("{a} <br/>{b} : {c} ({d}%)");
+        basic.legend().data("直接访问","邮件营销","联盟广告","视频广告");
+        Pie pie = getData().radius("50%","70%");
+        pie.label().normal().show(true).formatter("{b} : {c} ({d}%)");
+        basic.series(pie);
+        return JSON.toJSONString(basic);
+    }
+
+    public Pie getData(){
+       return new Pie().name("访问来源").data(
+                new PieData("直接访问",  80),
+                new PieData("邮件营销",  160),
+                new PieData("联盟广告",  320),
+                new PieData("视频广告-", 80));
     }
 
 }

@@ -32,7 +32,7 @@
                         <br>
                         <div style="mini-width:440px;height:215px"
                              data-toggle="echarts" data-type="pie" data-theme="blue"
-                             data-url="http://localhost:8899/test/pie"></div>
+                             data-url="http://localhost:8888/test/pie2"></div>
                     </div>
                 </div>
 
