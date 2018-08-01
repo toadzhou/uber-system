@@ -31,7 +31,7 @@
                     <div class="panel-body">
                         <br>
                         <div style="mini-width:440px;height:215px"
-                             data-toggle="echarts" data-type="pie" data-theme="blue"
+                             data-toggle="echarts" data-type="pie" data-theme="default"
                              data-url="http://localhost:8888/test/pie2"></div>
                     </div>
                 </div>

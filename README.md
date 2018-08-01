@@ -19,5 +19,7 @@ export MAVEN_OPTS="-Xms512m -Xmx2048m -XX:PermSize=256m -XX:MaxPermSize=512m"
 nohup java -jar  uber-web-1.0-SNAPSHOT.jar
 
 echo "release success...."
+#指定配置文件
+nohup java -jar  project-web-1.0-SNAPSHOT.jar  –spring.profiles.active=prod
 
 ```
