@@ -1,7 +1,10 @@
 package com.roncoo.recharge.web.controller.admin;
 
+import com.alibaba.fastjson.JSON;
 import com.roncoo.recharge.common.entity.DriverLocation;
+import com.roncoo.recharge.util.bjui.Page;
 import com.roncoo.recharge.web.bean.res.DriverLocationRes;
+import com.roncoo.recharge.web.bean.vo.DriverVO;
 import com.roncoo.recharge.web.service.DriverLocationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -39,6 +42,13 @@ public class DriverController extends BaseController {
 		modelMap.put("pageSize", pageSize);
 		modelMap.put("bean", qo);
 	}
+	@ResponseBody
+	@RequestMapping("dataGrid")
+	public String dataGrid(@RequestParam(value = "pageCurrent", defaultValue = "1") int pageCurrent, @RequestParam(value = "pageSize", defaultValue = "20") int pageSize, @ModelAttribute DriverQO qo){
+		Page<DriverVO> driverVOPage = service.listForPage(pageCurrent, pageSize, qo);
+		return JSON.toJSONString(driverVOPage);
+	}
+
 	@RequestMapping(value = "/driver_car_list")
 	public void driverCarList(){
 
