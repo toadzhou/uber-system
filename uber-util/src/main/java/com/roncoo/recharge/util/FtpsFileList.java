@@ -17,7 +17,7 @@ public class FtpsFileList {
     private static final Logger LOG = LoggerFactory.getLogger(FtpsFileList.class);
 
     public static void main(String[] args) {
-        listFileNames("172.17.186.172", 22, "root", "Arcsoft01", "/root/storeServer/doc");
+        listFileNames("172.17.186.172", 22, "root", "Arcsoft01", "/root/FR0814");
     }
 
     private static List<String> listFileNames(String host, int port, String username, final String password, String dir) {
