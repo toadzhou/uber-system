@@ -126,6 +126,13 @@
 				<artifactId>jsch</artifactId>
 				<version>0.1.49</version>
 			</dependency>
+			<!-- https://mvnrepository.com/artifact/com.baidu.aip/java-sdk -->
+			<dependency>
+				<groupId>com.baidu.aip</groupId>
+				<artifactId>java-sdk</artifactId>
+				<version>4.5.0</version>
+			</dependency>
+
 
 		</dependencies>
 	</dependencyManagement>

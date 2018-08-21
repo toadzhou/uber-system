@@ -53,6 +53,10 @@
 			<artifactId>ECharts</artifactId>
 			<version>3.0.0.4</version>
 		</dependency>
+		<dependency>
+			<groupId>com.baidu.aip</groupId>
+			<artifactId>java-sdk</artifactId>
+		</dependency>
 
 
 	</dependencies>
