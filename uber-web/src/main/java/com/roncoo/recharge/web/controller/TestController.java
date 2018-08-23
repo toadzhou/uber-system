@@ -11,7 +11,6 @@ import com.roncoo.recharge.web.bean.res.RequestInfoReq;
 import com.roncoo.recharge.web.service.DispatchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -26,17 +25,7 @@ public class TestController {
     @Autowired
     private DispatchService dispatchService;
 
-    @RequestMapping("system")
-    public String system(ModelMap modelMap){
-//        String libraryPath = System.getProperty("java.library.path");
-//        String usrDir = System.getProperty("user.dir");
-//        String path = "/home/workspace/uber-system/doc/face_detection/lib/linux_x64/libarcsoft_fsdk_face_detection.so";
-//        System.loadLibrary(libraryPath+":"+path);
-//        modelMap.put("libraryPath",libraryPath);
-//        modelMap.put("usrDir",usrDir);
-//        modelMap.put("newPath",System.getProperty("java.library.path"));
-        return "system";
-    }
+
 
     @RequestMapping("driver")
     public String driver(){
