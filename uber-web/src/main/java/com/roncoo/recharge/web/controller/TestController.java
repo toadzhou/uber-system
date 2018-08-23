@@ -2,14 +2,11 @@ package com.roncoo.recharge.web.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.github.abel533.echarts.Option;
-import com.github.abel533.echarts.code.Magic;
-import com.github.abel533.echarts.code.Tool;
 import com.github.abel533.echarts.code.Trigger;
-import com.github.abel533.echarts.code.X;
 import com.github.abel533.echarts.data.PieData;
-import com.github.abel533.echarts.feature.MagicType;
-import com.github.abel533.echarts.series.Funnel;
 import com.github.abel533.echarts.series.Pie;
+import com.roncoo.recharge.util.jni.FaceDetectionJNI;
+import com.roncoo.recharge.util.jni.SdkConfig;
 import com.roncoo.recharge.web.bean.qo.DriverSendLocationQO;
 import com.roncoo.recharge.web.bean.req.DispatchReq;
 import com.roncoo.recharge.web.bean.res.RequestInfoReq;
@@ -38,9 +35,11 @@ public class TestController {
         String path = "/home/workspace/uber-system/doc/face_detection/lib/linux_x64/libarcsoft_fsdk_face_detection.so";
         System.loadLibrary(libraryPath+":"+path);
 
+        FaceDetectionJNI faceDetectionJNI = new FaceDetectionJNI(SdkConfig.FD_API, SdkConfig.FD_SDK_KEY,SdkConfig.FD_MEM_SIZE,SdkConfig.FD_ORIENT_PRIORITY, SdkConfig.FD_NSCALE,SdkConfig.FD_MAX_FACE_NUM);
         modelMap.put("libraryPath",libraryPath);
         modelMap.put("usrDir",usrDir);
         modelMap.put("newPath",System.getProperty("java.library.path"));
+        modelMap.put("version",faceDetectionJNI.FSDK_FD_GetVersion_Ext());
         return "system";
     }
 
