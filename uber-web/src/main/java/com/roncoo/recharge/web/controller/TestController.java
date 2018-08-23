@@ -16,6 +16,7 @@ import com.roncoo.recharge.web.bean.res.RequestInfoReq;
 import com.roncoo.recharge.web.service.DispatchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -29,6 +30,15 @@ public class TestController {
 
     @Autowired
     private DispatchService dispatchService;
+
+    @RequestMapping("system")
+    public String system(ModelMap modelMap){
+        String libraryPath = System.getProperty("java.library.path");
+        String usrDir = System.getProperty("user.dir");
+        modelMap.put("libraryPath",libraryPath);
+        modelMap.put("usrDir",usrDir);
+        return "system";
+    }
 
     @RequestMapping("driver")
     public String driver(){

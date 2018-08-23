@@ -3,23 +3,25 @@
 #!/bin/sh
 cd /home/workspace
 rm -rf uber-system
+#杀掉进程
+pid=`ps -ef | grep project-web-1.0-SNAPSHOT.jar | grep -v grep | awk '{print $2}'`
+if [ -n "$pid" ]
+then
+   kill -9 $pid
+fi
 
-pid=`lsof -i:8899 | awk '{print $2}'`
-echo $pid
-for i in $pid
-do
-        kill -9 $i
-done
-
+#下载资源
 git clone https://github.com/livtrip/uber-system.git
 cd /home/workspace/uber-system
+
+#编译资源
 mvn clean package -Dmaven.test.skip=true
 cd /home/workspace/uber-system/uber-web/target
+
 export MAVEN_OPTS="-Xms512m -Xmx2048m -XX:PermSize=256m -XX:MaxPermSize=512m"
 nohup java -jar  uber-web-1.0-SNAPSHOT.jar
 
 echo "release success...."
-#指定配置文件
-nohup java -jar  project-web-1.0-SNAPSHOT.jar  –spring.profiles.active=prod
+
 
 ```
