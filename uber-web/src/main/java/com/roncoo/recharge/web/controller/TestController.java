@@ -35,11 +35,11 @@ public class TestController {
         String path = "/home/workspace/uber-system/doc/face_detection/lib/linux_x64/libarcsoft_fsdk_face_detection.so";
         System.loadLibrary(libraryPath+":"+path);
 
-        FaceDetectionJNI faceDetectionJNI = new FaceDetectionJNI(SdkConfig.FD_API, SdkConfig.FD_SDK_KEY,SdkConfig.FD_MEM_SIZE,SdkConfig.FD_ORIENT_PRIORITY, SdkConfig.FD_NSCALE,SdkConfig.FD_MAX_FACE_NUM);
+//        FaceDetectionJNI faceDetectionJNI = new FaceDetectionJNI(SdkConfig.FD_API, SdkConfig.FD_SDK_KEY,SdkConfig.FD_MEM_SIZE,SdkConfig.FD_ORIENT_PRIORITY, SdkConfig.FD_NSCALE,SdkConfig.FD_MAX_FACE_NUM);
         modelMap.put("libraryPath",libraryPath);
         modelMap.put("usrDir",usrDir);
         modelMap.put("newPath",System.getProperty("java.library.path"));
-        modelMap.put("version",faceDetectionJNI.FSDK_FD_GetVersion_Ext());
+//        modelMap.put("version",faceDetectionJNI.FSDK_FD_GetVersion_Ext());
         return "system";
     }
 
