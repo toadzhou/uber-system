@@ -32,7 +32,6 @@ public class TestController {
         String usrDir = System.getProperty("user.dir");
         String path = "/home/workspace/uber-system/doc/face_detection/lib/linux_x64/libarcsoft_fsdk_face_detection.so";
         System.loadLibrary(libraryPath+":"+path);
-
         modelMap.put("libraryPath",libraryPath);
         modelMap.put("usrDir",usrDir);
         modelMap.put("newPath",System.getProperty("java.library.path"));
