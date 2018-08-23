@@ -9,6 +9,8 @@
     <script type="text/javascript" src="http://g.alicdn.com/sui/sui3/0.0.18/js/sui.min.js"></script>
 </head>
 <body style="background: #F8F8F8; text-align: center;">
-${libraryPath}<br>${usrDir}
+${libraryPath}<br>
+${usrDir}<br>
+${newPath}
 </body>
 </html>
