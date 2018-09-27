@@ -23,5 +23,6 @@ nohup java -jar  uber-web-1.0-SNAPSHOT.jar
 
 echo "release success...."
 
-
+# 指定堆栈的初始化值,最大堆内存
+java -server -Xms512m -Xmx768m  -jar springboot-1.0.jar
 ```
