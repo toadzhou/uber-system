@@ -27,7 +27,6 @@ echo "release success...."
 java -server -Xms512m -Xmx768m  -jar springboot-1.0.jar
 ```
 * 第二种部署方案-创建软连接
-```text
 ### 部署脚本
 ```text
 #!/bin/sh
@@ -59,6 +58,5 @@ sudo ln -s /cloud/FaceDetectCloud/register/target/project-web-1.0-SNAPSHOT.jar  
 # java -server -Xms128m -Xmx512m -jar register-0.0.1-SNAPSHOT.jar
 # java -server -Xms128m -Xmx512m -jar register-0.0.1-SNAPSHOT.jar --spring.profiles.active=peer1
 # java -server -Xms128m -Xmx512m -jar register-0.0.1-SNAPSHOT.jar --spring.profiles.active=peer2
-```
 ```
 
