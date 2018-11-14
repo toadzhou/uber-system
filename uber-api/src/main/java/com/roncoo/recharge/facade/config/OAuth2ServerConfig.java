@@ -30,11 +30,9 @@ public class OAuth2ServerConfig {
     @Configuration
     @EnableResourceServer
     protected static class ResourceServerConfiguration extends ResourceServerConfigurerAdapter {
-        private static final String DEMO_RESOURCE_ID = "order";
 
         @Autowired
         public DataSource dataSource;
-
         @Bean
         public TokenStore tokenStore() {
             return new JdbcTokenStore(dataSource);
@@ -42,7 +40,7 @@ public class OAuth2ServerConfig {
 
         @Override
         public void configure(ResourceServerSecurityConfigurer resources) {
-            resources.resourceId(DEMO_RESOURCE_ID).stateless(true);
+            resources.resourceId("oauth2-resource").tokenStore(tokenStore());
         }
 
         @Override
@@ -66,16 +64,11 @@ public class OAuth2ServerConfig {
     @Configuration
     @EnableAuthorizationServer
     protected class AuthorizationServerConfiguration extends AuthorizationServerConfigurerAdapter {
-        private static final String DEMO_RESOURCE_ID = "order";
 
         @Autowired
         AuthenticationManager authenticationManager;
         @Autowired
         private DataSource dataSource;
-
-        //    @Autowired
-//    RedisConnectionFactory redisConnectionFactory;
-
         @Bean
         public TokenStore tokenStore() {
             return new JdbcTokenStore(dataSource);
@@ -83,19 +76,6 @@ public class OAuth2ServerConfig {
 
         @Override
         public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-//        //配置两个客户端,一个用于password认证一个用于client认证
-//        clients.inMemory().withClient("client_1")
-//                .resourceIds(DEMO_RESOURCE_ID)
-//                .authorizedGrantTypes("client_credentials", "refresh_token")
-//                .scopes("select")
-//                .authorities("client")
-//                .secret("123456")
-//                .and().withClient("client_2")
-//                .resourceIds(DEMO_RESOURCE_ID)
-//                .authorizedGrantTypes("password", "refresh_token")
-//                .scopes("select")
-//                .authorities("client")
-//                .secret("123456");
 
             ClientDetailsService clientDetailsService = clientDetails();
             ClientDetails clientDetails = clientDetailsService.loadClientByClientId("client");
@@ -106,11 +86,6 @@ public class OAuth2ServerConfig {
 
         @Override
         public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
-            //redis 存储token 方案
-//        endpoints
-//                .tokenStore(new RedisTokenStore(redisConnectionFactory))
-//                .authenticationManager(authenticationManager);
-
             //datasource存储token方案
             endpoints.authenticationManager(authenticationManager);
             endpoints.tokenStore(tokenStore());
@@ -136,7 +111,6 @@ public class OAuth2ServerConfig {
         public ClientDetailsService clientDetails() {
             return new JdbcClientDetailsService(dataSource);
         }
-
     }
 
 
