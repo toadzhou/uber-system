@@ -1,6 +1,7 @@
 package com.roncoo.recharge.facade.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -14,7 +15,6 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.R
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.ResourceServerSecurityConfigurer;
-import org.springframework.security.oauth2.provider.ClientDetails;
 import org.springframework.security.oauth2.provider.ClientDetailsService;
 import org.springframework.security.oauth2.provider.client.JdbcClientDetailsService;
 import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
@@ -31,16 +31,19 @@ public class OAuth2ServerConfig {
     @EnableResourceServer
     protected static class ResourceServerConfiguration extends ResourceServerConfigurerAdapter {
 
-        @Autowired
-        public DataSource dataSource;
-        @Bean
-        public TokenStore tokenStore() {
-            return new JdbcTokenStore(dataSource);
-        }
+        @Value("${security.oauth2.resource.id}")
+        private String resourceIds;
+//        @Autowired
+//        public DataSource dataSource;
+//        @Bean
+//        public TokenStore tokenStore() {
+//            return new JdbcTokenStore(dataSource);
+//        }
 
         @Override
         public void configure(ResourceServerSecurityConfigurer resources) {
-            resources.resourceId("oauth2-resource").tokenStore(tokenStore());
+//            resources.resourceId("oauth2-resource").tokenStore(tokenStore());
+//            resources.resourceId("oauth2-resource").stateless(true);
         }
 
         @Override
@@ -55,7 +58,7 @@ public class OAuth2ServerConfig {
                     .and()
                     .authorizeRequests()
 //                    .antMatchers("/product/**").access("#oauth2.hasScope('select') and hasRole('ROLE_USER')")
-                    .antMatchers("/order/**").authenticated();//配置order访问控制，必须认证过后才可以访问
+                    .antMatchers(resourceIds).authenticated();//配置order访问控制，必须认证过后才可以访问
             // @formatter:on
         }
     }
@@ -76,11 +79,6 @@ public class OAuth2ServerConfig {
 
         @Override
         public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-
-            ClientDetailsService clientDetailsService = clientDetails();
-            ClientDetails clientDetails = clientDetailsService.loadClientByClientId("client");
-            String str = clientDetails.getClientSecret();
-            System.out.println("===================client: " + str);
             clients.withClientDetails(clientDetails());
         }
 
