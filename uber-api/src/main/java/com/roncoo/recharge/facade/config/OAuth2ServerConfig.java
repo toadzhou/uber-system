@@ -72,6 +72,10 @@ public class OAuth2ServerConfig {
         AuthenticationManager authenticationManager;
         @Autowired
         private DataSource dataSource;
+
+        //    @Autowired
+//    RedisConnectionFactory redisConnectionFactory;
+
         @Bean
         public TokenStore tokenStore() {
             return new JdbcTokenStore(dataSource);
@@ -95,6 +99,11 @@ public class OAuth2ServerConfig {
             tokenServices.setTokenEnhancer(endpoints.getTokenEnhancer());
             tokenServices.setAccessTokenValiditySeconds((int) TimeUnit.DAYS.toSeconds(30)); // 30天
             endpoints.tokenServices(tokenServices);
+
+            //redis存储token方案
+//            endpoints
+//                .tokenStore(new RedisTokenStore(redisConnectionFactory))
+//                .authenticationManager(authenticationManager);
         }
 
         @Override
@@ -105,6 +114,7 @@ public class OAuth2ServerConfig {
             oauthServer.allowFormAuthenticationForClients();
         }
 
+        //redis 存储token这段删除
         @Bean
         public ClientDetailsService clientDetails() {
             return new JdbcClientDetailsService(dataSource);
