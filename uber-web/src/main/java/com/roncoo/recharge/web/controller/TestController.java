@@ -1,5 +1,6 @@
 package com.roncoo.recharge.web.controller;
 
+import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.text.csv.CsvData;
 import cn.hutool.core.text.csv.CsvReader;
 import cn.hutool.core.text.csv.CsvRow;
@@ -20,6 +21,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.io.File;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.List;
 
 /**
@@ -37,11 +40,17 @@ public class TestController {
 
     @RequestMapping("driver")
     public String driver(ModelMap modelMap){
-        String path = TestController.class.getResource("/test/test.csv").getPath();
-        CsvReader csvReader = CsvUtil.getReader();
-        CsvData csvData = csvReader.read(new File(path));
-        List<CsvRow> csvRowList = csvData.getRows();
-        modelMap.put("text", csvRowList.get(0));
+        try {
+            FileUtil.file(new URL("http://www.hao1024.cn/test.csv"));
+//            String path = TestController.class.getResource("/test/test.csv").getPath();
+            CsvReader csvReader = CsvUtil.getReader();
+            CsvData csvData = csvReader.read(FileUtil.file(new URL("http://www.hao1024.cn/test.csv")));
+            List<CsvRow> csvRowList = csvData.getRows();
+            modelMap.put("text", csvRowList.get(0));
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+
         return "driver";
     }
     @RequestMapping("passenger")
