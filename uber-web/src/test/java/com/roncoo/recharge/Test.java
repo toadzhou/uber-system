@@ -1,6 +1,7 @@
 package com.roncoo.recharge;
 
-import java.time.Instant;
+
+import com.alibaba.fastjson.JSON;
 
 /**
  * @author xierongli
@@ -10,6 +11,8 @@ import java.time.Instant;
 public class Test {
 
     public static void main(String[] args) {
-        System.out.println(Instant.now());
+        String json ="{\"code\":\"aaa\",\"data\":{\"code\":\"bbb\",\"code2\":\"bbb\"},\"name\":[\"array1\",\"array2\",\"array3\"]}";
+        Model model = JSON.parseObject(json,Model.class);
+        System.out.println(JSON.toJSONString(model));
     }
 }

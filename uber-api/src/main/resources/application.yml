@@ -1,0 +1,42 @@
+# server
+server:
+    port: 9999
+    pass-rate: 0.8
+management:
+  port: 9997
+  health:
+    mail:
+      enabled: false
+logging:
+    config: classpath:logging-config.xml
+
+# profile
+spring:
+    profiles:
+        active: local
+    swagger:
+      base-package: com.roncoo.recharge.facade.controller
+      enabled: true
+    mail:
+      host:  smtp.163.com
+      username: arcsoft2018@163.com
+      password: mark2018
+      port: 25
+      protocol: smtp
+      default-encoding: UTF-8
+    redis:
+      database: 0
+      host: 172.17.10.204
+      port: 6379
+      password:
+security:
+  oauth2:
+    resource:
+      filter-order: 3  # 将资源过滤器链提升到springsecurity的过滤器链之前
+      id:  /order/**
+      token-info-uri: http://localhost:8080/oauth/check_token
+      prefer-token-info: true
+
+
+
+
