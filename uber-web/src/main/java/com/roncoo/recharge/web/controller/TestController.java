@@ -1,5 +1,9 @@
 package com.roncoo.recharge.web.controller;
 
+import cn.hutool.core.text.csv.CsvData;
+import cn.hutool.core.text.csv.CsvReader;
+import cn.hutool.core.text.csv.CsvRow;
+import cn.hutool.core.text.csv.CsvUtil;
 import com.alibaba.fastjson.JSON;
 import com.github.abel533.echarts.Option;
 import com.github.abel533.echarts.code.Trigger;
@@ -11,8 +15,12 @@ import com.roncoo.recharge.web.bean.res.RequestInfoReq;
 import com.roncoo.recharge.web.service.DispatchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.io.File;
+import java.util.List;
 
 /**
  * @author xierongli
@@ -28,7 +36,12 @@ public class TestController {
 
 
     @RequestMapping("driver")
-    public String driver(){
+    public String driver(ModelMap modelMap){
+        String path = TestController.class.getResource("/test/test.csv").getPath();
+        CsvReader csvReader = CsvUtil.getReader();
+        CsvData csvData = csvReader.read(new File(path));
+        List<CsvRow> csvRowList = csvData.getRows();
+        modelMap.put("text", csvRowList.get(0));
         return "driver";
     }
     @RequestMapping("passenger")

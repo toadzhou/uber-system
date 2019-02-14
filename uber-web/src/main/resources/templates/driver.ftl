@@ -18,6 +18,7 @@
                 <h3 style="text-align: center; width: 100%;">司机上报系统位置信息</h3>
             </div>
         </div>
+        ${text!}
         <div class="form-group">
             <label for="latitude" class="col-md-2 control-label">经度</label>
             <div class="col-md-10">

@@ -35,7 +35,8 @@
 <script src="BJUI/js/jquery-1.7.2.min.js"></script>
 <script src="BJUI/js/jquery.cookie.js"></script>
 <script src="BJUI/js/gmap3.min.5.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?libraries=places"></script>
+<script src='http://maps.google.cn/maps/api/js?key=AIzaSyDY0kkJiTPVd2U7aTOAwhc9ySH6oHxOIYM' type="text/javascript"></script>
+<#--<script src="https://maps.googleapis.com/maps/api/js?libraries=places"></script>-->
 <script type="text/javascript" src="http://ditu.google.cn/maps/api/js?sensor=false&language=zh-CN"></script>
 <!--[if lte IE 9]>
 <script src="BJUI/other/jquery.iframe-transport.js"></script>    
