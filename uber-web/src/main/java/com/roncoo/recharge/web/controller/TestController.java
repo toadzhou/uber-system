@@ -46,7 +46,7 @@ public class TestController {
             CsvReader csvReader = CsvUtil.getReader();
             CsvData csvData = csvReader.read(FileUtil.file(new URL("http://www.hao1024.cn/test.csv")));
             List<CsvRow> csvRowList = csvData.getRows();
-            modelMap.put("text", csvRowList.get(0));
+            modelMap.put("text", csvRowList.get(0).get(0));
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
