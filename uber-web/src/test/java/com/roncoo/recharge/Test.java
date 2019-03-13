@@ -1,7 +1,7 @@
 package com.roncoo.recharge;
 
 
-import com.alibaba.fastjson.JSON;
+import cn.hutool.core.util.ReUtil;
 
 /**
  * @author xierongli
@@ -11,8 +11,9 @@ import com.alibaba.fastjson.JSON;
 public class Test {
 
     public static void main(String[] args) {
-        String json ="{\"code\":\"aaa\",\"data\":{\"code\":\"bbb\",\"code2\":\"bbb\"},\"name\":[\"array1\",\"array2\",\"array3\"]}";
-        Model model = JSON.parseObject(json,Model.class);
-        System.out.println(JSON.toJSONString(model));
+        String mobile = "15399990000";
+        String regex = "^((13[0-9])|(14[5,7])|(15[0-3,5-9])|(17[0,3,5-8])|(18[0-9])|166|198|199|(147))\\d{8}$";
+        System.out.println(ReUtil.isMatch(regex, mobile));
+
     }
 }

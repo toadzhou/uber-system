@@ -10,13 +10,16 @@ import com.github.abel533.echarts.Option;
 import com.github.abel533.echarts.code.Trigger;
 import com.github.abel533.echarts.data.PieData;
 import com.github.abel533.echarts.series.Pie;
+import com.roncoo.recharge.web.bean.model.NewsItem;
 import com.roncoo.recharge.web.bean.qo.DriverSendLocationQO;
 import com.roncoo.recharge.web.bean.req.DispatchReq;
 import com.roncoo.recharge.web.bean.res.RequestInfoReq;
 import com.roncoo.recharge.web.service.DispatchService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -35,8 +38,18 @@ public class TestController {
 
     @Autowired
     private DispatchService dispatchService;
+    @Autowired
+    private MongoTemplate mongoTemplate;
 
 
+    @GetMapping("queryMongodb")
+    public String queryMongodb(ModelMap modelMap){
+        String id = "http://ent.sina.com.cn/s/m/2019-03-08/doc-ihrfqzkc2198803.shtml";
+        NewsItem newsItem = mongoTemplate.findById(id, NewsItem.class);
+        String result =  JSON.toJSONString(newsItem);
+        modelMap.put("test1", result);
+        return "test";
+    }
 
     @RequestMapping("driver")
     public String driver(ModelMap modelMap){
