@@ -17,6 +17,9 @@ import com.roncoo.recharge.web.bean.res.RequestInfoReq;
 import com.roncoo.recharge.web.service.DispatchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
+
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -42,10 +45,15 @@ public class TestController {
     private MongoTemplate mongoTemplate;
 
 
-    @GetMapping("queryMongodb")
-    public String queryMongodb(ModelMap modelMap){
+    @GetMapping("query")
+    public String queryMongodb(String source, ModelMap modelMap){
         String id = "http://ent.sina.com.cn/s/m/2019-03-08/doc-ihrfqzkc2198803.shtml";
         NewsItem newsItem = mongoTemplate.findById(id, NewsItem.class);
+
+        Query query = Query.query(Criteria.where("source").is(source));
+        List<NewsItem> newsItemList = mongoTemplate.find(query, NewsItem.class);
+        System.out.println(newsItemList.size());
+
         String result =  JSON.toJSONString(newsItem);
         modelMap.put("test1", result);
         return "test";
