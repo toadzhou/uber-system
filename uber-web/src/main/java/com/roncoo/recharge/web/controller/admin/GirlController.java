@@ -1,10 +1,8 @@
 package com.roncoo.recharge.web.controller.admin;
 
-import com.roncoo.recharge.common.entity.AcctInfo;
 import com.roncoo.recharge.util.base.BaseController;
 import com.roncoo.recharge.util.bjui.Page;
 import com.roncoo.recharge.web.bean.model.GirlItem;
-import com.roncoo.recharge.web.bean.model.NewsItem;
 import com.roncoo.recharge.web.bean.qo.QirlQO;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
@@ -36,7 +34,6 @@ public class GirlController extends BaseController {
     @RequestMapping(value = "/list")
     public void list(@RequestParam(value = "pageCurrent", defaultValue = "1") int pageCurrent, @RequestParam(value = "pageSize", defaultValue = "20") int pageSize, @ModelAttribute QirlQO qo, ModelMap modelMap) {
         log.info("分页查询妹纸信息");
-        qo.setTitle("真诚以待");
 
         //创建查询对象
         Query query = new Query();
@@ -55,12 +52,23 @@ public class GirlController extends BaseController {
 
         Page<GirlItem> page = new Page<>();
         page.setList(girlItems);
-        page.setPageSize(count);
-        page.setTotalCount(count % pageSize == 0 ? 1 : count / pageSize + 1);
+        page.setPageSize(pageSize);
+        page.setPageCurrent(pageCurrent);
+        page.setTotalCount(count);
+        Integer totalPage = count % pageSize == 0 ? 1 : count / pageSize + 1;
+        page.setTotalPage(totalPage);
         modelMap.put("page",page);
         modelMap.put("pageCurrent", pageCurrent);
         modelMap.put("pageSize", pageSize);
         modelMap.put("bean", qo);
+    }
+
+    @RequestMapping("view")
+    public void view(String id, ModelMap modelMap){
+        log.info("查看妹纸详情 id:{}",id);
+        Query query = new Query(Criteria.where("user_id").is(id)).limit(1);
+        List<GirlItem> girlItemList = mongoTemplate.find(query,GirlItem.class);
+        modelMap.put("bean", girlItemList.get(0));
     }
 
 
