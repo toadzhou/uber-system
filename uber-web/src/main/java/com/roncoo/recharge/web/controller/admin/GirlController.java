@@ -78,7 +78,7 @@ public class GirlController extends BaseController {
                 String viewNumber = girlItem.getView_number();
                 viewNumber = viewNumber.replace("万","").replace(".","").trim();
                 Update update = Update.update("view_number", Integer.parseInt(viewNumber)*10000);
-                WriteResult writeResult = mongoTemplate.updateFirst(query, update,"view_number");
+                WriteResult writeResult = mongoTemplate.updateMulti(query, update,GirlItem.class);
                 System.out.println(JSON.toJSONString(writeResult));
             }
             modelMap.put("bean", girlItem);
