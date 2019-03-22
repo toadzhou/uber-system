@@ -19,11 +19,11 @@ import java.net.URL;
 public class GirlService {
 
 
-    public String  uploadImage(String userId, String imageUrl){
+    public String  uploadImage( String imageUrl){
             String url = null;
             try {
                 InputStream input = new URL(imageUrl).openStream();
-                url = OSSFactory.build(Constants.CloudService.ALIYUN.getValue()).uploadSuffix(input, userId);
+                url = OSSFactory.build(Constants.CloudService.ALIYUN.getValue()).uploadSuffix(input, ".jpg");
             } catch (IOException e) {
                 e.printStackTrace();
             }

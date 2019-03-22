@@ -21,10 +21,9 @@ public class GirlControllerTest {
 
     @Test
     public void uploadImage(){
-        String userId ="312321321321";
-        String imageUrl = "http://att3.citysbs.com/200x240/hangzhou/2015/04/23/21/540x960-213809_v2_16961429796289779_1d3770abaf0eb270abc7fd35fd4d2a6b.jpg";
-        String url = girlService.uploadImage(userId,imageUrl);
-        System.out.printf("url");
+        String imageUrl = "http://att3.citysbs.com/200x240/hangzhou/2015/03/16/00/960x1280-000049_v2_13751426435249314_343aa1cc6746bf075a61fdbed2f07df8.jpg";
+        String url = girlService.uploadImage(imageUrl);
+        System.out.printf(url);
     }
 
 
