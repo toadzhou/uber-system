@@ -66,4 +66,11 @@ public final class ConfigUtil {
 	public static final String REPAIR_NOTIFY_RECHARGE_URL = getProperty("repair.notify.recharge.url");
 	public static final String BALANCE_QUERY_URL = getProperty("balance.query.url");
 
+	public static final String ALIYUN_DOMAIN = getProperty("aliyun.domain");
+	public static final String ALIYUN_PREFIX = getProperty("aliyun.prefix");
+	public static final String ALIYUN_END_POINT = getProperty("aliyun.end.point");
+	public static final String ALIYUN_ACCESS_KEY_ID = getProperty("aliyun.access.key.id");
+	public static final String ALIYUN_ACCESS_SECRET = getProperty("aliyun.access.key.secret");
+	public static final String ALIYUN_BUCKET_NAME= getProperty("aliyun.bucket.name");
+
 }

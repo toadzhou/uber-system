@@ -80,7 +80,6 @@ public class GirlController extends BaseController {
             }
             modelMap.put("bean", girlItem);
         }
-
     }
 
 
