@@ -6,6 +6,7 @@
 <base href="${base}/">
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="referrer" content="no-referrer" />
 <title>uber</title>
 <meta name="Keywords" content="uber后台系统" />
 <meta name="Description" content="uber后台系统" />
@@ -39,7 +40,7 @@
 <#--<script src="https://maps.googleapis.com/maps/api/js?libraries=places"></script>-->
 <script type="text/javascript" src="http://ditu.google.cn/maps/api/js?sensor=false&language=zh-CN"></script>
 <!--[if lte IE 9]>
-<script src="BJUI/other/jquery.iframe-transport.js"></script>    
+<script src="BJUI/other/jquery.iframe-transport.js"></script>
 <![endif]-->
 
 <!-- BJUI.all 分模块压缩版 -->
@@ -227,7 +228,7 @@
 							<span id="bjui-date"></span> <span id="bjui-clock"></span>
 						</div>
 					</li>
-					
+
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 							我的账户 <span class="caret"></span>
@@ -251,8 +252,8 @@
 							</li>
 						</ul>
 					</li>
-					
-				
+
+
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle theme blue" data-toggle="dropdown" title="切换皮肤">
 							<i class="fa fa-tree"></i>
@@ -292,7 +293,7 @@
 					<i class="fa fa-angle-double-left"></i>
 				</button>
 				<div id="bjui-hnav-navbar-box">
-				<@navbar /> 
+				<@navbar />
 				</div>
 				<button type="button" class="btn-default bjui-hnav-more-right" title="导航菜单右移">
 					<i class="fa fa-angle-double-right"></i>

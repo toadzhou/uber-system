@@ -4,12 +4,14 @@ import com.roncoo.recharge.util.base.BaseController;
 import com.roncoo.recharge.util.bjui.Page;
 import com.roncoo.recharge.web.bean.model.GirlItem;
 import com.roncoo.recharge.web.bean.qo.QirlQO;
+import com.xiaoleilu.hutool.util.CollectionUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -68,7 +70,17 @@ public class GirlController extends BaseController {
         log.info("查看妹纸详情 id:{}",id);
         Query query = new Query(Criteria.where("user_id").is(id)).limit(1);
         List<GirlItem> girlItemList = mongoTemplate.find(query,GirlItem.class);
-        modelMap.put("bean", girlItemList.get(0));
+        if(CollectionUtil.isNotEmpty(girlItemList)){
+            GirlItem girlItem = girlItemList.get(0);
+            if(girlItem.getView_number().contains("万")){
+                String viewNumber = girlItem.getView_number();
+                viewNumber = viewNumber.replace("万","").replace(".","").trim();
+                Update update = Update.update("view_number", Integer.parseInt(viewNumber)*10000);
+                mongoTemplate.updateFirst(query, update,"view_number");
+            }
+            modelMap.put("bean", girlItem);
+        }
+
     }
 
 
