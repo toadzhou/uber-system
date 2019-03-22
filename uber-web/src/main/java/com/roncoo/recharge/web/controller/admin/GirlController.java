@@ -1,5 +1,7 @@
 package com.roncoo.recharge.web.controller.admin;
 
+import com.alibaba.fastjson.JSON;
+import com.mongodb.WriteResult;
 import com.roncoo.recharge.util.base.BaseController;
 import com.roncoo.recharge.util.bjui.Page;
 import com.roncoo.recharge.web.bean.model.GirlItem;
@@ -76,7 +78,8 @@ public class GirlController extends BaseController {
                 String viewNumber = girlItem.getView_number();
                 viewNumber = viewNumber.replace("万","").replace(".","").trim();
                 Update update = Update.update("view_number", Integer.parseInt(viewNumber)*10000);
-                mongoTemplate.updateFirst(query, update,"view_number");
+                WriteResult writeResult = mongoTemplate.updateFirst(query, update,"view_number");
+                System.out.println(JSON.toJSONString(writeResult));
             }
             modelMap.put("bean", girlItem);
         }
