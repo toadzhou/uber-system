@@ -53,6 +53,7 @@ public class Task {
                     }
                     String imageUrl = girlItem.getImage_url();
                     String showImageUrl = girlService.uploadImage(imageUrl);
+                    System.out.println(showImageUrl);
                     Update update = Update.update("show_image_url", showImageUrl);
                     if(modifyNumber != 0){
                         update.set("view_number", modifyNumber);
