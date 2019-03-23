@@ -40,13 +40,11 @@ public class Task {
         Criteria c = new Criteria();
 //        c.where("user_id").is("49991438823377212");
         query.addCriteria(c);
+        query.limit(100);
 
         List<GirlItem> girlItemList = mongoTemplate.find(query, GirlItem.class);
         if(CollectionUtil.isNotEmpty(girlItemList)){
-
-            ExecutorService executorService = Executors.newCachedThreadPool();
             girlItemList.forEach(girlItem -> {
-                executorService.execute(()->{
                     Integer modifyNumber = 0;
                     if(girlItem.getView_number().contains("万")){
                         String viewNumber = girlItem.getView_number();
@@ -62,7 +60,6 @@ public class Task {
                     WriteResult writeResult =  mongoTemplate.updateMulti(query, update, GirlItem.class);
                     log.info("定时任务执行成功 result:{}", JSON.toJSONString(writeResult));
 
-                });
             });
 
         }

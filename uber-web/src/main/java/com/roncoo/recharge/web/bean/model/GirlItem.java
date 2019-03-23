@@ -21,6 +21,7 @@ public class GirlItem implements Serializable {
     private String view_number;
     private String reply_number;
     private String user_id;
+    private String show_image_url;
 }
 
 
