@@ -19,7 +19,7 @@
     <div class="form-group">
         <div class="col-lg-12">
             <label class="control-label">图片：</label>
-            <img src="/Users/mac/Documents/document/images/49451535684325155.jpg" width="200" height="200"/>
+            <img src="https://markkkkdkd.oss-cn-beijing.aliyuncs.com/demo20181122/20190322/f810241f32c2413092c17224752b07ef.jpg" width="200" height="200"/>
         </div>
     </div>
 
