@@ -1,8 +1,9 @@
 <#include "/macro/base.ftl" />
 <div class="bjui-pageHeader">
-    <form id="pagerForm" data-toggle="ajaxsearch" action="${base}/admin/category/list" method="post">
+    <form id="pagerForm" data-toggle="ajaxsearch"  action="${base}/admin/category/son" method="post">
         <@pageHeadr />
-        <input type="hidden" name="isLeaf" value="0"/>
+        <input type="hidden" name="isLeaf" value="1"/>
+        <input type="hidden" name="parentId" value="${bean.parentId}">
         <div class="bjui-searchBar">
             <label>类目名称：</label>
             <input type="text" name="name" value="${bean.name!}" class="form-control" size="12">&nbsp;
@@ -12,7 +13,7 @@
 
             <br />
             <br />
-            <a href="${base}/admin/category/add" class="btn btn-default" data-toggle="dialog" data-icon="plus" data-id="sysUserInfo-add" data-options="{title:'添加', height:350}">新增一级类目 </a>
+            <a href="${base}/admin/category/addSon?parentId=${bean.parentId}" class="btn btn-default" data-toggle="dialog" data-icon="plus" data-id="sysUserInfo-add" data-options="{title:'添加', height:350}">新增二级类目 </a>
         </div>
     </form>
 </div>
@@ -21,8 +22,10 @@
         <thead>
         <tr>
             <th width="30">序号</th>
+            <th>类目图片</th>
             <th>类目名称</th>
             <th>级别</th>
+            <th>父类目</th>
             <th>排序值</th>
             <th>操作</th>
         </tr>
@@ -32,11 +35,13 @@
             <#list page.list as bean>
                 <tr>
                     <td align="center">${bean_index+1}</td>
+                    <td><img src="${bean.image!}" width="60" height="60"/></td>
                     <td>${bean.name!}</td>
-                    <td>一级</td>
+                    <td>二级</td>
+                    <td>${bean.parentName!}</td>
                     <td>${bean.sort!}</td>
                     <td>
-                        <a href="${base}/admin/category/son?parentId=${bean.id}" class="btn btn-blue" data-toggle="navtab" data-id="brand-view" data-options="{title:'二级类目', height:350}">查看下级</a>
+                        <a href="${base}/admin/category/view?id=${bean.id}" class="btn btn-blue" data-toggle="dialog" data-id="brand-view" data-options="{title:'查看', height:350}">查看</a>
                     </td>
                 </tr>
             </#list>

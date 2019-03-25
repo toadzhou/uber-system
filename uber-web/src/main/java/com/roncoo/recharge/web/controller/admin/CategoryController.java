@@ -1,5 +1,6 @@
 package com.roncoo.recharge.web.controller.admin;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -20,6 +21,7 @@ import com.roncoo.recharge.util.base.BaseController;
  */
 @Controller
 @RequestMapping(value = "/admin/category")
+@Slf4j
 public class CategoryController extends BaseController {
 
 	private final static String TARGETID = "admin-category";
@@ -35,9 +37,23 @@ public class CategoryController extends BaseController {
 		modelMap.put("bean", qo);
 	}
 
+	@RequestMapping(value = "/son")
+	public void son(@RequestParam(value = "pageCurrent", defaultValue = "1") int pageCurrent, @RequestParam(value = "pageSize", defaultValue = "20") int pageSize, @ModelAttribute CategoryQO qo, ModelMap modelMap){
+		modelMap.put("page", service.listForPage(pageCurrent, pageSize, qo));
+		modelMap.put("pageCurrent", pageCurrent);
+		modelMap.put("pageSize", pageSize);
+		modelMap.put("bean", qo);
+	}
+
+
 	@RequestMapping(value = "/add")
 	public void add(){
 
+	}
+
+	@RequestMapping(value = "/addSon")
+	public void addSon(Long parentId, ModelMap modelMap){
+		modelMap.put("parentId", parentId);
 	}
 
 	@ResponseBody
@@ -46,6 +62,17 @@ public class CategoryController extends BaseController {
 		//保存一级类目
 		qo.setIsLeaf(0);
 		qo.setParentId(0L);
+		if (service.save(qo) > 0) {
+			return success(TARGETID);
+		}
+		return error("添加失败");
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "/saveSon")
+	public String saveSon(@ModelAttribute CategoryQO qo){
+		//保存二级类目
+		qo.setIsLeaf(0);
 		if (service.save(qo) > 0) {
 			return success(TARGETID);
 		}

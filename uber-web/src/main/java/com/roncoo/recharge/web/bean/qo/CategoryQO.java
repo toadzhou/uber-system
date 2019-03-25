@@ -5,6 +5,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 import lombok.Data;
 import lombok.experimental.Accessors;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  * <p>
@@ -20,6 +21,11 @@ public class CategoryQO implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    /**
+     * 类目图片
+     */
+    private MultipartFile imageFile;
+
     private Long id;
     /**
      * 分类名称
@@ -29,6 +35,11 @@ public class CategoryQO implements Serializable {
      * 父节点Id
      */
     private Long parentId;
+    /**
+     * 类目图片
+     */
+    private String image;
+
     /**
      * 叶子结点: 0否 1是
      */

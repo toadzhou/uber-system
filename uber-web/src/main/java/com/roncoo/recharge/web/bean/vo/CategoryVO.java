@@ -30,6 +30,10 @@ public class CategoryVO implements Serializable {
      */
     private Long parentId;
     /**
+     * 类目图片
+     */
+    private String image;
+    /**
      * 叶子结点: 0否 1是
      */
     private Integer isLeaf;

@@ -1,6 +1,5 @@
 package com.roncoo.recharge.web.service;
 
-import com.xiaoleilu.hutool.util.ObjectUtil;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +32,12 @@ public class CategoryService {
 	    example.setOrderByClause(" id desc ");
 	    if(StringUtils.isNotBlank(qo.getName())){
 	    	c.andNameLike(PageUtil.like(qo.getName()));
+		}
+	    if(qo.getParentId() != null){
+	    	c.andParentIdEqualTo(qo.getParentId());
+		}
+	    if(qo.getIsLeaf() != null){
+	    	c.andIsLeafEqualTo(qo.getIsLeaf());
 		}
         Page<Category> page = dao.listForPage(pageCurrent, pageSize, example);
         return PageUtil.transform(page, CategoryVO.class);
