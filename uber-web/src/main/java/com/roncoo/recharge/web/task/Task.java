@@ -33,7 +33,7 @@ public class Task {
     private GirlService girlService;
 
 
-    @Scheduled(fixedRate = 5 * 60000)
+//    @Scheduled(fixedRate = 5 * 60000)
     public void brushShareLogData() {
         log.info("执行定时任务刷新数据");
         Query query = new Query();
