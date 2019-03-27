@@ -1,5 +1,6 @@
 package com.roncoo.recharge.web.controller.admin;
 
+import com.roncoo.recharge.web.service.ImageService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,6 +29,8 @@ public class CategoryController extends BaseController {
 
 	@Autowired
 	private CategoryService service;
+	@Autowired
+	private ImageService imageService;
 
 	@RequestMapping(value = "/list")
 	public void list(@RequestParam(value = "pageCurrent", defaultValue = "1") int pageCurrent, @RequestParam(value = "pageSize", defaultValue = "20") int pageSize, @ModelAttribute CategoryQO qo, ModelMap modelMap){
@@ -73,6 +76,9 @@ public class CategoryController extends BaseController {
 	public String saveSon(@ModelAttribute CategoryQO qo){
 		//保存二级类目
 		qo.setIsLeaf(0);
+		if(qo.getImageFile() != null){
+			qo.setImage(imageService.uploadImage(qo.getImageFile()));
+		}
 		if (service.save(qo) > 0) {
 			return success(TARGETID);
 		}

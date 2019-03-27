@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.mongodb.WriteResult;
 import com.roncoo.recharge.web.bean.model.GirlItem;
 import com.roncoo.recharge.web.service.GirlService;
+import com.roncoo.recharge.web.service.ImageService;
 import com.xiaoleilu.hutool.util.CollectionUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +31,7 @@ public class Task {
     @Autowired
     private MongoTemplate mongoTemplate;
     @Autowired
-    private GirlService girlService;
+    private ImageService imageService;
 
 
 //    @Scheduled(fixedRate = 5 * 60000)
@@ -52,7 +53,7 @@ public class Task {
                         modifyNumber = Integer.parseInt(viewNumber) * 10000;
                     }
                     String imageUrl = girlItem.getImage_url();
-                    String showImageUrl = girlService.uploadImage(imageUrl);
+                    String showImageUrl = imageService.uploadImage(imageUrl);
                     System.out.println(showImageUrl);
                     Update update = Update.update("show_image_url", showImageUrl);
                     if(modifyNumber != 0){

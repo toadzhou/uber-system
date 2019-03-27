@@ -8,8 +8,8 @@
         </div>
         <div class="form-group">
             <label class="control-label x85">类目图片：</label>
-            <a href="javascript:void(0)" class="btn btn-default bjui-upload-select"><i class="fa fa-cloud-upload">&nbsp;&nbsp;选择上传文件</i></a>
-            <#--<input type="file" name="imageFile" class="btn btn-default bjui-upload-select" value="" placeholder="类目图片" size="20" data-rule="required"/>-->
+            <#--<a href="javascript:void(0)" class="btn btn-default bjui-upload-select"><i class="fa fa-cloud-upload">&nbsp;&nbsp;选择上传文件</i></a>-->
+            <input type="file" name="imageFile"   placeholder="类目图片" size="20" data-rule="required"/>
         </div>
         <div class="form-group">
             <label class="control-label x85">排序值：</label>
