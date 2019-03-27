@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.roncoo.recharge.common.dao.impl.mapper.AttributeMapper" >
+  <resultMap id="BaseResultMap" type="com.roncoo.recharge.common.entity.Attribute" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="category_id" property="categoryId" jdbcType="BIGINT" />
+    <result column="attr_name" property="attrName" jdbcType="VARCHAR" />
+    <result column="attr_input_type" property="attrInputType" jdbcType="TINYINT" />
+    <result column="attr_type" property="attrType" jdbcType="TINYINT" />
+    <result column="attr_values" property="attrValues" jdbcType="VARCHAR" />
+    <result column="attr_index" property="attrIndex" jdbcType="TINYINT" />
+    <result column="sort_order" property="sortOrder" jdbcType="TINYINT" />
+    <result column="is_linked" property="isLinked" jdbcType="TINYINT" />
+    <result column="create_person" property="createPerson" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_person" property="updatePerson" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, category_id, attr_name, attr_input_type, attr_type, attr_values, attr_index, 
+    sort_order, is_linked, create_person, create_time, update_person, update_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.roncoo.recharge.common.entity.AttributeExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_attribute
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitStart >= 0" >
+      limit ${limitStart} , ${pageSize}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_attribute
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from tb_attribute
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.roncoo.recharge.common.entity.AttributeExample" >
+    delete from tb_attribute
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.roncoo.recharge.common.entity.Attribute" >
+    insert into tb_attribute (id, category_id, attr_name, 
+      attr_input_type, attr_type, attr_values, 
+      attr_index, sort_order, is_linked, 
+      create_person, create_time, update_person, 
+      update_time)
+    values (#{id,jdbcType=BIGINT}, #{categoryId,jdbcType=BIGINT}, #{attrName,jdbcType=VARCHAR}, 
+      #{attrInputType,jdbcType=TINYINT}, #{attrType,jdbcType=TINYINT}, #{attrValues,jdbcType=VARCHAR}, 
+      #{attrIndex,jdbcType=TINYINT}, #{sortOrder,jdbcType=TINYINT}, #{isLinked,jdbcType=TINYINT}, 
+      #{createPerson,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updatePerson,jdbcType=VARCHAR}, 
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.roncoo.recharge.common.entity.Attribute" >
+    insert into tb_attribute
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="categoryId != null" >
+        category_id,
+      </if>
+      <if test="attrName != null" >
+        attr_name,
+      </if>
+      <if test="attrInputType != null" >
+        attr_input_type,
+      </if>
+      <if test="attrType != null" >
+        attr_type,
+      </if>
+      <if test="attrValues != null" >
+        attr_values,
+      </if>
+      <if test="attrIndex != null" >
+        attr_index,
+      </if>
+      <if test="sortOrder != null" >
+        sort_order,
+      </if>
+      <if test="isLinked != null" >
+        is_linked,
+      </if>
+      <if test="createPerson != null" >
+        create_person,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updatePerson != null" >
+        update_person,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="categoryId != null" >
+        #{categoryId,jdbcType=BIGINT},
+      </if>
+      <if test="attrName != null" >
+        #{attrName,jdbcType=VARCHAR},
+      </if>
+      <if test="attrInputType != null" >
+        #{attrInputType,jdbcType=TINYINT},
+      </if>
+      <if test="attrType != null" >
+        #{attrType,jdbcType=TINYINT},
+      </if>
+      <if test="attrValues != null" >
+        #{attrValues,jdbcType=VARCHAR},
+      </if>
+      <if test="attrIndex != null" >
+        #{attrIndex,jdbcType=TINYINT},
+      </if>
+      <if test="sortOrder != null" >
+        #{sortOrder,jdbcType=TINYINT},
+      </if>
+      <if test="isLinked != null" >
+        #{isLinked,jdbcType=TINYINT},
+      </if>
+      <if test="createPerson != null" >
+        #{createPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatePerson != null" >
+        #{updatePerson,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.roncoo.recharge.common.entity.AttributeExample" resultType="java.lang.Integer" >
+    select count(*) from tb_attribute
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tb_attribute
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.categoryId != null" >
+        category_id = #{record.categoryId,jdbcType=BIGINT},
+      </if>
+      <if test="record.attrName != null" >
+        attr_name = #{record.attrName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.attrInputType != null" >
+        attr_input_type = #{record.attrInputType,jdbcType=TINYINT},
+      </if>
+      <if test="record.attrType != null" >
+        attr_type = #{record.attrType,jdbcType=TINYINT},
+      </if>
+      <if test="record.attrValues != null" >
+        attr_values = #{record.attrValues,jdbcType=VARCHAR},
+      </if>
+      <if test="record.attrIndex != null" >
+        attr_index = #{record.attrIndex,jdbcType=TINYINT},
+      </if>
+      <if test="record.sortOrder != null" >
+        sort_order = #{record.sortOrder,jdbcType=TINYINT},
+      </if>
+      <if test="record.isLinked != null" >
+        is_linked = #{record.isLinked,jdbcType=TINYINT},
+      </if>
+      <if test="record.createPerson != null" >
+        create_person = #{record.createPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updatePerson != null" >
+        update_person = #{record.updatePerson,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tb_attribute
+    set id = #{record.id,jdbcType=BIGINT},
+      category_id = #{record.categoryId,jdbcType=BIGINT},
+      attr_name = #{record.attrName,jdbcType=VARCHAR},
+      attr_input_type = #{record.attrInputType,jdbcType=TINYINT},
+      attr_type = #{record.attrType,jdbcType=TINYINT},
+      attr_values = #{record.attrValues,jdbcType=VARCHAR},
+      attr_index = #{record.attrIndex,jdbcType=TINYINT},
+      sort_order = #{record.sortOrder,jdbcType=TINYINT},
+      is_linked = #{record.isLinked,jdbcType=TINYINT},
+      create_person = #{record.createPerson,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_person = #{record.updatePerson,jdbcType=VARCHAR},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.roncoo.recharge.common.entity.Attribute" >
+    update tb_attribute
+    <set >
+      <if test="categoryId != null" >
+        category_id = #{categoryId,jdbcType=BIGINT},
+      </if>
+      <if test="attrName != null" >
+        attr_name = #{attrName,jdbcType=VARCHAR},
+      </if>
+      <if test="attrInputType != null" >
+        attr_input_type = #{attrInputType,jdbcType=TINYINT},
+      </if>
+      <if test="attrType != null" >
+        attr_type = #{attrType,jdbcType=TINYINT},
+      </if>
+      <if test="attrValues != null" >
+        attr_values = #{attrValues,jdbcType=VARCHAR},
+      </if>
+      <if test="attrIndex != null" >
+        attr_index = #{attrIndex,jdbcType=TINYINT},
+      </if>
+      <if test="sortOrder != null" >
+        sort_order = #{sortOrder,jdbcType=TINYINT},
+      </if>
+      <if test="isLinked != null" >
+        is_linked = #{isLinked,jdbcType=TINYINT},
+      </if>
+      <if test="createPerson != null" >
+        create_person = #{createPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatePerson != null" >
+        update_person = #{updatePerson,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.roncoo.recharge.common.entity.Attribute" >
+    update tb_attribute
+    set category_id = #{categoryId,jdbcType=BIGINT},
+      attr_name = #{attrName,jdbcType=VARCHAR},
+      attr_input_type = #{attrInputType,jdbcType=TINYINT},
+      attr_type = #{attrType,jdbcType=TINYINT},
+      attr_values = #{attrValues,jdbcType=VARCHAR},
+      attr_index = #{attrIndex,jdbcType=TINYINT},
+      sort_order = #{sortOrder,jdbcType=TINYINT},
+      is_linked = #{isLinked,jdbcType=TINYINT},
+      create_person = #{createPerson,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_person = #{updatePerson,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

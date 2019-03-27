@@ -69,7 +69,7 @@ public class CategoryController extends BaseController {
 	@RequestMapping(value = "/save")
 	public String save(@ModelAttribute CategoryQO qo){
 		//保存一级类目
-		qo.setIsLeaf(1);
+		qo.setIsLeaf(0);
 		qo.setParentId(0L);
 		if (service.save(qo) > 0) {
 			return success(TARGETID);
@@ -81,7 +81,7 @@ public class CategoryController extends BaseController {
 	@RequestMapping(value = "/saveSon")
 	public String saveSon(@ModelAttribute CategoryQO qo){
 		//保存二级类目
-		qo.setIsLeaf(0);
+		qo.setIsLeaf(1);
 		if(qo.getImageFile() != null){
 			qo.setImage(imageService.uploadImage(qo.getImageFile()));
 		}

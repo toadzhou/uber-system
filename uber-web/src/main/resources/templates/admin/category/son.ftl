@@ -22,7 +22,7 @@
         <thead>
         <tr>
             <th width="30">序号</th>
-            <th width="230">类目图片</th>
+            <th width="60">类目图片</th>
             <th>类目名称</th>
             <th>级别</th>
             <th>排序值</th>
@@ -34,12 +34,12 @@
             <#list page.list as bean>
                 <tr>
                     <td align="center">${bean_index+1}</td>
-                    <td><img src="${bean.image!}" width="60" height="60"/></td>
+                    <td align="center"><img src="${bean.image!}" width="60" height="60"/></td>
                     <td>${bean.name!}</td>
                     <td>二级</td>
                     <td>${bean.sort!}</td>
                     <td>
-                        <a href="${base}/admin/category/view?id=${bean.id}" class="btn btn-blue" data-toggle="dialog" data-id="brand-view" data-options="{title:'查看', height:350}">查看</a>
+                        <a href="${base}/admin/attribute/list?categoryId=${bean.id}" class="btn btn-red" data-toggle="navtab" data-id="admin-attribute">属性列表</a>
                     </td>
                 </tr>
             </#list>
