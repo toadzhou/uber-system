@@ -2,7 +2,7 @@
 <div class="bjui-pageHeader">
     <form id="pagerForm" data-toggle="ajaxsearch" action="${base}/admin/category/list" method="post">
         <@pageHeadr />
-        <input type="hidden" name="categoryId" value="${bean.categoryId}"/>
+        <input type="hidden" name="categoryId" value="${bean.categoryId!}"/>
         <div class="bjui-searchBar">
             <label>属性名称：</label>
             <input type="text" name="attrName" value="${bean.attrName!}" class="form-control" size="12">&nbsp;
@@ -12,7 +12,7 @@
 
             <br />
             <br />
-            <a href="${base}/admin/attribute/add" class="btn btn-default" data-toggle="dialog" data-icon="plus" data-id="attribute-add" data-options="{title:'添加属性', height:350}">添加属性</a>
+            <a href="${base}/admin/attribute/add?categoryId=${bean.categoryId!}" class="btn btn-default" data-toggle="dialog" data-icon="plus" data-id="attribute-add" data-options="{title:'添加属性', height:350}">添加属性</a>
         </div>
     </form>
 </div>
@@ -34,8 +34,9 @@
                 <tr>
                     <td align="center">${bean_index+1}</td>
                     <td>${bean.attrName!}</td>
-                    <td>${bean.attrTypeText}</td>
-                    <td>${bean.sort!}</td>
+                    <td>${bean.attrTypeText!}</td>
+                    <td>${bean.attrValues!}</td>
+                    <td>${bean.sortOrder!}</td>
                     <td>
                         <a href="${base}/admin/attribute/edit?id=${bean.id}" class="btn btn-blue" data-toggle="dialog" data-id="brand-view" data-options="{title:'编辑', height:350}">编辑</a>
                     </td>

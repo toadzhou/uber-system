@@ -7,9 +7,9 @@ package com.roncoo.recharge.web.bean.enums;
  */
 public enum AttrTypeEnum {
 
-    MANUAL(1,"手工录入"),
-    SELECT(2,"选择输入"),
-    TEXT(3,"多行文本");
+    MANUAL(0,"手工录入"),
+    SELECT(1,"选择输入"),
+    TEXT(2,"多行文本");
 
 
     private Integer code;

@@ -1,61 +1,46 @@
 <#assign base=request.contextPath />
-<div class="pageContent">
-	<form action="${base}/admin/attribute/save" method="post" class="pageForm required-validate" onsubmit="return validateCallback(this, dialogAjaxDone);">
-        <div class="pageFormContent" layoutH="58">
-    		<p>
-                <label>所属分类(最小分类)：</label>
-                <input type="text" name="categoryId" value="" placeholder="所属分类(最小分类)" size="20" />
-            </p>
-    		<p>
-                <label>分类名称：</label>
-                <input type="text" name="attrName" value="" placeholder="分类名称" size="20" />
-            </p>
-    		<p>
-                <label> 0为类别:0手功输入;1为选择输入;2为多行文本输入：</label>
-                <input type="text" name="attrInputType" value="" placeholder=" 0为类别:0手功输入;1为选择输入;2为多行文本输入" size="20" />
-            </p>
-    		<p>
-                <label>SKU属性; 0否; 1是：</label>
-                <input type="text" name="attrType" value="" placeholder="SKU属性; 0否; 1是" size="20" />
-            </p>
-    		<p>
-                <label>即选择输入,则attr_name对应的值的取值就是该这字段值 ：</label>
-                <input type="text" name="attrValues" value="" placeholder="即选择输入,则attr_name对应的值的取值就是该这字段值 " size="20" />
-            </p>
-    		<p>
-                <label>性是否可以检索;0不需要检索; 1关键字检索2范围检索,该属性应该是如果检索的话,可以通过该属性找到有该属性的商品：</label>
-                <input type="text" name="attrIndex" value="" placeholder="性是否可以检索;0不需要检索; 1关键字检索2范围检索,该属性应该是如果检索的话,可以通过该属性找到有该属性的商品" size="20" />
-            </p>
-    		<p>
-                <label>属性排序,数字越大越靠前,如果数字一样则按id顺序：</label>
-                <input type="text" name="sortOrder" value="" placeholder="属性排序,数字越大越靠前,如果数字一样则按id顺序" size="20" />
-            </p>
-    		<p>
-                <label>是否关联,0 不关联 1关联; 如果关联, 那么用户在购买该商品时,具有有该属性相同的商品将被推荐给用户：</label>
-                <input type="text" name="isLinked" value="" placeholder="是否关联,0 不关联 1关联; 如果关联, 那么用户在购买该商品时,具有有该属性相同的商品将被推荐给用户" size="20" />
-            </p>
-    		<p>
-                <label>创建人：</label>
-                <input type="text" name="createPerson" value="" placeholder="创建人" size="20" />
-            </p>
-    		<p>
-                <label>创建时间：</label>
-                <input type="text" name="createTime" value="" placeholder="创建时间" size="20" />
-            </p>
-    		<p>
-                <label>更新人：</label>
-                <input type="text" name="updatePerson" value="" placeholder="更新人" size="20" />
-            </p>
-    		<p>
-                <label>修改时间：</label>
-                <input type="text" name="updateTime" value="" placeholder="修改时间" size="20" />
-            </p>
+<div class="bjui-pageContent">
+    <form action="${base}/admin/attribute/save" data-toggle="validate" method="post">
+        <input type="hidden" name="categoryId" value="${categoryId!}"/>
+        <div class="form-group">
+            <label class="control-label x130">属性名称：</label>
+            <input type="text" name="attrName" value="" placeholder="属性名称" size="20" data-rule="required"/>
         </div>
-        <div class="formBar">
-            <ul>
-                <li><div class="buttonActive"><div class="buttonContent"><button type="submit">保存</button></div></div></li>
-                <li><div class="button"><div class="buttonContent"><button type="button" class="close">取消</button></div></div></li>
-            </ul>
+        <div class="form-group">
+            <label class="control-label x130">能否进行检索：</label>
+            <input type="radio" name="attrIndex" value="1"  size="20" checked />不需要检索&nbsp;
+            <input type="radio" name="attrIndex" value="2"  size="20" />关键字检索&nbsp;
+            <input type="radio" name="attrIndex" value="3"  size="20" />范围检索
         </div>
-	</form>
+        <div class="form-group">
+            <label class="control-label x130">相同属性是否关联：</label>
+            <input type="radio" name="attrType" value="0"  size="20" checked/>不关联&nbsp;
+            <input type="radio" name="attrType" value="1"  size="20" />关联
+        </div>
+        <div class="form-group">
+            <label class="control-label x130">SKU属性：</label>
+            <input type="radio" name="isLinked" value="0"  size="20" checked/>是&nbsp;
+            <input type="radio" name="isLinked" value="1"  size="20" />否
+        </div>
+        <div class="form-group">
+            <label class="control-label x130">该属性值的录入方式：</label>
+            <input type="radio" name="attrInputType" value="0"  size="20" checked />手工录入&nbsp;
+            <input type="radio" name="attrInputType" value="1"  size="20" />选项值录入&nbsp;
+            <input type="radio" name="attrInputType" value="2"  size="20" />选项值录入
+        </div>
+        <div class="form-group">
+            <label class="control-label x130">该属性值：</label>
+            <textarea name="attrValues" style="width: 200px; height: 50px"></textarea>
+        </div>
+        <div class="form-group">
+            <label class="control-label x130">排序值：</label>
+            <input type="text" name="sortOrder" value="" placeholder="排序值" size="20" data-rule="required"/>
+        </div>
+    </form>
+</div>
+<div class="bjui-pageFooter">
+    <ul>
+        <li><button type="button" class="btn-close">取消</button></li>
+        <li><button type="submit" class="btn-default">添加</button></li>
+    </ul>
 </div>
