@@ -3,7 +3,11 @@ package com.roncoo.recharge.web.bean.qo;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -16,6 +20,9 @@ import org.springframework.web.multipart.MultipartFile;
  * @since 2019-03-25
  */
 @Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Accessors(chain = true)
 public class CategoryQO implements Serializable {
 

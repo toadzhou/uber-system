@@ -13,7 +13,7 @@
         </div>
         <div class="form-group">
             <label class="control-label x85">排序值：</label>
-            <input type="text" name="sort" value="" placeholder="排序值" size="20" data-rule="required"/>
+            <input type="text" name="sort" value="${currentSortValue}" placeholder="排序值" size="20" data-rule="required"/>
         </div>
     </form>
 </div>

@@ -19,12 +19,6 @@ public class GirlControllerTest {
     private GirlService girlService;
 
 
-    @Test
-    public void uploadImage(){
-        String imageUrl = "http://att3.citysbs.com/200x240/hangzhou/2015/05/17/17/960x1016-171152_v2_16771431853912805_fd69f39be8a6d3134c61ef1583e7b694.jpg";
-        String url = girlService.uploadImage(imageUrl);
-        System.out.printf(url);
-    }
 
 
 }

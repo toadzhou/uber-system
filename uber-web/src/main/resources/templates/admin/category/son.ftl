@@ -22,10 +22,9 @@
         <thead>
         <tr>
             <th width="30">序号</th>
-            <th>类目图片</th>
+            <th width="230">类目图片</th>
             <th>类目名称</th>
             <th>级别</th>
-            <th>父类目</th>
             <th>排序值</th>
             <th>操作</th>
         </tr>
@@ -38,7 +37,6 @@
                     <td><img src="${bean.image!}" width="60" height="60"/></td>
                     <td>${bean.name!}</td>
                     <td>二级</td>
-                    <td>${bean.parentName!}</td>
                     <td>${bean.sort!}</td>
                     <td>
                         <a href="${base}/admin/category/view?id=${bean.id}" class="btn btn-blue" data-toggle="dialog" data-id="brand-view" data-options="{title:'查看', height:350}">查看</a>

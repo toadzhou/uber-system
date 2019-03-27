@@ -1,6 +1,8 @@
 package com.roncoo.recharge.web.controller.admin;
 
+import com.roncoo.recharge.common.entity.Category;
 import com.roncoo.recharge.web.service.ImageService;
+import com.xiaoleilu.hutool.util.CollectionUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,6 +15,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.roncoo.recharge.web.service.CategoryService;
 import com.roncoo.recharge.web.bean.qo.CategoryQO;
 import com.roncoo.recharge.util.base.BaseController;
+
+import java.util.List;
 
 /**
  * 分类信息
@@ -56,14 +60,16 @@ public class CategoryController extends BaseController {
 
 	@RequestMapping(value = "/addSon")
 	public void addSon(Long parentId, ModelMap modelMap){
+		List<Category> categoryList = service.queryForList(CategoryQO.builder().parentId(parentId).build());
 		modelMap.put("parentId", parentId);
+		modelMap.put("currentSortValue", CollectionUtil.isNotEmpty(categoryList)?categoryList.get(0).getSort()+1:1);
 	}
 
 	@ResponseBody
 	@RequestMapping(value = "/save")
 	public String save(@ModelAttribute CategoryQO qo){
 		//保存一级类目
-		qo.setIsLeaf(0);
+		qo.setIsLeaf(1);
 		qo.setParentId(0L);
 		if (service.save(qo) > 0) {
 			return success(TARGETID);

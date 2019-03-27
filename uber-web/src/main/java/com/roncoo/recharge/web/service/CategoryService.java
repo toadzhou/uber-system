@@ -14,6 +14,8 @@ import com.roncoo.recharge.common.entity.Category;
 import com.roncoo.recharge.common.entity.CategoryExample;
 import com.roncoo.recharge.common.entity.CategoryExample.Criteria;
 
+import java.util.List;
+
 /**
  * 分类信息
  *
@@ -29,7 +31,7 @@ public class CategoryService {
 	public Page<CategoryVO> listForPage(int pageCurrent, int pageSize, CategoryQO qo) {
 	    CategoryExample example = new CategoryExample();
 	    Criteria c = example.createCriteria();
-	    example.setOrderByClause(" id desc ");
+	    example.setOrderByClause(" id desc, sort desc ");
 	    if(StringUtils.isNotBlank(qo.getName())){
 	    	c.andNameLike(PageUtil.like(qo.getName()));
 		}
@@ -64,6 +66,19 @@ public class CategoryService {
 	    Category record = new Category();
         BeanUtils.copyProperties(qo, record);
 		return dao.updateById(record);
+	}
+
+	public List<Category> queryForList(CategoryQO qo){
+		CategoryExample example = new CategoryExample();
+		example.setOrderByClause("sort desc");
+		CategoryExample.Criteria c = example.createCriteria();
+		if(qo.getParentId() != null){
+			c.andParentIdEqualTo(qo.getParentId());
+		}
+		if(qo.getIsLeaf() != null){
+			c.andIsLeafEqualTo(qo.getIsLeaf());
+		}
+		return dao.listByExample(example);
 	}
 
 }
