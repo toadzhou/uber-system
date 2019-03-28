@@ -39,7 +39,7 @@
                     <td>二级</td>
                     <td>${bean.sort!}</td>
                     <td>
-                        <a href="${base}/admin/attribute/list?categoryId=${bean.id}" class="btn btn-red" data-toggle="navtab" data-id="admin-attribute">属性列表</a>
+                        <#--<a href="${base}/admin/attribute/list?categoryId=${bean.id}" class="btn btn-red" data-toggle="navtab" data-id="admin-attribute">属性列表</a>-->
                     </td>
                 </tr>
             </#list>

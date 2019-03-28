@@ -1,5 +1,8 @@
 package com.roncoo.recharge.web.service;
 
+import com.roncoo.recharge.common.dao.AttributeDao;
+import com.roncoo.recharge.common.entity.Attribute;
+import com.roncoo.recharge.common.entity.AttributeExample;
 import com.xiaoleilu.hutool.util.CollectionUtil;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.BeanUtils;
@@ -26,6 +29,8 @@ public class GoodsTypeService {
 
 	@Autowired
 	private GoodsTypeDao dao;
+	@Autowired
+	private AttributeDao attributeDao;
 
 	public Page<GoodsTypeVO> listForPage(int pageCurrent, int pageSize, GoodsTypeQO qo) {
 	    GoodsTypeExample example = new GoodsTypeExample();
@@ -37,7 +42,13 @@ public class GoodsTypeService {
         Page<GoodsType> page = dao.listForPage(pageCurrent, pageSize, example);
 	    Page<GoodsTypeVO> goodsTypeVOPage = PageUtil.transform(page, GoodsTypeVO.class);
 		if(goodsTypeVOPage != null && CollectionUtil.isNotEmpty(goodsTypeVOPage.getList())){
-
+			goodsTypeVOPage.getList().forEach(goodsTypeVO -> {
+				AttributeExample example1 = new AttributeExample();
+				AttributeExample.Criteria c1 = example1.createCriteria();
+				c1.andGoodsTypeIdEqualTo(goodsTypeVO.getId());
+				int count = attributeDao.countByExample(example1);
+				goodsTypeVO.setAttributeNumber(count);
+			});
 		}
         return goodsTypeVOPage;
 	}

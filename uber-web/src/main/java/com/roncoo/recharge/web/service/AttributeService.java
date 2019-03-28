@@ -31,8 +31,8 @@ public class AttributeService {
 	    AttributeExample example = new AttributeExample();
 	    Criteria c = example.createCriteria();
 	    example.setOrderByClause("sort_order desc, id desc ");
-	    if(qo.getCategoryId() != null){
-	    	c.andCategoryIdEqualTo(qo.getCategoryId());
+	    if(qo.getGoodsTypeId() != null){
+	    	c.andGoodsTypeIdEqualTo(qo.getGoodsTypeId());
 		}
 
         Page<Attribute> page = dao.listForPage(pageCurrent, pageSize, example);

@@ -23,7 +23,7 @@ public class AttributeQO implements Serializable {
     /**
      * 所属分类(最小分类)
      */
-    private Long categoryId;
+    private Long goodsTypeId;
     /**
      * 分类名称
      */
