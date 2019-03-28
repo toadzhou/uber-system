@@ -1,5 +1,7 @@
 package com.roncoo.recharge.web.service;
 
+import com.xiaoleilu.hutool.util.CollectionUtil;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -14,7 +16,7 @@ import com.roncoo.recharge.common.entity.GoodsTypeExample;
 import com.roncoo.recharge.common.entity.GoodsTypeExample.Criteria;
 
 /**
- * 商品类型 
+ * 商品类型
  *
  * @author mark
  * @since 2019-03-28
@@ -29,8 +31,15 @@ public class GoodsTypeService {
 	    GoodsTypeExample example = new GoodsTypeExample();
 	    Criteria c = example.createCriteria();
 	    example.setOrderByClause(" id desc ");
+	    if(StringUtils.isNotBlank(qo.getName())){
+	    	c.andNameEqualTo(qo.getName());
+		}
         Page<GoodsType> page = dao.listForPage(pageCurrent, pageSize, example);
-        return PageUtil.transform(page, GoodsTypeVO.class);
+	    Page<GoodsTypeVO> goodsTypeVOPage = PageUtil.transform(page, GoodsTypeVO.class);
+		if(goodsTypeVOPage != null && CollectionUtil.isNotEmpty(goodsTypeVOPage.getList())){
+
+		}
+        return goodsTypeVOPage;
 	}
 
 	public int save(GoodsTypeQO qo) {
@@ -55,5 +64,5 @@ public class GoodsTypeService {
         BeanUtils.copyProperties(qo, record);
 		return dao.updateById(record);
 	}
-	
+
 }

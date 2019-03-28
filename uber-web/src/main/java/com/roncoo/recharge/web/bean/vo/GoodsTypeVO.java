@@ -50,6 +50,11 @@ public class GoodsTypeVO implements Serializable {
      */
     private Date updateTime;
 
+    /**
+     * 属性数
+     */
+    private Integer attributeNumber;
+
 
 
 }

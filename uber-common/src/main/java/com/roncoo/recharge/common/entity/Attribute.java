@@ -6,7 +6,7 @@ import java.util.Date;
 public class Attribute implements Serializable {
     private Long id;
 
-    private Long categoryId;
+    private Long goodsTypeId;
 
     private String attrName;
 
@@ -21,6 +21,8 @@ public class Attribute implements Serializable {
     private Byte sortOrder;
 
     private Byte isLinked;
+
+    private Integer attrGroup;
 
     private String createPerson;
 
@@ -40,12 +42,12 @@ public class Attribute implements Serializable {
         this.id = id;
     }
 
-    public Long getCategoryId() {
-        return categoryId;
+    public Long getGoodsTypeId() {
+        return goodsTypeId;
     }
 
-    public void setCategoryId(Long categoryId) {
-        this.categoryId = categoryId;
+    public void setGoodsTypeId(Long goodsTypeId) {
+        this.goodsTypeId = goodsTypeId;
     }
 
     public String getAttrName() {
@@ -104,6 +106,14 @@ public class Attribute implements Serializable {
         this.isLinked = isLinked;
     }
 
+    public Integer getAttrGroup() {
+        return attrGroup;
+    }
+
+    public void setAttrGroup(Integer attrGroup) {
+        this.attrGroup = attrGroup;
+    }
+
     public String getCreatePerson() {
         return createPerson;
     }
@@ -143,7 +153,7 @@ public class Attribute implements Serializable {
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
         sb.append(", id=").append(id);
-        sb.append(", categoryId=").append(categoryId);
+        sb.append(", goodsTypeId=").append(goodsTypeId);
         sb.append(", attrName=").append(attrName);
         sb.append(", attrInputType=").append(attrInputType);
         sb.append(", attrType=").append(attrType);
@@ -151,6 +161,7 @@ public class Attribute implements Serializable {
         sb.append(", attrIndex=").append(attrIndex);
         sb.append(", sortOrder=").append(sortOrder);
         sb.append(", isLinked=").append(isLinked);
+        sb.append(", attrGroup=").append(attrGroup);
         sb.append(", createPerson=").append(createPerson);
         sb.append(", createTime=").append(createTime);
         sb.append(", updatePerson=").append(updatePerson);

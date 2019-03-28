@@ -3,7 +3,7 @@
 <mapper namespace="com.roncoo.recharge.common.dao.impl.mapper.AttributeMapper" >
   <resultMap id="BaseResultMap" type="com.roncoo.recharge.common.entity.Attribute" >
     <id column="id" property="id" jdbcType="BIGINT" />
-    <result column="category_id" property="categoryId" jdbcType="BIGINT" />
+    <result column="goods_type_id" property="goodsTypeId" jdbcType="BIGINT" />
     <result column="attr_name" property="attrName" jdbcType="VARCHAR" />
     <result column="attr_input_type" property="attrInputType" jdbcType="TINYINT" />
     <result column="attr_type" property="attrType" jdbcType="TINYINT" />
@@ -11,6 +11,7 @@
     <result column="attr_index" property="attrIndex" jdbcType="TINYINT" />
     <result column="sort_order" property="sortOrder" jdbcType="TINYINT" />
     <result column="is_linked" property="isLinked" jdbcType="TINYINT" />
+    <result column="attr_group" property="attrGroup" jdbcType="INTEGER" />
     <result column="create_person" property="createPerson" jdbcType="VARCHAR" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
     <result column="update_person" property="updatePerson" jdbcType="VARCHAR" />
@@ -75,8 +76,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, category_id, attr_name, attr_input_type, attr_type, attr_values, attr_index, 
-    sort_order, is_linked, create_person, create_time, update_person, update_time
+    id, goods_type_id, attr_name, attr_input_type, attr_type, attr_values, attr_index, 
+    sort_order, is_linked, attr_group, create_person, create_time, update_person, update_time
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.roncoo.recharge.common.entity.AttributeExample" >
     select
@@ -112,16 +113,16 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.roncoo.recharge.common.entity.Attribute" >
-    insert into tb_attribute (id, category_id, attr_name, 
+    insert into tb_attribute (id, goods_type_id, attr_name, 
       attr_input_type, attr_type, attr_values, 
       attr_index, sort_order, is_linked, 
-      create_person, create_time, update_person, 
-      update_time)
-    values (#{id,jdbcType=BIGINT}, #{categoryId,jdbcType=BIGINT}, #{attrName,jdbcType=VARCHAR}, 
+      attr_group, create_person, create_time, 
+      update_person, update_time)
+    values (#{id,jdbcType=BIGINT}, #{goodsTypeId,jdbcType=BIGINT}, #{attrName,jdbcType=VARCHAR}, 
       #{attrInputType,jdbcType=TINYINT}, #{attrType,jdbcType=TINYINT}, #{attrValues,jdbcType=VARCHAR}, 
       #{attrIndex,jdbcType=TINYINT}, #{sortOrder,jdbcType=TINYINT}, #{isLinked,jdbcType=TINYINT}, 
-      #{createPerson,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updatePerson,jdbcType=VARCHAR}, 
-      #{updateTime,jdbcType=TIMESTAMP})
+      #{attrGroup,jdbcType=INTEGER}, #{createPerson,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updatePerson,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.roncoo.recharge.common.entity.Attribute" >
     insert into tb_attribute
@@ -129,8 +130,8 @@
       <if test="id != null" >
         id,
       </if>
-      <if test="categoryId != null" >
-        category_id,
+      <if test="goodsTypeId != null" >
+        goods_type_id,
       </if>
       <if test="attrName != null" >
         attr_name,
@@ -153,6 +154,9 @@
       <if test="isLinked != null" >
         is_linked,
       </if>
+      <if test="attrGroup != null" >
+        attr_group,
+      </if>
       <if test="createPerson != null" >
         create_person,
       </if>
@@ -170,8 +174,8 @@
       <if test="id != null" >
         #{id,jdbcType=BIGINT},
       </if>
-      <if test="categoryId != null" >
-        #{categoryId,jdbcType=BIGINT},
+      <if test="goodsTypeId != null" >
+        #{goodsTypeId,jdbcType=BIGINT},
       </if>
       <if test="attrName != null" >
         #{attrName,jdbcType=VARCHAR},
@@ -193,6 +197,9 @@
       </if>
       <if test="isLinked != null" >
         #{isLinked,jdbcType=TINYINT},
+      </if>
+      <if test="attrGroup != null" >
+        #{attrGroup,jdbcType=INTEGER},
       </if>
       <if test="createPerson != null" >
         #{createPerson,jdbcType=VARCHAR},
@@ -220,8 +227,8 @@
       <if test="record.id != null" >
         id = #{record.id,jdbcType=BIGINT},
       </if>
-      <if test="record.categoryId != null" >
-        category_id = #{record.categoryId,jdbcType=BIGINT},
+      <if test="record.goodsTypeId != null" >
+        goods_type_id = #{record.goodsTypeId,jdbcType=BIGINT},
       </if>
       <if test="record.attrName != null" >
         attr_name = #{record.attrName,jdbcType=VARCHAR},
@@ -244,6 +251,9 @@
       <if test="record.isLinked != null" >
         is_linked = #{record.isLinked,jdbcType=TINYINT},
       </if>
+      <if test="record.attrGroup != null" >
+        attr_group = #{record.attrGroup,jdbcType=INTEGER},
+      </if>
       <if test="record.createPerson != null" >
         create_person = #{record.createPerson,jdbcType=VARCHAR},
       </if>
@@ -264,7 +274,7 @@
   <update id="updateByExample" parameterType="map" >
     update tb_attribute
     set id = #{record.id,jdbcType=BIGINT},
-      category_id = #{record.categoryId,jdbcType=BIGINT},
+      goods_type_id = #{record.goodsTypeId,jdbcType=BIGINT},
       attr_name = #{record.attrName,jdbcType=VARCHAR},
       attr_input_type = #{record.attrInputType,jdbcType=TINYINT},
       attr_type = #{record.attrType,jdbcType=TINYINT},
@@ -272,6 +282,7 @@
       attr_index = #{record.attrIndex,jdbcType=TINYINT},
       sort_order = #{record.sortOrder,jdbcType=TINYINT},
       is_linked = #{record.isLinked,jdbcType=TINYINT},
+      attr_group = #{record.attrGroup,jdbcType=INTEGER},
       create_person = #{record.createPerson,jdbcType=VARCHAR},
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
       update_person = #{record.updatePerson,jdbcType=VARCHAR},
@@ -283,8 +294,8 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.roncoo.recharge.common.entity.Attribute" >
     update tb_attribute
     <set >
-      <if test="categoryId != null" >
-        category_id = #{categoryId,jdbcType=BIGINT},
+      <if test="goodsTypeId != null" >
+        goods_type_id = #{goodsTypeId,jdbcType=BIGINT},
       </if>
       <if test="attrName != null" >
         attr_name = #{attrName,jdbcType=VARCHAR},
@@ -307,6 +318,9 @@
       <if test="isLinked != null" >
         is_linked = #{isLinked,jdbcType=TINYINT},
       </if>
+      <if test="attrGroup != null" >
+        attr_group = #{attrGroup,jdbcType=INTEGER},
+      </if>
       <if test="createPerson != null" >
         create_person = #{createPerson,jdbcType=VARCHAR},
       </if>
@@ -324,7 +338,7 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.roncoo.recharge.common.entity.Attribute" >
     update tb_attribute
-    set category_id = #{categoryId,jdbcType=BIGINT},
+    set goods_type_id = #{goodsTypeId,jdbcType=BIGINT},
       attr_name = #{attrName,jdbcType=VARCHAR},
       attr_input_type = #{attrInputType,jdbcType=TINYINT},
       attr_type = #{attrType,jdbcType=TINYINT},
@@ -332,6 +346,7 @@
       attr_index = #{attrIndex,jdbcType=TINYINT},
       sort_order = #{sortOrder,jdbcType=TINYINT},
       is_linked = #{isLinked,jdbcType=TINYINT},
+      attr_group = #{attrGroup,jdbcType=INTEGER},
       create_person = #{createPerson,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       update_person = #{updatePerson,jdbcType=VARCHAR},

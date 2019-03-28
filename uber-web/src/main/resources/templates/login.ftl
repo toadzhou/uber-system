@@ -18,7 +18,7 @@
             </div>
         </div>
     </nav>
-   
+
     <div style="background-color: #fe6a22;">
         <div class="container">
             <div class="row">
@@ -28,10 +28,10 @@
                         <h3 class="form-signin-heading">密码登录</h3>
                         <h5 class="text-danger">${msg!''}</h5>
                         <label for="inputEmail" class="sr-only"></label>
-                        <input type="text" name="username" id="inputEmail" class="form-control" placeholder="账号" required autofocus>
+                        <input type="text" name="username" id="inputEmail" class="form-control" value="admin" placeholder="账号" required autofocus>
                         <br/>
                         <label for="inputPassword" class="sr-only">密码</label>
-                        <input type="password" name="password" id="inputPassword" class="form-control" placeholder="密码" required>
+                        <input type="password" name="password" id="inputPassword" class="form-control" value="123456" placeholder="密码" required>
                          <div class="checkbox">
                             <label><input type="checkbox" name="rememberMe" value="true"> 记住我</label>
                         </div>
@@ -41,7 +41,7 @@
             </div>
         </div>
     </div>
-    
+
     <div style="background-color:#fff; width:100%;margin:50px auto;text-align:center;">Copyright &copy; 2015- <span id="y"></span> uber后台系统</div>
 <script language="javascript">document.getElementById("y").innerHTML = new Date().getFullYear();</script>
 </body>

@@ -185,63 +185,63 @@ public class AttributeExample {
             return (Criteria) this;
         }
 
-        public Criteria andCategoryIdIsNull() {
-            addCriterion("category_id is null");
+        public Criteria andGoodsTypeIdIsNull() {
+            addCriterion("goods_type_id is null");
             return (Criteria) this;
         }
 
-        public Criteria andCategoryIdIsNotNull() {
-            addCriterion("category_id is not null");
+        public Criteria andGoodsTypeIdIsNotNull() {
+            addCriterion("goods_type_id is not null");
             return (Criteria) this;
         }
 
-        public Criteria andCategoryIdEqualTo(Long value) {
-            addCriterion("category_id =", value, "categoryId");
+        public Criteria andGoodsTypeIdEqualTo(Long value) {
+            addCriterion("goods_type_id =", value, "goodsTypeId");
             return (Criteria) this;
         }
 
-        public Criteria andCategoryIdNotEqualTo(Long value) {
-            addCriterion("category_id <>", value, "categoryId");
+        public Criteria andGoodsTypeIdNotEqualTo(Long value) {
+            addCriterion("goods_type_id <>", value, "goodsTypeId");
             return (Criteria) this;
         }
 
-        public Criteria andCategoryIdGreaterThan(Long value) {
-            addCriterion("category_id >", value, "categoryId");
+        public Criteria andGoodsTypeIdGreaterThan(Long value) {
+            addCriterion("goods_type_id >", value, "goodsTypeId");
             return (Criteria) this;
         }
 
-        public Criteria andCategoryIdGreaterThanOrEqualTo(Long value) {
-            addCriterion("category_id >=", value, "categoryId");
+        public Criteria andGoodsTypeIdGreaterThanOrEqualTo(Long value) {
+            addCriterion("goods_type_id >=", value, "goodsTypeId");
             return (Criteria) this;
         }
 
-        public Criteria andCategoryIdLessThan(Long value) {
-            addCriterion("category_id <", value, "categoryId");
+        public Criteria andGoodsTypeIdLessThan(Long value) {
+            addCriterion("goods_type_id <", value, "goodsTypeId");
             return (Criteria) this;
         }
 
-        public Criteria andCategoryIdLessThanOrEqualTo(Long value) {
-            addCriterion("category_id <=", value, "categoryId");
+        public Criteria andGoodsTypeIdLessThanOrEqualTo(Long value) {
+            addCriterion("goods_type_id <=", value, "goodsTypeId");
             return (Criteria) this;
         }
 
-        public Criteria andCategoryIdIn(List<Long> values) {
-            addCriterion("category_id in", values, "categoryId");
+        public Criteria andGoodsTypeIdIn(List<Long> values) {
+            addCriterion("goods_type_id in", values, "goodsTypeId");
             return (Criteria) this;
         }
 
-        public Criteria andCategoryIdNotIn(List<Long> values) {
-            addCriterion("category_id not in", values, "categoryId");
+        public Criteria andGoodsTypeIdNotIn(List<Long> values) {
+            addCriterion("goods_type_id not in", values, "goodsTypeId");
             return (Criteria) this;
         }
 
-        public Criteria andCategoryIdBetween(Long value1, Long value2) {
-            addCriterion("category_id between", value1, value2, "categoryId");
+        public Criteria andGoodsTypeIdBetween(Long value1, Long value2) {
+            addCriterion("goods_type_id between", value1, value2, "goodsTypeId");
             return (Criteria) this;
         }
 
-        public Criteria andCategoryIdNotBetween(Long value1, Long value2) {
-            addCriterion("category_id not between", value1, value2, "categoryId");
+        public Criteria andGoodsTypeIdNotBetween(Long value1, Long value2) {
+            addCriterion("goods_type_id not between", value1, value2, "goodsTypeId");
             return (Criteria) this;
         }
 
@@ -682,6 +682,66 @@ public class AttributeExample {
 
         public Criteria andIsLinkedNotBetween(Byte value1, Byte value2) {
             addCriterion("is_linked not between", value1, value2, "isLinked");
+            return (Criteria) this;
+        }
+
+        public Criteria andAttrGroupIsNull() {
+            addCriterion("attr_group is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAttrGroupIsNotNull() {
+            addCriterion("attr_group is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAttrGroupEqualTo(Integer value) {
+            addCriterion("attr_group =", value, "attrGroup");
+            return (Criteria) this;
+        }
+
+        public Criteria andAttrGroupNotEqualTo(Integer value) {
+            addCriterion("attr_group <>", value, "attrGroup");
+            return (Criteria) this;
+        }
+
+        public Criteria andAttrGroupGreaterThan(Integer value) {
+            addCriterion("attr_group >", value, "attrGroup");
+            return (Criteria) this;
+        }
+
+        public Criteria andAttrGroupGreaterThanOrEqualTo(Integer value) {
+            addCriterion("attr_group >=", value, "attrGroup");
+            return (Criteria) this;
+        }
+
+        public Criteria andAttrGroupLessThan(Integer value) {
+            addCriterion("attr_group <", value, "attrGroup");
+            return (Criteria) this;
+        }
+
+        public Criteria andAttrGroupLessThanOrEqualTo(Integer value) {
+            addCriterion("attr_group <=", value, "attrGroup");
+            return (Criteria) this;
+        }
+
+        public Criteria andAttrGroupIn(List<Integer> values) {
+            addCriterion("attr_group in", values, "attrGroup");
+            return (Criteria) this;
+        }
+
+        public Criteria andAttrGroupNotIn(List<Integer> values) {
+            addCriterion("attr_group not in", values, "attrGroup");
+            return (Criteria) this;
+        }
+
+        public Criteria andAttrGroupBetween(Integer value1, Integer value2) {
+            addCriterion("attr_group between", value1, value2, "attrGroup");
+            return (Criteria) this;
+        }
+
+        public Criteria andAttrGroupNotBetween(Integer value1, Integer value2) {
+            addCriterion("attr_group not between", value1, value2, "attrGroup");
             return (Criteria) this;
         }
 
