@@ -100,6 +100,8 @@ public class CategoryController extends BaseController {
 		return error("删除失败");
 	}
 
+
+
 	@RequestMapping(value = "/edit")
 	public void edit(@RequestParam(value = "id") Long id, ModelMap modelMap){
 		modelMap.put("bean", service.getById(id));

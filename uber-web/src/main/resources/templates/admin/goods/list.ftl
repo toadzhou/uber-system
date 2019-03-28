@@ -11,7 +11,7 @@
 
             <br />
             <br />
-            <a href="${base}/admin/goods/add" class="btn btn-default" data-toggle="dialog" data-icon="plus" data-id="sysUserInfo-add" data-options="{title:'添加', height:350}">添加商品类型</a>
+            <a href="${base}/admin/goods/add" class="btn btn-default" data-toggle="dialog" data-icon="plus" data-id="sysUserInfo-add" data-options="{title:'添加', height:450, width:600}">添加商品</a>
         </div>
     </form>
 </div>
