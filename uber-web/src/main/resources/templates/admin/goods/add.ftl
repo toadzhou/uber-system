@@ -11,23 +11,22 @@
         </div>
 
         <div class="form-group">
-            <label class="control-label x140">一级类目：</label>
-            <select name="category1Id" data-toggle="selectpicker" data-refurl="/admin/goods/secondCategory?parent_id={value}.html" data-nextselect="#second_category" class="show-tick" style="display: none;">
+            <label class="control-label x140">类目选择：</label>
+            <select name="category1Id" id="category1Id" data-width="100" onchange="categoryChange()" data-toggle="selectpicker"  class="show-tick" style="display: none;">
                 <#if categoryList??>
                     <#list categoryList as enumvo>
                         <option value="${enumvo.id}">${enumvo.name}</option>
                     </#list>
                 </#if>
             </select>
+            <select name="category2Id" id="category2Id" data-width="100" data-toggle="selectpicker"  class="show-tick" style="display: none;">
+                <#if secondCategoryList??>
+                    <#list secondCategoryList as enumvo>
+                        <option value="${enumvo.id}">${enumvo.name}</option>
+                    </#list>
+                </#if>
+            </select>
         </div>
-
-        <div class="btn-group bootstrap-select show-tick" style="width: 70px;">
-            <button type="button" class="btn dropdown-toggle selectpicker btn-default" data-toggle="dropdown" data-id="second_category" title="二级类目">
-                <span class="filter-option pull-left">北京市</span>&nbsp;<span class="caret"></span>
-            </button>
-        </div>
-
-
 
         <div class="form-group">
             <label class="control-label x140">选择品牌：</label>
@@ -57,3 +56,29 @@
         <li><button type="submit" class="btn-default">添加</button></li>
     </ul>
 </div>
+
+<script type="text/javascript">
+function categoryChange(){
+    var parentId = $("#category1Id").val();
+    $("#category2Id option").remove();
+    $("#category2Id").append("<option value=''>请选择</option>");
+    $.ajax({
+        type:"POST",
+        url: "${base}/admin/goods/secondCategory?parentId="+parentId,
+        success: function(data){
+            var object = eval("("+data+")");
+            var html="";
+            for(var p in object){
+                if(object[p].name == "remove" || object[p].name == "unique"
+                    || object[p].name == "myIndexOf" || object[p].name == "toJson"){
+                    continue;
+                }
+                html+="<option value='"+object[p].id+"'>"+object[p].name+"</option>";
+            }
+            $("#category2Id").html(html).selectpicker('refresh');
+        }
+    });
+}
+
+
+</script>

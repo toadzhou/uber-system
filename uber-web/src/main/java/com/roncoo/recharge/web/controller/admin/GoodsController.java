@@ -1,18 +1,17 @@
 package com.roncoo.recharge.web.controller.admin;
 
+import com.alibaba.fastjson.JSON;
 import com.roncoo.recharge.common.entity.Brand;
 import com.roncoo.recharge.common.entity.Category;
 import com.roncoo.recharge.web.bean.qo.CategoryQO;
 import com.roncoo.recharge.web.service.BrandService;
 import com.roncoo.recharge.web.service.CategoryService;
+import com.xiaoleilu.hutool.util.CollectionUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import com.roncoo.recharge.web.service.GoodsService;
 import com.roncoo.recharge.web.bean.qo.GoodsQO;
@@ -52,15 +51,24 @@ public class GoodsController extends BaseController {
 	public void add(ModelMap modelMap){
 		List<Category> categoryList = categoryService.queryForList(CategoryQO.builder().parentId(0L).build());
 		modelMap.put("categoryList",categoryList);
+		if(CollectionUtil.isNotEmpty(categoryList)){
+			List<Category> secondCategoryList = categoryService.queryForList(CategoryQO.builder().parentId(categoryList.get(0).getId()).build());
+			modelMap.put("secondCategoryList",secondCategoryList);
+		}
+
 
 		List<Brand> brandList = brandService.queryForList(null);
 		modelMap.put("brandList",brandList);
 	}
 	@ResponseBody
-	@RequestMapping(value = "/secondCategory")
+	@PostMapping(value = "/secondCategory")
 	public String secondCategory(Long parentId){
 	    log.info("查询二级类目 parentId:{}", parentId);
-		return "";
+	    List<Category> categoryList = categoryService.queryForList(CategoryQO.builder().parentId(parentId).build());
+		if(CollectionUtil.isNotEmpty(categoryList)){
+			return JSON.toJSONString(categoryList);
+		}
+	    return "";
 	}
 
 	@ResponseBody
