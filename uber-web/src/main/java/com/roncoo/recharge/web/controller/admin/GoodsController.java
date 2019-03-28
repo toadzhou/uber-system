@@ -5,7 +5,6 @@ import com.roncoo.recharge.common.entity.Category;
 import com.roncoo.recharge.web.bean.qo.CategoryQO;
 import com.roncoo.recharge.web.service.BrandService;
 import com.roncoo.recharge.web.service.CategoryService;
-import com.xiaoleilu.hutool.util.CollectionUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
