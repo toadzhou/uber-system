@@ -1,6 +1,6 @@
 <#include "/macro/base.ftl" />
 <div class="bjui-pageHeader">
-    <form id="pagerForm" data-toggle="ajaxsearch" action="${base}/admin/category/list" method="post">
+    <form id="pagerForm" data-toggle="ajaxsearch" action="${base}/admin/attribute/list" method="post">
         <@pageHeadr />
         <input type="hidden" name="categoryId" value="${bean.categoryId!}"/>
         <div class="bjui-searchBar">

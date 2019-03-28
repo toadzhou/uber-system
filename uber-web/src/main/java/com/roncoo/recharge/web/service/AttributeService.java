@@ -1,6 +1,7 @@
 package com.roncoo.recharge.web.service;
 
 import com.roncoo.recharge.web.bean.enums.AttrTypeEnum;
+import com.xiaoleilu.hutool.util.CollectionUtil;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -29,7 +30,7 @@ public class AttributeService {
 	public Page<AttributeVO> listForPage(int pageCurrent, int pageSize, AttributeQO qo) {
 	    AttributeExample example = new AttributeExample();
 	    Criteria c = example.createCriteria();
-	    example.setOrderByClause(" id desc ");
+	    example.setOrderByClause("sortOrder desc, id desc ");
 	    if(qo.getCategoryId() != null){
 	    	c.andCategoryIdEqualTo(qo.getCategoryId());
 		}
@@ -37,7 +38,7 @@ public class AttributeService {
         Page<Attribute> page = dao.listForPage(pageCurrent, pageSize, example);
 		Page<AttributeVO> attributeVOPage =  PageUtil.transform(page, AttributeVO.class);
 
-	    if(attributeVOPage != null && !attributeVOPage.getList().isEmpty()){
+	    if(attributeVOPage != null && CollectionUtil.isNotEmpty(attributeVOPage.getList())){
 			attributeVOPage.getList().forEach(attribute -> {
 	    		attribute.setAttrTypeText(AttrTypeEnum.getText(attribute.getAttrInputType()));
 			});

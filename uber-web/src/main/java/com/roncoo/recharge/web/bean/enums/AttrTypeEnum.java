@@ -20,9 +20,9 @@ public enum AttrTypeEnum {
         this.description = description;
     }
 
-    public static String getText(Integer code){
+    public static String getText(Byte code){
         for(AttrTypeEnum attrTypeEnum : AttrTypeEnum.values()){
-            if(attrTypeEnum.getCode() == code){
+            if(attrTypeEnum.getCode() == Integer.parseInt(code.toString())){
                 return attrTypeEnum.getDescription();
             }
         }
