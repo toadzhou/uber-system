@@ -1,8 +1,10 @@
 package com.roncoo.recharge.web.service;
 
+import com.alibaba.fastjson.JSON;
 import com.roncoo.recharge.common.dao.AttributeDao;
 import com.roncoo.recharge.common.entity.Attribute;
 import com.roncoo.recharge.common.entity.AttributeExample;
+import com.roncoo.recharge.web.bean.dto.AttrGroupDTO;
 import com.xiaoleilu.hutool.util.CollectionUtil;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.BeanUtils;
@@ -17,6 +19,9 @@ import com.roncoo.recharge.common.dao.GoodsTypeDao;
 import com.roncoo.recharge.common.entity.GoodsType;
 import com.roncoo.recharge.common.entity.GoodsTypeExample;
 import com.roncoo.recharge.common.entity.GoodsTypeExample.Criteria;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * 商品类型
@@ -48,6 +53,9 @@ public class GoodsTypeService {
 				c1.andGoodsTypeIdEqualTo(goodsTypeVO.getId());
 				int count = attributeDao.countByExample(example1);
 				goodsTypeVO.setAttributeNumber(count);
+				//属性组去除索引文本
+				List<AttrGroupDTO> attrGroupDTOList = JSON.parseArray(goodsTypeVO.getAttrGroup(), AttrGroupDTO.class);
+				goodsTypeVO.setAttrGroupText(attrGroupDTOList.stream().map(s->s.getDescription()).collect(Collectors.joining(",")));
 			});
 		}
         return goodsTypeVOPage;
@@ -75,5 +83,6 @@ public class GoodsTypeService {
         BeanUtils.copyProperties(qo, record);
 		return dao.updateById(record);
 	}
+
 
 }

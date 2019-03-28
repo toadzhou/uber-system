@@ -15,6 +15,8 @@ import com.roncoo.recharge.common.entity.Attribute;
 import com.roncoo.recharge.common.entity.AttributeExample;
 import com.roncoo.recharge.common.entity.AttributeExample.Criteria;
 
+import java.util.List;
+
 /**
  * 属性表
  *
@@ -67,6 +69,16 @@ public class AttributeService {
 	    Attribute record = new Attribute();
         BeanUtils.copyProperties(qo, record);
 		return dao.updateById(record);
+	}
+
+	public List<Attribute> queryForList(AttributeQO qo){
+		AttributeExample example = new AttributeExample();
+		Criteria c = example.createCriteria();
+		example.setOrderByClause("sort_order desc, id desc ");
+		if(qo.getGoodsTypeId() != null){
+			c.andGoodsTypeIdEqualTo(qo.getGoodsTypeId());
+		}
+		return dao.listByExample(example);
 	}
 
 }

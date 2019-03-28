@@ -1,5 +1,13 @@
 package com.roncoo.recharge.web.controller.admin;
 
+import com.alibaba.fastjson.JSON;
+import com.roncoo.recharge.common.entity.Attribute;
+import com.roncoo.recharge.common.entity.GoodsType;
+import com.roncoo.recharge.web.bean.dto.AttrGroupDTO;
+import com.roncoo.recharge.web.bean.vo.GoodsTypeVO;
+import com.roncoo.recharge.web.service.GoodsTypeService;
+import com.xiaoleilu.hutool.util.CollectionUtil;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -11,6 +19,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.roncoo.recharge.web.service.AttributeService;
 import com.roncoo.recharge.web.bean.qo.AttributeQO;
 import com.roncoo.recharge.util.base.BaseController;
+
+import java.util.List;
 
 /**
  * 属性表
@@ -26,6 +36,8 @@ public class AttributeController extends BaseController {
 
 	@Autowired
 	private AttributeService service;
+	@Autowired
+	private GoodsTypeService goodsTypeService;
 
 	@RequestMapping(value = "/list")
 	public void list(@RequestParam(value = "pageCurrent", defaultValue = "1") int pageCurrent, @RequestParam(value = "pageSize", defaultValue = "20") int pageSize, @ModelAttribute AttributeQO qo, ModelMap modelMap){
@@ -36,8 +48,17 @@ public class AttributeController extends BaseController {
 	}
 
 	@RequestMapping(value = "/add")
-	public void add(Long categoryId, ModelMap modelMap){
-		modelMap.put("categoryId", categoryId);
+	public void add(Long goodsTypeId, ModelMap modelMap){
+		GoodsTypeVO goodsTypeVO = goodsTypeService.getById(goodsTypeId);
+		if(StringUtils.isNotBlank(goodsTypeVO.getAttrGroup())){
+			List<AttrGroupDTO> attrGroupDTOList = JSON.parseArray(goodsTypeVO.getAttrGroup(), AttrGroupDTO.class);
+			modelMap.put("attrGroupDTOList", attrGroupDTOList);
+		}
+		List<Attribute> attributeList = service.queryForList(AttributeQO.builder().goodsTypeId(goodsTypeId).build());
+		if(CollectionUtil.isNotEmpty(attributeList)){
+			modelMap.put("sortOrder", attributeList.get(0).getSortOrder()+1);
+		}
+		modelMap.put("goodsTypeId", goodsTypeId);
 	}
 
 	@ResponseBody

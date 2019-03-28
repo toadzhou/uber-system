@@ -54,6 +54,10 @@ public class GoodsTypeVO implements Serializable {
      * 属性数
      */
     private Integer attributeNumber;
+    /**
+     * 属性组
+     */
+    private String attrGroupText;
 
 
 

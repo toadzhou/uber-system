@@ -1,11 +1,21 @@
 <#assign base=request.contextPath />
 <div class="bjui-pageContent">
     <form action="${base}/admin/attribute/save" data-toggle="validate" method="post">
-        <input type="hidden" name="categoryId" value="${categoryId!}"/>
+        <input type="hidden" name="goodsTypeId" value="${goodsTypeId!}"/>
         <div class="form-group">
             <label class="control-label x130">属性名称：</label>
             <input type="text" name="attrName" value="" placeholder="属性名称" size="20" data-rule="required"/>
         </div>
+        <#if attrGroupDTOList??>
+            <div class="form-group">
+                <label class="control-label x130">属性分组：</label>
+                <select name="doc-select" name="attr_group" data-toggle="selectpicker" data-width="200">
+                    <#list attrGroupDTOList as model>
+                        <option value="${model.index}">${model.description!}</option>
+                    </#list>
+                </select>
+            </div>
+        </#if>
         <div class="form-group">
             <label class="control-label x130">能否进行检索：</label>
             <input type="radio" name="attrIndex" value="1"  size="20" checked />不需要检索&nbsp;
@@ -34,7 +44,7 @@
         </div>
         <div class="form-group">
             <label class="control-label x130">排序值：</label>
-            <input type="text" name="sortOrder" value="" placeholder="排序值" size="20" data-rule="required"/>
+            <input type="text" name="sortOrder" value="${sortOrder!}" placeholder="排序值" size="20" data-rule="required"/>
         </div>
     </form>
 </div>

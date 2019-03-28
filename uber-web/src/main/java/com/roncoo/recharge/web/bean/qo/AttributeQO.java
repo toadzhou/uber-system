@@ -2,7 +2,11 @@ package com.roncoo.recharge.web.bean.qo;
 
 import java.io.Serializable;
 import java.util.Date;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
 /**
@@ -14,6 +18,9 @@ import lombok.experimental.Accessors;
  * @since 2019-03-27
  */
 @Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Accessors(chain = true)
 public class AttributeQO implements Serializable {
 
@@ -68,4 +75,8 @@ public class AttributeQO implements Serializable {
      * 修改时间
      */
     private Date updateTime;
+    /**
+     * 属性分组
+     */
+    private Integer attrGroup;
 }

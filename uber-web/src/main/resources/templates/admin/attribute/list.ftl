@@ -2,7 +2,7 @@
 <div class="bjui-pageHeader">
     <form id="pagerForm" data-toggle="ajaxsearch" action="${base}/admin/attribute/list" method="post">
         <@pageHeadr />
-        <input type="hidden" name="categoryId" value="${bean.categoryId!}"/>
+        <input type="hidden" name="goodsTypeId" value="${bean.goodsTypeId!}"/>
         <div class="bjui-searchBar">
             <label>属性名称：</label>
             <input type="text" name="attrName" value="${bean.attrName!}" class="form-control" size="12">&nbsp;
@@ -12,7 +12,7 @@
 
             <br />
             <br />
-            <a href="${base}/admin/attribute/add?categoryId=${bean.categoryId!}" class="btn btn-default" data-toggle="dialog" data-icon="plus" data-id="attribute-add" data-options="{title:'添加属性', height:350}">添加属性</a>
+            <a href="${base}/admin/attribute/add?goodsTypeId=${bean.goodsTypeId!}" class="btn btn-default" data-toggle="dialog" data-icon="plus" data-id="attribute-add" data-options="{title:'添加属性', height:350}">添加属性</a>
         </div>
     </form>
 </div>

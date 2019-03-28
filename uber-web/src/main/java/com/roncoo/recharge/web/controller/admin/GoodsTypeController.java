@@ -1,5 +1,9 @@
 package com.roncoo.recharge.web.controller.admin;
 
+import com.alibaba.fastjson.JSON;
+import com.google.common.collect.Lists;
+import com.roncoo.recharge.web.bean.dto.AttrGroupDTO;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -12,8 +16,10 @@ import com.roncoo.recharge.web.service.GoodsTypeService;
 import com.roncoo.recharge.web.bean.qo.GoodsTypeQO;
 import com.roncoo.recharge.util.base.BaseController;
 
+import java.util.List;
+
 /**
- * 商品类型 
+ * 商品类型
  *
  * @author mark
  * @since 2019-03-28
@@ -26,7 +32,7 @@ public class GoodsTypeController extends BaseController {
 
 	@Autowired
 	private GoodsTypeService service;
-	
+
 	@RequestMapping(value = "/list")
 	public void list(@RequestParam(value = "pageCurrent", defaultValue = "1") int pageCurrent, @RequestParam(value = "pageSize", defaultValue = "20") int pageSize, @ModelAttribute GoodsTypeQO qo, ModelMap modelMap){
 		modelMap.put("page", service.listForPage(pageCurrent, pageSize, qo));
@@ -34,21 +40,34 @@ public class GoodsTypeController extends BaseController {
 		modelMap.put("pageSize", pageSize);
 		modelMap.put("bean", qo);
 	}
-	
+
 	@RequestMapping(value = "/add")
 	public void add(){
-	
+
 	}
-	
+
 	@ResponseBody
 	@RequestMapping(value = "/save")
 	public String save(@ModelAttribute GoodsTypeQO qo){
+		if(StringUtils.isNotBlank(qo.getAttrGroup()) && qo.getAttrGroup().contains(",")){
+			String[] attrGroups = qo.getAttrGroup().split(",");
+			List<AttrGroupDTO> attrGroupDTOList = Lists.newArrayList();
+			Integer index = 1;
+			for(String attrGroup : attrGroups){
+				AttrGroupDTO attrGroupDTO = new AttrGroupDTO();
+				attrGroupDTO.setIndex(index);
+				attrGroupDTO.setDescription(attrGroup);
+				index ++;
+				attrGroupDTOList.add(attrGroupDTO);
+			}
+			qo.setAttrGroup(JSON.toJSONString(attrGroupDTOList));
+		}
 		if (service.save(qo) > 0) {
 			return success(TARGETID);
 		}
 		return error("添加失败");
 	}
-	
+
 	@ResponseBody
 	@RequestMapping(value = "/delete")
 	public String delete(@RequestParam(value = "id") Long id){
@@ -57,12 +76,12 @@ public class GoodsTypeController extends BaseController {
 		}
 		return error("删除失败");
 	}
-	
+
 	@RequestMapping(value = "/edit")
 	public void edit(@RequestParam(value = "id") Long id, ModelMap modelMap){
 		modelMap.put("bean", service.getById(id));
 	}
-	
+
 	@ResponseBody
 	@RequestMapping(value = "/update")
 	public String update(@ModelAttribute GoodsTypeQO qo){
@@ -71,10 +90,10 @@ public class GoodsTypeController extends BaseController {
 		}
 		return error("修改失败");
 	}
-	
+
 	@RequestMapping(value = "/view")
 	public void view(@RequestParam(value = "id") Long id, ModelMap modelMap){
 		modelMap.put("bean", service.getById(id));
 	}
-	
+
 }

@@ -11,7 +11,7 @@
 
             <br />
             <br />
-            <a href="${base}/admin/goodsType/add" class="btn btn-default" data-toggle="dialog" data-icon="plus" data-id="sysUserInfo-add" data-options="{title:'添加', height:350}">添加 </a>
+            <a href="${base}/admin/goodsType/add" class="btn btn-default" data-toggle="dialog" data-icon="plus" data-id="sysUserInfo-add" data-options="{title:'添加', height:350}">添加商品类型</a>
         </div>
     </form>
 </div>
@@ -32,10 +32,10 @@
                 <tr>
                     <td align="center">${bean_index+1}</td>
                     <td>${bean.name!}</td>
-                    <td>${bean.attrGroup!}</td>
+                    <td>${bean.attrGroupText!}</td>
                     <td>${bean.attributeNumber!}</td>
                     <td>
-                        <a href="${base}/admin/goodsType/view?id=${bean.id}" class="btn btn-blue" data-toggle="dialog" data-id="goodsType-view" data-options="{title:'查看', height:350}">查看 </a>
+                        <a href="${base}/admin/attribute/list?goodsTypeId=${bean.id}" class="btn btn-green" data-toggle="navtab" data-id="goodsType-view" data-options="{title:'属性列表', height:350}">属性列表</a>
                     </td>
                 </tr>
             </#list>
