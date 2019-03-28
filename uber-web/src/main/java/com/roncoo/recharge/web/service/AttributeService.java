@@ -30,7 +30,7 @@ public class AttributeService {
 	public Page<AttributeVO> listForPage(int pageCurrent, int pageSize, AttributeQO qo) {
 	    AttributeExample example = new AttributeExample();
 	    Criteria c = example.createCriteria();
-	    example.setOrderByClause("sortOrder desc, id desc ");
+	    example.setOrderByClause("sort_order desc, id desc ");
 	    if(qo.getCategoryId() != null){
 	    	c.andCategoryIdEqualTo(qo.getCategoryId());
 		}
