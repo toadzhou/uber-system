@@ -5,6 +5,8 @@
     <id column="id" property="id" jdbcType="BIGINT" />
     <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="brand_ids" property="brandIds" jdbcType="VARCHAR" />
+    <result column="spec_ids" property="specIds" jdbcType="VARCHAR" />
     <result column="attr_group" property="attrGroup" jdbcType="VARCHAR" />
     <result column="create_person" property="createPerson" jdbcType="VARCHAR" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
@@ -70,7 +72,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, name, status, attr_group, create_person, create_time, update_person, update_time
+    id, name, status, brand_ids, spec_ids, attr_group, create_person, create_time, update_person, 
+    update_time
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.roncoo.recharge.common.entity.GoodsTypeExample" >
     select
@@ -107,11 +110,13 @@
   </delete>
   <insert id="insert" parameterType="com.roncoo.recharge.common.entity.GoodsType" >
     insert into tb_goods_type (id, name, status, 
-      attr_group, create_person, create_time, 
-      update_person, update_time)
+      brand_ids, spec_ids, attr_group, 
+      create_person, create_time, update_person, 
+      update_time)
     values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
-      #{attrGroup,jdbcType=VARCHAR}, #{createPerson,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
-      #{updatePerson,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP})
+      #{brandIds,jdbcType=VARCHAR}, #{specIds,jdbcType=VARCHAR}, #{attrGroup,jdbcType=VARCHAR}, 
+      #{createPerson,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updatePerson,jdbcType=VARCHAR}, 
+      #{updateTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.roncoo.recharge.common.entity.GoodsType" >
     insert into tb_goods_type
@@ -124,6 +129,12 @@
       </if>
       <if test="status != null" >
         status,
+      </if>
+      <if test="brandIds != null" >
+        brand_ids,
+      </if>
+      <if test="specIds != null" >
+        spec_ids,
       </if>
       <if test="attrGroup != null" >
         attr_group,
@@ -150,6 +161,12 @@
       </if>
       <if test="status != null" >
         #{status,jdbcType=INTEGER},
+      </if>
+      <if test="brandIds != null" >
+        #{brandIds,jdbcType=VARCHAR},
+      </if>
+      <if test="specIds != null" >
+        #{specIds,jdbcType=VARCHAR},
       </if>
       <if test="attrGroup != null" >
         #{attrGroup,jdbcType=VARCHAR},
@@ -186,6 +203,12 @@
       <if test="record.status != null" >
         status = #{record.status,jdbcType=INTEGER},
       </if>
+      <if test="record.brandIds != null" >
+        brand_ids = #{record.brandIds,jdbcType=VARCHAR},
+      </if>
+      <if test="record.specIds != null" >
+        spec_ids = #{record.specIds,jdbcType=VARCHAR},
+      </if>
       <if test="record.attrGroup != null" >
         attr_group = #{record.attrGroup,jdbcType=VARCHAR},
       </if>
@@ -211,6 +234,8 @@
     set id = #{record.id,jdbcType=BIGINT},
       name = #{record.name,jdbcType=VARCHAR},
       status = #{record.status,jdbcType=INTEGER},
+      brand_ids = #{record.brandIds,jdbcType=VARCHAR},
+      spec_ids = #{record.specIds,jdbcType=VARCHAR},
       attr_group = #{record.attrGroup,jdbcType=VARCHAR},
       create_person = #{record.createPerson,jdbcType=VARCHAR},
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
@@ -228,6 +253,12 @@
       </if>
       <if test="status != null" >
         status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="brandIds != null" >
+        brand_ids = #{brandIds,jdbcType=VARCHAR},
+      </if>
+      <if test="specIds != null" >
+        spec_ids = #{specIds,jdbcType=VARCHAR},
       </if>
       <if test="attrGroup != null" >
         attr_group = #{attrGroup,jdbcType=VARCHAR},
@@ -251,6 +282,8 @@
     update tb_goods_type
     set name = #{name,jdbcType=VARCHAR},
       status = #{status,jdbcType=INTEGER},
+      brand_ids = #{brandIds,jdbcType=VARCHAR},
+      spec_ids = #{specIds,jdbcType=VARCHAR},
       attr_group = #{attrGroup,jdbcType=VARCHAR},
       create_person = #{createPerson,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},

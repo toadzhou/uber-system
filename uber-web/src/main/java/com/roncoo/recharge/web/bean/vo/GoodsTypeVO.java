@@ -58,6 +58,19 @@ public class GoodsTypeVO implements Serializable {
      * 属性组
      */
     private String attrGroupText;
+    /**
+     * 关联品牌-显示
+     */
+    private String brandShowText;
+    /**
+     * 关联品牌
+     */
+    private String brandIds;
+
+    /**
+     * 规则列表
+     */
+    private String specIds;
 
 
 

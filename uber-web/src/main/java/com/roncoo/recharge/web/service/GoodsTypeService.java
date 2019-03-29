@@ -1,10 +1,12 @@
 package com.roncoo.recharge.web.service;
 
 import com.alibaba.fastjson.JSON;
+import com.google.common.collect.Lists;
 import com.roncoo.recharge.common.dao.AttributeDao;
-import com.roncoo.recharge.common.entity.Attribute;
 import com.roncoo.recharge.common.entity.AttributeExample;
 import com.roncoo.recharge.web.bean.dto.AttrGroupDTO;
+import com.roncoo.recharge.web.bean.dto.BrandDTO;
+import com.roncoo.recharge.web.bean.dto.SpecItemDTO;
 import com.xiaoleilu.hutool.util.CollectionUtil;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.BeanUtils;
@@ -56,6 +58,11 @@ public class GoodsTypeService {
 				//属性组去除索引文本
 				List<AttrGroupDTO> attrGroupDTOList = JSON.parseArray(goodsTypeVO.getAttrGroup(), AttrGroupDTO.class);
 				goodsTypeVO.setAttrGroupText(attrGroupDTOList.stream().map(s->s.getDescription()).collect(Collectors.joining(",")));
+				//关联品牌显示文本
+				if(StringUtils.isNotBlank(goodsTypeVO.getBrandIds())){
+					List<BrandDTO> brandDTOList = JSON.parseArray(goodsTypeVO.getBrandIds(), BrandDTO.class);
+					goodsTypeVO.setBrandShowText(brandDTOList.stream().map(s->s.getName()).collect(Collectors.joining(",")));
+				}
 			});
 		}
         return goodsTypeVOPage;
@@ -82,6 +89,34 @@ public class GoodsTypeService {
 	    GoodsType record = new GoodsType();
         BeanUtils.copyProperties(qo, record);
 		return dao.updateById(record);
+	}
+
+	public int updateByExample(GoodsType goodsType, GoodsTypeQO qo){
+		GoodsTypeExample example = new GoodsTypeExample();
+		GoodsTypeExample.Criteria c = example.createCriteria();
+		if(qo.getId() != null){
+			c.andIdEqualTo(qo.getId());
+		}
+		return dao.updateByExample(goodsType, example);
+	}
+
+
+	public int updateSpec(Long goodsTypeId, SpecItemDTO specItemDTO){
+		GoodsTypeVO goodsTypeVO = getById(goodsTypeId);
+		if(StringUtils.isBlank(goodsTypeVO.getSpecIds())){
+			//为空
+			List<SpecItemDTO> specItemDTOS = Lists.newArrayList();
+			specItemDTOS.add(specItemDTO);
+			goodsTypeVO.setSpecIds(JSON.toJSONString(specItemDTOS));
+		}else{
+			//不为空
+			List<SpecItemDTO> specItemDTOS = JSON.parseArray(goodsTypeVO.getSpecIds(), SpecItemDTO.class);
+			specItemDTOS.add(specItemDTO);
+			goodsTypeVO.setSpecIds(JSON.toJSONString(specItemDTOS));
+		}
+		GoodsType goodsType = new GoodsType();
+		BeanUtils.copyProperties(goodsTypeVO,goodsType);
+		return dao.updateById(goodsType);
 	}
 
 

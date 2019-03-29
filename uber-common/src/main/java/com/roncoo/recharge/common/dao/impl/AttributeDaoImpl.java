@@ -4,6 +4,7 @@ import com.roncoo.recharge.common.dao.AttributeDao;
 import com.roncoo.recharge.common.dao.impl.mapper.AttributeMapper;
 import com.roncoo.recharge.common.entity.Attribute;
 import com.roncoo.recharge.common.entity.AttributeExample;
+import com.roncoo.recharge.util.base.AbstractBaseJdbc;
 import com.roncoo.recharge.util.bjui.Page;
 import com.roncoo.recharge.util.bjui.PageUtil;
 import java.util.List;
@@ -11,7 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class AttributeDaoImpl implements AttributeDao {
+public class AttributeDaoImpl extends AbstractBaseJdbc implements AttributeDao {
     @Autowired
     private AttributeMapper attributeMapper;
 
@@ -19,8 +20,9 @@ public class AttributeDaoImpl implements AttributeDao {
         return this.attributeMapper.insert(record);
     }
 
-    public int save(Attribute record) {
-        return this.attributeMapper.insertSelective(record);
+    public Long save(Attribute record) {
+        this.attributeMapper.insertSelective(record);
+        return getLastId();
     }
 
     public int deleteByExample(AttributeExample example) {

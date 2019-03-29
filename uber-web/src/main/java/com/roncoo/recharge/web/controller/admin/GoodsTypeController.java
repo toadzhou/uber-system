@@ -2,7 +2,15 @@ package com.roncoo.recharge.web.controller.admin;
 
 import com.alibaba.fastjson.JSON;
 import com.google.common.collect.Lists;
+import com.roncoo.recharge.common.entity.Brand;
+import com.roncoo.recharge.util.ObjectConvert;
+import com.roncoo.recharge.util.enums.StatusIdEnum;
+import com.roncoo.recharge.util.enums.UserTypeEnum;
 import com.roncoo.recharge.web.bean.dto.AttrGroupDTO;
+import com.roncoo.recharge.web.bean.dto.BrandDTO;
+import com.roncoo.recharge.web.bean.qo.BrandQO;
+import com.roncoo.recharge.web.service.BrandService;
+import com.xiaoleilu.hutool.util.CollectionUtil;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,6 +24,7 @@ import com.roncoo.recharge.web.service.GoodsTypeService;
 import com.roncoo.recharge.web.bean.qo.GoodsTypeQO;
 import com.roncoo.recharge.util.base.BaseController;
 
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -32,6 +41,8 @@ public class GoodsTypeController extends BaseController {
 
 	@Autowired
 	private GoodsTypeService service;
+	@Autowired
+	private BrandService brandService;
 
 	@RequestMapping(value = "/list")
 	public void list(@RequestParam(value = "pageCurrent", defaultValue = "1") int pageCurrent, @RequestParam(value = "pageSize", defaultValue = "20") int pageSize, @ModelAttribute GoodsTypeQO qo, ModelMap modelMap){
@@ -49,6 +60,7 @@ public class GoodsTypeController extends BaseController {
 	@ResponseBody
 	@RequestMapping(value = "/save")
 	public String save(@ModelAttribute GoodsTypeQO qo){
+		//设置属性分组
 		if(StringUtils.isNotBlank(qo.getAttrGroup()) && qo.getAttrGroup().contains(",")){
 			String[] attrGroups = qo.getAttrGroup().split(",");
 			List<AttrGroupDTO> attrGroupDTOList = Lists.newArrayList();
@@ -62,6 +74,14 @@ public class GoodsTypeController extends BaseController {
 			}
 			qo.setAttrGroup(JSON.toJSONString(attrGroupDTOList));
 		}
+		//设置关联品牌
+		if(qo.getBrandIdList() != null && qo.getBrandIdList().length != 0){
+			List<Long> ids = Arrays.asList(qo.getBrandIdList());
+			List<Brand> brandList = brandService.queryForList(BrandQO.builder().ids(ids).build());
+			List<BrandDTO> brandDTOList = ObjectConvert.convertList(brandList, BrandDTO.class);
+			qo.setBrandIds(JSON.toJSONString(brandDTOList));
+		}
+
 		if (service.save(qo) > 0) {
 			return success(TARGETID);
 		}
@@ -95,5 +115,11 @@ public class GoodsTypeController extends BaseController {
 	public void view(@RequestParam(value = "id") Long id, ModelMap modelMap){
 		modelMap.put("bean", service.getById(id));
 	}
+
+	@ModelAttribute
+	public void enums(ModelMap modelMap) {
+		modelMap.put("brandList", brandService.queryForList(null));
+	}
+
 
 }

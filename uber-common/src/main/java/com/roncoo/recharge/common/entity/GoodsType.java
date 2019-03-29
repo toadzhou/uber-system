@@ -10,6 +10,10 @@ public class GoodsType implements Serializable {
 
     private Integer status;
 
+    private String brandIds;
+
+    private String specIds;
+
     private String attrGroup;
 
     private String createPerson;
@@ -44,6 +48,22 @@ public class GoodsType implements Serializable {
 
     public void setStatus(Integer status) {
         this.status = status;
+    }
+
+    public String getBrandIds() {
+        return brandIds;
+    }
+
+    public void setBrandIds(String brandIds) {
+        this.brandIds = brandIds == null ? null : brandIds.trim();
+    }
+
+    public String getSpecIds() {
+        return specIds;
+    }
+
+    public void setSpecIds(String specIds) {
+        this.specIds = specIds == null ? null : specIds.trim();
     }
 
     public String getAttrGroup() {
@@ -95,6 +115,8 @@ public class GoodsType implements Serializable {
         sb.append(", id=").append(id);
         sb.append(", name=").append(name);
         sb.append(", status=").append(status);
+        sb.append(", brandIds=").append(brandIds);
+        sb.append(", specIds=").append(specIds);
         sb.append(", attrGroup=").append(attrGroup);
         sb.append(", createPerson=").append(createPerson);
         sb.append(", createTime=").append(createTime);

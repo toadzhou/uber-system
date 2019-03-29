@@ -1,5 +1,6 @@
 package com.roncoo.recharge.web.service;
 
+import com.xiaoleilu.hutool.util.CollectionUtil;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,6 +65,9 @@ public class BrandService {
 		BrandExample.Criteria c = example.createCriteria();
 		if(qo != null && StringUtils.isNotBlank(qo.getName())){
 			c.andNameLike(PageUtil.like(qo.getName()));
+		}
+		if(qo != null && CollectionUtil.isNotEmpty(qo.getIds())){
+			c.andIdIn(qo.getIds());
 		}
 		return dao.listByExample(example);
 	}

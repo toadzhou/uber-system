@@ -22,6 +22,7 @@
         <tr>
             <th width="30">序号</th>
             <th>属性名称</th>
+            <th>SKU属性</th>
             <th>属性录入方式</th>
             <th>可选值列表</th>
             <th>排序</th>
@@ -34,6 +35,13 @@
                 <tr>
                     <td align="center">${bean_index+1}</td>
                     <td>${bean.attrName!}</td>
+                    <td>
+                        <#if bean.attrType == 1>
+                                <font color="green">是</font>
+                            <#else >
+                                <font color="red">否</font>
+                        </#if>
+                    </td>
                     <td>${bean.attrTypeText!}</td>
                     <td>${bean.attrValues!}</td>
                     <td>${bean.sortOrder!}</td>

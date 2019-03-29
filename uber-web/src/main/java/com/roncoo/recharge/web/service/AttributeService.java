@@ -1,6 +1,8 @@
 package com.roncoo.recharge.web.service;
 
+import com.roncoo.recharge.web.bean.dto.SpecItemDTO;
 import com.roncoo.recharge.web.bean.enums.AttrTypeEnum;
+import com.roncoo.recharge.web.bean.enums.YesOrNoEnum;
 import com.xiaoleilu.hutool.util.CollectionUtil;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +30,8 @@ public class AttributeService {
 
 	@Autowired
 	private AttributeDao dao;
+	@Autowired
+	private GoodsTypeService goodsTypeService;
 
 	public Page<AttributeVO> listForPage(int pageCurrent, int pageSize, AttributeQO qo) {
 	    AttributeExample example = new AttributeExample();
@@ -51,7 +55,15 @@ public class AttributeService {
 	public int save(AttributeQO qo) {
 	    Attribute record = new Attribute();
         BeanUtils.copyProperties(qo, record);
-		return dao.save(record);
+        Long attributeId = dao.save(record);
+        //如果是SKU属性,则更新商品类型规格列表
+        if(qo.getAttrType().equals(YesOrNoEnum.YES.getCode().byteValue())){
+            SpecItemDTO specItemDTO = new SpecItemDTO();
+            specItemDTO.setId(attributeId);
+            specItemDTO.setName(qo.getAttrName());
+            goodsTypeService.updateSpec(qo.getGoodsTypeId(), specItemDTO);
+        }
+        return 1;
 	}
 
 	public int deleteById(Long id) {

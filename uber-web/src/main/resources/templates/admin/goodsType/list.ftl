@@ -22,6 +22,7 @@
             <th width="30">序号</th>
             <th>商品类型名称</th>
             <th>属性分组</th>
+            <th>关联品牌</th>
             <th>属性数</th>
             <th>操作</th>
         </tr>
@@ -33,6 +34,7 @@
                     <td align="center">${bean_index+1}</td>
                     <td>${bean.name!}</td>
                     <td>${bean.attrGroupText!}</td>
+                    <td>${bean.brandShowText!}</td>
                     <td>${bean.attributeNumber!}</td>
                     <td>
                         <a href="${base}/admin/attribute/list?goodsTypeId=${bean.id}" class="btn btn-green" data-toggle="navtab" data-id="goodsType-view" data-options="{title:'属性列表', height:350}">属性列表</a>

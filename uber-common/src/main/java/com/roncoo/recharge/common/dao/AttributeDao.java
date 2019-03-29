@@ -8,7 +8,7 @@ import java.util.List;
 public interface AttributeDao {
     int insert(Attribute record);
 
-    int save(Attribute record);
+    Long save(Attribute record);
 
     int deleteByExample(AttributeExample example);
 

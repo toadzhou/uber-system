@@ -3,7 +3,11 @@ package com.roncoo.recharge.web.bean.qo;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
 /**
@@ -15,6 +19,9 @@ import lombok.experimental.Accessors;
  * @since 2019-03-28
  */
 @Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Accessors(chain = true)
 public class GoodsTypeQO implements Serializable {
 
@@ -49,4 +56,14 @@ public class GoodsTypeQO implements Serializable {
      * 修改时间
      */
     private Date updateTime;
+
+    /**
+     * 品牌Ids集合
+     */
+    private Long[] brandIdList;
+
+    /**
+     * 品牌ID集合转换后的值
+     */
+    private String brandIds;
 }

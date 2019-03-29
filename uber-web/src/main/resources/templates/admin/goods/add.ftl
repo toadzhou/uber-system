@@ -7,7 +7,7 @@
         </div>
         <div class="form-group">
             <label class="control-label x140">商品描述：</label>
-            <textarea name="goodsDescription" style="width: 300px; height:80px;"></textarea>
+            <textarea name="goodsDescription" style="width: 300px; height:80px;" data-rule="required"></textarea>
         </div>
 
         <div class="form-group">

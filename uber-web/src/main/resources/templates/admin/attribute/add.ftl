@@ -9,7 +9,7 @@
         <#if attrGroupDTOList??>
             <div class="form-group">
                 <label class="control-label x130">属性分组：</label>
-                <select name="doc-select" name="attr_group" data-toggle="selectpicker" data-width="200">
+                <select name="doc-select" name="attrGroup" data-toggle="selectpicker" data-width="200">
                     <#list attrGroupDTOList as model>
                         <option value="${model.index}">${model.description!}</option>
                     </#list>
@@ -18,19 +18,19 @@
         </#if>
         <div class="form-group">
             <label class="control-label x130">能否进行检索：</label>
-            <input type="radio" name="attrIndex" value="1"  size="20" checked />不需要检索&nbsp;
-            <input type="radio" name="attrIndex" value="2"  size="20" />关键字检索&nbsp;
-            <input type="radio" name="attrIndex" value="3"  size="20" />范围检索
+            <input type="radio" name="attrIndex" value="0"  size="20" checked />不需要检索&nbsp;
+            <input type="radio" name="attrIndex" value="1"  size="20" />关键字检索&nbsp;
+            <input type="radio" name="attrIndex" value="2"  size="20" />范围检索
         </div>
         <div class="form-group">
             <label class="control-label x130">相同属性是否关联：</label>
-            <input type="radio" name="attrType" value="0"  size="20" checked/>不关联&nbsp;
-            <input type="radio" name="attrType" value="1"  size="20" />关联
+            <input type="radio" name="isLinked" value="0"  size="20" checked/>不关联&nbsp;
+            <input type="radio" name="isLinked" value="1"  size="20" />关联
         </div>
         <div class="form-group">
             <label class="control-label x130">SKU属性：</label>
-            <input type="radio" name="isLinked" value="0"  size="20" checked/>是&nbsp;
-            <input type="radio" name="isLinked" value="1"  size="20" />否
+            <input type="radio" name="attrType" value="1"  size="20" checked/>是&nbsp;
+            <input type="radio" name="attrType" value="0"  size="20" />否
         </div>
         <div class="form-group">
             <label class="control-label x130">该属性值的录入方式：</label>

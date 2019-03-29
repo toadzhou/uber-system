@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.roncoo.recharge.common.entity.Attribute;
 import com.roncoo.recharge.common.entity.GoodsType;
 import com.roncoo.recharge.web.bean.dto.AttrGroupDTO;
+import com.roncoo.recharge.web.bean.enums.YesOrNoEnum;
 import com.roncoo.recharge.web.bean.vo.GoodsTypeVO;
 import com.roncoo.recharge.web.service.GoodsTypeService;
 import com.xiaoleilu.hutool.util.CollectionUtil;
@@ -64,6 +65,7 @@ public class AttributeController extends BaseController {
 	@ResponseBody
 	@RequestMapping(value = "/save")
 	public String save(@ModelAttribute AttributeQO qo){
+
 		if (service.save(qo) > 0) {
 			return success(TARGETID);
 		}
