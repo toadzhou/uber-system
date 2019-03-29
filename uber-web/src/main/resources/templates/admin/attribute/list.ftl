@@ -12,7 +12,7 @@
 
             <br />
             <br />
-            <a href="${base}/admin/attribute/add?goodsTypeId=${bean.goodsTypeId!}" class="btn btn-default" data-toggle="dialog" data-icon="plus" data-id="attribute-add" data-options="{title:'添加属性', height:350}">添加属性</a>
+            <a href="${base}/admin/attribute/add?goodsTypeId=${bean.goodsTypeId!}" class="btn btn-default" data-toggle="dialog" data-icon="plus" data-id="admin-attribute" data-options="{title:'添加属性', height:350}">添加属性</a>
         </div>
     </form>
 </div>
