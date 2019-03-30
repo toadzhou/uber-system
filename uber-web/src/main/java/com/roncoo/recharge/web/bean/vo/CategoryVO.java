@@ -58,6 +58,10 @@ public class CategoryVO implements Serializable {
      */
     private Date updateTime;
 
+    private String goodsTypeText;
+
+    private Long goodsTypeId;
+
 
 
 }

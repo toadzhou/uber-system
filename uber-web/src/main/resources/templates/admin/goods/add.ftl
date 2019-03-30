@@ -9,7 +9,7 @@
                     <li class="active"><a href="#home" role="tab" data-toggle="tab">基础信息</a></li>
                     <li><a href="#goodsDesc" role="tab" data-toggle="tab">扩展属性</a></li>
                     <li><a href="#images" role="tab" data-toggle="tab">商品图片</a></li>
-                    <li><a href="#spec" role="tab" data-toggle="tab">规格管理</a></li>
+                    <li><a href="#spec" role="tab" onclick="focusSpecTab()" data-toggle="tab">规格管理</a></li>
                 </ul>
                 <!-- Tab panes -->
                 <div class="tab-content">
@@ -103,5 +103,10 @@ function categoryChange(){
             $("#category2Id").html(html).selectpicker('refresh');
         }
     });
+}
+
+function focusSpecTab(){
+    var sencodCategoryId = $("#category2Id").val();
+
 }
 </script>

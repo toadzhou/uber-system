@@ -1,6 +1,7 @@
 package com.roncoo.recharge.web.controller.admin;
 
 import com.roncoo.recharge.common.entity.Category;
+import com.roncoo.recharge.web.bean.qo.AttributeQO;
 import com.roncoo.recharge.web.service.ImageService;
 import com.xiaoleilu.hutool.util.CollectionUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -115,6 +116,16 @@ public class CategoryController extends BaseController {
 		}
 		return error("修改失败");
 	}
+
+	@ResponseBody
+	@RequestMapping(value = "/updateGoodsType")
+	public String updateGoodsType(@ModelAttribute CategoryQO qo){
+		if (service.updateByCondition(qo) > 0) {
+			return success(TARGETID);
+		}
+		return error("修改失败");
+	}
+
 
 	@RequestMapping(value = "/view")
 	public void view(@RequestParam(value = "id") Long id, ModelMap modelMap){

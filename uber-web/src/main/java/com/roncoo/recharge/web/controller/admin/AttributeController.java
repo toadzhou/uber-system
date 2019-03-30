@@ -2,9 +2,9 @@ package com.roncoo.recharge.web.controller.admin;
 
 import com.alibaba.fastjson.JSON;
 import com.roncoo.recharge.common.entity.Attribute;
-import com.roncoo.recharge.common.entity.GoodsType;
 import com.roncoo.recharge.web.bean.dto.AttrGroupDTO;
 import com.roncoo.recharge.web.bean.enums.YesOrNoEnum;
+import com.roncoo.recharge.web.bean.qo.GoodsTypeQO;
 import com.roncoo.recharge.web.bean.vo.GoodsTypeVO;
 import com.roncoo.recharge.web.service.GoodsTypeService;
 import com.xiaoleilu.hutool.util.CollectionUtil;
@@ -98,6 +98,28 @@ public class AttributeController extends BaseController {
 	@RequestMapping(value = "/view")
 	public void view(@RequestParam(value = "id") Long id, ModelMap modelMap){
 		modelMap.put("bean", service.getById(id));
+	}
+
+	@RequestMapping("bindGoodsType")
+	public void bindGoodsType(Long categoryId, ModelMap modelMap){
+		logger.info("绑定商品类型 categoryId:{}", categoryId);
+		modelMap.put("categoryId", categoryId);
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "/updateGoodsType")
+	public String updateGoodsType(@ModelAttribute AttributeQO qo){
+		if (service.updateByCondition(qo) > 0) {
+			return success(TARGETID);
+		}
+		return error("修改失败");
+	}
+
+
+
+	@ModelAttribute
+	public void enums(ModelMap modelMap) {
+		modelMap.put("goodsTypeList", goodsTypeService.queryForList(GoodsTypeQO.builder().status(YesOrNoEnum.YES.getCode()).build()));
 	}
 
 }

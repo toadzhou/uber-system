@@ -13,7 +13,7 @@
 
             <br />
             <br />
-            <a href="${base}/admin/category/addSon?parentId=${bean.parentId}" class="btn btn-default" data-toggle="dialog" data-icon="plus" data-id="sysUserInfo-add" data-options="{title:'添加', height:350}">新增二级类目 </a>
+            <a href="${base}/admin/category/addSon?parentId=${bean.parentId}" class="btn btn-default" data-toggle="dialog" data-icon="plus" data-id="sysUserInfo-add" data-options="{title:'添加', height:150}">新增二级类目 </a>
         </div>
     </form>
 </div>
@@ -25,6 +25,7 @@
             <th width="60">类目图片</th>
             <th>类目名称</th>
             <th>级别</th>
+            <th>模版</th>
             <th>排序值</th>
             <th>操作</th>
         </tr>
@@ -37,9 +38,11 @@
                     <td align="center"><img src="${bean.image!}" width="60" height="60"/></td>
                     <td>${bean.name!}</td>
                     <td>二级</td>
+                    <td>${bean.goodsTypeText!}</td>
                     <td>${bean.sort!}</td>
                     <td>
-                        <#--<a href="${base}/admin/attribute/list?categoryId=${bean.id}" class="btn btn-red" data-toggle="navtab" data-id="admin-attribute">属性列表</a>-->
+                        <a href="${base}/admin/attribute/bindGoodsType?categoryId=${bean.id}" class="btn btn-red" data-toggle="dialog"
+                           data-options="{title:'绑定模版', height:350}" data-id="admin-attribute">绑定模版</a>
                     </td>
                 </tr>
             </#list>

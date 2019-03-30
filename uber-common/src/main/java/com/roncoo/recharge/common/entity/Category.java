@@ -14,6 +14,8 @@ public class Category implements Serializable {
 
     private Integer isLeaf;
 
+    private Long goodsTypeId;
+
     private Integer sort;
 
     private String createPerson;
@@ -64,6 +66,14 @@ public class Category implements Serializable {
 
     public void setIsLeaf(Integer isLeaf) {
         this.isLeaf = isLeaf;
+    }
+
+    public Long getGoodsTypeId() {
+        return goodsTypeId;
+    }
+
+    public void setGoodsTypeId(Long goodsTypeId) {
+        this.goodsTypeId = goodsTypeId;
     }
 
     public Integer getSort() {
@@ -117,6 +127,7 @@ public class Category implements Serializable {
         sb.append(", parentId=").append(parentId);
         sb.append(", image=").append(image);
         sb.append(", isLeaf=").append(isLeaf);
+        sb.append(", goodsTypeId=").append(goodsTypeId);
         sb.append(", sort=").append(sort);
         sb.append(", createPerson=").append(createPerson);
         sb.append(", createTime=").append(createTime);

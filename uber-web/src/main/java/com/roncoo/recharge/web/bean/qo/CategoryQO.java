@@ -71,4 +71,14 @@ public class CategoryQO implements Serializable {
      * 修改时间
      */
     private Date updateTime;
+
+    /**
+     * 类目Id
+     */
+    private Long categoryId;
+
+    /**
+     * 商品类型Id
+     */
+    private Long goodsTypeId;
 }

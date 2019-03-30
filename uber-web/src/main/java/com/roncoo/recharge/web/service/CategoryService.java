@@ -1,5 +1,8 @@
 package com.roncoo.recharge.web.service;
 
+import com.roncoo.recharge.common.dao.GoodsTypeDao;
+import com.roncoo.recharge.common.entity.GoodsType;
+import com.xiaoleilu.hutool.util.CollectionUtil;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +30,8 @@ public class CategoryService {
 
 	@Autowired
 	private CategoryDao dao;
+	@Autowired
+	private GoodsTypeDao goodsTypeDao;
 
 	public Page<CategoryVO> listForPage(int pageCurrent, int pageSize, CategoryQO qo) {
 	    CategoryExample example = new CategoryExample();
@@ -42,7 +47,15 @@ public class CategoryService {
 	    	c.andIsLeafEqualTo(qo.getIsLeaf());
 		}
         Page<Category> page = dao.listForPage(pageCurrent, pageSize, example);
-        return PageUtil.transform(page, CategoryVO.class);
+	    Page<CategoryVO> categoryVOPage = PageUtil.transform(page, CategoryVO.class);
+	    if(categoryVOPage != null && CollectionUtil.isNotEmpty(categoryVOPage.getList())){
+			categoryVOPage.getList().forEach(categoryVO -> {
+				if(categoryVO.getGoodsTypeId()!= null){
+					categoryVO.setGoodsTypeText(goodsTypeDao.getById(categoryVO.getId()).getName());
+				}
+			});
+		}
+        return categoryVOPage;
 	}
 
 	public int save(CategoryQO qo) {
@@ -79,6 +92,18 @@ public class CategoryService {
 			c.andIsLeafEqualTo(qo.getIsLeaf());
 		}
 		return dao.listByExample(example);
+	}
+
+	public  int updateByCondition(CategoryQO qo){
+		Category category = new Category();
+		category.setGoodsTypeId(qo.getGoodsTypeId());
+		category.setId(qo.getId());
+		CategoryExample example = new CategoryExample();
+		CategoryExample.Criteria c = example.createCriteria();
+		if(qo.getId() != null){
+			c.andIdEqualTo(qo.getId());
+		}
+		return dao.updateByExampleSelective(category, example);
 	}
 
 }

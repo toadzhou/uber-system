@@ -83,6 +83,19 @@ public class AttributeService {
 		return dao.updateById(record);
 	}
 
+	public int updateByCondition(AttributeQO qo){
+		Attribute record = new Attribute();
+		record.setGoodsTypeId(qo.getGoodsTypeId());
+		record.setId(qo.getId());
+
+		AttributeExample example = new AttributeExample();
+		AttributeExample.Criteria c = example.createCriteria();
+		if(qo.getId() != null){
+			c.andIdEqualTo(qo.getId());
+		}
+		return dao.updateByExampleSelective(record,example);
+	}
+
 	public List<Attribute> queryForList(AttributeQO qo){
 		AttributeExample example = new AttributeExample();
 		Criteria c = example.createCriteria();

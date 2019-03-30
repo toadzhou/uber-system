@@ -120,4 +120,14 @@ public class GoodsTypeService {
 	}
 
 
+	public List<GoodsType> queryForList(GoodsTypeQO qo) {
+		GoodsTypeExample example = new GoodsTypeExample();
+		GoodsTypeExample.Criteria c = example.createCriteria();
+		if(qo.getStatus() != null){
+			c.andStatusEqualTo(qo.getStatus());
+		}
+		return dao.listByExample(example);
+	}
+
+
 }
