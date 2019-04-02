@@ -51,6 +51,11 @@
                                 </#if>
                             </select>
                         </div>
+                        <div class="form-group">
+                            <label class="control-label x140">是否启用规格：</label>
+                            <input type="radio" name="isEnableSpec" value="0"  checked/>不启用
+                            <input type="radio" name="isEnableSpec" value="1" />启用
+                        </div>
 
                         <div class="form-group">
                             <label class="control-label x140">商城价(元)：</label>
@@ -64,11 +69,7 @@
                         商品管理
                     </div>
                     <div class="tab-pane fade" id="spec">
-                        <div class="form-group">
-                            <label class="control-label x140">是否启用规格：</label>
-                            <input type="radio" name="isEnableSpec" value="0"  checked/>不启用
-                            <input type="radio" name="isEnableSpec" value="1" />启用
-                        </div>
+                        <#include "/admin/goods/goodsSpec.ftl" />
                     </div>
                 </div>
             </fieldset>

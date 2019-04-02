@@ -1,5 +1,7 @@
 package com.roncoo.recharge.web.service;
 
+import com.roncoo.recharge.common.dao.AttributeOptionDao;
+import com.roncoo.recharge.common.entity.AttributeOption;
 import com.roncoo.recharge.web.bean.dto.SpecItemDTO;
 import com.roncoo.recharge.web.bean.enums.AttrTypeEnum;
 import com.roncoo.recharge.web.bean.enums.YesOrNoEnum;
@@ -32,15 +34,11 @@ public class AttributeService {
 	private AttributeDao dao;
 	@Autowired
 	private GoodsTypeService goodsTypeService;
+	@Autowired
+	private AttributeOptionDao attributeOptionDao;
 
 	public Page<AttributeVO> listForPage(int pageCurrent, int pageSize, AttributeQO qo) {
-	    AttributeExample example = new AttributeExample();
-	    Criteria c = example.createCriteria();
-	    example.setOrderByClause("sort_order desc, id desc ");
-	    if(qo.getGoodsTypeId() != null){
-	    	c.andGoodsTypeIdEqualTo(qo.getGoodsTypeId());
-		}
-
+		AttributeExample example = generate(qo);
         Page<Attribute> page = dao.listForPage(pageCurrent, pageSize, example);
 		Page<AttributeVO> attributeVOPage =  PageUtil.transform(page, AttributeVO.class);
 
@@ -63,6 +61,18 @@ public class AttributeService {
             specItemDTO.setName(qo.getAttrName());
             goodsTypeService.updateSpec(qo.getGoodsTypeId(), specItemDTO);
         }
+        //列表选项则更新属性选项表
+        if(qo.getAttrInputType().equals(AttrTypeEnum.SELECT.getCode().byteValue())){
+        	String[] attrValues = qo.getAttrValues().split(",");
+        	for(String attrValue : attrValues){
+				AttributeOption attributeOption = new AttributeOption();
+				attributeOption.setAttributeId(attributeId);
+				attributeOption.setOptionName(attrValue);
+				attributeOption.setSort(1);
+				attributeOptionDao.save(attributeOption);
+			}
+		}
+
         return 1;
 	}
 
@@ -97,13 +107,18 @@ public class AttributeService {
 	}
 
 	public List<Attribute> queryForList(AttributeQO qo){
+		AttributeExample example = generate(qo);
+		return dao.listByExample(example);
+	}
+
+	public AttributeExample generate(AttributeQO qo){
 		AttributeExample example = new AttributeExample();
 		Criteria c = example.createCriteria();
 		example.setOrderByClause("sort_order desc, id desc ");
 		if(qo.getGoodsTypeId() != null){
 			c.andGoodsTypeIdEqualTo(qo.getGoodsTypeId());
 		}
-		return dao.listByExample(example);
+		return example;
 	}
 
 }
