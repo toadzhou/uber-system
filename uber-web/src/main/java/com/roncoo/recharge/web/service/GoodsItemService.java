@@ -1,5 +1,6 @@
 package com.roncoo.recharge.web.service;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -14,7 +15,7 @@ import com.roncoo.recharge.common.entity.GoodsItemExample;
 import com.roncoo.recharge.common.entity.GoodsItemExample.Criteria;
 
 /**
- * SKU商品项目表(最小库存单位) 
+ * SKU商品项目表(最小库存单位)
  *
  * @author mark
  * @since 2019-04-02
@@ -29,6 +30,10 @@ public class GoodsItemService {
 	    GoodsItemExample example = new GoodsItemExample();
 	    Criteria c = example.createCriteria();
 	    example.setOrderByClause(" id desc ");
+	    if(StringUtils.isNotBlank(qo.getTitle())){
+	    	c.andTitleLike(PageUtil.like(qo.getTitle()));
+		}
+
         Page<GoodsItem> page = dao.listForPage(pageCurrent, pageSize, example);
         return PageUtil.transform(page, GoodsItemVO.class);
 	}
@@ -55,5 +60,5 @@ public class GoodsItemService {
         BeanUtils.copyProperties(qo, record);
 		return dao.updateById(record);
 	}
-	
+
 }

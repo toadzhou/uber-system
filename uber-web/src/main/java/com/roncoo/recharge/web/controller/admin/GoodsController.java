@@ -4,8 +4,10 @@ import com.alibaba.fastjson.JSON;
 import com.roncoo.recharge.common.entity.Brand;
 import com.roncoo.recharge.common.entity.Category;
 import com.roncoo.recharge.web.bean.qo.CategoryQO;
+import com.roncoo.recharge.web.bean.qo.GoodsItemQO;
 import com.roncoo.recharge.web.service.BrandService;
 import com.roncoo.recharge.web.service.CategoryService;
+import com.roncoo.recharge.web.service.GoodsItemService;
 import com.xiaoleilu.hutool.util.CollectionUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +40,8 @@ public class GoodsController extends BaseController {
 	private CategoryService categoryService;
 	@Autowired
 	private BrandService brandService;
+	@Autowired
+	private GoodsItemService goodsItemService;
 
 	@RequestMapping(value = "/list")
 	public void list(@RequestParam(value = "pageCurrent", defaultValue = "1") int pageCurrent, @RequestParam(value = "pageSize", defaultValue = "20") int pageSize, @ModelAttribute GoodsQO qo, ModelMap modelMap){
@@ -106,6 +110,20 @@ public class GoodsController extends BaseController {
 	@RequestMapping(value = "/view")
 	public void view(@RequestParam(value = "id") Long id, ModelMap modelMap){
 		modelMap.put("bean", service.getById(id));
+	}
+
+	@RequestMapping(value="/goodsSpec")
+	public void goodsSpec(@RequestParam(value = "pageCurrent", defaultValue = "1") int pageCurrent, @RequestParam(value = "pageSize", defaultValue = "20") int pageSize, @ModelAttribute GoodsItemQO qo, ModelMap modelMap){
+		modelMap.put("page", goodsItemService.listForPage(pageCurrent,pageSize, qo));
+		modelMap.put("pageCurrent", pageCurrent);
+		modelMap.put("pageSize", pageSize);
+		modelMap.put("bean", qo);
+	}
+
+	@RequestMapping(value = "/addSku")
+	public void addSku(){
+		log.info("执行新增SKU产品");
+
 	}
 
 }

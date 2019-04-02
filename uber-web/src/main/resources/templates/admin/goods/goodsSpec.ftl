@@ -1,10 +1,10 @@
 <#include "/macro/base.ftl" />
 <div class="bjui-pageHeader">
-    <form id="pagerForm" data-toggle="ajaxsearch" action="${base}/admin/goods/list" method="post">
+    <form id="pagerForm" data-toggle="ajaxsearch" action="${base}/admin/goods/goodsSpec" method="post">
         <@pageHeadr />
         <div class="bjui-searchBar">
             <label>规格名称：</label>
-            <input type="text" name="name" value="${bean.name!}" class="form-control" size="12">&nbsp;
+            <input type="text" name="title"  class="form-control" size="12"/>&nbsp;
 
             <button type="submit" class="btn-default" data-icon="search">查询</button>&nbsp;
             <a class="btn btn-orange" href="javascript:;" data-toggle="reloadsearch" data-clear-query="true" data-icon="undo">清空查询</a>
@@ -20,14 +20,7 @@
         <thead>
         <tr>
             <th width="30">序号</th>
-            <th>商品名称</th>
-            <th>状态</th>
-            <th>所属商家</th>
-            <th>所属品牌</th>
-            <th>一级类目</th>
-            <th>二级类目</th>
-            <th>三级类目</th>
-            <th>商城价</th>
+            <th>标题</th>
             <th>操作</th>
         </tr>
         </thead>
@@ -36,13 +29,8 @@
             <#list page.list as bean>
                 <tr>
                     <td align="center">${bean_index+1}</td>
-                    <td>${bean.name!}</td>
-                    <td>${bean.statusText!}</td>
-                    <td>${bean.brandName!}</td>
-                    <td>${bean.category1Name!}</td>
-                    <td>${bean.category2Name!}</td>
-                    <td>${bean.category3Name!}</td>
-                    <td>${bean.mallPrice!}</td>
+                    <td>${bean.title!}</td>
+
                     <td>
                         <a href="${base}/admin/attribute/list?goodsId=${bean.id}" class="btn btn-green" data-toggle="navtab" data-id="goods-view" data-options="{title:'属性列表', height:350}">属性列表</a>
                     </td>
