@@ -1,12 +1,12 @@
 <#include "/macro/base.ftl" />
 <div class="bjui-pageHeader">
-    <form id="pagerForm" data-toggle="ajaxsearch" action="${base}/admin/goods/goodsSpec" method="post">
+    <form id="goodsSpecForm" data-toggle="ajaxsearch" action="${base}/admin/goods/goodsSpec" method="post">
         <@pageHeadr />
         <div class="bjui-searchBar">
             <label>规格名称：</label>
             <input type="text" name="title"  class="form-control" size="12"/>&nbsp;
 
-            <button type="submit" class="btn-default" data-icon="search">查询</button>&nbsp;
+            <button type="submit" class="btn-default" data-icon="search">查询1</button>&nbsp;
             <a class="btn btn-orange" href="javascript:;" data-toggle="reloadsearch" data-clear-query="true" data-icon="undo">清空查询</a>
 
             <br />
