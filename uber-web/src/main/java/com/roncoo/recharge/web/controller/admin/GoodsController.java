@@ -121,7 +121,7 @@ public class GoodsController extends BaseController {
 	}
 
 	@RequestMapping(value = "/addSku")
-	public void addSku(){
+	public void addSku(ModelMap modelMap){
 		log.info("执行新增SKU产品");
 
 	}
