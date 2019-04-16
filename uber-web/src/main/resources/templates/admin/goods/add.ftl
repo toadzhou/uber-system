@@ -1,6 +1,6 @@
 <#assign base=request.contextPath />
 <div class="bjui-pageContent">
-    <form action="${base}/admin/goods/save" data-toggle="validate" method="post">
+    <#--<form action="${base}/admin/goods/save" data-toggle="validate" method="post">-->
         <div style="margin:15px auto 0; width:98%;">
             <fieldset>
                 <legend>商品录入</legend>
@@ -74,7 +74,7 @@
                 </div>
             </fieldset>
         </div>
-    </form>
+    <#--</form>-->
 </div>
 <div class="bjui-pageFooter">
     <ul>

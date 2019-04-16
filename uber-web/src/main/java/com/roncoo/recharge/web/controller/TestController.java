@@ -28,6 +28,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.io.File;
 import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.List;
 
@@ -65,7 +67,12 @@ public class TestController {
             FileUtil.file(new URL("http://www.hao1024.cn/test.csv"));
 //            String path = TestController.class.getResource("/test/test.csv").getPath();
             CsvReader csvReader = CsvUtil.getReader();
-            CsvData csvData = csvReader.read(FileUtil.file(new URL("http://www.hao1024.cn/test.csv")));
+            CsvData csvData = null;
+            try {
+                csvData = csvReader.read(FileUtil.file(new URI("http://www.hao1024.cn/test.csv")));
+            } catch (URISyntaxException e) {
+                e.printStackTrace();
+            }
             List<CsvRow> csvRowList = csvData.getRows();
             modelMap.put("text", csvRowList.get(0).get(0));
         } catch (MalformedURLException e) {
