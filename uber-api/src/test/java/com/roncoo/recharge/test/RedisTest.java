@@ -40,10 +40,11 @@ public class RedisTest {
         String key1 = generateKey("3123122312",11L, "ppp");
         String key2 = generateKey("3123122312",12L, "ppp");
         String key3 = generateKey("3123122312",13L, "ppp");
+        String key4 = generateKey("3123122312",14L, "ppp");
 
-        stringRedisTemplate.opsForValue().set(key1, "9");
-        stringRedisTemplate.opsForValue().set(key2, "2");
-        stringRedisTemplate.opsForValue().set(key3, "3");
+//        stringRedisTemplate.opsForValue().set(key1, "9");
+//        stringRedisTemplate.opsForValue().set(key2, "2");
+//        stringRedisTemplate.opsForValue().set(key3, "3");
 
         List<Resource> resourceList = Lists.newArrayList();
         Resource Resource1 = new Resource();
@@ -67,13 +68,10 @@ public class RedisTest {
 
         Optional<Map<Long, Boolean>> result = generate(resourceList, "3123122312");
 
-        System.out.println(result.isPresent());
-        if(result.isPresent()){
-            System.out.println(result.get().get(11L));
-        }
-        result.ifPresent(o-> System.out.println("value:"+o.get(11L)));
-        result.ifPresent(o-> System.out.println("value:"+o.get(12L)));
-        result.ifPresent(o-> System.out.println("value:"+o.get(13L)));
+
+        result.ifPresent(o-> System.out.println("value11:"+o.get(11L)));
+        result.ifPresent(o-> System.out.println("value12:"+o.get(12L)));
+        result.ifPresent(o-> System.out.println("value13:"+o.get(13L)));
     }
 
 
@@ -89,9 +87,7 @@ public class RedisTest {
                     //创意点击
                     adxIdeaKey = generateKey(imei, resource.getId(),"ccc");
                 }
-                if(stringRedisTemplate.hasKey(adxIdeaKey)){
-                    keys.add(adxIdeaKey);
-                }
+                keys.add(adxIdeaKey);
             }
             //获取创意点击数集合
             System.out.println("keys:"+ keys);
@@ -105,7 +101,7 @@ public class RedisTest {
                 }else{
                     Integer number = Integer.parseInt(objectList.get(i).toString());
                     System.out.println("key:"+ resourceList.get(i).getId()+ "result:"+ (number>=resourceList.get(i).getLimitNum()));
-                    map.put(resourceList.get(i).getId(), number>=resourceList.get(i).getLimitNum());
+                    map.put(resourceList.get(i).getId(), !(number>=resourceList.get(i).getLimitNum()));
                 }
             }
             System.out.println("result:"+JSON.toJSONString(map));
