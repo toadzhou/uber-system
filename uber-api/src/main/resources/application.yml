@@ -26,7 +26,7 @@ spring:
       default-encoding: UTF-8
     redis:
       database: 0
-      host: 172.17.10.204
+      host: 111.231.189.44
       port: 6379
       password:
 security:
