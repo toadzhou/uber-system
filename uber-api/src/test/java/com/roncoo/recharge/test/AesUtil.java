@@ -1,11 +1,17 @@
 package com.roncoo.recharge.test;
 
+import javax.crypto.Cipher;
+import javax.crypto.KeyGenerator;
+import javax.crypto.SecretKey;
+import javax.crypto.spec.SecretKeySpec;
+
 import sun.misc.BASE64Decoder;
 import sun.misc.BASE64Encoder;
 
-import javax.crypto.Cipher;
-import javax.crypto.spec.SecretKeySpec;
 import java.io.IOException;
+import java.security.Key;
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
 
 /**
  * 〈一句话功能简述〉<br>
@@ -59,12 +65,32 @@ public class AesUtil {
     public static String decrypt(String encode, String key) throws Exception {
         byte[] encrypted = safeUrlBase64Decode(encode);
         byte[] enCodeFormat = key.getBytes();
-        SecretKeySpec skeySpec = new SecretKeySpec(enCodeFormat, "AES");
+        SecretKeySpec skeySpec = initKeyForAES(key);
         Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
         cipher.init(Cipher.DECRYPT_MODE, skeySpec);
         byte[] original = cipher.doFinal(encrypted);
         String originalString = new String(original, "utf-8");
         return originalString;
+    }
+
+    private static SecretKeySpec initKeyForAES(String key) throws NoSuchAlgorithmException {
+        if (null == key || key.length() == 0) {
+            throw new NullPointerException("key not is null");
+        }
+        SecretKeySpec key2 = null;
+        SecureRandom random = SecureRandom.getInstance("SHA1PRNG");
+        random.setSeed(key.getBytes());
+        try {
+            KeyGenerator kgen = KeyGenerator.getInstance("AES");
+            kgen.init(128, random);
+            SecretKey secretKey = kgen.generateKey();
+            byte[] enCodeFormat = secretKey.getEncoded();
+            key2 = new SecretKeySpec(enCodeFormat, "AES");
+        } catch (NoSuchAlgorithmException ex) {
+            throw new NoSuchAlgorithmException();
+        }
+        return key2;
+
     }
 
     public static void main(String[] args) throws Exception {
