@@ -1,37 +1,27 @@
 package com.roncoo.recharge.test;
 
-import cn.hutool.core.io.FileUtil;
 import com.alibaba.fastjson.JSON;
-import lombok.Cleanup;
 
-import java.io.*;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * 〈一句话功能简述〉<br>
  * Description:
  *
  * @author xierongli
- * @create 2019/5/13 15:15
+ * @create 2019/5/20 16:15
  */
 public class Test1 {
 
-    public static void main(String[] args) throws IOException {
-        @Cleanup InputStream in = new FileInputStream("d:/demo1.txt");
-        @Cleanup OutputStream out = new FileOutputStream("d:/demo2.txt");
-        byte[] b = new byte[10000];
-        while (true) {
-            int r = in.read(b);
-            if (r == -1) break;
-            out.write(b, 0, r);
-        }
+    public static void main(String[] args) {
+        List<User> userList = Collections.emptyList();
+        User user = new User();
+        user.setName("dadas");
+        user.setIds(Collections.EMPTY_LIST);
+        System.out.println(JSON.toJSONString(user));
 
-//        FileUtil.touch("d:/xrl.txt");
-        FileUtil.writeString("jsjkadjas", "d:/xrl123.txt", "UTF-8");
-        boolean flag = FileUtil.exist("d:/xrl123.txt");
-        System.out.println(flag);
-        FileUtil.rename(new File("d:/xrl123.txt"),"xrl123-old.txt", true, false);
+        System.out.println(Collections.emptyList());
+
     }
-
-
-
 }
