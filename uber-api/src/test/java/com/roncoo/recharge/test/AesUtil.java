@@ -1,20 +1,13 @@
 package com.roncoo.recharge.test;
 
 
-
+import javax.crypto.Cipher;
+import javax.crypto.spec.SecretKeySpec;
 import java.io.IOException;
 import java.util.Base64;
 
-import javax.crypto.Cipher;
-import javax.crypto.spec.SecretKeySpec;
-
-
 /**
- * 〈一句话功能简述〉<br>
- * Description: 蜻蜓的aes ecb pkc5padding 只能蜻蜓使用（其中包含蜻蜓url替换）
- *
  * @author xierongli
- * @create 2019-05-13 16:10
  */
 public class AesUtil {
 
@@ -58,16 +51,14 @@ public class AesUtil {
         return originalString;
     }
 
-
-
     public static void main(String[] args) throws Exception {
         String price = "1000";
-        String key = "165a88f86678c4bf9b2bfd6e82f33ade";
-//        String enPrice = encrypt(price, key);
-//        System.out.println("加密结果：" + enPrice);
-//        System.out.println("解密结果：" + decrypt(enPrice, key));
-//        System.out.println("========================");
-//        System.out.println(key.length());
+        String key = "1234123412341234123412341234abcd";
+        String enPrice = encrypt(price, key);
+        System.out.println("¼ÓÃÜ½á¹û£º" + enPrice);
+        System.out.println("½âÃÜ½á¹û£º" + decrypt(enPrice, key));
+        System.out.println("========================");
+        System.out.println(key.length());
         System.out.println(decrypt("I_4tmKEIbSBsfONPi6dfGQ", key));
 
     }
