@@ -22,9 +22,13 @@ public class Test {
         advertiser.setIndustry_id(5010);
         advertiser.setWeb_site("http://www.tuia.cn");
         advertiser.setName("demo");
-        advertiser.setCredentials(Lists.newArrayList(Credential.builder().cid(1).url("http://www.baidu.com").remark("remark").build()));
-        System.out.println(JSON.toJSONString(Lists.newArrayList(advertiser)));
-        String result = HttpRequest.post("http://demo.adx.ms/index.php?r-openapi/Advertiser/upload").header("dspid",dspId).header("token",token      ).body(JSON.toJSONString(Lists.newArrayList(advertiser))).execute().body();
+        advertiser.setCredentials(Lists.newArrayList(Credential.builder().cid(1).url("http://yun.tuia.cn/tuia/tuia-advert-home-node/dist/8002c0da0e204d0717b18dc2136a87c4.png").remarks("remark").build()));
+
+        Req req = new Req();
+        req.setAdvertiser(Lists.newArrayList(advertiser));
+
+        System.out.println(JSON.toJSONString(req));
+        String result = HttpRequest.post("http://demo.adx.ms/index.php?r-openapi/Advertiser/upload").header("dspid",dspId).header("token",token).body(JSON.toJSONString(req)).execute().body();
         System.out.println(result);
     }
 }

@@ -22,7 +22,7 @@ public class Credential {
 
     private String url;
 
-    private String remark;
+    private String remarks;
 
 
 }
