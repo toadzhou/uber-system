@@ -2,7 +2,8 @@ package com.roncoo.recharge.common.dao;
 
 import com.roncoo.recharge.common.entity.GoodsComment;
 import com.roncoo.recharge.common.entity.GoodsCommentExample;
-import com.uber.system.util.bjui.Page;
+import com.roncoo.recharge.util.bjui.Page;
+
 import java.util.List;
 
 public interface GoodsCommentDao {

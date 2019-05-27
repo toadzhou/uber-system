@@ -4,9 +4,11 @@ import com.roncoo.recharge.common.dao.GoodsCommentDao;
 import com.roncoo.recharge.common.entity.GoodsComment;
 import com.roncoo.recharge.common.entity.GoodsCommentExample;
 import com.roncoo.recharge.common.mapper.GoodsCommentMapper;
-import com.uber.system.util.bjui.Page;
-import com.uber.system.util.bjui.PageUtil;
+
 import java.util.List;
+
+import com.roncoo.recharge.util.bjui.Page;
+import com.roncoo.recharge.util.bjui.PageUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
