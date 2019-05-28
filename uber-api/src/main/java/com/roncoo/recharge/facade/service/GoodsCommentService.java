@@ -1,6 +1,7 @@
 package com.roncoo.recharge.facade.service;
 
 import com.roncoo.recharge.common.entity.GoodsComment;
+import org.springframework.cache.annotation.Cacheable;
 
 import java.util.List;
 
@@ -13,7 +14,10 @@ import java.util.List;
  */
 public interface GoodsCommentService {
 
+    @Cacheable(value = "goodsComment", key="#goodsId")
     List<GoodsComment> queryForList(Long goodsId);
+
+    int add(String title, String description);
 
 
 

@@ -23,7 +23,6 @@ public class GoodsCommentServiceImpl implements GoodsCommentService {
     @Autowired
     private GoodsCommentDao goodsCommentDao;
 
-    @Override
     @Cacheable(value = "goodsComment", key="#goodsId")
     public List<GoodsComment> queryForList(Long goodsId) {
         GoodsCommentExample example = new GoodsCommentExample();
@@ -33,5 +32,10 @@ public class GoodsCommentServiceImpl implements GoodsCommentService {
             c.andGoodsIdEqualTo(goodsId);
         }
         return goodsCommentDao.listByExample(example);
+    }
+
+    @Override
+    public int add(String title, String description) {
+        return 0;
     }
 }
