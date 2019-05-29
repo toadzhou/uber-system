@@ -24,6 +24,7 @@ public class GoodsCommentServiceImpl implements GoodsCommentService {
     private GoodsCommentDao goodsCommentDao;
 
     @Cacheable(value = "goodsComment", key="#goodsId")
+    @Override
     public List<GoodsComment> queryForList(Long goodsId) {
         GoodsCommentExample example = new GoodsCommentExample();
         GoodsCommentExample.Criteria c = example.createCriteria();
