@@ -15,6 +15,6 @@ import org.hibernate.validator.constraints.NotBlank;
 public class UserReq {
     @NotBlank(message = "用户名不能为空")
     private String userName;
-    @NotBlank
+    @NotBlank(message = "密码不能为空")
     private String password;
 }

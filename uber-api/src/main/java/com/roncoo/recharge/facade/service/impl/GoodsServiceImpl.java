@@ -58,6 +58,8 @@ public class GoodsServiceImpl implements GoodsService {
         List<String> commentTitleList = filter( goodsCommentList, goodsComment -> goodsComment.getLevel() == level, goodsComment -> goodsComment.getTitle());
         //根据等级筛选并返回模型
         List<GoodsComment> filerList = filter(goodsCommentList, goodsComment -> goodsComment.getLevel() == level, Function.identity());
+
+
         goodsDTO.setTitleList(commentTitleList);
         goodsDTO.setGoodsCommentList(ObjectConvert.convertList(filerList, GoodsCommentDTO.class));
         return goodsDTO;
