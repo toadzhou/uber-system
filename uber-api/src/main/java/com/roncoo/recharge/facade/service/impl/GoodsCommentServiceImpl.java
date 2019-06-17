@@ -5,6 +5,7 @@ import com.roncoo.recharge.common.entity.GoodsComment;
 import com.roncoo.recharge.common.entity.GoodsCommentExample;
 import com.roncoo.recharge.facade.service.GoodsCommentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
@@ -36,6 +37,7 @@ public class GoodsCommentServiceImpl implements GoodsCommentService {
     }
 
     @Override
+    @CachePut
     public int add(String title, String description) {
         return 0;
     }

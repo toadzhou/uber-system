@@ -11,7 +11,11 @@ import com.roncoo.recharge.facade.bean.dto.GoodsDTO;
  */
 public interface GoodsService {
 
-
+    /**
+     * 获取产品记录
+     * @param id
+     * @return
+     */
     GoodsDTO getById(Long id);
 
     /**
