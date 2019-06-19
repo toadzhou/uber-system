@@ -1,9 +1,9 @@
 package com.roncoo.recharge.common.dao.impl;
 
 import com.roncoo.recharge.common.dao.GoodsCommentDao;
+import com.roncoo.recharge.common.dao.impl.mapper.GoodsCommentMapper;
 import com.roncoo.recharge.common.entity.GoodsComment;
 import com.roncoo.recharge.common.entity.GoodsCommentExample;
-import com.roncoo.recharge.common.mapper.GoodsCommentMapper;
 
 import java.util.List;
 

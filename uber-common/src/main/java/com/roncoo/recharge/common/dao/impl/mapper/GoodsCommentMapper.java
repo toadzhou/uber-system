@@ -1,10 +1,11 @@
-package com.roncoo.recharge.common.mapper;
+package com.roncoo.recharge.common.dao.impl.mapper;
 
 import com.roncoo.recharge.common.entity.GoodsComment;
 import com.roncoo.recharge.common.entity.GoodsCommentExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 @Mapper
 public interface GoodsCommentMapper {

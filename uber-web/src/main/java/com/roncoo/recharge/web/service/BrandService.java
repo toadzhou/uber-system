@@ -33,6 +33,9 @@ public class BrandService {
 	    BrandExample example = new BrandExample();
 	    Criteria c = example.createCriteria();
 	    example.setOrderByClause(" id desc ");
+	    if(qo.getName() != null){
+	    	c.andNameEqualTo(qo.getName());
+		}
         Page<Brand> page = dao.listForPage(pageCurrent, pageSize, example);
         return PageUtil.transform(page, BrandVO.class);
 	}
