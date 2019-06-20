@@ -1,10 +1,9 @@
-package com.roncoo.recharge.test;
-
-import java.io.IOException;
-import java.util.Base64;
+package com.roncoo.recharge.test.demo;
 
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
+import java.io.IOException;
+import java.util.Base64;
 
 
 /**

@@ -1,4 +1,4 @@
-package com.roncoo.recharge.test;
+package com.roncoo.recharge.test.demo;
 
 import cn.hutool.core.util.CharsetUtil;
 import cn.hutool.crypto.SecureUtil;

@@ -1,4 +1,4 @@
-package com.roncoo.recharge.test;
+package com.roncoo.recharge.test.demo;
 
 import cn.hutool.core.util.ObjectUtil;
 import com.alibaba.fastjson.JSON;

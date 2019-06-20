@@ -1,4 +1,4 @@
-package com.roncoo.recharge.test;
+package com.roncoo.recharge.test.demo;
 
 import com.alibaba.fastjson.JSON;
 import com.roncoo.recharge.facade.service.GoodsService;

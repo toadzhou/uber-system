@@ -8,7 +8,10 @@ package com.roncoo.recharge.facade.bean.enums;
  * @create 2019/6/20 15:26
  */
 public enum DspSystemLogTypeEnum {
-    back(3,"竞价返回");
+    BACK(3,"竞价返回"),
+    SUCCESS(2,"竞价成功"),
+    EXPOSE(0,"曝光"),
+    CLICK(1,"点击");
 
     private Integer type;
 

@@ -1,4 +1,4 @@
-package com.roncoo.recharge.test;
+package com.roncoo.recharge.test.demo;
 
 import java.io.*;
 import java.net.HttpURLConnection;
