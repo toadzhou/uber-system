@@ -1,0 +1,418 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.roncoo.recharge.common.dao.impl.mapper.DspSystemLogMapper" >
+  <resultMap id="BaseResultMap" type="com.roncoo.recharge.common.entity.DspSystemLog" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="group_id" property="groupId" jdbcType="BIGINT" />
+    <result column="resource_id" property="resourceId" jdbcType="BIGINT" />
+    <result column="idea_id" property="ideaId" jdbcType="BIGINT" />
+    <result column="price" property="price" jdbcType="BIGINT" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="imei" property="imei" jdbcType="VARCHAR" />
+    <result column="ip" property="ip" jdbcType="VARCHAR" />
+    <result column="ua" property="ua" jdbcType="VARCHAR" />
+    <result column="time" property="time" jdbcType="TIMESTAMP" />
+    <result column="app_id" property="appId" jdbcType="VARCHAR" />
+    <result column="slot_id" property="slotId" jdbcType="VARCHAR" />
+    <result column="put_type" property="putType" jdbcType="INTEGER" />
+    <result column="price_type" property="priceType" jdbcType="INTEGER" />
+    <result column="par_price" property="parPrice" jdbcType="INTEGER" />
+    <result column="bill_type" property="billType" jdbcType="INTEGER" />
+    <result column="fee_type" property="feeType" jdbcType="INTEGER" />
+    <result column="fee" property="fee" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, group_id, resource_id, idea_id, price, type, imei, ip, ua, time, app_id, slot_id, 
+    put_type, price_type, par_price, bill_type, fee_type, fee
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.roncoo.recharge.common.entity.DspSystemLogExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from dsp_system_log
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitStart >= 0" >
+      limit ${limitStart} , ${pageSize}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from dsp_system_log
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from dsp_system_log
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.roncoo.recharge.common.entity.DspSystemLogExample" >
+    delete from dsp_system_log
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.roncoo.recharge.common.entity.DspSystemLog" >
+    insert into dsp_system_log (id, group_id, resource_id, 
+      idea_id, price, type, 
+      imei, ip, ua, time, 
+      app_id, slot_id, put_type, 
+      price_type, par_price, bill_type, 
+      fee_type, fee)
+    values (#{id,jdbcType=BIGINT}, #{groupId,jdbcType=BIGINT}, #{resourceId,jdbcType=BIGINT}, 
+      #{ideaId,jdbcType=BIGINT}, #{price,jdbcType=BIGINT}, #{type,jdbcType=INTEGER}, 
+      #{imei,jdbcType=VARCHAR}, #{ip,jdbcType=VARCHAR}, #{ua,jdbcType=VARCHAR}, #{time,jdbcType=TIMESTAMP}, 
+      #{appId,jdbcType=VARCHAR}, #{slotId,jdbcType=VARCHAR}, #{putType,jdbcType=INTEGER}, 
+      #{priceType,jdbcType=INTEGER}, #{parPrice,jdbcType=INTEGER}, #{billType,jdbcType=INTEGER}, 
+      #{feeType,jdbcType=INTEGER}, #{fee,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.roncoo.recharge.common.entity.DspSystemLog" >
+    insert into dsp_system_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="groupId != null" >
+        group_id,
+      </if>
+      <if test="resourceId != null" >
+        resource_id,
+      </if>
+      <if test="ideaId != null" >
+        idea_id,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="imei != null" >
+        imei,
+      </if>
+      <if test="ip != null" >
+        ip,
+      </if>
+      <if test="ua != null" >
+        ua,
+      </if>
+      <if test="time != null" >
+        time,
+      </if>
+      <if test="appId != null" >
+        app_id,
+      </if>
+      <if test="slotId != null" >
+        slot_id,
+      </if>
+      <if test="putType != null" >
+        put_type,
+      </if>
+      <if test="priceType != null" >
+        price_type,
+      </if>
+      <if test="parPrice != null" >
+        par_price,
+      </if>
+      <if test="billType != null" >
+        bill_type,
+      </if>
+      <if test="feeType != null" >
+        fee_type,
+      </if>
+      <if test="fee != null" >
+        fee,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="groupId != null" >
+        #{groupId,jdbcType=BIGINT},
+      </if>
+      <if test="resourceId != null" >
+        #{resourceId,jdbcType=BIGINT},
+      </if>
+      <if test="ideaId != null" >
+        #{ideaId,jdbcType=BIGINT},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=BIGINT},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="imei != null" >
+        #{imei,jdbcType=VARCHAR},
+      </if>
+      <if test="ip != null" >
+        #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="ua != null" >
+        #{ua,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null" >
+        #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="appId != null" >
+        #{appId,jdbcType=VARCHAR},
+      </if>
+      <if test="slotId != null" >
+        #{slotId,jdbcType=VARCHAR},
+      </if>
+      <if test="putType != null" >
+        #{putType,jdbcType=INTEGER},
+      </if>
+      <if test="priceType != null" >
+        #{priceType,jdbcType=INTEGER},
+      </if>
+      <if test="parPrice != null" >
+        #{parPrice,jdbcType=INTEGER},
+      </if>
+      <if test="billType != null" >
+        #{billType,jdbcType=INTEGER},
+      </if>
+      <if test="feeType != null" >
+        #{feeType,jdbcType=INTEGER},
+      </if>
+      <if test="fee != null" >
+        #{fee,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.roncoo.recharge.common.entity.DspSystemLogExample" resultType="java.lang.Integer" >
+    select count(*) from dsp_system_log
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update dsp_system_log
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.groupId != null" >
+        group_id = #{record.groupId,jdbcType=BIGINT},
+      </if>
+      <if test="record.resourceId != null" >
+        resource_id = #{record.resourceId,jdbcType=BIGINT},
+      </if>
+      <if test="record.ideaId != null" >
+        idea_id = #{record.ideaId,jdbcType=BIGINT},
+      </if>
+      <if test="record.price != null" >
+        price = #{record.price,jdbcType=BIGINT},
+      </if>
+      <if test="record.type != null" >
+        type = #{record.type,jdbcType=INTEGER},
+      </if>
+      <if test="record.imei != null" >
+        imei = #{record.imei,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ip != null" >
+        ip = #{record.ip,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ua != null" >
+        ua = #{record.ua,jdbcType=VARCHAR},
+      </if>
+      <if test="record.time != null" >
+        time = #{record.time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.appId != null" >
+        app_id = #{record.appId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.slotId != null" >
+        slot_id = #{record.slotId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.putType != null" >
+        put_type = #{record.putType,jdbcType=INTEGER},
+      </if>
+      <if test="record.priceType != null" >
+        price_type = #{record.priceType,jdbcType=INTEGER},
+      </if>
+      <if test="record.parPrice != null" >
+        par_price = #{record.parPrice,jdbcType=INTEGER},
+      </if>
+      <if test="record.billType != null" >
+        bill_type = #{record.billType,jdbcType=INTEGER},
+      </if>
+      <if test="record.feeType != null" >
+        fee_type = #{record.feeType,jdbcType=INTEGER},
+      </if>
+      <if test="record.fee != null" >
+        fee = #{record.fee,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update dsp_system_log
+    set id = #{record.id,jdbcType=BIGINT},
+      group_id = #{record.groupId,jdbcType=BIGINT},
+      resource_id = #{record.resourceId,jdbcType=BIGINT},
+      idea_id = #{record.ideaId,jdbcType=BIGINT},
+      price = #{record.price,jdbcType=BIGINT},
+      type = #{record.type,jdbcType=INTEGER},
+      imei = #{record.imei,jdbcType=VARCHAR},
+      ip = #{record.ip,jdbcType=VARCHAR},
+      ua = #{record.ua,jdbcType=VARCHAR},
+      time = #{record.time,jdbcType=TIMESTAMP},
+      app_id = #{record.appId,jdbcType=VARCHAR},
+      slot_id = #{record.slotId,jdbcType=VARCHAR},
+      put_type = #{record.putType,jdbcType=INTEGER},
+      price_type = #{record.priceType,jdbcType=INTEGER},
+      par_price = #{record.parPrice,jdbcType=INTEGER},
+      bill_type = #{record.billType,jdbcType=INTEGER},
+      fee_type = #{record.feeType,jdbcType=INTEGER},
+      fee = #{record.fee,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.roncoo.recharge.common.entity.DspSystemLog" >
+    update dsp_system_log
+    <set >
+      <if test="groupId != null" >
+        group_id = #{groupId,jdbcType=BIGINT},
+      </if>
+      <if test="resourceId != null" >
+        resource_id = #{resourceId,jdbcType=BIGINT},
+      </if>
+      <if test="ideaId != null" >
+        idea_id = #{ideaId,jdbcType=BIGINT},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=BIGINT},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="imei != null" >
+        imei = #{imei,jdbcType=VARCHAR},
+      </if>
+      <if test="ip != null" >
+        ip = #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="ua != null" >
+        ua = #{ua,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null" >
+        time = #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="appId != null" >
+        app_id = #{appId,jdbcType=VARCHAR},
+      </if>
+      <if test="slotId != null" >
+        slot_id = #{slotId,jdbcType=VARCHAR},
+      </if>
+      <if test="putType != null" >
+        put_type = #{putType,jdbcType=INTEGER},
+      </if>
+      <if test="priceType != null" >
+        price_type = #{priceType,jdbcType=INTEGER},
+      </if>
+      <if test="parPrice != null" >
+        par_price = #{parPrice,jdbcType=INTEGER},
+      </if>
+      <if test="billType != null" >
+        bill_type = #{billType,jdbcType=INTEGER},
+      </if>
+      <if test="feeType != null" >
+        fee_type = #{feeType,jdbcType=INTEGER},
+      </if>
+      <if test="fee != null" >
+        fee = #{fee,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.roncoo.recharge.common.entity.DspSystemLog" >
+    update dsp_system_log
+    set group_id = #{groupId,jdbcType=BIGINT},
+      resource_id = #{resourceId,jdbcType=BIGINT},
+      idea_id = #{ideaId,jdbcType=BIGINT},
+      price = #{price,jdbcType=BIGINT},
+      type = #{type,jdbcType=INTEGER},
+      imei = #{imei,jdbcType=VARCHAR},
+      ip = #{ip,jdbcType=VARCHAR},
+      ua = #{ua,jdbcType=VARCHAR},
+      time = #{time,jdbcType=TIMESTAMP},
+      app_id = #{appId,jdbcType=VARCHAR},
+      slot_id = #{slotId,jdbcType=VARCHAR},
+      put_type = #{putType,jdbcType=INTEGER},
+      price_type = #{priceType,jdbcType=INTEGER},
+      par_price = #{parPrice,jdbcType=INTEGER},
+      bill_type = #{billType,jdbcType=INTEGER},
+      fee_type = #{feeType,jdbcType=INTEGER},
+      fee = #{fee,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
