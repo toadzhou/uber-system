@@ -19,20 +19,29 @@ public enum YesOrNoEnum {
         this.description = description;
     }
 
-
-        public Integer getCode() {
-            return code;
+    public static String getDescription(Integer code){
+        for(YesOrNoEnum yesOrNoEnum : YesOrNoEnum.values()){
+            if(code == yesOrNoEnum.getCode()){
+                return yesOrNoEnum.getDescription();
+            }
         }
+        return "";
+    }
 
-        public void setCode(Integer code) {
-            this.code = code;
-        }
 
-        public String getDescription() {
-            return description;
-        }
+    public Integer getCode() {
+        return code;
+    }
 
-        public void setDescription(String description) {
-            this.description = description;
-        }
+    public void setCode(Integer code) {
+        this.code = code;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 }
