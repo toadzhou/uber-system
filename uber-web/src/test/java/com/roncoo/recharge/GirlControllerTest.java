@@ -25,7 +25,7 @@ public class GirlControllerTest {
 
     @Test
     public void test1(){
-        String url = imageService.uploadImage("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1554215480781&di=c9efa02263e364a80dcad58ba79f5d23&imgtype=0&src=http%3A%2F%2Fpic.qiantucdn.com%2F58pic%2F26%2F31%2F49%2F06658PICAnc_1024.jpg");
+        String url = imageService.uploadImage("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1561978987505&di=2830de514f9fb33b6dde4987fc432ef7&imgtype=0&src=http%3A%2F%2Fwww.welovead.com%2Fupload%2Fphoto_db%2F2010%2F10%2F31%2F201010310005392809%2F960_960%2F201010310005392809.jpg");
         System.out.println(url);
     }
 
