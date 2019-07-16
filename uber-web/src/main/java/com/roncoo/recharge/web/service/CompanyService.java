@@ -1,5 +1,6 @@
 package com.roncoo.recharge.web.service;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -29,6 +30,9 @@ public class CompanyService {
 	    CompanyExample example = new CompanyExample();
 	    Criteria c = example.createCriteria();
 	    example.setOrderByClause(" id desc ");
+	    if(StringUtils.isNotBlank(qo.getName())){
+	    	c.andNameLike(PageUtil.like(qo.getName()));
+		}
         Page<Company> page = dao.listForPage(pageCurrent, pageSize, example);
         return PageUtil.transform(page, CompanyVO.class);
 	}

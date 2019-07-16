@@ -1,25 +1,38 @@
-<#assign base=request.contextPath /> 
-<div class="pageContent">
-    <div class="pageFormContent" layoutH="58">
-        <p>
-            <label>负责人姓名：</label>${bean.ownerName}
-        </p>
-        <p>
-            <label>创建人：</label>${bean.createPerson}
-        </p>
-        <p>
-            <label>创建时间：</label>${bean.createTime}
-        </p>
-        <p>
-            <label>更新人：</label>${bean.updatePerson}
-        </p>
-        <p>
-            <label>修改时间：</label>${bean.updateTime}
-        </p>
+<div class="bjui-pageContent">
+    <div class="form-group">
+        <div class="col-lg-6">
+            <label class="control-label">公司名称：</label>${bean.name!}
+        </div>
+        <div class="col-lg-6">
+            <label class="control-label">法人姓名：</label>${bean.ownerName!}
+        </div>
     </div>
-    <div class="formBar">
-        <ul>
-            <li><div class="button"><div class="buttonContent"><button type="button" class="close">取消</button></div></div></li>
-        </ul>
+    <br/>
+    <br/>
+    <div class="form-group">
+        <div class="col-lg-6">
+            <label class="control-label">联系方式：</label>${bean.phone!}
+        </div>
     </div>
+    <br/>
+    <br/>
+    <div class="form-group">
+        <div class="col-lg-12">
+            <label class="control-label">地址：</label>${bean.address!}
+        </div>
+    </div>
+    <br/>
+    <br/>
+
+    <div class="form-group">
+        <div class="col-lg-6">
+            <label class="control-label">状态：</label><#list statusIdEnums as enumvo><#if bean.statusId?? && bean.statusId==enumvo.code>${enumvo.desc}</#if></#list>
+        </div>
+    </div>
+
+</div>
+<div class="bjui-pageFooter">
+    <ul>
+        <li><button type="button" class="btn-close">取消</button></li>
+    </ul>
 </div>
