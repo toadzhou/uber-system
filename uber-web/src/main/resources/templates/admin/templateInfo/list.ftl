@@ -22,7 +22,6 @@
         <tr>
             <th width="30">序号</th>
             <th>名称</th>
-            <th>样式</th>
             <th>状态</th>
             <th>长度</th>
             <th>宽度</th>
@@ -36,7 +35,6 @@
                 <tr>
                     <td align="center">${bean_index+1}</td>
                     <td>${bean.name!}</td>
-                    <td><img src="${bean.urlPath!}" width="120" height="30"/></td>
                     <td><#list yesOrNoEnum as enumvo><#if bean.status?? && bean.status==enumvo.code>${enumvo.description}</#if></#list></td>
                     <td>${bean.width!}</td>
                     <td>${bean.height!}</td>
