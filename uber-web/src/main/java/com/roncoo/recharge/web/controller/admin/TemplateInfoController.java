@@ -1,9 +1,11 @@
 package com.roncoo.recharge.web.controller.admin;
 
-import com.roncoo.recharge.util.enums.StatusIdEnum;
-import com.roncoo.recharge.util.enums.UserTypeEnum;
 import com.roncoo.recharge.web.bean.enums.UnitEnum;
 import com.roncoo.recharge.web.bean.enums.YesOrNoEnum;
+import com.roncoo.recharge.web.bean.qo.PictureUnitQO;
+import com.roncoo.recharge.web.bean.qo.TemplateImageQO;
+import com.roncoo.recharge.web.service.PictureUnitService;
+import com.roncoo.recharge.web.service.TemplateImageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -30,6 +32,12 @@ public class TemplateInfoController extends BaseController {
 
 	@Autowired
 	private TemplateInfoService service;
+	@Autowired
+	private PictureUnitService pictureUnitService;
+	@Autowired
+	private TemplateImageService templateImageService;
+
+
 	
 	@RequestMapping(value = "/list")
 	public void list(@RequestParam(value = "pageCurrent", defaultValue = "1") int pageCurrent, @RequestParam(value = "pageSize", defaultValue = "20") int pageSize, @ModelAttribute TemplateInfoQO qo, ModelMap modelMap){
@@ -79,6 +87,28 @@ public class TemplateInfoController extends BaseController {
 	@RequestMapping(value = "/view")
 	public void view(@RequestParam(value = "id") Long id, ModelMap modelMap){
 		modelMap.put("bean", service.getById(id));
+	}
+
+
+	@RequestMapping(value = "/selectPicture")
+	public void list(@RequestParam("templateInfoId") Long templateInfoId, @RequestParam(value = "pageCurrent", defaultValue = "1") int pageCurrent, @RequestParam(value = "pageSize", defaultValue = "20") int pageSize, @ModelAttribute PictureUnitQO qo, ModelMap modelMap){
+		modelMap.put("page", pictureUnitService.listForPage(pageCurrent, pageSize, qo));
+		modelMap.put("pageCurrent", pageCurrent);
+		modelMap.put("pageSize", pageSize);
+		modelMap.put("bean", qo);
+		modelMap.put("templateInfoId", templateInfoId);
+	}
+
+	@RequestMapping(value = "/set")
+	public String set(@RequestParam("templateInfoId") Long templateInfoId, @RequestParam("imageId")Long imageId){
+		TemplateImageQO qo  = new TemplateImageQO();
+		qo.setImageId(imageId);
+		qo.setTemplateId(templateInfoId);
+		if (templateImageService.save(qo) > 0) {
+			return success(TARGETID);
+		}
+		return error("操作失败");
+
 	}
 
 

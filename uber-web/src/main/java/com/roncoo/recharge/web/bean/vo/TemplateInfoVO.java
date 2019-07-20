@@ -1,7 +1,6 @@
 package com.roncoo.recharge.web.bean.vo;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.Date;
 import lombok.Data;
 import lombok.experimental.Accessors;
@@ -40,11 +39,15 @@ public class TemplateInfoVO implements Serializable {
     /**
      * 价格(单位: 分)
      */
-    private Integer price;
+    private Long price;
+    /**
+     * 显示价格
+     */
+    private double showPrice;
     /**
      * 计量单位
      */
-    private String unit;
+    private Integer unit;
     /**
      * 备注
      */

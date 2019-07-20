@@ -12,9 +12,9 @@ public class TemplateInfo implements Serializable {
 
     private Integer height;
 
-    private Integer price;
+    private Long price;
 
-    private String unit;
+    private Integer unit;
 
     private String remark;
 
@@ -62,20 +62,20 @@ public class TemplateInfo implements Serializable {
         this.height = height;
     }
 
-    public Integer getPrice() {
+    public Long getPrice() {
         return price;
     }
 
-    public void setPrice(Integer price) {
+    public void setPrice(Long price) {
         this.price = price;
     }
 
-    public String getUnit() {
+    public Integer getUnit() {
         return unit;
     }
 
-    public void setUnit(String unit) {
-        this.unit = unit == null ? null : unit.trim();
+    public void setUnit(Integer unit) {
+        this.unit = unit;
     }
 
     public String getRemark() {

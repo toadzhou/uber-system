@@ -3,7 +3,7 @@
     <form action="${base}/admin/templateInfo/save" data-toggle="validate" method="post">
         <div class="form-group">
             <label class="control-label x85">模版名称：</label>
-            <input type="text" name="loginName" value="" placeholder="模版名称" size="20" data-rule="required">
+            <input type="text" name="name" value="" placeholder="项目-产品-编号" size="20" data-rule="required">
         </div>
         <div class="form-group">
             <label class="control-label x85">长度：</label>
@@ -14,7 +14,7 @@
             <input type="text" name="height" value="" placeholder="宽度" size="20" data-rule="required">
         </div>
         <div class="form-group">
-            <label class="control-label x85">价格：</label>
+            <label class="control-label x85">价格(元)：</label>
             <input type="text" name="price" value="" placeholder="价格" size="20" data-rule="required">
         </div>
         <div class="form-group">

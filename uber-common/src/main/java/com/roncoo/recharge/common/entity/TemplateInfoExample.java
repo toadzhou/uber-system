@@ -385,52 +385,52 @@ public class TemplateInfoExample {
             return (Criteria) this;
         }
 
-        public Criteria andPriceEqualTo(Integer value) {
+        public Criteria andPriceEqualTo(Long value) {
             addCriterion("price =", value, "price");
             return (Criteria) this;
         }
 
-        public Criteria andPriceNotEqualTo(Integer value) {
+        public Criteria andPriceNotEqualTo(Long value) {
             addCriterion("price <>", value, "price");
             return (Criteria) this;
         }
 
-        public Criteria andPriceGreaterThan(Integer value) {
+        public Criteria andPriceGreaterThan(Long value) {
             addCriterion("price >", value, "price");
             return (Criteria) this;
         }
 
-        public Criteria andPriceGreaterThanOrEqualTo(Integer value) {
+        public Criteria andPriceGreaterThanOrEqualTo(Long value) {
             addCriterion("price >=", value, "price");
             return (Criteria) this;
         }
 
-        public Criteria andPriceLessThan(Integer value) {
+        public Criteria andPriceLessThan(Long value) {
             addCriterion("price <", value, "price");
             return (Criteria) this;
         }
 
-        public Criteria andPriceLessThanOrEqualTo(Integer value) {
+        public Criteria andPriceLessThanOrEqualTo(Long value) {
             addCriterion("price <=", value, "price");
             return (Criteria) this;
         }
 
-        public Criteria andPriceIn(List<Integer> values) {
+        public Criteria andPriceIn(List<Long> values) {
             addCriterion("price in", values, "price");
             return (Criteria) this;
         }
 
-        public Criteria andPriceNotIn(List<Integer> values) {
+        public Criteria andPriceNotIn(List<Long> values) {
             addCriterion("price not in", values, "price");
             return (Criteria) this;
         }
 
-        public Criteria andPriceBetween(Integer value1, Integer value2) {
+        public Criteria andPriceBetween(Long value1, Long value2) {
             addCriterion("price between", value1, value2, "price");
             return (Criteria) this;
         }
 
-        public Criteria andPriceNotBetween(Integer value1, Integer value2) {
+        public Criteria andPriceNotBetween(Long value1, Long value2) {
             addCriterion("price not between", value1, value2, "price");
             return (Criteria) this;
         }
@@ -445,62 +445,52 @@ public class TemplateInfoExample {
             return (Criteria) this;
         }
 
-        public Criteria andUnitEqualTo(String value) {
+        public Criteria andUnitEqualTo(Integer value) {
             addCriterion("unit =", value, "unit");
             return (Criteria) this;
         }
 
-        public Criteria andUnitNotEqualTo(String value) {
+        public Criteria andUnitNotEqualTo(Integer value) {
             addCriterion("unit <>", value, "unit");
             return (Criteria) this;
         }
 
-        public Criteria andUnitGreaterThan(String value) {
+        public Criteria andUnitGreaterThan(Integer value) {
             addCriterion("unit >", value, "unit");
             return (Criteria) this;
         }
 
-        public Criteria andUnitGreaterThanOrEqualTo(String value) {
+        public Criteria andUnitGreaterThanOrEqualTo(Integer value) {
             addCriterion("unit >=", value, "unit");
             return (Criteria) this;
         }
 
-        public Criteria andUnitLessThan(String value) {
+        public Criteria andUnitLessThan(Integer value) {
             addCriterion("unit <", value, "unit");
             return (Criteria) this;
         }
 
-        public Criteria andUnitLessThanOrEqualTo(String value) {
+        public Criteria andUnitLessThanOrEqualTo(Integer value) {
             addCriterion("unit <=", value, "unit");
             return (Criteria) this;
         }
 
-        public Criteria andUnitLike(String value) {
-            addCriterion("unit like", value, "unit");
-            return (Criteria) this;
-        }
-
-        public Criteria andUnitNotLike(String value) {
-            addCriterion("unit not like", value, "unit");
-            return (Criteria) this;
-        }
-
-        public Criteria andUnitIn(List<String> values) {
+        public Criteria andUnitIn(List<Integer> values) {
             addCriterion("unit in", values, "unit");
             return (Criteria) this;
         }
 
-        public Criteria andUnitNotIn(List<String> values) {
+        public Criteria andUnitNotIn(List<Integer> values) {
             addCriterion("unit not in", values, "unit");
             return (Criteria) this;
         }
 
-        public Criteria andUnitBetween(String value1, String value2) {
+        public Criteria andUnitBetween(Integer value1, Integer value2) {
             addCriterion("unit between", value1, value2, "unit");
             return (Criteria) this;
         }
 
-        public Criteria andUnitNotBetween(String value1, String value2) {
+        public Criteria andUnitNotBetween(Integer value1, Integer value2) {
             addCriterion("unit not between", value1, value2, "unit");
             return (Criteria) this;
         }

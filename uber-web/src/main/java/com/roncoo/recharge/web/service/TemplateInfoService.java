@@ -1,5 +1,7 @@
 package com.roncoo.recharge.web.service;
 
+import com.roncoo.recharge.util.Money;
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,12 +36,17 @@ public class TemplateInfoService {
 	    	c.andNameLike(PageUtil.like(qo.getName()));
 		}
         Page<TemplateInfo> page = dao.listForPage(pageCurrent, pageSize, example);
-        return PageUtil.transform(page, TemplateInfoVO.class);
+		Page<TemplateInfoVO> page1 =  PageUtil.transform(page, TemplateInfoVO.class);
+		if(page1 != null && CollectionUtils.isNotEmpty(page1.getList())){
+			page1.getList().forEach(m->m.setShowPrice(Money.convertCentToYuan(m.getPrice())));
+		}
+        return page1;
 	}
 
 	public int save(TemplateInfoQO qo) {
 	    TemplateInfo record = new TemplateInfo();
         BeanUtils.copyProperties(qo, record);
+        record.setPrice(Money.convertYuanToCent(qo.getPrice()));
 		return dao.save(record);
 	}
 

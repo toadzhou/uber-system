@@ -6,8 +6,8 @@
     <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="width" property="width" jdbcType="INTEGER" />
     <result column="height" property="height" jdbcType="INTEGER" />
-    <result column="price" property="price" jdbcType="INTEGER" />
-    <result column="unit" property="unit" jdbcType="VARCHAR" />
+    <result column="price" property="price" jdbcType="BIGINT" />
+    <result column="unit" property="unit" jdbcType="INTEGER" />
     <result column="remark" property="remark" jdbcType="VARCHAR" />
     <result column="status" property="status" jdbcType="INTEGER" />
     <result column="create_person" property="createPerson" jdbcType="VARCHAR" />
@@ -117,7 +117,7 @@
       create_time, update_person, update_time
       )
     values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{width,jdbcType=INTEGER}, 
-      #{height,jdbcType=INTEGER}, #{price,jdbcType=INTEGER}, #{unit,jdbcType=VARCHAR}, 
+      #{height,jdbcType=INTEGER}, #{price,jdbcType=BIGINT}, #{unit,jdbcType=INTEGER}, 
       #{remark,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{createPerson,jdbcType=VARCHAR}, 
       #{createTime,jdbcType=TIMESTAMP}, #{updatePerson,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}
       )
@@ -176,10 +176,10 @@
         #{height,jdbcType=INTEGER},
       </if>
       <if test="price != null" >
-        #{price,jdbcType=INTEGER},
+        #{price,jdbcType=BIGINT},
       </if>
       <if test="unit != null" >
-        #{unit,jdbcType=VARCHAR},
+        #{unit,jdbcType=INTEGER},
       </if>
       <if test="remark != null" >
         #{remark,jdbcType=VARCHAR},
@@ -223,10 +223,10 @@
         height = #{record.height,jdbcType=INTEGER},
       </if>
       <if test="record.price != null" >
-        price = #{record.price,jdbcType=INTEGER},
+        price = #{record.price,jdbcType=BIGINT},
       </if>
       <if test="record.unit != null" >
-        unit = #{record.unit,jdbcType=VARCHAR},
+        unit = #{record.unit,jdbcType=INTEGER},
       </if>
       <if test="record.remark != null" >
         remark = #{record.remark,jdbcType=VARCHAR},
@@ -257,8 +257,8 @@
       name = #{record.name,jdbcType=VARCHAR},
       width = #{record.width,jdbcType=INTEGER},
       height = #{record.height,jdbcType=INTEGER},
-      price = #{record.price,jdbcType=INTEGER},
-      unit = #{record.unit,jdbcType=VARCHAR},
+      price = #{record.price,jdbcType=BIGINT},
+      unit = #{record.unit,jdbcType=INTEGER},
       remark = #{record.remark,jdbcType=VARCHAR},
       status = #{record.status,jdbcType=INTEGER},
       create_person = #{record.createPerson,jdbcType=VARCHAR},
@@ -282,10 +282,10 @@
         height = #{height,jdbcType=INTEGER},
       </if>
       <if test="price != null" >
-        price = #{price,jdbcType=INTEGER},
+        price = #{price,jdbcType=BIGINT},
       </if>
       <if test="unit != null" >
-        unit = #{unit,jdbcType=VARCHAR},
+        unit = #{unit,jdbcType=INTEGER},
       </if>
       <if test="remark != null" >
         remark = #{remark,jdbcType=VARCHAR},
@@ -313,8 +313,8 @@
     set name = #{name,jdbcType=VARCHAR},
       width = #{width,jdbcType=INTEGER},
       height = #{height,jdbcType=INTEGER},
-      price = #{price,jdbcType=INTEGER},
-      unit = #{unit,jdbcType=VARCHAR},
+      price = #{price,jdbcType=BIGINT},
+      unit = #{unit,jdbcType=INTEGER},
       remark = #{remark,jdbcType=VARCHAR},
       status = #{status,jdbcType=INTEGER},
       create_person = #{createPerson,jdbcType=VARCHAR},

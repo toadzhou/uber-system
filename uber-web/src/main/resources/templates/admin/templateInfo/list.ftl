@@ -12,7 +12,7 @@
 
             <br />
             <br />
-            <a href="${base}/admin/templateInfo/add" class="btn btn-default" data-toggle="dialog" data-icon="plus" data-id="sysUserInfo-add" data-options="{title:'添加', height:350}">新增图片</a>
+            <a href="${base}/admin/templateInfo/add" class="btn btn-default" data-toggle="dialog" data-icon="plus" data-id="templateInfo-add" data-options="{title:'添加', height:350}">新增图片</a>
         </div>
     </form>
 </div>
@@ -23,6 +23,7 @@
             <th width="30">序号</th>
             <th>名称</th>
             <th>状态</th>
+            <th>价格</th>
             <th>长度</th>
             <th>宽度</th>
             <th>计量单位</th>
@@ -35,12 +36,14 @@
                 <tr>
                     <td align="center">${bean_index+1}</td>
                     <td>${bean.name!}</td>
-                    <td><#list yesOrNoEnum as enumvo><#if bean.status?? && bean.status==enumvo.code>${enumvo.description}</#if></#list></td>
+                    <td><#list yesOrNoEnums as enumvo><#if bean.status?? && bean.status==enumvo.code>${enumvo.description}</#if></#list></td>
+                    <td>${bean.showPrice!}</td>
                     <td>${bean.width!}</td>
                     <td>${bean.height!}</td>
                     <td><#list unitEnums as enumvo><#if bean.unit?? && bean.unit==enumvo.code>${enumvo.description}</#if></#list></td>
                     <td>
-                        <a href="${base}/admin/templateInfo/view?id=${bean.id}" class="btn btn-green" data-toggle="dialog" data-id="sysUserInfo-edit" data-options="{title:'查看', height:400}">查看</a>
+                        <a href="${base}/admin/templateInfo/view?id=${bean.id}" class="btn btn-green" data-toggle="dialog" data-id="templateInfo-edit" data-options="{title:'查看', height:400}">查看</a>
+                        <a href="${base}/admin/templateInfo/selectPicture?templateInfoId=${bean.id}" class="btn btn-green" data-toggle="navtab" data-id="templateInfo-new" data-options="{title:'查看', height:400}">选图</a>
                     </td>
                 </tr>
             </#list>

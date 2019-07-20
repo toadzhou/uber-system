@@ -40,7 +40,7 @@ public class TemplateInfoQO implements Serializable {
     /**
      * 价格(单位: 分)
      */
-    private Integer price;
+    private double price;
     /**
      * 计量单位
      */
