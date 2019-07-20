@@ -12,7 +12,7 @@
 
             <br />
             <br />
-            <a href="${base}/admin/templateInfo/add" class="btn btn-default" data-toggle="dialog" data-icon="plus" data-id="templateInfo-add" data-options="{title:'添加', height:350}">新增图片</a>
+            <a href="${base}/admin/templateInfo/add" class="btn btn-default" data-toggle="dialog" data-icon="plus" data-id="templateInfo-add" data-options="{title:'添加', height:350}">新增模版</a>
         </div>
     </form>
 </div>

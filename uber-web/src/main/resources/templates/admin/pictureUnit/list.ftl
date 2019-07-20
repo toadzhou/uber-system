@@ -31,7 +31,7 @@
                     </div>
                     <div class="panel-footer">
                         <a href="${base}/admin/pictureUnit/view?id=${bean.id}" class="btn btn-green btn-sm" data-toggle="dialog" data-id="admin-pictureUnit" data-options="{title:'查看', height:400}">查看</a>
-                        <a href="${base}/admin/pictureUnit/delete?id=${bean.id}" class="btn btn-red" data-toggle="doajax" data-id="admin-pictureUnit" data-confirm-msg="确定要删除吗？">删除</a>
+                        <a href="${base}/admin/pictureUnit/delete?id=${bean.id}" class="btn btn-red btn-sm" data-toggle="doajax" data-id="admin-pictureUnit" data-confirm-msg="确定要删除吗？">删除</a>
                     </div>
                 </div>
             </div>
