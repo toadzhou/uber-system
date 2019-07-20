@@ -30,7 +30,7 @@
                         <img src="${bean.urlPath!}" width="230" height="250"/>
                     </div>
                     <div class="panel-footer">
-                        <a href="${base}/admin/templateInfo/set?templateInfoId=${templateInfoId!}&imageId=${bean.id!}" class="btn btn-red btn-sm" data-toggle="dialog" data-id="admin-templateInfo" data-options="{title:'选择模版关联图片', height:400}">选定</a>
+                        <a href="${base}/admin/templateInfo/set?templateInfoId=${templateInfoId!}&imageId=${bean.id!}" class="btn btn-red btn-sm" data-toggle="doajax" data-id="admin-templateInfo" data-confirm-msg="确定要选定吗？">选定</a>
                     </div>
                 </div>
             </div>
