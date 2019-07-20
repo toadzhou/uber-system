@@ -1,15 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.roncoo.recharge.common.mapper.TemplateInfoMapper" >
-  <resultMap id="BaseResultMap" type="com.roncoo.recharge.common.entity.TemplateInfo" >
+<mapper namespace="com.roncoo.recharge.common.mapper.TemplateImageMapper" >
+  <resultMap id="BaseResultMap" type="com.roncoo.recharge.common.entity.TemplateImage" >
     <id column="id" property="id" jdbcType="BIGINT" />
-    <result column="name" property="name" jdbcType="VARCHAR" />
-    <result column="width" property="width" jdbcType="INTEGER" />
-    <result column="height" property="height" jdbcType="INTEGER" />
-    <result column="price" property="price" jdbcType="INTEGER" />
-    <result column="unit" property="unit" jdbcType="VARCHAR" />
-    <result column="remark" property="remark" jdbcType="VARCHAR" />
-    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="template_id" property="templateId" jdbcType="BIGINT" />
+    <result column="image_id" property="imageId" jdbcType="BIGINT" />
     <result column="create_person" property="createPerson" jdbcType="VARCHAR" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
     <result column="update_person" property="updatePerson" jdbcType="VARCHAR" />
@@ -74,16 +69,15 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, name, width, height, price, unit, remark, status, create_person, create_time, 
-    update_person, update_time
+    id, template_id, image_id, create_person, create_time, update_person, update_time
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.roncoo.recharge.common.entity.TemplateInfoExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.roncoo.recharge.common.entity.TemplateImageExample" >
     select
     <if test="distinct" >
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from bl_template_info
+    from bl_template_image
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -97,57 +91,38 @@
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
     <include refid="Base_Column_List" />
-    from bl_template_info
+    from bl_template_image
     where id = #{id,jdbcType=BIGINT}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
-    delete from bl_template_info
+    delete from bl_template_image
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <delete id="deleteByExample" parameterType="com.roncoo.recharge.common.entity.TemplateInfoExample" >
-    delete from bl_template_info
+  <delete id="deleteByExample" parameterType="com.roncoo.recharge.common.entity.TemplateImageExample" >
+    delete from bl_template_image
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.roncoo.recharge.common.entity.TemplateInfo" >
-    insert into bl_template_info (id, name, width, 
-      height, price, unit, 
-      remark, status, create_person, 
-      create_time, update_person, update_time
-      )
-    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{width,jdbcType=INTEGER}, 
-      #{height,jdbcType=INTEGER}, #{price,jdbcType=INTEGER}, #{unit,jdbcType=VARCHAR}, 
-      #{remark,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{createPerson,jdbcType=VARCHAR}, 
-      #{createTime,jdbcType=TIMESTAMP}, #{updatePerson,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}
-      )
+  <insert id="insert" parameterType="com.roncoo.recharge.common.entity.TemplateImage" >
+    insert into bl_template_image (id, template_id, image_id, 
+      create_person, create_time, update_person, 
+      update_time)
+    values (#{id,jdbcType=BIGINT}, #{templateId,jdbcType=BIGINT}, #{imageId,jdbcType=BIGINT}, 
+      #{createPerson,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updatePerson,jdbcType=VARCHAR}, 
+      #{updateTime,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="com.roncoo.recharge.common.entity.TemplateInfo" >
-    insert into bl_template_info
+  <insert id="insertSelective" parameterType="com.roncoo.recharge.common.entity.TemplateImage" >
+    insert into bl_template_image
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
       </if>
-      <if test="name != null" >
-        name,
+      <if test="templateId != null" >
+        template_id,
       </if>
-      <if test="width != null" >
-        width,
-      </if>
-      <if test="height != null" >
-        height,
-      </if>
-      <if test="price != null" >
-        price,
-      </if>
-      <if test="unit != null" >
-        unit,
-      </if>
-      <if test="remark != null" >
-        remark,
-      </if>
-      <if test="status != null" >
-        status,
+      <if test="imageId != null" >
+        image_id,
       </if>
       <if test="createPerson != null" >
         create_person,
@@ -166,26 +141,11 @@
       <if test="id != null" >
         #{id,jdbcType=BIGINT},
       </if>
-      <if test="name != null" >
-        #{name,jdbcType=VARCHAR},
+      <if test="templateId != null" >
+        #{templateId,jdbcType=BIGINT},
       </if>
-      <if test="width != null" >
-        #{width,jdbcType=INTEGER},
-      </if>
-      <if test="height != null" >
-        #{height,jdbcType=INTEGER},
-      </if>
-      <if test="price != null" >
-        #{price,jdbcType=INTEGER},
-      </if>
-      <if test="unit != null" >
-        #{unit,jdbcType=VARCHAR},
-      </if>
-      <if test="remark != null" >
-        #{remark,jdbcType=VARCHAR},
-      </if>
-      <if test="status != null" >
-        #{status,jdbcType=INTEGER},
+      <if test="imageId != null" >
+        #{imageId,jdbcType=BIGINT},
       </if>
       <if test="createPerson != null" >
         #{createPerson,jdbcType=VARCHAR},
@@ -201,38 +161,23 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.roncoo.recharge.common.entity.TemplateInfoExample" resultType="java.lang.Integer" >
-    select count(*) from bl_template_info
+  <select id="countByExample" parameterType="com.roncoo.recharge.common.entity.TemplateImageExample" resultType="java.lang.Integer" >
+    select count(*) from bl_template_image
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map" >
-    update bl_template_info
+    update bl_template_image
     <set >
       <if test="record.id != null" >
         id = #{record.id,jdbcType=BIGINT},
       </if>
-      <if test="record.name != null" >
-        name = #{record.name,jdbcType=VARCHAR},
+      <if test="record.templateId != null" >
+        template_id = #{record.templateId,jdbcType=BIGINT},
       </if>
-      <if test="record.width != null" >
-        width = #{record.width,jdbcType=INTEGER},
-      </if>
-      <if test="record.height != null" >
-        height = #{record.height,jdbcType=INTEGER},
-      </if>
-      <if test="record.price != null" >
-        price = #{record.price,jdbcType=INTEGER},
-      </if>
-      <if test="record.unit != null" >
-        unit = #{record.unit,jdbcType=VARCHAR},
-      </if>
-      <if test="record.remark != null" >
-        remark = #{record.remark,jdbcType=VARCHAR},
-      </if>
-      <if test="record.status != null" >
-        status = #{record.status,jdbcType=INTEGER},
+      <if test="record.imageId != null" >
+        image_id = #{record.imageId,jdbcType=BIGINT},
       </if>
       <if test="record.createPerson != null" >
         create_person = #{record.createPerson,jdbcType=VARCHAR},
@@ -252,15 +197,10 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map" >
-    update bl_template_info
+    update bl_template_image
     set id = #{record.id,jdbcType=BIGINT},
-      name = #{record.name,jdbcType=VARCHAR},
-      width = #{record.width,jdbcType=INTEGER},
-      height = #{record.height,jdbcType=INTEGER},
-      price = #{record.price,jdbcType=INTEGER},
-      unit = #{record.unit,jdbcType=VARCHAR},
-      remark = #{record.remark,jdbcType=VARCHAR},
-      status = #{record.status,jdbcType=INTEGER},
+      template_id = #{record.templateId,jdbcType=BIGINT},
+      image_id = #{record.imageId,jdbcType=BIGINT},
       create_person = #{record.createPerson,jdbcType=VARCHAR},
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
       update_person = #{record.updatePerson,jdbcType=VARCHAR},
@@ -269,29 +209,14 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.roncoo.recharge.common.entity.TemplateInfo" >
-    update bl_template_info
+  <update id="updateByPrimaryKeySelective" parameterType="com.roncoo.recharge.common.entity.TemplateImage" >
+    update bl_template_image
     <set >
-      <if test="name != null" >
-        name = #{name,jdbcType=VARCHAR},
+      <if test="templateId != null" >
+        template_id = #{templateId,jdbcType=BIGINT},
       </if>
-      <if test="width != null" >
-        width = #{width,jdbcType=INTEGER},
-      </if>
-      <if test="height != null" >
-        height = #{height,jdbcType=INTEGER},
-      </if>
-      <if test="price != null" >
-        price = #{price,jdbcType=INTEGER},
-      </if>
-      <if test="unit != null" >
-        unit = #{unit,jdbcType=VARCHAR},
-      </if>
-      <if test="remark != null" >
-        remark = #{remark,jdbcType=VARCHAR},
-      </if>
-      <if test="status != null" >
-        status = #{status,jdbcType=INTEGER},
+      <if test="imageId != null" >
+        image_id = #{imageId,jdbcType=BIGINT},
       </if>
       <if test="createPerson != null" >
         create_person = #{createPerson,jdbcType=VARCHAR},
@@ -308,15 +233,10 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.roncoo.recharge.common.entity.TemplateInfo" >
-    update bl_template_info
-    set name = #{name,jdbcType=VARCHAR},
-      width = #{width,jdbcType=INTEGER},
-      height = #{height,jdbcType=INTEGER},
-      price = #{price,jdbcType=INTEGER},
-      unit = #{unit,jdbcType=VARCHAR},
-      remark = #{remark,jdbcType=VARCHAR},
-      status = #{status,jdbcType=INTEGER},
+  <update id="updateByPrimaryKey" parameterType="com.roncoo.recharge.common.entity.TemplateImage" >
+    update bl_template_image
+    set template_id = #{templateId,jdbcType=BIGINT},
+      image_id = #{imageId,jdbcType=BIGINT},
       create_person = #{createPerson,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       update_person = #{updatePerson,jdbcType=VARCHAR},

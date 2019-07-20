@@ -3,22 +3,12 @@ package com.roncoo.recharge.common.entity;
 import java.io.Serializable;
 import java.util.Date;
 
-public class TemplateInfo implements Serializable {
+public class TemplateImage implements Serializable {
     private Long id;
 
-    private String name;
+    private Long templateId;
 
-    private Integer width;
-
-    private Integer height;
-
-    private Integer price;
-
-    private String unit;
-
-    private String remark;
-
-    private Integer status;
+    private Long imageId;
 
     private String createPerson;
 
@@ -38,60 +28,20 @@ public class TemplateInfo implements Serializable {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public Long getTemplateId() {
+        return templateId;
     }
 
-    public void setName(String name) {
-        this.name = name == null ? null : name.trim();
+    public void setTemplateId(Long templateId) {
+        this.templateId = templateId;
     }
 
-    public Integer getWidth() {
-        return width;
+    public Long getImageId() {
+        return imageId;
     }
 
-    public void setWidth(Integer width) {
-        this.width = width;
-    }
-
-    public Integer getHeight() {
-        return height;
-    }
-
-    public void setHeight(Integer height) {
-        this.height = height;
-    }
-
-    public Integer getPrice() {
-        return price;
-    }
-
-    public void setPrice(Integer price) {
-        this.price = price;
-    }
-
-    public String getUnit() {
-        return unit;
-    }
-
-    public void setUnit(String unit) {
-        this.unit = unit == null ? null : unit.trim();
-    }
-
-    public String getRemark() {
-        return remark;
-    }
-
-    public void setRemark(String remark) {
-        this.remark = remark == null ? null : remark.trim();
-    }
-
-    public Integer getStatus() {
-        return status;
-    }
-
-    public void setStatus(Integer status) {
-        this.status = status;
+    public void setImageId(Long imageId) {
+        this.imageId = imageId;
     }
 
     public String getCreatePerson() {
@@ -133,13 +83,8 @@ public class TemplateInfo implements Serializable {
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
         sb.append(", id=").append(id);
-        sb.append(", name=").append(name);
-        sb.append(", width=").append(width);
-        sb.append(", height=").append(height);
-        sb.append(", price=").append(price);
-        sb.append(", unit=").append(unit);
-        sb.append(", remark=").append(remark);
-        sb.append(", status=").append(status);
+        sb.append(", templateId=").append(templateId);
+        sb.append(", imageId=").append(imageId);
         sb.append(", createPerson=").append(createPerson);
         sb.append(", createTime=").append(createTime);
         sb.append(", updatePerson=").append(updatePerson);

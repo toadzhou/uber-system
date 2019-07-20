@@ -1,33 +1,34 @@
 <#assign base=request.contextPath />
-<div class="pageContent">
-	<form action="${base}/admin/templateInfo/save" method="post" class="pageForm required-validate" onsubmit="return validateCallback(this, dialogAjaxDone);">
-        <div class="pageFormContent" layoutH="58">
-    		<p>
-                <label>所属图片 Id：</label>
-                <input type="text" name="imageId" value="" placeholder="所属图片 Id" size="20" />
-            </p>
-    		<p>
-                <label>创建人：</label>
-                <input type="text" name="createPerson" value="" placeholder="创建人" size="20" />
-            </p>
-    		<p>
-                <label>创建时间：</label>
-                <input type="text" name="createTime" value="" placeholder="创建时间" size="20" />
-            </p>
-    		<p>
-                <label>更新人：</label>
-                <input type="text" name="updatePerson" value="" placeholder="更新人" size="20" />
-            </p>
-    		<p>
-                <label>修改时间：</label>
-                <input type="text" name="updateTime" value="" placeholder="修改时间" size="20" />
-            </p>
+<div class="bjui-pageContent">
+    <form action="${base}/admin/templateInfo/save" data-toggle="validate" method="post">
+        <div class="form-group">
+            <label class="control-label x85">模版名称：</label>
+            <input type="text" name="loginName" value="" placeholder="模版名称" size="20" data-rule="required">
         </div>
-        <div class="formBar">
-            <ul>
-                <li><div class="buttonActive"><div class="buttonContent"><button type="submit">保存</button></div></div></li>
-                <li><div class="button"><div class="buttonContent"><button type="button" class="close">取消</button></div></div></li>
-            </ul>
+        <div class="form-group">
+            <label class="control-label x85">长度：</label>
+            <input type="text" name="width" value="" placeholder="长度" size="20" data-rule="required">
         </div>
-	</form>
+        <div class="form-group">
+            <label class="control-label x85">宽度：</label>
+            <input type="text" name="height" value="" placeholder="宽度" size="20" data-rule="required">
+        </div>
+        <div class="form-group">
+            <label class="control-label x85">价格：</label>
+            <input type="text" name="price" value="" placeholder="价格" size="20" data-rule="required">
+        </div>
+        <div class="form-group">
+            <label for="userType" class="control-label x85">计量单位：</label>
+            <#list unitEnums as enumvo>
+                <input type="radio" id="userType${enumvo.code}" name="unit" value="${enumvo.code}" data-toggle="icheck" data-label="${enumvo.description}" size="20">
+            </#list>
+        </div>
+
+    </form>
+</div>
+<div class="bjui-pageFooter">
+    <ul>
+        <li><button type="button" class="btn-close">取消</button></li>
+        <li><button type="submit" class="btn-default">添加</button></li>
+    </ul>
 </div>

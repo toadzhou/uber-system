@@ -38,7 +38,7 @@
                     <td><#list yesOrNoEnum as enumvo><#if bean.status?? && bean.status==enumvo.code>${enumvo.description}</#if></#list></td>
                     <td>${bean.width!}</td>
                     <td>${bean.height!}</td>
-                    <td>${bean.unit!}</td>
+                    <td><#list unitEnums as enumvo><#if bean.unit?? && bean.unit==enumvo.code>${enumvo.description}</#if></#list></td>
                     <td>
                         <a href="${base}/admin/templateInfo/view?id=${bean.id}" class="btn btn-green" data-toggle="dialog" data-id="sysUserInfo-edit" data-options="{title:'查看', height:400}">查看</a>
                     </td>

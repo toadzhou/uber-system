@@ -51,12 +51,12 @@ public class PictureUnitController extends BaseController {
 	@ResponseBody
 	@RequestMapping(value = "/save")
 	public String save(@ModelAttribute PictureUnitQO qo){
-		handleImage(qo);
 		if (service.save(qo) > 0) {
 			return success(TARGETID);
 		}
 		return error("添加失败");
 	}
+
 	public void handleImage(PictureUnitQO qo){
 		if(qo.getImageFile() != null){
 			try {

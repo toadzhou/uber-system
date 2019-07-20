@@ -1,5 +1,9 @@
 package com.roncoo.recharge.web.controller.admin;
 
+import com.roncoo.recharge.util.enums.StatusIdEnum;
+import com.roncoo.recharge.util.enums.UserTypeEnum;
+import com.roncoo.recharge.web.bean.enums.UnitEnum;
+import com.roncoo.recharge.web.bean.enums.YesOrNoEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -76,5 +80,11 @@ public class TemplateInfoController extends BaseController {
 	public void view(@RequestParam(value = "id") Long id, ModelMap modelMap){
 		modelMap.put("bean", service.getById(id));
 	}
-	
+
+
+	@ModelAttribute
+	public void enums(ModelMap modelMap) {
+		modelMap.put("unitEnums", UnitEnum.values());
+		modelMap.put("yesOrNoEnums", YesOrNoEnum.values());
+	}
 }

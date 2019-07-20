@@ -13,7 +13,7 @@
 
             <br />
             <br />
-            <a href="${base}/admin/pictureUnit/add" class="btn btn-default" data-toggle="dialog" data-icon="plus" data-id="sysUserInfo-add" data-options="{title:'添加', height:350}">新增图片</a>
+            <a href="${base}/admin/pictureUnit/add" class="btn btn-default" data-toggle="dialog" data-icon="plus" data-id="admin-pictureUnit" data-options="{title:'添加', height:350}">新增图片</a>
         </div>
     </form>
 </div>
@@ -21,19 +21,6 @@
     <div class="row" style="padding: 0 8px;">
         <#if page??>
         <#list page.list as bean>
-        <div class="col-md-3">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i>${bean.name!} </h3>
-                </div>
-                <div class="panel-body">
-                    <img src="${bean.urlPath!}" width="230" height="250"/>
-                </div>
-                <div class="panel-footer">
-                    <a href="${base}/admin/pictureUnit/view?id=${bean.id}" class="btn btn-green btn-sm" data-toggle="dialog" data-id="sysUserInfo-edit" data-options="{title:'查看', height:400}">查看</a>
-                </div>
-            </div>
-        </div>
             <div class="col-md-3">
                 <div class="panel panel-default">
                     <div class="panel-heading">
@@ -43,59 +30,8 @@
                         <img src="${bean.urlPath!}" width="230" height="250"/>
                     </div>
                     <div class="panel-footer">
-                        <a href="${base}/admin/pictureUnit/view?id=${bean.id}" class="btn btn-green btn-sm" data-toggle="dialog" data-id="sysUserInfo-edit" data-options="{title:'查看', height:400}">查看</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i>${bean.name!} </h3>
-                    </div>
-                    <div class="panel-body">
-                        <img src="${bean.urlPath!}" width="230" height="250"/>
-                    </div>
-                    <div class="panel-footer">
-                        <a href="${base}/admin/pictureUnit/view?id=${bean.id}" class="btn btn-green btn-sm" data-toggle="dialog" data-id="sysUserInfo-edit" data-options="{title:'查看', height:400}">查看</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i>${bean.name!} </h3>
-                    </div>
-                    <div class="panel-body">
-                        <img src="${bean.urlPath!}" width="230" height="250"/>
-                    </div>
-                    <div class="panel-footer">
-                        <a href="${base}/admin/pictureUnit/view?id=${bean.id}" class="btn btn-green btn-sm" data-toggle="dialog" data-id="sysUserInfo-edit" data-options="{title:'查看', height:400}">查看</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i>${bean.name!} </h3>
-                    </div>
-                    <div class="panel-body">
-                        <img src="${bean.urlPath!}" width="230" height="250"/>
-                    </div>
-                    <div class="panel-footer">
-                        <a href="${base}/admin/pictureUnit/view?id=${bean.id}" class="btn btn-green btn-sm" data-toggle="dialog" data-id="sysUserInfo-edit" data-options="{title:'查看', height:400}">查看</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i>${bean.name!} </h3>
-                    </div>
-                    <div class="panel-body">
-                        <img src="${bean.urlPath!}" width="230" height="250"/>
-                    </div>
-                    <div class="panel-footer">
-                        <a href="${base}/admin/pictureUnit/view?id=${bean.id}" class="btn btn-green btn-sm" data-toggle="dialog" data-id="sysUserInfo-edit" data-options="{title:'查看', height:400}">查看</a>
+                        <a href="${base}/admin/pictureUnit/view?id=${bean.id}" class="btn btn-green btn-sm" data-toggle="dialog" data-id="admin-pictureUnit" data-options="{title:'查看', height:400}">查看</a>
+                        <a href="${base}/admin/pictureUnit/delete?id=${bean.id}" class="btn btn-red" data-toggle="doajax" data-id="admin-pictureUnit" data-confirm-msg="确定要删除吗？">删除</a>
                     </div>
                 </div>
             </div>
