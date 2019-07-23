@@ -15,16 +15,16 @@ import java.util.List;
 public class Test {
 
     public static void main(String[] args) {
-        ExcelReader reader1 = ExcelUtil.getReader("a.xlsx");
+        ExcelReader reader1 = ExcelUtil.getReader("/Users/mark1xie/workspace/uber-system/uber-web/src/test/resources/a.xlsx");
 
 
-        reader1.addHeaderAlias("类型","adName").addHeaderAlias("广告位Id", "slotId")
+        reader1.addHeaderAlias("类型","adName")
+                .addHeaderAlias("广告位Id", "slotId")
                 .addHeaderAlias("广告位中文名称","slotName")
                 .addHeaderAlias("底价", "floorPrice");
         List<Ad> adList = reader1.readAll(Ad.class);
         reader1.close();
         System.out.println(JSON.toJSONString(adList));
-
     }
 
 
