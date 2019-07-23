@@ -1,7 +1,11 @@
 package com.roncoo.recharge;
 
 
-import cn.hutool.core.util.ReUtil;
+import cn.hutool.core.lang.Console;
+import cn.hutool.poi.excel.ExcelUtil;
+import cn.hutool.poi.excel.sax.handler.RowHandler;
+
+import java.util.List;
 
 /**
  * @author xierongli
@@ -11,9 +15,17 @@ import cn.hutool.core.util.ReUtil;
 public class Test {
 
     public static void main(String[] args) {
-        String mobile = "15399990000";
-        String regex = "^((13[0-9])|(14[5,7])|(15[0-3,5-9])|(17[0,3,5-8])|(18[0-9])|166|198|199|(147))\\d{8}$";
-        System.out.println(ReUtil.isMatch(regex, mobile));
 
+        ExcelUtil.read07BySax("/Users/mark1xie/workspace/uber-system/uber-web/src/test/resources/a.xlsx", 0, createRowHandler());
+//        ExcelUtil.readBySax("/Users/mark1xie/workspace/uber-system/uber-web/src/test/resources/a.xlsx", 0, createRowHandler());
+    }
+
+    private static  RowHandler createRowHandler() {
+        return new RowHandler() {
+            @Override
+            public void handle(int sheetIndex, int rowIndex, List<Object> rowlist) {
+                Console.log("[{}] [{}] {}", sheetIndex, rowIndex, rowlist);
+            }
+        };
     }
 }
