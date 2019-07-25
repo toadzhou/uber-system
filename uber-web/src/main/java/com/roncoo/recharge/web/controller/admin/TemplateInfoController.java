@@ -1,11 +1,14 @@
 package com.roncoo.recharge.web.controller.admin;
 
+import com.roncoo.recharge.common.entity.TemplateImage;
+import com.roncoo.recharge.common.entity.TemplateInfo;
 import com.roncoo.recharge.web.bean.enums.UnitEnum;
 import com.roncoo.recharge.web.bean.enums.YesOrNoEnum;
 import com.roncoo.recharge.web.bean.qo.PictureUnitQO;
 import com.roncoo.recharge.web.bean.qo.TemplateImageQO;
 import com.roncoo.recharge.web.service.PictureUnitService;
 import com.roncoo.recharge.web.service.TemplateImageService;
+import org.apache.commons.collections.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -17,6 +20,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.roncoo.recharge.web.service.TemplateInfoService;
 import com.roncoo.recharge.web.bean.qo.TemplateInfoQO;
 import com.roncoo.recharge.util.base.BaseController;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * 模板信息  
@@ -92,6 +98,10 @@ public class TemplateInfoController extends BaseController {
 
 	@RequestMapping(value = "/selectPicture")
 	public void list(@RequestParam("templateInfoId") Long templateInfoId, @RequestParam(value = "pageCurrent", defaultValue = "1") int pageCurrent, @RequestParam(value = "pageSize", defaultValue = "20") int pageSize, @ModelAttribute PictureUnitQO qo, ModelMap modelMap){
+		List<TemplateImage> templateImageList =  templateImageService.queryForList(TemplateImageQO.builder().templateId(templateInfoId).build());
+		if(CollectionUtils.isNotEmpty(templateImageList)){
+			qo.setNotExcludeIds(templateImageList.stream().map(m->m.getImageId()).collect(Collectors.toList()));
+		}
 		modelMap.put("page", pictureUnitService.listForPage(pageCurrent, pageSize, qo));
 		modelMap.put("pageCurrent", pageCurrent);
 		modelMap.put("pageSize", pageSize);

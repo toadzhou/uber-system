@@ -1,6 +1,7 @@
 package com.roncoo.recharge.web.service;
 
 import com.roncoo.recharge.web.bean.enums.YesOrNoEnum;
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +33,9 @@ public class PictureUnitService {
 	    Criteria c = example.createCriteria();
 	    if(StringUtils.isNotBlank(qo.getName())){
 	    	c.andNameLike(PageUtil.like(qo.getName()));
+		}
+	    if(CollectionUtils.isNotEmpty(qo.getNotExcludeIds())){
+	    	c.andIdNotIn(qo.getNotExcludeIds());
 		}
 	    example.setOrderByClause(" id desc ");
         Page<PictureUnit> page = dao.listForPage(pageCurrent, pageSize, example);

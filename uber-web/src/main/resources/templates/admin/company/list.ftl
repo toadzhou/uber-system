@@ -35,7 +35,7 @@
                 <tr>
                     <td align="center">${bean_index+1}</td>
                     <td>${bean.name!}</td>
-                    <td>${bean.phone}</td>
+                    <td>${bean.phone!}</td>
                     <td><#list yesOrNoEnum as enumvo><#if bean.status?? && bean.status==enumvo.code>${enumvo.description}</#if></#list></td>
                     <td>${bean.ownerName!}</td>
                     <td>${bean.address!}</td>

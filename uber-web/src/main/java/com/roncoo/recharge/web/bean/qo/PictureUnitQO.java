@@ -3,6 +3,8 @@ package com.roncoo.recharge.web.bean.qo;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
+
 import lombok.Data;
 import lombok.experimental.Accessors;
 import org.springframework.web.multipart.MultipartFile;
@@ -62,4 +64,8 @@ public class PictureUnitQO implements Serializable {
      * 图片文件
      */
     private MultipartFile imageFile;
+    /**
+     * 排除
+     */
+    List<Long> notExcludeIds;
 }

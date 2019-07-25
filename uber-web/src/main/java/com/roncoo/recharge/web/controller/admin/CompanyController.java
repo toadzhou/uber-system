@@ -1,5 +1,6 @@
 package com.roncoo.recharge.web.controller.admin;
 
+import com.roncoo.recharge.web.bean.enums.YesOrNoEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -75,6 +76,11 @@ public class CompanyController extends BaseController {
 	@RequestMapping(value = "/view")
 	public void view(@RequestParam(value = "id") Long id, ModelMap modelMap){
 		modelMap.put("bean", service.getById(id));
+	}
+
+	@ModelAttribute
+	public void enums(ModelMap modelMap) {
+		modelMap.put("yesOrNoEnum", YesOrNoEnum.values());
 	}
 	
 }
