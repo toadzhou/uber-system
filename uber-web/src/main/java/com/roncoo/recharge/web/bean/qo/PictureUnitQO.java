@@ -5,7 +5,10 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -19,6 +22,9 @@ import org.springframework.web.multipart.MultipartFile;
  */
 @Data
 @Accessors(chain = true)
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class PictureUnitQO implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -68,4 +74,8 @@ public class PictureUnitQO implements Serializable {
      * 排除
      */
     List<Long> notExcludeIds;
+    /**
+     * 图片主键Ids
+     */
+    List<Long> ids;
 }

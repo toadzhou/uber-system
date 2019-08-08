@@ -68,7 +68,7 @@ public class TemplateImageService {
 		Criteria c = example.createCriteria();
 
 		if(qo.getTemplateId() != null){
-			c.andTemplateIdEqualTo(qo.getId());
+			c.andTemplateIdEqualTo(qo.getTemplateId());
 		}
 		return example;
 	}

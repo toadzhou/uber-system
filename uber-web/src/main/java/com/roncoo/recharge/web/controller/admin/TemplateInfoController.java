@@ -1,7 +1,7 @@
 package com.roncoo.recharge.web.controller.admin;
 
+import com.roncoo.recharge.common.entity.PictureUnit;
 import com.roncoo.recharge.common.entity.TemplateImage;
-import com.roncoo.recharge.common.entity.TemplateInfo;
 import com.roncoo.recharge.web.bean.enums.UnitEnum;
 import com.roncoo.recharge.web.bean.enums.YesOrNoEnum;
 import com.roncoo.recharge.web.bean.qo.PictureUnitQO;
@@ -92,6 +92,11 @@ public class TemplateInfoController extends BaseController {
 	
 	@RequestMapping(value = "/view")
 	public void view(@RequestParam(value = "id") Long id, ModelMap modelMap){
+		List<TemplateImage> templateImageList = templateImageService.queryForList(TemplateImageQO.builder().templateId(id).build());
+		if(CollectionUtils.isNotEmpty(templateImageList)){
+			List<Long> imageIds = templateImageList.stream().map(m->m.getImageId()).collect(Collectors.toList());
+			List<PictureUnit> pictureUnitList = pictureUnitService.queryForList(PictureUnitQO.builder().ids(imageIds).build());
+		}
 		modelMap.put("bean", service.getById(id));
 	}
 

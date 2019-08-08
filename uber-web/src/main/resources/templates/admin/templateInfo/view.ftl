@@ -20,16 +20,17 @@
     <br/>
     <br/>
     <div class="form-group">
-        <div class="col-lg-12">
+        <div class="col-lg-6">
+            <label class="control-label">状态：</label><#list yesOrNoEnums as enumvo><#if bean.status?? && bean.status==enumvo.code>${enumvo.description}</#if></#list>
+        </div>
+        <div class="col-lg-6">
             <label class="control-label">价格：</label>${bean.price!}
         </div>
     </div>
     <br/>
     <br/>
     <div class="form-group">
-        <div class="col-lg-6">
-            <label class="control-label">状态：</label><#list yesOrNoEnums as enumvo><#if bean.status?? && bean.status==enumvo.code>${enumvo.description}</#if></#list>
-        </div>
+
     </div>
 
 </div>
