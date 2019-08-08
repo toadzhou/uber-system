@@ -27,7 +27,7 @@
                         <h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i>${bean.name!} </h3>
                     </div>
                     <div class="panel-body">
-                        <img src="${bean.urlPath!}" width="120" height="130"/>
+                        <img src="${bean.urlPath!}" width="95%" height="130"/>
                     </div>
                     <div class="panel-footer">
                         <a href="${base}/admin/templateInfo/set?templateInfoId=${templateInfoId!}&imageId=${bean.id!}" class="btn btn-red btn-sm" data-toggle="doajax" data-id="admin-templateInfo" data-confirm-msg="确定要选定吗？">选定</a>
