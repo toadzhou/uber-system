@@ -7,8 +7,28 @@
                 <input type="text" name="companyId" value="" placeholder="所属公司ID" size="20" />
             </p>
     		<p>
-                <label>截至日期：</label>
-                <input type="text" name="deadLine" value="" placeholder="截至日期" size="20" />
+                <label>开始日期：</label>
+                <input type="text" name="startDate" value="" placeholder="开始日期" size="20" />
+            </p>
+    		<p>
+                <label>结束日期：</label>
+                <input type="text" name="endDate" value="" placeholder="结束日期" size="20" />
+            </p>
+    		<p>
+                <label>对接人姓名：</label>
+                <input type="text" name="masterName" value="" placeholder="对接人姓名" size="20" />
+            </p>
+    		<p>
+                <label>对接人电话：</label>
+                <input type="text" name="masterPhone" value="" placeholder="对接人电话" size="20" />
+            </p>
+    		<p>
+                <label>房间数：</label>
+                <input type="text" name="roomNumber" value="" placeholder="房间数" size="20" />
+            </p>
+    		<p>
+                <label>公区数：</label>
+                <input type="text" name="publicNumber" value="" placeholder="公区数" size="20" />
             </p>
     		<p>
                 <label>创建人：</label>

@@ -1,6 +1,7 @@
 package com.roncoo.recharge.common.entity;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 
 public class ProjectInfo implements Serializable {
@@ -12,7 +13,7 @@ public class ProjectInfo implements Serializable {
 
     private Integer status;
 
-    private Integer budget;
+    private BigDecimal budget;
 
     private Integer cycle;
 
@@ -72,11 +73,11 @@ public class ProjectInfo implements Serializable {
         this.status = status;
     }
 
-    public Integer getBudget() {
+    public BigDecimal getBudget() {
         return budget;
     }
 
-    public void setBudget(Integer budget) {
+    public void setBudget(BigDecimal budget) {
         this.budget = budget;
     }
 

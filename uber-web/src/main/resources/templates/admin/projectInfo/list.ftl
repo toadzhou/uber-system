@@ -36,7 +36,12 @@
                 <tr>
                     <th width="30">序号</th>
                     <th>所属公司ID</th>
-                    <th>截至日期</th>
+                    <th>开始日期</th>
+                    <th>结束日期</th>
+                    <th>对接人姓名</th>
+                    <th>对接人电话</th>
+                    <th>房间数</th>
+                    <th>公区数</th>
                     <th>创建人</th>
                     <th>创建时间</th>
                     <th>更新人</th>
@@ -50,7 +55,12 @@
                 <tr>
                     <td align="center">${bean_index+1}</td>
                     <td>${bean.companyId}</td>
-                    <td>${bean.deadLine}</td>
+                    <td>${bean.startDate}</td>
+                    <td>${bean.endDate}</td>
+                    <td>${bean.masterName}</td>
+                    <td>${bean.masterPhone}</td>
+                    <td>${bean.roomNumber}</td>
+                    <td>${bean.publicNumber}</td>
                     <td>${bean.createPerson}</td>
                     <td>${bean.createTime}</td>
                     <td>${bean.updatePerson}</td>

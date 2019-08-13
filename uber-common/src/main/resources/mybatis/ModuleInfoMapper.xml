@@ -7,8 +7,9 @@
     <result column="status" property="status" jdbcType="INTEGER" />
     <result column="number" property="number" jdbcType="INTEGER" />
     <result column="unit" property="unit" jdbcType="INTEGER" />
-    <result column="price" property="price" jdbcType="INTEGER" />
+    <result column="price" property="price" jdbcType="DECIMAL" />
     <result column="brand" property="brand" jdbcType="VARCHAR" />
+    <result column="color" property="color" jdbcType="VARCHAR" />
     <result column="width" property="width" jdbcType="INTEGER" />
     <result column="height" property="height" jdbcType="INTEGER" />
     <result column="weight" property="weight" jdbcType="INTEGER" />
@@ -17,9 +18,6 @@
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
     <result column="update_person" property="updatePerson" jdbcType="VARCHAR" />
     <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
-  </resultMap>
-  <resultMap id="ResultMapWithBLOBs" type="com.roncoo.recharge.common.entity.ModuleInfo" extends="BaseResultMap" >
-    <result column="color" property="color" jdbcType="VARBINARY" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -80,28 +78,9 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, name, status, number, unit, price, brand, width, height, weight, remark, create_person, 
-    create_time, update_person, update_time
+    id, name, status, number, unit, price, brand, color, width, height, weight, remark, 
+    create_person, create_time, update_person, update_time
   </sql>
-  <sql id="Blob_Column_List" >
-    color
-  </sql>
-  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.roncoo.recharge.common.entity.ModuleInfoExample" >
-    select
-    <if test="distinct" >
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
-    from bl_module_info
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null" >
-      order by ${orderByClause}
-    </if>
-  </select>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.roncoo.recharge.common.entity.ModuleInfoExample" >
     select
     <if test="distinct" >
@@ -119,11 +98,9 @@
       limit ${limitStart} , ${pageSize}
     </if>
   </select>
-  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
     <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
     from bl_module_info
     where id = #{id,jdbcType=BIGINT}
   </select>
@@ -140,16 +117,16 @@
   <insert id="insert" parameterType="com.roncoo.recharge.common.entity.ModuleInfo" >
     insert into bl_module_info (id, name, status, 
       number, unit, price, 
-      brand, width, height, 
-      weight, remark, create_person, 
-      create_time, update_person, update_time, 
-      color)
+      brand, color, width, 
+      height, weight, remark, 
+      create_person, create_time, update_person, 
+      update_time)
     values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
-      #{number,jdbcType=INTEGER}, #{unit,jdbcType=INTEGER}, #{price,jdbcType=INTEGER}, 
-      #{brand,jdbcType=VARCHAR}, #{width,jdbcType=INTEGER}, #{height,jdbcType=INTEGER}, 
-      #{weight,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, #{createPerson,jdbcType=VARCHAR}, 
-      #{createTime,jdbcType=TIMESTAMP}, #{updatePerson,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, 
-      #{color,jdbcType=VARBINARY})
+      #{number,jdbcType=INTEGER}, #{unit,jdbcType=INTEGER}, #{price,jdbcType=DECIMAL}, 
+      #{brand,jdbcType=VARCHAR}, #{color,jdbcType=VARCHAR}, #{width,jdbcType=INTEGER}, 
+      #{height,jdbcType=INTEGER}, #{weight,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, 
+      #{createPerson,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updatePerson,jdbcType=VARCHAR}, 
+      #{updateTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.roncoo.recharge.common.entity.ModuleInfo" >
     insert into bl_module_info
@@ -175,6 +152,9 @@
       <if test="brand != null" >
         brand,
       </if>
+      <if test="color != null" >
+        color,
+      </if>
       <if test="width != null" >
         width,
       </if>
@@ -199,9 +179,6 @@
       <if test="updateTime != null" >
         update_time,
       </if>
-      <if test="color != null" >
-        color,
-      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -220,10 +197,13 @@
         #{unit,jdbcType=INTEGER},
       </if>
       <if test="price != null" >
-        #{price,jdbcType=INTEGER},
+        #{price,jdbcType=DECIMAL},
       </if>
       <if test="brand != null" >
         #{brand,jdbcType=VARCHAR},
+      </if>
+      <if test="color != null" >
+        #{color,jdbcType=VARCHAR},
       </if>
       <if test="width != null" >
         #{width,jdbcType=INTEGER},
@@ -248,9 +228,6 @@
       </if>
       <if test="updateTime != null" >
         #{updateTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="color != null" >
-        #{color,jdbcType=VARBINARY},
       </if>
     </trim>
   </insert>
@@ -279,10 +256,13 @@
         unit = #{record.unit,jdbcType=INTEGER},
       </if>
       <if test="record.price != null" >
-        price = #{record.price,jdbcType=INTEGER},
+        price = #{record.price,jdbcType=DECIMAL},
       </if>
       <if test="record.brand != null" >
         brand = #{record.brand,jdbcType=VARCHAR},
+      </if>
+      <if test="record.color != null" >
+        color = #{record.color,jdbcType=VARCHAR},
       </if>
       <if test="record.width != null" >
         width = #{record.width,jdbcType=INTEGER},
@@ -308,32 +288,7 @@
       <if test="record.updateTime != null" >
         update_time = #{record.updateTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="record.color != null" >
-        color = #{record.color,jdbcType=VARBINARY},
-      </if>
     </set>
-    <if test="_parameter != null" >
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExampleWithBLOBs" parameterType="map" >
-    update bl_module_info
-    set id = #{record.id,jdbcType=BIGINT},
-      name = #{record.name,jdbcType=VARCHAR},
-      status = #{record.status,jdbcType=INTEGER},
-      number = #{record.number,jdbcType=INTEGER},
-      unit = #{record.unit,jdbcType=INTEGER},
-      price = #{record.price,jdbcType=INTEGER},
-      brand = #{record.brand,jdbcType=VARCHAR},
-      width = #{record.width,jdbcType=INTEGER},
-      height = #{record.height,jdbcType=INTEGER},
-      weight = #{record.weight,jdbcType=INTEGER},
-      remark = #{record.remark,jdbcType=VARCHAR},
-      create_person = #{record.createPerson,jdbcType=VARCHAR},
-      create_time = #{record.createTime,jdbcType=TIMESTAMP},
-      update_person = #{record.updatePerson,jdbcType=VARCHAR},
-      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
-      color = #{record.color,jdbcType=VARBINARY}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -345,8 +300,9 @@
       status = #{record.status,jdbcType=INTEGER},
       number = #{record.number,jdbcType=INTEGER},
       unit = #{record.unit,jdbcType=INTEGER},
-      price = #{record.price,jdbcType=INTEGER},
+      price = #{record.price,jdbcType=DECIMAL},
       brand = #{record.brand,jdbcType=VARCHAR},
+      color = #{record.color,jdbcType=VARCHAR},
       width = #{record.width,jdbcType=INTEGER},
       height = #{record.height,jdbcType=INTEGER},
       weight = #{record.weight,jdbcType=INTEGER},
@@ -375,10 +331,13 @@
         unit = #{unit,jdbcType=INTEGER},
       </if>
       <if test="price != null" >
-        price = #{price,jdbcType=INTEGER},
+        price = #{price,jdbcType=DECIMAL},
       </if>
       <if test="brand != null" >
         brand = #{brand,jdbcType=VARCHAR},
+      </if>
+      <if test="color != null" >
+        color = #{color,jdbcType=VARCHAR},
       </if>
       <if test="width != null" >
         width = #{width,jdbcType=INTEGER},
@@ -404,29 +363,7 @@
       <if test="updateTime != null" >
         update_time = #{updateTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="color != null" >
-        color = #{color,jdbcType=VARBINARY},
-      </if>
     </set>
-    where id = #{id,jdbcType=BIGINT}
-  </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.roncoo.recharge.common.entity.ModuleInfo" >
-    update bl_module_info
-    set name = #{name,jdbcType=VARCHAR},
-      status = #{status,jdbcType=INTEGER},
-      number = #{number,jdbcType=INTEGER},
-      unit = #{unit,jdbcType=INTEGER},
-      price = #{price,jdbcType=INTEGER},
-      brand = #{brand,jdbcType=VARCHAR},
-      width = #{width,jdbcType=INTEGER},
-      height = #{height,jdbcType=INTEGER},
-      weight = #{weight,jdbcType=INTEGER},
-      remark = #{remark,jdbcType=VARCHAR},
-      create_person = #{createPerson,jdbcType=VARCHAR},
-      create_time = #{createTime,jdbcType=TIMESTAMP},
-      update_person = #{updatePerson,jdbcType=VARCHAR},
-      update_time = #{updateTime,jdbcType=TIMESTAMP},
-      color = #{color,jdbcType=VARBINARY}
     where id = #{id,jdbcType=BIGINT}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.roncoo.recharge.common.entity.ModuleInfo" >
@@ -435,8 +372,9 @@
       status = #{status,jdbcType=INTEGER},
       number = #{number,jdbcType=INTEGER},
       unit = #{unit,jdbcType=INTEGER},
-      price = #{price,jdbcType=INTEGER},
+      price = #{price,jdbcType=DECIMAL},
       brand = #{brand,jdbcType=VARCHAR},
+      color = #{color,jdbcType=VARCHAR},
       width = #{width,jdbcType=INTEGER},
       height = #{height,jdbcType=INTEGER},
       weight = #{weight,jdbcType=INTEGER},

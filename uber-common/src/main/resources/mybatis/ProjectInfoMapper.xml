@@ -6,7 +6,7 @@
     <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="company_id" property="companyId" jdbcType="BIGINT" />
     <result column="status" property="status" jdbcType="INTEGER" />
-    <result column="budget" property="budget" jdbcType="INTEGER" />
+    <result column="budget" property="budget" jdbcType="DECIMAL" />
     <result column="cycle" property="cycle" jdbcType="INTEGER" />
     <result column="start_date" property="startDate" jdbcType="DATE" />
     <result column="end_date" property="endDate" jdbcType="DATE" />
@@ -123,7 +123,7 @@
       remark, create_person, create_time, 
       update_person, update_time)
     values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{companyId,jdbcType=BIGINT}, 
-      #{status,jdbcType=INTEGER}, #{budget,jdbcType=INTEGER}, #{cycle,jdbcType=INTEGER}, 
+      #{status,jdbcType=INTEGER}, #{budget,jdbcType=DECIMAL}, #{cycle,jdbcType=INTEGER}, 
       #{startDate,jdbcType=DATE}, #{endDate,jdbcType=DATE}, #{masterName,jdbcType=VARCHAR}, 
       #{masterPhone,jdbcType=VARCHAR}, #{roomNumber,jdbcType=INTEGER}, #{publicNumber,jdbcType=INTEGER}, 
       #{remark,jdbcType=VARCHAR}, #{createPerson,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
@@ -198,7 +198,7 @@
         #{status,jdbcType=INTEGER},
       </if>
       <if test="budget != null" >
-        #{budget,jdbcType=INTEGER},
+        #{budget,jdbcType=DECIMAL},
       </if>
       <if test="cycle != null" >
         #{cycle,jdbcType=INTEGER},
@@ -260,7 +260,7 @@
         status = #{record.status,jdbcType=INTEGER},
       </if>
       <if test="record.budget != null" >
-        budget = #{record.budget,jdbcType=INTEGER},
+        budget = #{record.budget,jdbcType=DECIMAL},
       </if>
       <if test="record.cycle != null" >
         cycle = #{record.cycle,jdbcType=INTEGER},
@@ -309,7 +309,7 @@
       name = #{record.name,jdbcType=VARCHAR},
       company_id = #{record.companyId,jdbcType=BIGINT},
       status = #{record.status,jdbcType=INTEGER},
-      budget = #{record.budget,jdbcType=INTEGER},
+      budget = #{record.budget,jdbcType=DECIMAL},
       cycle = #{record.cycle,jdbcType=INTEGER},
       start_date = #{record.startDate,jdbcType=DATE},
       end_date = #{record.endDate,jdbcType=DATE},
@@ -339,7 +339,7 @@
         status = #{status,jdbcType=INTEGER},
       </if>
       <if test="budget != null" >
-        budget = #{budget,jdbcType=INTEGER},
+        budget = #{budget,jdbcType=DECIMAL},
       </if>
       <if test="cycle != null" >
         cycle = #{cycle,jdbcType=INTEGER},
@@ -385,7 +385,7 @@
     set name = #{name,jdbcType=VARCHAR},
       company_id = #{companyId,jdbcType=BIGINT},
       status = #{status,jdbcType=INTEGER},
-      budget = #{budget,jdbcType=INTEGER},
+      budget = #{budget,jdbcType=DECIMAL},
       cycle = #{cycle,jdbcType=INTEGER},
       start_date = #{startDate,jdbcType=DATE},
       end_date = #{endDate,jdbcType=DATE},

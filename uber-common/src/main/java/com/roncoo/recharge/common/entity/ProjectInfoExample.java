@@ -1,5 +1,6 @@
 package com.roncoo.recharge.common.entity;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
@@ -412,52 +413,52 @@ public class ProjectInfoExample {
             return (Criteria) this;
         }
 
-        public Criteria andBudgetEqualTo(Integer value) {
+        public Criteria andBudgetEqualTo(BigDecimal value) {
             addCriterion("budget =", value, "budget");
             return (Criteria) this;
         }
 
-        public Criteria andBudgetNotEqualTo(Integer value) {
+        public Criteria andBudgetNotEqualTo(BigDecimal value) {
             addCriterion("budget <>", value, "budget");
             return (Criteria) this;
         }
 
-        public Criteria andBudgetGreaterThan(Integer value) {
+        public Criteria andBudgetGreaterThan(BigDecimal value) {
             addCriterion("budget >", value, "budget");
             return (Criteria) this;
         }
 
-        public Criteria andBudgetGreaterThanOrEqualTo(Integer value) {
+        public Criteria andBudgetGreaterThanOrEqualTo(BigDecimal value) {
             addCriterion("budget >=", value, "budget");
             return (Criteria) this;
         }
 
-        public Criteria andBudgetLessThan(Integer value) {
+        public Criteria andBudgetLessThan(BigDecimal value) {
             addCriterion("budget <", value, "budget");
             return (Criteria) this;
         }
 
-        public Criteria andBudgetLessThanOrEqualTo(Integer value) {
+        public Criteria andBudgetLessThanOrEqualTo(BigDecimal value) {
             addCriterion("budget <=", value, "budget");
             return (Criteria) this;
         }
 
-        public Criteria andBudgetIn(List<Integer> values) {
+        public Criteria andBudgetIn(List<BigDecimal> values) {
             addCriterion("budget in", values, "budget");
             return (Criteria) this;
         }
 
-        public Criteria andBudgetNotIn(List<Integer> values) {
+        public Criteria andBudgetNotIn(List<BigDecimal> values) {
             addCriterion("budget not in", values, "budget");
             return (Criteria) this;
         }
 
-        public Criteria andBudgetBetween(Integer value1, Integer value2) {
+        public Criteria andBudgetBetween(BigDecimal value1, BigDecimal value2) {
             addCriterion("budget between", value1, value2, "budget");
             return (Criteria) this;
         }
 
-        public Criteria andBudgetNotBetween(Integer value1, Integer value2) {
+        public Criteria andBudgetNotBetween(BigDecimal value1, BigDecimal value2) {
             addCriterion("budget not between", value1, value2, "budget");
             return (Criteria) this;
         }

@@ -18,21 +18,15 @@ public interface ModuleInfoMapper {
 
     int insertSelective(ModuleInfo record);
 
-    List<ModuleInfo> selectByExampleWithBLOBs(ModuleInfoExample example);
-
     List<ModuleInfo> selectByExample(ModuleInfoExample example);
 
     ModuleInfo selectByPrimaryKey(Long id);
 
     int updateByExampleSelective(@Param("record") ModuleInfo record, @Param("example") ModuleInfoExample example);
 
-    int updateByExampleWithBLOBs(@Param("record") ModuleInfo record, @Param("example") ModuleInfoExample example);
-
     int updateByExample(@Param("record") ModuleInfo record, @Param("example") ModuleInfoExample example);
 
     int updateByPrimaryKeySelective(ModuleInfo record);
-
-    int updateByPrimaryKeyWithBLOBs(ModuleInfo record);
 
     int updateByPrimaryKey(ModuleInfo record);
 }

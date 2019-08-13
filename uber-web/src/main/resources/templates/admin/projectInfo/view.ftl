@@ -5,7 +5,22 @@
             <label>所属公司ID：</label>${bean.companyId}
         </p>
         <p>
-            <label>截至日期：</label>${bean.deadLine}
+            <label>开始日期：</label>${bean.startDate}
+        </p>
+        <p>
+            <label>结束日期：</label>${bean.endDate}
+        </p>
+        <p>
+            <label>对接人姓名：</label>${bean.masterName}
+        </p>
+        <p>
+            <label>对接人电话：</label>${bean.masterPhone}
+        </p>
+        <p>
+            <label>房间数：</label>${bean.roomNumber}
+        </p>
+        <p>
+            <label>公区数：</label>${bean.publicNumber}
         </p>
         <p>
             <label>创建人：</label>${bean.createPerson}

@@ -1,5 +1,6 @@
 package com.roncoo.recharge.common.entity;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -445,52 +446,52 @@ public class ModuleInfoExample {
             return (Criteria) this;
         }
 
-        public Criteria andPriceEqualTo(Integer value) {
+        public Criteria andPriceEqualTo(BigDecimal value) {
             addCriterion("price =", value, "price");
             return (Criteria) this;
         }
 
-        public Criteria andPriceNotEqualTo(Integer value) {
+        public Criteria andPriceNotEqualTo(BigDecimal value) {
             addCriterion("price <>", value, "price");
             return (Criteria) this;
         }
 
-        public Criteria andPriceGreaterThan(Integer value) {
+        public Criteria andPriceGreaterThan(BigDecimal value) {
             addCriterion("price >", value, "price");
             return (Criteria) this;
         }
 
-        public Criteria andPriceGreaterThanOrEqualTo(Integer value) {
+        public Criteria andPriceGreaterThanOrEqualTo(BigDecimal value) {
             addCriterion("price >=", value, "price");
             return (Criteria) this;
         }
 
-        public Criteria andPriceLessThan(Integer value) {
+        public Criteria andPriceLessThan(BigDecimal value) {
             addCriterion("price <", value, "price");
             return (Criteria) this;
         }
 
-        public Criteria andPriceLessThanOrEqualTo(Integer value) {
+        public Criteria andPriceLessThanOrEqualTo(BigDecimal value) {
             addCriterion("price <=", value, "price");
             return (Criteria) this;
         }
 
-        public Criteria andPriceIn(List<Integer> values) {
+        public Criteria andPriceIn(List<BigDecimal> values) {
             addCriterion("price in", values, "price");
             return (Criteria) this;
         }
 
-        public Criteria andPriceNotIn(List<Integer> values) {
+        public Criteria andPriceNotIn(List<BigDecimal> values) {
             addCriterion("price not in", values, "price");
             return (Criteria) this;
         }
 
-        public Criteria andPriceBetween(Integer value1, Integer value2) {
+        public Criteria andPriceBetween(BigDecimal value1, BigDecimal value2) {
             addCriterion("price between", value1, value2, "price");
             return (Criteria) this;
         }
 
-        public Criteria andPriceNotBetween(Integer value1, Integer value2) {
+        public Criteria andPriceNotBetween(BigDecimal value1, BigDecimal value2) {
             addCriterion("price not between", value1, value2, "price");
             return (Criteria) this;
         }
@@ -562,6 +563,76 @@ public class ModuleInfoExample {
 
         public Criteria andBrandNotBetween(String value1, String value2) {
             addCriterion("brand not between", value1, value2, "brand");
+            return (Criteria) this;
+        }
+
+        public Criteria andColorIsNull() {
+            addCriterion("color is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andColorIsNotNull() {
+            addCriterion("color is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andColorEqualTo(String value) {
+            addCriterion("color =", value, "color");
+            return (Criteria) this;
+        }
+
+        public Criteria andColorNotEqualTo(String value) {
+            addCriterion("color <>", value, "color");
+            return (Criteria) this;
+        }
+
+        public Criteria andColorGreaterThan(String value) {
+            addCriterion("color >", value, "color");
+            return (Criteria) this;
+        }
+
+        public Criteria andColorGreaterThanOrEqualTo(String value) {
+            addCriterion("color >=", value, "color");
+            return (Criteria) this;
+        }
+
+        public Criteria andColorLessThan(String value) {
+            addCriterion("color <", value, "color");
+            return (Criteria) this;
+        }
+
+        public Criteria andColorLessThanOrEqualTo(String value) {
+            addCriterion("color <=", value, "color");
+            return (Criteria) this;
+        }
+
+        public Criteria andColorLike(String value) {
+            addCriterion("color like", value, "color");
+            return (Criteria) this;
+        }
+
+        public Criteria andColorNotLike(String value) {
+            addCriterion("color not like", value, "color");
+            return (Criteria) this;
+        }
+
+        public Criteria andColorIn(List<String> values) {
+            addCriterion("color in", values, "color");
+            return (Criteria) this;
+        }
+
+        public Criteria andColorNotIn(List<String> values) {
+            addCriterion("color not in", values, "color");
+            return (Criteria) this;
+        }
+
+        public Criteria andColorBetween(String value1, String value2) {
+            addCriterion("color between", value1, value2, "color");
+            return (Criteria) this;
+        }
+
+        public Criteria andColorNotBetween(String value1, String value2) {
+            addCriterion("color not between", value1, value2, "color");
             return (Criteria) this;
         }
 

@@ -11,7 +11,7 @@
     <result column="weight" property="weight" jdbcType="INTEGER" />
     <result column="color" property="color" jdbcType="VARCHAR" />
     <result column="brand" property="brand" jdbcType="VARCHAR" />
-    <result column="price" property="price" jdbcType="INTEGER" />
+    <result column="price" property="price" jdbcType="DECIMAL" />
     <result column="create_person" property="createPerson" jdbcType="VARCHAR" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
     <result column="update_person" property="updatePerson" jdbcType="VARCHAR" />
@@ -121,7 +121,7 @@
     values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
       #{unit,jdbcType=INTEGER}, #{width,jdbcType=INTEGER}, #{height,jdbcType=INTEGER}, 
       #{weight,jdbcType=INTEGER}, #{color,jdbcType=VARCHAR}, #{brand,jdbcType=VARCHAR}, 
-      #{price,jdbcType=INTEGER}, #{createPerson,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{price,jdbcType=DECIMAL}, #{createPerson,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
       #{updatePerson,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.roncoo.recharge.common.entity.PluginInfo" >
@@ -199,7 +199,7 @@
         #{brand,jdbcType=VARCHAR},
       </if>
       <if test="price != null" >
-        #{price,jdbcType=INTEGER},
+        #{price,jdbcType=DECIMAL},
       </if>
       <if test="createPerson != null" >
         #{createPerson,jdbcType=VARCHAR},
@@ -252,7 +252,7 @@
         brand = #{record.brand,jdbcType=VARCHAR},
       </if>
       <if test="record.price != null" >
-        price = #{record.price,jdbcType=INTEGER},
+        price = #{record.price,jdbcType=DECIMAL},
       </if>
       <if test="record.createPerson != null" >
         create_person = #{record.createPerson,jdbcType=VARCHAR},
@@ -282,7 +282,7 @@
       weight = #{record.weight,jdbcType=INTEGER},
       color = #{record.color,jdbcType=VARCHAR},
       brand = #{record.brand,jdbcType=VARCHAR},
-      price = #{record.price,jdbcType=INTEGER},
+      price = #{record.price,jdbcType=DECIMAL},
       create_person = #{record.createPerson,jdbcType=VARCHAR},
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
       update_person = #{record.updatePerson,jdbcType=VARCHAR},
@@ -319,7 +319,7 @@
         brand = #{brand,jdbcType=VARCHAR},
       </if>
       <if test="price != null" >
-        price = #{price,jdbcType=INTEGER},
+        price = #{price,jdbcType=DECIMAL},
       </if>
       <if test="createPerson != null" >
         create_person = #{createPerson,jdbcType=VARCHAR},
@@ -346,7 +346,7 @@
       weight = #{weight,jdbcType=INTEGER},
       color = #{color,jdbcType=VARCHAR},
       brand = #{brand,jdbcType=VARCHAR},
-      price = #{price,jdbcType=INTEGER},
+      price = #{price,jdbcType=DECIMAL},
       create_person = #{createPerson,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       update_person = #{updatePerson,jdbcType=VARCHAR},

@@ -1,6 +1,7 @@
 package com.roncoo.recharge.common.entity;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 
 public class PluginInfo implements Serializable {
@@ -22,7 +23,7 @@ public class PluginInfo implements Serializable {
 
     private String brand;
 
-    private Integer price;
+    private BigDecimal price;
 
     private String createPerson;
 
@@ -106,11 +107,11 @@ public class PluginInfo implements Serializable {
         this.brand = brand == null ? null : brand.trim();
     }
 
-    public Integer getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(Integer price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 

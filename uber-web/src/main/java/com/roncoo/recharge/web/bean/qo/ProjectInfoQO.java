@@ -12,7 +12,7 @@ import lombok.experimental.Accessors;
  * </p>
  *
  * @author mark
- * @since 2019-07-14
+ * @since 2019-08-13
  */
 @Data
 @Accessors(chain = true)
@@ -36,11 +36,35 @@ public class ProjectInfoQO implements Serializable {
     /**
      * 甲方预算(单位: 分)
      */
-    private Integer budget;
+    private BigDecimal budget;
     /**
-     * 截至日期
+     * 项目周期(单位:天)
      */
-    private Date deadLine;
+    private Integer cycle;
+    /**
+     * 开始日期
+     */
+    private Date startDate;
+    /**
+     * 结束日期
+     */
+    private Date endDate;
+    /**
+     * 对接人姓名
+     */
+    private String masterName;
+    /**
+     * 对接人电话
+     */
+    private String masterPhone;
+    /**
+     * 房间数
+     */
+    private Integer roomNumber;
+    /**
+     * 公区数
+     */
+    private Integer publicNumber;
     /**
      * 备注
      */

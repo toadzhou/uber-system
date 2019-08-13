@@ -54,9 +54,9 @@ public class PluginInfoVO implements Serializable {
      */
     private String brand;
     /**
-     * 价格
+     * 价格(元)
      */
-    private Integer price;
+    private BigDecimal price;
     /**
      * 创建人
      */

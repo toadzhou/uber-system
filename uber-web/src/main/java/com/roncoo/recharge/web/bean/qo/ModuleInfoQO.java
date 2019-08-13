@@ -38,9 +38,9 @@ public class ModuleInfoQO implements Serializable {
      */
     private Integer unit;
     /**
-     * 价格(单位:分)
+     * 价格(单位:元)
      */
-    private Integer price;
+    private BigDecimal price;
     /**
      * 品牌
      */
@@ -48,7 +48,7 @@ public class ModuleInfoQO implements Serializable {
     /**
      * 颜色
      */
-    private byte[] color;
+    private String color;
     /**
      * 长度
      */

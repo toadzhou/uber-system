@@ -1,6 +1,7 @@
 package com.roncoo.recharge.common.entity;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 
 public class ModuleInfo implements Serializable {
@@ -14,9 +15,11 @@ public class ModuleInfo implements Serializable {
 
     private Integer unit;
 
-    private Integer price;
+    private BigDecimal price;
 
     private String brand;
+
+    private String color;
 
     private Integer width;
 
@@ -33,8 +36,6 @@ public class ModuleInfo implements Serializable {
     private String updatePerson;
 
     private Date updateTime;
-
-    private byte[] color;
 
     private static final long serialVersionUID = 1L;
 
@@ -78,11 +79,11 @@ public class ModuleInfo implements Serializable {
         this.unit = unit;
     }
 
-    public Integer getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(Integer price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 
@@ -92,6 +93,14 @@ public class ModuleInfo implements Serializable {
 
     public void setBrand(String brand) {
         this.brand = brand == null ? null : brand.trim();
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color == null ? null : color.trim();
     }
 
     public Integer getWidth() {
@@ -158,14 +167,6 @@ public class ModuleInfo implements Serializable {
         this.updateTime = updateTime;
     }
 
-    public byte[] getColor() {
-        return color;
-    }
-
-    public void setColor(byte[] color) {
-        this.color = color;
-    }
-
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -179,6 +180,7 @@ public class ModuleInfo implements Serializable {
         sb.append(", unit=").append(unit);
         sb.append(", price=").append(price);
         sb.append(", brand=").append(brand);
+        sb.append(", color=").append(color);
         sb.append(", width=").append(width);
         sb.append(", height=").append(height);
         sb.append(", weight=").append(weight);
@@ -187,7 +189,6 @@ public class ModuleInfo implements Serializable {
         sb.append(", createTime=").append(createTime);
         sb.append(", updatePerson=").append(updatePerson);
         sb.append(", updateTime=").append(updateTime);
-        sb.append(", color=").append(color);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();
