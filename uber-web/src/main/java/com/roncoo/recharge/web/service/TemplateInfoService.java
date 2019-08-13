@@ -1,6 +1,5 @@
 package com.roncoo.recharge.web.service;
 
-import com.roncoo.recharge.util.Money;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.BeanUtils;
@@ -37,9 +36,6 @@ public class TemplateInfoService {
 		}
         Page<TemplateInfo> page = dao.listForPage(pageCurrent, pageSize, example);
 		Page<TemplateInfoVO> page1 =  PageUtil.transform(page, TemplateInfoVO.class);
-		if(page1 != null && CollectionUtils.isNotEmpty(page1.getList())){
-//			page1.getList().forEach(m->m.setShowPrice(Money.convertCentToYuan(m.getPrice())));
-		}
         return page1;
 	}
 
