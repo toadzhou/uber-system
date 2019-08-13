@@ -15,6 +15,7 @@ import com.roncoo.recharge.common.entity.TemplateInfo;
 import com.roncoo.recharge.common.entity.TemplateInfoExample;
 import com.roncoo.recharge.common.entity.TemplateInfoExample.Criteria;
 
+
 /**
  * 模板信息  
  *
