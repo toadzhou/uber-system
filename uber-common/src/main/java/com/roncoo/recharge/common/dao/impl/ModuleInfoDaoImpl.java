@@ -36,7 +36,7 @@ public class ModuleInfoDaoImpl implements ModuleInfoDao {
     }
 
     public int updateByPrimaryKey(ModuleInfo record) {
-        return this.moduleInfoMapper.updateByPrimaryKeyWithoutBLOBs(record);
+        return this.moduleInfoMapper.updateByPrimaryKey(record);
     }
 
     public int updateByExampleSelective(ModuleInfo record, ModuleInfoExample example) {
@@ -44,11 +44,11 @@ public class ModuleInfoDaoImpl implements ModuleInfoDao {
     }
 
     public int updateByExample(ModuleInfo record, ModuleInfoExample example) {
-        return this.moduleInfoMapper.updateByExampleWithoutBLOBs(record, example);
+        return this.moduleInfoMapper.updateByExample(record, example);
     }
 
     public List<ModuleInfo> listByExample(ModuleInfoExample example) {
-        return this.moduleInfoMapper.selectByExampleWithoutBLOBs(example);
+        return this.moduleInfoMapper.selectByExample(example);
     }
 
     public ModuleInfo getById(Long id) {

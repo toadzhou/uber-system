@@ -43,7 +43,6 @@ public class TemplateInfoService {
 	public int save(TemplateInfoQO qo) {
 	    TemplateInfo record = new TemplateInfo();
         BeanUtils.copyProperties(qo, record);
-        record.setPrice(Money.convertYuanToCent(qo.getPrice()));
 		return dao.save(record);
 	}
 
