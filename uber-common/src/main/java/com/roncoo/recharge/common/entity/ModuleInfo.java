@@ -3,14 +3,26 @@ package com.roncoo.recharge.common.entity;
 import java.io.Serializable;
 import java.util.Date;
 
-public class TemplateInfo implements Serializable {
+public class ModuleInfo implements Serializable {
     private Long id;
 
     private String name;
 
     private Integer status;
 
-    private Long imageId;
+    private Integer number;
+
+    private Integer unit;
+
+    private Integer price;
+
+    private String brand;
+
+    private Integer width;
+
+    private Integer height;
+
+    private Integer weight;
 
     private String remark;
 
@@ -21,6 +33,8 @@ public class TemplateInfo implements Serializable {
     private String updatePerson;
 
     private Date updateTime;
+
+    private byte[] color;
 
     private static final long serialVersionUID = 1L;
 
@@ -48,12 +62,60 @@ public class TemplateInfo implements Serializable {
         this.status = status;
     }
 
-    public Long getImageId() {
-        return imageId;
+    public Integer getNumber() {
+        return number;
     }
 
-    public void setImageId(Long imageId) {
-        this.imageId = imageId;
+    public void setNumber(Integer number) {
+        this.number = number;
+    }
+
+    public Integer getUnit() {
+        return unit;
+    }
+
+    public void setUnit(Integer unit) {
+        this.unit = unit;
+    }
+
+    public Integer getPrice() {
+        return price;
+    }
+
+    public void setPrice(Integer price) {
+        this.price = price;
+    }
+
+    public String getBrand() {
+        return brand;
+    }
+
+    public void setBrand(String brand) {
+        this.brand = brand == null ? null : brand.trim();
+    }
+
+    public Integer getWidth() {
+        return width;
+    }
+
+    public void setWidth(Integer width) {
+        this.width = width;
+    }
+
+    public Integer getHeight() {
+        return height;
+    }
+
+    public void setHeight(Integer height) {
+        this.height = height;
+    }
+
+    public Integer getWeight() {
+        return weight;
+    }
+
+    public void setWeight(Integer weight) {
+        this.weight = weight;
     }
 
     public String getRemark() {
@@ -96,6 +158,14 @@ public class TemplateInfo implements Serializable {
         this.updateTime = updateTime;
     }
 
+    public byte[] getColor() {
+        return color;
+    }
+
+    public void setColor(byte[] color) {
+        this.color = color;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -105,12 +175,19 @@ public class TemplateInfo implements Serializable {
         sb.append(", id=").append(id);
         sb.append(", name=").append(name);
         sb.append(", status=").append(status);
-        sb.append(", imageId=").append(imageId);
+        sb.append(", number=").append(number);
+        sb.append(", unit=").append(unit);
+        sb.append(", price=").append(price);
+        sb.append(", brand=").append(brand);
+        sb.append(", width=").append(width);
+        sb.append(", height=").append(height);
+        sb.append(", weight=").append(weight);
         sb.append(", remark=").append(remark);
         sb.append(", createPerson=").append(createPerson);
         sb.append(", createTime=").append(createTime);
         sb.append(", updatePerson=").append(updatePerson);
         sb.append(", updateTime=").append(updateTime);
+        sb.append(", color=").append(color);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();

@@ -14,7 +14,19 @@ public class ProjectInfo implements Serializable {
 
     private Integer budget;
 
-    private Date deadLine;
+    private Integer cycle;
+
+    private Date startDate;
+
+    private Date endDate;
+
+    private String masterName;
+
+    private String masterPhone;
+
+    private Integer roomNumber;
+
+    private Integer publicNumber;
 
     private String remark;
 
@@ -68,12 +80,60 @@ public class ProjectInfo implements Serializable {
         this.budget = budget;
     }
 
-    public Date getDeadLine() {
-        return deadLine;
+    public Integer getCycle() {
+        return cycle;
     }
 
-    public void setDeadLine(Date deadLine) {
-        this.deadLine = deadLine;
+    public void setCycle(Integer cycle) {
+        this.cycle = cycle;
+    }
+
+    public Date getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
+
+    public Date getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
+    }
+
+    public String getMasterName() {
+        return masterName;
+    }
+
+    public void setMasterName(String masterName) {
+        this.masterName = masterName == null ? null : masterName.trim();
+    }
+
+    public String getMasterPhone() {
+        return masterPhone;
+    }
+
+    public void setMasterPhone(String masterPhone) {
+        this.masterPhone = masterPhone == null ? null : masterPhone.trim();
+    }
+
+    public Integer getRoomNumber() {
+        return roomNumber;
+    }
+
+    public void setRoomNumber(Integer roomNumber) {
+        this.roomNumber = roomNumber;
+    }
+
+    public Integer getPublicNumber() {
+        return publicNumber;
+    }
+
+    public void setPublicNumber(Integer publicNumber) {
+        this.publicNumber = publicNumber;
     }
 
     public String getRemark() {
@@ -127,7 +187,13 @@ public class ProjectInfo implements Serializable {
         sb.append(", companyId=").append(companyId);
         sb.append(", status=").append(status);
         sb.append(", budget=").append(budget);
-        sb.append(", deadLine=").append(deadLine);
+        sb.append(", cycle=").append(cycle);
+        sb.append(", startDate=").append(startDate);
+        sb.append(", endDate=").append(endDate);
+        sb.append(", masterName=").append(masterName);
+        sb.append(", masterPhone=").append(masterPhone);
+        sb.append(", roomNumber=").append(roomNumber);
+        sb.append(", publicNumber=").append(publicNumber);
         sb.append(", remark=").append(remark);
         sb.append(", createPerson=").append(createPerson);
         sb.append(", createTime=").append(createTime);

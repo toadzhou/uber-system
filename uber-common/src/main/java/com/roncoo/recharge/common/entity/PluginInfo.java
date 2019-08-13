@@ -3,16 +3,26 @@ package com.roncoo.recharge.common.entity;
 import java.io.Serializable;
 import java.util.Date;
 
-public class TemplateInfo implements Serializable {
+public class PluginInfo implements Serializable {
     private Long id;
 
     private String name;
 
-    private Integer status;
+    private String description;
 
-    private Long imageId;
+    private Integer unit;
 
-    private String remark;
+    private Integer width;
+
+    private Integer height;
+
+    private Integer weight;
+
+    private String color;
+
+    private String brand;
+
+    private Integer price;
 
     private String createPerson;
 
@@ -40,28 +50,68 @@ public class TemplateInfo implements Serializable {
         this.name = name == null ? null : name.trim();
     }
 
-    public Integer getStatus() {
-        return status;
+    public String getDescription() {
+        return description;
     }
 
-    public void setStatus(Integer status) {
-        this.status = status;
+    public void setDescription(String description) {
+        this.description = description == null ? null : description.trim();
     }
 
-    public Long getImageId() {
-        return imageId;
+    public Integer getUnit() {
+        return unit;
     }
 
-    public void setImageId(Long imageId) {
-        this.imageId = imageId;
+    public void setUnit(Integer unit) {
+        this.unit = unit;
     }
 
-    public String getRemark() {
-        return remark;
+    public Integer getWidth() {
+        return width;
     }
 
-    public void setRemark(String remark) {
-        this.remark = remark == null ? null : remark.trim();
+    public void setWidth(Integer width) {
+        this.width = width;
+    }
+
+    public Integer getHeight() {
+        return height;
+    }
+
+    public void setHeight(Integer height) {
+        this.height = height;
+    }
+
+    public Integer getWeight() {
+        return weight;
+    }
+
+    public void setWeight(Integer weight) {
+        this.weight = weight;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color == null ? null : color.trim();
+    }
+
+    public String getBrand() {
+        return brand;
+    }
+
+    public void setBrand(String brand) {
+        this.brand = brand == null ? null : brand.trim();
+    }
+
+    public Integer getPrice() {
+        return price;
+    }
+
+    public void setPrice(Integer price) {
+        this.price = price;
     }
 
     public String getCreatePerson() {
@@ -104,9 +154,14 @@ public class TemplateInfo implements Serializable {
         sb.append("Hash = ").append(hashCode());
         sb.append(", id=").append(id);
         sb.append(", name=").append(name);
-        sb.append(", status=").append(status);
-        sb.append(", imageId=").append(imageId);
-        sb.append(", remark=").append(remark);
+        sb.append(", description=").append(description);
+        sb.append(", unit=").append(unit);
+        sb.append(", width=").append(width);
+        sb.append(", height=").append(height);
+        sb.append(", weight=").append(weight);
+        sb.append(", color=").append(color);
+        sb.append(", brand=").append(brand);
+        sb.append(", price=").append(price);
         sb.append(", createPerson=").append(createPerson);
         sb.append(", createTime=").append(createTime);
         sb.append(", updatePerson=").append(updatePerson);

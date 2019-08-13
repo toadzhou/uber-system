@@ -1,24 +1,25 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.roncoo.recharge.common.mapper.ProjectInfoMapper" >
-  <resultMap id="BaseResultMap" type="com.roncoo.recharge.common.entity.ProjectInfo" >
+<mapper namespace="com.roncoo.recharge.common.mapper.ModuleInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.roncoo.recharge.common.entity.ModuleInfo" >
     <id column="id" property="id" jdbcType="BIGINT" />
     <result column="name" property="name" jdbcType="VARCHAR" />
-    <result column="company_id" property="companyId" jdbcType="BIGINT" />
     <result column="status" property="status" jdbcType="INTEGER" />
-    <result column="budget" property="budget" jdbcType="INTEGER" />
-    <result column="cycle" property="cycle" jdbcType="INTEGER" />
-    <result column="start_date" property="startDate" jdbcType="DATE" />
-    <result column="end_date" property="endDate" jdbcType="DATE" />
-    <result column="master_name" property="masterName" jdbcType="VARCHAR" />
-    <result column="master_phone" property="masterPhone" jdbcType="VARCHAR" />
-    <result column="room_number" property="roomNumber" jdbcType="INTEGER" />
-    <result column="public_number" property="publicNumber" jdbcType="INTEGER" />
+    <result column="number" property="number" jdbcType="INTEGER" />
+    <result column="unit" property="unit" jdbcType="INTEGER" />
+    <result column="price" property="price" jdbcType="INTEGER" />
+    <result column="brand" property="brand" jdbcType="VARCHAR" />
+    <result column="width" property="width" jdbcType="INTEGER" />
+    <result column="height" property="height" jdbcType="INTEGER" />
+    <result column="weight" property="weight" jdbcType="INTEGER" />
     <result column="remark" property="remark" jdbcType="VARCHAR" />
     <result column="create_person" property="createPerson" jdbcType="VARCHAR" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
     <result column="update_person" property="updatePerson" jdbcType="VARCHAR" />
     <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.roncoo.recharge.common.entity.ModuleInfo" extends="BaseResultMap" >
+    <result column="color" property="color" jdbcType="VARBINARY" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -79,16 +80,35 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, name, company_id, status, budget, cycle, start_date, end_date, master_name, master_phone, 
-    room_number, public_number, remark, create_person, create_time, update_person, update_time
+    id, name, status, number, unit, price, brand, width, height, weight, remark, create_person, 
+    create_time, update_person, update_time
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.roncoo.recharge.common.entity.ProjectInfoExample" >
+  <sql id="Blob_Column_List" >
+    color
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.roncoo.recharge.common.entity.ModuleInfoExample" >
     select
     <if test="distinct" >
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from bl_project_info
+    ,
+    <include refid="Blob_Column_List" />
+    from bl_module_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.roncoo.recharge.common.entity.ModuleInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from bl_module_info
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -99,38 +119,40 @@
       limit ${limitStart} , ${pageSize}
     </if>
   </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
     select 
     <include refid="Base_Column_List" />
-    from bl_project_info
+    ,
+    <include refid="Blob_Column_List" />
+    from bl_module_info
     where id = #{id,jdbcType=BIGINT}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
-    delete from bl_project_info
+    delete from bl_module_info
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <delete id="deleteByExample" parameterType="com.roncoo.recharge.common.entity.ProjectInfoExample" >
-    delete from bl_project_info
+  <delete id="deleteByExample" parameterType="com.roncoo.recharge.common.entity.ModuleInfoExample" >
+    delete from bl_module_info
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.roncoo.recharge.common.entity.ProjectInfo" >
-    insert into bl_project_info (id, name, company_id, 
-      status, budget, cycle, 
-      start_date, end_date, master_name, 
-      master_phone, room_number, public_number, 
-      remark, create_person, create_time, 
-      update_person, update_time)
-    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{companyId,jdbcType=BIGINT}, 
-      #{status,jdbcType=INTEGER}, #{budget,jdbcType=INTEGER}, #{cycle,jdbcType=INTEGER}, 
-      #{startDate,jdbcType=DATE}, #{endDate,jdbcType=DATE}, #{masterName,jdbcType=VARCHAR}, 
-      #{masterPhone,jdbcType=VARCHAR}, #{roomNumber,jdbcType=INTEGER}, #{publicNumber,jdbcType=INTEGER}, 
-      #{remark,jdbcType=VARCHAR}, #{createPerson,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
-      #{updatePerson,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP})
+  <insert id="insert" parameterType="com.roncoo.recharge.common.entity.ModuleInfo" >
+    insert into bl_module_info (id, name, status, 
+      number, unit, price, 
+      brand, width, height, 
+      weight, remark, create_person, 
+      create_time, update_person, update_time, 
+      color)
+    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
+      #{number,jdbcType=INTEGER}, #{unit,jdbcType=INTEGER}, #{price,jdbcType=INTEGER}, 
+      #{brand,jdbcType=VARCHAR}, #{width,jdbcType=INTEGER}, #{height,jdbcType=INTEGER}, 
+      #{weight,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, #{createPerson,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updatePerson,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{color,jdbcType=VARBINARY})
   </insert>
-  <insert id="insertSelective" parameterType="com.roncoo.recharge.common.entity.ProjectInfo" >
-    insert into bl_project_info
+  <insert id="insertSelective" parameterType="com.roncoo.recharge.common.entity.ModuleInfo" >
+    insert into bl_module_info
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
@@ -138,35 +160,29 @@
       <if test="name != null" >
         name,
       </if>
-      <if test="companyId != null" >
-        company_id,
-      </if>
       <if test="status != null" >
         status,
       </if>
-      <if test="budget != null" >
-        budget,
+      <if test="number != null" >
+        number,
       </if>
-      <if test="cycle != null" >
-        cycle,
+      <if test="unit != null" >
+        unit,
       </if>
-      <if test="startDate != null" >
-        start_date,
+      <if test="price != null" >
+        price,
       </if>
-      <if test="endDate != null" >
-        end_date,
+      <if test="brand != null" >
+        brand,
       </if>
-      <if test="masterName != null" >
-        master_name,
+      <if test="width != null" >
+        width,
       </if>
-      <if test="masterPhone != null" >
-        master_phone,
+      <if test="height != null" >
+        height,
       </if>
-      <if test="roomNumber != null" >
-        room_number,
-      </if>
-      <if test="publicNumber != null" >
-        public_number,
+      <if test="weight != null" >
+        weight,
       </if>
       <if test="remark != null" >
         remark,
@@ -183,6 +199,9 @@
       <if test="updateTime != null" >
         update_time,
       </if>
+      <if test="color != null" >
+        color,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -191,35 +210,29 @@
       <if test="name != null" >
         #{name,jdbcType=VARCHAR},
       </if>
-      <if test="companyId != null" >
-        #{companyId,jdbcType=BIGINT},
-      </if>
       <if test="status != null" >
         #{status,jdbcType=INTEGER},
       </if>
-      <if test="budget != null" >
-        #{budget,jdbcType=INTEGER},
+      <if test="number != null" >
+        #{number,jdbcType=INTEGER},
       </if>
-      <if test="cycle != null" >
-        #{cycle,jdbcType=INTEGER},
+      <if test="unit != null" >
+        #{unit,jdbcType=INTEGER},
       </if>
-      <if test="startDate != null" >
-        #{startDate,jdbcType=DATE},
+      <if test="price != null" >
+        #{price,jdbcType=INTEGER},
       </if>
-      <if test="endDate != null" >
-        #{endDate,jdbcType=DATE},
+      <if test="brand != null" >
+        #{brand,jdbcType=VARCHAR},
       </if>
-      <if test="masterName != null" >
-        #{masterName,jdbcType=VARCHAR},
+      <if test="width != null" >
+        #{width,jdbcType=INTEGER},
       </if>
-      <if test="masterPhone != null" >
-        #{masterPhone,jdbcType=VARCHAR},
+      <if test="height != null" >
+        #{height,jdbcType=INTEGER},
       </if>
-      <if test="roomNumber != null" >
-        #{roomNumber,jdbcType=INTEGER},
-      </if>
-      <if test="publicNumber != null" >
-        #{publicNumber,jdbcType=INTEGER},
+      <if test="weight != null" >
+        #{weight,jdbcType=INTEGER},
       </if>
       <if test="remark != null" >
         #{remark,jdbcType=VARCHAR},
@@ -236,16 +249,19 @@
       <if test="updateTime != null" >
         #{updateTime,jdbcType=TIMESTAMP},
       </if>
+      <if test="color != null" >
+        #{color,jdbcType=VARBINARY},
+      </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.roncoo.recharge.common.entity.ProjectInfoExample" resultType="java.lang.Integer" >
-    select count(*) from bl_project_info
+  <select id="countByExample" parameterType="com.roncoo.recharge.common.entity.ModuleInfoExample" resultType="java.lang.Integer" >
+    select count(*) from bl_module_info
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map" >
-    update bl_project_info
+    update bl_module_info
     <set >
       <if test="record.id != null" >
         id = #{record.id,jdbcType=BIGINT},
@@ -253,35 +269,29 @@
       <if test="record.name != null" >
         name = #{record.name,jdbcType=VARCHAR},
       </if>
-      <if test="record.companyId != null" >
-        company_id = #{record.companyId,jdbcType=BIGINT},
-      </if>
       <if test="record.status != null" >
         status = #{record.status,jdbcType=INTEGER},
       </if>
-      <if test="record.budget != null" >
-        budget = #{record.budget,jdbcType=INTEGER},
+      <if test="record.number != null" >
+        number = #{record.number,jdbcType=INTEGER},
       </if>
-      <if test="record.cycle != null" >
-        cycle = #{record.cycle,jdbcType=INTEGER},
+      <if test="record.unit != null" >
+        unit = #{record.unit,jdbcType=INTEGER},
       </if>
-      <if test="record.startDate != null" >
-        start_date = #{record.startDate,jdbcType=DATE},
+      <if test="record.price != null" >
+        price = #{record.price,jdbcType=INTEGER},
       </if>
-      <if test="record.endDate != null" >
-        end_date = #{record.endDate,jdbcType=DATE},
+      <if test="record.brand != null" >
+        brand = #{record.brand,jdbcType=VARCHAR},
       </if>
-      <if test="record.masterName != null" >
-        master_name = #{record.masterName,jdbcType=VARCHAR},
+      <if test="record.width != null" >
+        width = #{record.width,jdbcType=INTEGER},
       </if>
-      <if test="record.masterPhone != null" >
-        master_phone = #{record.masterPhone,jdbcType=VARCHAR},
+      <if test="record.height != null" >
+        height = #{record.height,jdbcType=INTEGER},
       </if>
-      <if test="record.roomNumber != null" >
-        room_number = #{record.roomNumber,jdbcType=INTEGER},
-      </if>
-      <if test="record.publicNumber != null" >
-        public_number = #{record.publicNumber,jdbcType=INTEGER},
+      <if test="record.weight != null" >
+        weight = #{record.weight,jdbcType=INTEGER},
       </if>
       <if test="record.remark != null" >
         remark = #{record.remark,jdbcType=VARCHAR},
@@ -298,25 +308,48 @@
       <if test="record.updateTime != null" >
         update_time = #{record.updateTime,jdbcType=TIMESTAMP},
       </if>
+      <if test="record.color != null" >
+        color = #{record.color,jdbcType=VARBINARY},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByExample" parameterType="map" >
-    update bl_project_info
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update bl_module_info
     set id = #{record.id,jdbcType=BIGINT},
       name = #{record.name,jdbcType=VARCHAR},
-      company_id = #{record.companyId,jdbcType=BIGINT},
       status = #{record.status,jdbcType=INTEGER},
-      budget = #{record.budget,jdbcType=INTEGER},
-      cycle = #{record.cycle,jdbcType=INTEGER},
-      start_date = #{record.startDate,jdbcType=DATE},
-      end_date = #{record.endDate,jdbcType=DATE},
-      master_name = #{record.masterName,jdbcType=VARCHAR},
-      master_phone = #{record.masterPhone,jdbcType=VARCHAR},
-      room_number = #{record.roomNumber,jdbcType=INTEGER},
-      public_number = #{record.publicNumber,jdbcType=INTEGER},
+      number = #{record.number,jdbcType=INTEGER},
+      unit = #{record.unit,jdbcType=INTEGER},
+      price = #{record.price,jdbcType=INTEGER},
+      brand = #{record.brand,jdbcType=VARCHAR},
+      width = #{record.width,jdbcType=INTEGER},
+      height = #{record.height,jdbcType=INTEGER},
+      weight = #{record.weight,jdbcType=INTEGER},
+      remark = #{record.remark,jdbcType=VARCHAR},
+      create_person = #{record.createPerson,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_person = #{record.updatePerson,jdbcType=VARCHAR},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      color = #{record.color,jdbcType=VARBINARY}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update bl_module_info
+    set id = #{record.id,jdbcType=BIGINT},
+      name = #{record.name,jdbcType=VARCHAR},
+      status = #{record.status,jdbcType=INTEGER},
+      number = #{record.number,jdbcType=INTEGER},
+      unit = #{record.unit,jdbcType=INTEGER},
+      price = #{record.price,jdbcType=INTEGER},
+      brand = #{record.brand,jdbcType=VARCHAR},
+      width = #{record.width,jdbcType=INTEGER},
+      height = #{record.height,jdbcType=INTEGER},
+      weight = #{record.weight,jdbcType=INTEGER},
       remark = #{record.remark,jdbcType=VARCHAR},
       create_person = #{record.createPerson,jdbcType=VARCHAR},
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
@@ -326,41 +359,35 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.roncoo.recharge.common.entity.ProjectInfo" >
-    update bl_project_info
+  <update id="updateByPrimaryKeySelective" parameterType="com.roncoo.recharge.common.entity.ModuleInfo" >
+    update bl_module_info
     <set >
       <if test="name != null" >
         name = #{name,jdbcType=VARCHAR},
       </if>
-      <if test="companyId != null" >
-        company_id = #{companyId,jdbcType=BIGINT},
-      </if>
       <if test="status != null" >
         status = #{status,jdbcType=INTEGER},
       </if>
-      <if test="budget != null" >
-        budget = #{budget,jdbcType=INTEGER},
+      <if test="number != null" >
+        number = #{number,jdbcType=INTEGER},
       </if>
-      <if test="cycle != null" >
-        cycle = #{cycle,jdbcType=INTEGER},
+      <if test="unit != null" >
+        unit = #{unit,jdbcType=INTEGER},
       </if>
-      <if test="startDate != null" >
-        start_date = #{startDate,jdbcType=DATE},
+      <if test="price != null" >
+        price = #{price,jdbcType=INTEGER},
       </if>
-      <if test="endDate != null" >
-        end_date = #{endDate,jdbcType=DATE},
+      <if test="brand != null" >
+        brand = #{brand,jdbcType=VARCHAR},
       </if>
-      <if test="masterName != null" >
-        master_name = #{masterName,jdbcType=VARCHAR},
+      <if test="width != null" >
+        width = #{width,jdbcType=INTEGER},
       </if>
-      <if test="masterPhone != null" >
-        master_phone = #{masterPhone,jdbcType=VARCHAR},
+      <if test="height != null" >
+        height = #{height,jdbcType=INTEGER},
       </if>
-      <if test="roomNumber != null" >
-        room_number = #{roomNumber,jdbcType=INTEGER},
-      </if>
-      <if test="publicNumber != null" >
-        public_number = #{publicNumber,jdbcType=INTEGER},
+      <if test="weight != null" >
+        weight = #{weight,jdbcType=INTEGER},
       </if>
       <if test="remark != null" >
         remark = #{remark,jdbcType=VARCHAR},
@@ -377,22 +404,42 @@
       <if test="updateTime != null" >
         update_time = #{updateTime,jdbcType=TIMESTAMP},
       </if>
+      <if test="color != null" >
+        color = #{color,jdbcType=VARBINARY},
+      </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.roncoo.recharge.common.entity.ProjectInfo" >
-    update bl_project_info
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.roncoo.recharge.common.entity.ModuleInfo" >
+    update bl_module_info
     set name = #{name,jdbcType=VARCHAR},
-      company_id = #{companyId,jdbcType=BIGINT},
       status = #{status,jdbcType=INTEGER},
-      budget = #{budget,jdbcType=INTEGER},
-      cycle = #{cycle,jdbcType=INTEGER},
-      start_date = #{startDate,jdbcType=DATE},
-      end_date = #{endDate,jdbcType=DATE},
-      master_name = #{masterName,jdbcType=VARCHAR},
-      master_phone = #{masterPhone,jdbcType=VARCHAR},
-      room_number = #{roomNumber,jdbcType=INTEGER},
-      public_number = #{publicNumber,jdbcType=INTEGER},
+      number = #{number,jdbcType=INTEGER},
+      unit = #{unit,jdbcType=INTEGER},
+      price = #{price,jdbcType=INTEGER},
+      brand = #{brand,jdbcType=VARCHAR},
+      width = #{width,jdbcType=INTEGER},
+      height = #{height,jdbcType=INTEGER},
+      weight = #{weight,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=VARCHAR},
+      create_person = #{createPerson,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_person = #{updatePerson,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      color = #{color,jdbcType=VARBINARY}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.roncoo.recharge.common.entity.ModuleInfo" >
+    update bl_module_info
+    set name = #{name,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      number = #{number,jdbcType=INTEGER},
+      unit = #{unit,jdbcType=INTEGER},
+      price = #{price,jdbcType=INTEGER},
+      brand = #{brand,jdbcType=VARCHAR},
+      width = #{width,jdbcType=INTEGER},
+      height = #{height,jdbcType=INTEGER},
+      weight = #{weight,jdbcType=INTEGER},
       remark = #{remark,jdbcType=VARCHAR},
       create_person = #{createPerson,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},

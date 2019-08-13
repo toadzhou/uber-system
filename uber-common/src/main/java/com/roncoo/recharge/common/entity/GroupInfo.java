@@ -3,14 +3,18 @@ package com.roncoo.recharge.common.entity;
 import java.io.Serializable;
 import java.util.Date;
 
-public class TemplateInfo implements Serializable {
+public class GroupInfo implements Serializable {
     private Long id;
 
     private String name;
 
     private Integer status;
 
+    private Integer type;
+
     private Long imageId;
+
+    private Integer cost;
 
     private String remark;
 
@@ -48,12 +52,28 @@ public class TemplateInfo implements Serializable {
         this.status = status;
     }
 
+    public Integer getType() {
+        return type;
+    }
+
+    public void setType(Integer type) {
+        this.type = type;
+    }
+
     public Long getImageId() {
         return imageId;
     }
 
     public void setImageId(Long imageId) {
         this.imageId = imageId;
+    }
+
+    public Integer getCost() {
+        return cost;
+    }
+
+    public void setCost(Integer cost) {
+        this.cost = cost;
     }
 
     public String getRemark() {
@@ -105,7 +125,9 @@ public class TemplateInfo implements Serializable {
         sb.append(", id=").append(id);
         sb.append(", name=").append(name);
         sb.append(", status=").append(status);
+        sb.append(", type=").append(type);
         sb.append(", imageId=").append(imageId);
+        sb.append(", cost=").append(cost);
         sb.append(", remark=").append(remark);
         sb.append(", createPerson=").append(createPerson);
         sb.append(", createTime=").append(createTime);

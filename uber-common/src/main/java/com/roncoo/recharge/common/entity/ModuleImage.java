@@ -3,16 +3,12 @@ package com.roncoo.recharge.common.entity;
 import java.io.Serializable;
 import java.util.Date;
 
-public class TemplateInfo implements Serializable {
+public class ModuleImage implements Serializable {
     private Long id;
 
-    private String name;
-
-    private Integer status;
+    private Long moduleId;
 
     private Long imageId;
-
-    private String remark;
 
     private String createPerson;
 
@@ -32,20 +28,12 @@ public class TemplateInfo implements Serializable {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public Long getModuleId() {
+        return moduleId;
     }
 
-    public void setName(String name) {
-        this.name = name == null ? null : name.trim();
-    }
-
-    public Integer getStatus() {
-        return status;
-    }
-
-    public void setStatus(Integer status) {
-        this.status = status;
+    public void setModuleId(Long moduleId) {
+        this.moduleId = moduleId;
     }
 
     public Long getImageId() {
@@ -54,14 +42,6 @@ public class TemplateInfo implements Serializable {
 
     public void setImageId(Long imageId) {
         this.imageId = imageId;
-    }
-
-    public String getRemark() {
-        return remark;
-    }
-
-    public void setRemark(String remark) {
-        this.remark = remark == null ? null : remark.trim();
     }
 
     public String getCreatePerson() {
@@ -103,10 +83,8 @@ public class TemplateInfo implements Serializable {
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
         sb.append(", id=").append(id);
-        sb.append(", name=").append(name);
-        sb.append(", status=").append(status);
+        sb.append(", moduleId=").append(moduleId);
         sb.append(", imageId=").append(imageId);
-        sb.append(", remark=").append(remark);
         sb.append(", createPerson=").append(createPerson);
         sb.append(", createTime=").append(createTime);
         sb.append(", updatePerson=").append(updatePerson);

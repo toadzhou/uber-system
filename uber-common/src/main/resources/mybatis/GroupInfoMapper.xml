@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.roncoo.recharge.common.mapper.TemplateInfoMapper" >
-  <resultMap id="BaseResultMap" type="com.roncoo.recharge.common.entity.TemplateInfo" >
+<mapper namespace="com.roncoo.recharge.common.mapper.GroupInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.roncoo.recharge.common.entity.GroupInfo" >
     <id column="id" property="id" jdbcType="BIGINT" />
     <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="type" property="type" jdbcType="INTEGER" />
     <result column="image_id" property="imageId" jdbcType="BIGINT" />
+    <result column="cost" property="cost" jdbcType="INTEGER" />
     <result column="remark" property="remark" jdbcType="VARCHAR" />
     <result column="create_person" property="createPerson" jdbcType="VARCHAR" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
@@ -71,15 +73,16 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, name, status, image_id, remark, create_person, create_time, update_person, update_time
+    id, name, status, type, image_id, cost, remark, create_person, create_time, update_person, 
+    update_time
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.roncoo.recharge.common.entity.TemplateInfoExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.roncoo.recharge.common.entity.GroupInfoExample" >
     select
     <if test="distinct" >
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from bl_template_info
+    from bl_group_info
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -93,31 +96,31 @@
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
     <include refid="Base_Column_List" />
-    from bl_template_info
+    from bl_group_info
     where id = #{id,jdbcType=BIGINT}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
-    delete from bl_template_info
+    delete from bl_group_info
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <delete id="deleteByExample" parameterType="com.roncoo.recharge.common.entity.TemplateInfoExample" >
-    delete from bl_template_info
+  <delete id="deleteByExample" parameterType="com.roncoo.recharge.common.entity.GroupInfoExample" >
+    delete from bl_group_info
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.roncoo.recharge.common.entity.TemplateInfo" >
-    insert into bl_template_info (id, name, status, 
-      image_id, remark, create_person, 
-      create_time, update_person, update_time
-      )
+  <insert id="insert" parameterType="com.roncoo.recharge.common.entity.GroupInfo" >
+    insert into bl_group_info (id, name, status, 
+      type, image_id, cost, 
+      remark, create_person, create_time, 
+      update_person, update_time)
     values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
-      #{imageId,jdbcType=BIGINT}, #{remark,jdbcType=VARCHAR}, #{createPerson,jdbcType=VARCHAR}, 
-      #{createTime,jdbcType=TIMESTAMP}, #{updatePerson,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}
-      )
+      #{type,jdbcType=INTEGER}, #{imageId,jdbcType=BIGINT}, #{cost,jdbcType=INTEGER}, 
+      #{remark,jdbcType=VARCHAR}, #{createPerson,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updatePerson,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="com.roncoo.recharge.common.entity.TemplateInfo" >
-    insert into bl_template_info
+  <insert id="insertSelective" parameterType="com.roncoo.recharge.common.entity.GroupInfo" >
+    insert into bl_group_info
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
@@ -128,8 +131,14 @@
       <if test="status != null" >
         status,
       </if>
+      <if test="type != null" >
+        type,
+      </if>
       <if test="imageId != null" >
         image_id,
+      </if>
+      <if test="cost != null" >
+        cost,
       </if>
       <if test="remark != null" >
         remark,
@@ -157,8 +166,14 @@
       <if test="status != null" >
         #{status,jdbcType=INTEGER},
       </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
       <if test="imageId != null" >
         #{imageId,jdbcType=BIGINT},
+      </if>
+      <if test="cost != null" >
+        #{cost,jdbcType=INTEGER},
       </if>
       <if test="remark != null" >
         #{remark,jdbcType=VARCHAR},
@@ -177,14 +192,14 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.roncoo.recharge.common.entity.TemplateInfoExample" resultType="java.lang.Integer" >
-    select count(*) from bl_template_info
+  <select id="countByExample" parameterType="com.roncoo.recharge.common.entity.GroupInfoExample" resultType="java.lang.Integer" >
+    select count(*) from bl_group_info
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map" >
-    update bl_template_info
+    update bl_group_info
     <set >
       <if test="record.id != null" >
         id = #{record.id,jdbcType=BIGINT},
@@ -195,8 +210,14 @@
       <if test="record.status != null" >
         status = #{record.status,jdbcType=INTEGER},
       </if>
+      <if test="record.type != null" >
+        type = #{record.type,jdbcType=INTEGER},
+      </if>
       <if test="record.imageId != null" >
         image_id = #{record.imageId,jdbcType=BIGINT},
+      </if>
+      <if test="record.cost != null" >
+        cost = #{record.cost,jdbcType=INTEGER},
       </if>
       <if test="record.remark != null" >
         remark = #{record.remark,jdbcType=VARCHAR},
@@ -219,11 +240,13 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map" >
-    update bl_template_info
+    update bl_group_info
     set id = #{record.id,jdbcType=BIGINT},
       name = #{record.name,jdbcType=VARCHAR},
       status = #{record.status,jdbcType=INTEGER},
+      type = #{record.type,jdbcType=INTEGER},
       image_id = #{record.imageId,jdbcType=BIGINT},
+      cost = #{record.cost,jdbcType=INTEGER},
       remark = #{record.remark,jdbcType=VARCHAR},
       create_person = #{record.createPerson,jdbcType=VARCHAR},
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
@@ -233,8 +256,8 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.roncoo.recharge.common.entity.TemplateInfo" >
-    update bl_template_info
+  <update id="updateByPrimaryKeySelective" parameterType="com.roncoo.recharge.common.entity.GroupInfo" >
+    update bl_group_info
     <set >
       <if test="name != null" >
         name = #{name,jdbcType=VARCHAR},
@@ -242,8 +265,14 @@
       <if test="status != null" >
         status = #{status,jdbcType=INTEGER},
       </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=INTEGER},
+      </if>
       <if test="imageId != null" >
         image_id = #{imageId,jdbcType=BIGINT},
+      </if>
+      <if test="cost != null" >
+        cost = #{cost,jdbcType=INTEGER},
       </if>
       <if test="remark != null" >
         remark = #{remark,jdbcType=VARCHAR},
@@ -263,11 +292,13 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.roncoo.recharge.common.entity.TemplateInfo" >
-    update bl_template_info
+  <update id="updateByPrimaryKey" parameterType="com.roncoo.recharge.common.entity.GroupInfo" >
+    update bl_group_info
     set name = #{name,jdbcType=VARCHAR},
       status = #{status,jdbcType=INTEGER},
+      type = #{type,jdbcType=INTEGER},
       image_id = #{imageId,jdbcType=BIGINT},
+      cost = #{cost,jdbcType=INTEGER},
       remark = #{remark,jdbcType=VARCHAR},
       create_person = #{createPerson,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},
