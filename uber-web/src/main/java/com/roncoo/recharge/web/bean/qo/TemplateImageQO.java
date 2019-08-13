@@ -3,11 +3,7 @@ package com.roncoo.recharge.web.bean.qo;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
-
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
 /**
@@ -16,13 +12,10 @@ import lombok.experimental.Accessors;
  * </p>
  *
  * @author mark
- * @since 2019-07-20
+ * @since 2019-08-13
  */
 @Data
 @Accessors(chain = true)
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
 public class TemplateImageQO implements Serializable {
 
     private static final long serialVersionUID = 1L;

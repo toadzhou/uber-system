@@ -8,27 +8,27 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.roncoo.recharge.web.service.TemplateImageService;
-import com.roncoo.recharge.web.bean.qo.TemplateImageQO;
+import com.roncoo.recharge.web.service.PluginInfoService;
+import com.roncoo.recharge.web.bean.qo.PluginInfoQO;
 import com.roncoo.recharge.util.base.BaseController;
 
 /**
- *  
+ * 插件(此处商品) 
  *
  * @author mark
  * @since 2019-08-13
  */
 @Controller
-@RequestMapping(value = "/admin/templateImage")
-public class TemplateImageController extends BaseController {
+@RequestMapping(value = "/admin/pluginInfo")
+public class PluginInfoController extends BaseController {
 
-	private final static String TARGETID = "admin-templateImage";
+	private final static String TARGETID = "admin-pluginInfo";
 
 	@Autowired
-	private TemplateImageService service;
+	private PluginInfoService service;
 	
 	@RequestMapping(value = "/list")
-	public void list(@RequestParam(value = "pageCurrent", defaultValue = "1") int pageCurrent, @RequestParam(value = "pageSize", defaultValue = "20") int pageSize, @ModelAttribute TemplateImageQO qo, ModelMap modelMap){
+	public void list(@RequestParam(value = "pageCurrent", defaultValue = "1") int pageCurrent, @RequestParam(value = "pageSize", defaultValue = "20") int pageSize, @ModelAttribute PluginInfoQO qo, ModelMap modelMap){
 		modelMap.put("page", service.listForPage(pageCurrent, pageSize, qo));
 		modelMap.put("pageCurrent", pageCurrent);
 		modelMap.put("pageSize", pageSize);
@@ -42,7 +42,7 @@ public class TemplateImageController extends BaseController {
 	
 	@ResponseBody
 	@RequestMapping(value = "/save")
-	public String save(@ModelAttribute TemplateImageQO qo){
+	public String save(@ModelAttribute PluginInfoQO qo){
 		if (service.save(qo) > 0) {
 			return success(TARGETID);
 		}
@@ -65,7 +65,7 @@ public class TemplateImageController extends BaseController {
 	
 	@ResponseBody
 	@RequestMapping(value = "/update")
-	public String update(@ModelAttribute TemplateImageQO qo){
+	public String update(@ModelAttribute PluginInfoQO qo){
 		if (service.updateById(qo) > 0) {
 			return success(TARGETID);
 		}

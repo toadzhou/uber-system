@@ -1,11 +1,15 @@
 <#assign base=request.contextPath /> 
 <div class="pageContent">
-	<form action="${base}/admin/templateInfo/update" method="post" class="pageForm required-validate" onsubmit="return validateCallback(this, dialogAjaxDone);">
+	<form action="${base}/admin/moduleImage/update" method="post" class="pageForm required-validate" onsubmit="return validateCallback(this, dialogAjaxDone);">
 		<div class="pageFormContent" layoutH="58">
             <input type="hidden" name="id" value="${bean.id}"/>
     		<p>
-                <label>模版图纸Id：</label>
-                <input type="text" name="imageId" value="${bean.imageId}" placeholder="模版图纸Id" size="20" />
+                <label>所属模块Id：</label>
+                <input type="text" name="moduleId" value="${bean.moduleId}" placeholder="所属模块Id" size="20" />
+            </p>
+    		<p>
+                <label>所属图片Id：</label>
+                <input type="text" name="imageId" value="${bean.imageId}" placeholder="所属图片Id" size="20" />
             </p>
     		<p>
                 <label>创建人：</label>

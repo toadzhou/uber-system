@@ -1,10 +1,10 @@
 <#assign base=request.contextPath />
 <div class="pageContent">
-	<form action="${base}/admin/templateInfo/save" method="post" class="pageForm required-validate" onsubmit="return validateCallback(this, dialogAjaxDone);">
+	<form action="${base}/admin/groupInfo/save" method="post" class="pageForm required-validate" onsubmit="return validateCallback(this, dialogAjaxDone);">
         <div class="pageFormContent" layoutH="58">
     		<p>
-                <label>模版图纸Id：</label>
-                <input type="text" name="imageId" value="" placeholder="模版图纸Id" size="20" />
+                <label>模版图片：</label>
+                <input type="text" name="imageId" value="" placeholder="模版图片" size="20" />
             </p>
     		<p>
                 <label>创建人：</label>

@@ -12,7 +12,7 @@ import lombok.experimental.Accessors;
  * </p>
  *
  * @author mark
- * @since 2019-07-16
+ * @since 2019-08-13
  */
 @Data
 @Accessors(chain = true)
@@ -26,33 +26,17 @@ public class TemplateInfoQO implements Serializable {
      */
     private String name;
     /**
-     * 长度
+     * 状态: 0-无效 1-有效
      */
-    private Integer width;
+    private Integer status;
     /**
-     * 宽度
-     */
-    private Integer height;
-    /**
-     * 所属图片 Id
+     * 模版图纸Id
      */
     private Long imageId;
-    /**
-     * 价格(单位: 分)
-     */
-    private double price;
-    /**
-     * 计量单位
-     */
-    private String unit;
     /**
      * 备注
      */
     private String remark;
-    /**
-     * 状态: 0-无效 1-有效
-     */
-    private Integer status;
     /**
      * 创建人
      */

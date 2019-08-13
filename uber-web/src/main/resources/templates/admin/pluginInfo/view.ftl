@@ -2,9 +2,6 @@
 <div class="pageContent">
     <div class="pageFormContent" layoutH="58">
         <p>
-            <label>模版图纸Id：</label>${bean.imageId}
-        </p>
-        <p>
             <label>创建人：</label>${bean.createPerson}
         </p>
         <p>

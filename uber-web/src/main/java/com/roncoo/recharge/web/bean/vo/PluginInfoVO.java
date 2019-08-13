@@ -8,7 +8,7 @@ import lombok.experimental.Accessors;
 
 /**
  * <p>
- * 
+ * 插件(此处商品)
  * </p>
  *
  * @author mark
@@ -16,19 +16,47 @@ import lombok.experimental.Accessors;
  */
 @Data
 @Accessors(chain = true)
-public class TemplateImageVO implements Serializable {
+public class PluginInfoVO implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     private Long id;
     /**
-     * 所属模版Id
+     * 名称 
      */
-    private Long templateId;
+    private String name;
     /**
-     * 图片Id
+     * 描述
      */
-    private Long imageId;
+    private String description;
+    /**
+     * 计量单位: 1: 件 2:套
+     */
+    private Integer unit;
+    /**
+     * 长度
+     */
+    private Integer width;
+    /**
+     * 宽度
+     */
+    private Integer height;
+    /**
+     * 重量
+     */
+    private Integer weight;
+    /**
+     * 颜色
+     */
+    private String color;
+    /**
+     * 品牌
+     */
+    private String brand;
+    /**
+     * 价格
+     */
+    private Integer price;
     /**
      * 创建人
      */

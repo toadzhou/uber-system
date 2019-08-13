@@ -8,27 +8,27 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.roncoo.recharge.web.service.TemplateImageService;
-import com.roncoo.recharge.web.bean.qo.TemplateImageQO;
+import com.roncoo.recharge.web.service.GroupInfoService;
+import com.roncoo.recharge.web.bean.qo.GroupInfoQO;
 import com.roncoo.recharge.util.base.BaseController;
 
 /**
- *  
+ * 组件信息 
  *
  * @author mark
  * @since 2019-08-13
  */
 @Controller
-@RequestMapping(value = "/admin/templateImage")
-public class TemplateImageController extends BaseController {
+@RequestMapping(value = "/admin/groupInfo")
+public class GroupInfoController extends BaseController {
 
-	private final static String TARGETID = "admin-templateImage";
+	private final static String TARGETID = "admin-groupInfo";
 
 	@Autowired
-	private TemplateImageService service;
+	private GroupInfoService service;
 	
 	@RequestMapping(value = "/list")
-	public void list(@RequestParam(value = "pageCurrent", defaultValue = "1") int pageCurrent, @RequestParam(value = "pageSize", defaultValue = "20") int pageSize, @ModelAttribute TemplateImageQO qo, ModelMap modelMap){
+	public void list(@RequestParam(value = "pageCurrent", defaultValue = "1") int pageCurrent, @RequestParam(value = "pageSize", defaultValue = "20") int pageSize, @ModelAttribute GroupInfoQO qo, ModelMap modelMap){
 		modelMap.put("page", service.listForPage(pageCurrent, pageSize, qo));
 		modelMap.put("pageCurrent", pageCurrent);
 		modelMap.put("pageSize", pageSize);
@@ -42,7 +42,7 @@ public class TemplateImageController extends BaseController {
 	
 	@ResponseBody
 	@RequestMapping(value = "/save")
-	public String save(@ModelAttribute TemplateImageQO qo){
+	public String save(@ModelAttribute GroupInfoQO qo){
 		if (service.save(qo) > 0) {
 			return success(TARGETID);
 		}
@@ -65,7 +65,7 @@ public class TemplateImageController extends BaseController {
 	
 	@ResponseBody
 	@RequestMapping(value = "/update")
-	public String update(@ModelAttribute TemplateImageQO qo){
+	public String update(@ModelAttribute GroupInfoQO qo){
 		if (service.updateById(qo) > 0) {
 			return success(TARGETID);
 		}

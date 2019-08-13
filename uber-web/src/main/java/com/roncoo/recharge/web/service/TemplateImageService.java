@@ -13,13 +13,11 @@ import com.roncoo.recharge.common.entity.TemplateImage;
 import com.roncoo.recharge.common.entity.TemplateImageExample;
 import com.roncoo.recharge.common.entity.TemplateImageExample.Criteria;
 
-import java.util.List;
-
 /**
  *  
  *
  * @author mark
- * @since 2019-07-20
+ * @since 2019-08-13
  */
 @Component
 public class TemplateImageService {
@@ -56,21 +54,6 @@ public class TemplateImageService {
 	    TemplateImage record = new TemplateImage();
         BeanUtils.copyProperties(qo, record);
 		return dao.updateById(record);
-	}
-
-	public List<TemplateImage> queryForList(TemplateImageQO qo){
-		TemplateImageExample example = generate(qo);
-		return dao.listByExample(example);
-	}
-
-	public TemplateImageExample generate(TemplateImageQO qo){
-		TemplateImageExample example = new TemplateImageExample();
-		Criteria c = example.createCriteria();
-
-		if(qo.getTemplateId() != null){
-			c.andTemplateIdEqualTo(qo.getTemplateId());
-		}
-		return example;
 	}
 	
 }

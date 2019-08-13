@@ -1,4 +1,4 @@
-package com.roncoo.recharge.web.bean.vo;
+package com.roncoo.recharge.web.bean.qo;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -8,7 +8,7 @@ import lombok.experimental.Accessors;
 
 /**
  * <p>
- * 
+ * 组件信息
  * </p>
  *
  * @author mark
@@ -16,19 +16,35 @@ import lombok.experimental.Accessors;
  */
 @Data
 @Accessors(chain = true)
-public class TemplateImageVO implements Serializable {
+public class GroupInfoQO implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     private Long id;
     /**
-     * 所属模版Id
+     * 组件名称
      */
-    private Long templateId;
+    private String name;
     /**
-     * 图片Id
+     * 状态:0无效  1有效
+     */
+    private Integer status;
+    /**
+     * 类型: 1房间 2公区
+     */
+    private Integer type;
+    /**
+     * 模版图片
      */
     private Long imageId;
+    /**
+     * 成本(单位: 分)
+     */
+    private Integer cost;
+    /**
+     * 备注
+     */
+    private String remark;
     /**
      * 创建人
      */
@@ -45,7 +61,4 @@ public class TemplateImageVO implements Serializable {
      * 修改时间
      */
     private Date updateTime;
-
-
-
 }

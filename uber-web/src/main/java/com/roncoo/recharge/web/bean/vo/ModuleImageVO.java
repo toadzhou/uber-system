@@ -8,7 +8,7 @@ import lombok.experimental.Accessors;
 
 /**
  * <p>
- * 
+ * 模块图片
  * </p>
  *
  * @author mark
@@ -16,17 +16,17 @@ import lombok.experimental.Accessors;
  */
 @Data
 @Accessors(chain = true)
-public class TemplateImageVO implements Serializable {
+public class ModuleImageVO implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     private Long id;
     /**
-     * 所属模版Id
+     * 所属模块Id
      */
-    private Long templateId;
+    private Long moduleId;
     /**
-     * 图片Id
+     * 所属图片Id
      */
     private Long imageId;
     /**
