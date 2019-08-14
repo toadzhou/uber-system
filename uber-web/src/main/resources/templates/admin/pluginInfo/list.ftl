@@ -1,66 +1,55 @@
 <#include "/macro/base.ftl" />
-<form id="pagerForm" method="post" action="${base}/admin/pluginInfo/list">
-    <@pagerForm />
-</form>
+div class="bjui-pageHeader">
+    <form id="pagerForm" data-toggle="ajaxsearch" action="${base}/admin/pluginInfo/list" method="post">
+        <@pageHeadr />
+        <input type="hidden" name="isLeaf" value="0"/>
+        <div class="bjui-searchBar">
+            <label>名称：</label>
+            <input type="text" name="name" value="${bean.name!}" class="form-control" size="12">&nbsp;
 
-<div class="pageHeader">
-    <form rel="pagerForm" onsubmit="return navTabSearch(this);" action="${base}/admin/pluginInfo/list" method="post">
-        <div class="searchBar">
-            <ul class="searchContent">
-                <li>
-                    <label>字段KEY：</label>
-                    <input type="text" name="fieldKey" value="${(bean.fieldKey)!}"/>
-                </li>
-            </ul>
-            <div class="subBar">
-                <ul>
-                    <li><div class="buttonActive"><div class="buttonContent"><button type="submit">查询</button></div></div></li>
-                    <li><div class="button"><div class="buttonContent"><button type="reset">清空重输</button></div></div></li>
-                </ul>
-            </div>
+            <button type="submit" class="btn-default" data-icon="search">查询</button>&nbsp;
+            <a class="btn btn-orange" href="javascript:;" data-toggle="reloadsearch" data-clear-query="true" data-icon="undo">清空查询</a>
+
+            <br />
+            <br />
+            <a href="${base}/admin/pluginInfo/add" class="btn btn-default" data-toggle="dialog" data-icon="plus" data-id="sysUserInfo-add" data-options="{title:'添加', height:350}">新增图片</a>
         </div>
     </form>
 </div>
-
-<div class="pageContent">
-    <div class="panelBar">
-        <ul class="toolBar">
-            <li class="line">line</li>
-            <li><a class="add" href="${base}/admin/pluginInfo/add" target="dialog"><span>添加</span></a></li>
-            <li class="line">line</li>
-        </ul>
-    </div>
-    <div id="w_list_print">
-        <table class="list" width="100%" targetType="navTab" asc="asc" desc="desc" layoutH="116">
-            <thead>
-                <tr>
-                    <th width="30">序号</th>
-                    <th>创建人</th>
-                    <th>创建时间</th>
-                    <th>更新人</th>
-                    <th>修改时间</th>
-                    <th>操作</th>
-                </tr>
-            </thead>
-            <tbody>
-                <#if page??>
-                <#list page.list as bean>
+<div class="bjui-pageContent tableContent">
+    <table class="table table-bordered table-hover table-top" data-toggle="tablefixed" data-selected-multi="true">
+        <thead>
+        <tr>
+            <th width="30">序号</th>
+            <th>名称</th>
+            <th>品牌</th>
+            <th>价格</th>
+            <th>状态</th>
+            <th>长度</th>
+            <th>宽度</th>
+            <th>重量</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        <#if page??>
+            <#list page.list as bean>
                 <tr>
                     <td align="center">${bean_index+1}</td>
-                    <td>${bean.createPerson}</td>
-                    <td>${bean.createTime}</td>
-                    <td>${bean.updatePerson}</td>
-                    <td>${bean.updateTime}</td>
+                    <td>${bean.name!}</td>
+                    <td>${bean.brand!}</td>
+                    <th>${bean.price!}</th>
+                    <td><#list yesOrNoEnum as enumvo><#if bean.status?? && bean.status==enumvo.code>${enumvo.description}</#if></#list></td>
+                    <td>${bean.width!}</td>
+                    <td>${bean.height!}</td>
+                    <td>${bean.weight!}</td>
                     <td>
-                        <a title="查看" target="dialog" href="${base}/admin/pluginInfo/view?id=${bean.id}" class="btnView">查看 </a>
-                        <a title="编辑" target="dialog" href="${base}/admin/pluginInfo/edit?id=${bean.id}" class="btnEdit">修改 </a>
-                        <a title="确定要删除吗？" target="ajaxTodo" href="${base}/admin/pluginInfo/delete?id=${bean.id}" class="btnDel">删除</a>
+                        <a href="${base}/admin/pluginInfo/view?id=${bean.id}" class="btn btn-green" data-toggle="dialog" data-id="sysUserInfo-edit" data-options="{title:'查看', height:400}">查看</a>
                     </td>
                 </tr>
-                </#list>
-                </#if>
-            </tbody>
-        </table>
-    </div>
-    <@pages />
+            </#list>
+        </#if>
+        </tbody>
+    </table>
 </div>
+<@pageFooter />
