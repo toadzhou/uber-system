@@ -1,9 +1,14 @@
 package com.roncoo.recharge.web.controller.admin;
 
-import com.roncoo.recharge.util.enums.StatusIdEnum;
-import com.roncoo.recharge.util.enums.UserTypeEnum;
+
+import com.roncoo.recharge.common.entity.PluginImage;
 import com.roncoo.recharge.web.bean.enums.UnitEnum;
 import com.roncoo.recharge.web.bean.enums.YesOrNoEnum;
+import com.roncoo.recharge.web.bean.qo.PictureUnitQO;
+import com.roncoo.recharge.web.bean.qo.PluginImageQO;
+import com.roncoo.recharge.web.service.PictureUnitService;
+import com.roncoo.recharge.web.service.PluginImageService;
+import org.apache.commons.collections.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -15,6 +20,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.roncoo.recharge.web.service.PluginInfoService;
 import com.roncoo.recharge.web.bean.qo.PluginInfoQO;
 import com.roncoo.recharge.util.base.BaseController;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * 插件(此处商品) 
@@ -30,6 +38,10 @@ public class PluginInfoController extends BaseController {
 
 	@Autowired
 	private PluginInfoService service;
+	@Autowired
+	private PluginImageService pluginImageService;
+	@Autowired
+	private PictureUnitService pictureUnitService;
 	
 	@RequestMapping(value = "/list")
 	public void list(@RequestParam(value = "pageCurrent", defaultValue = "1") int pageCurrent, @RequestParam(value = "pageSize", defaultValue = "20") int pageSize, @ModelAttribute PluginInfoQO qo, ModelMap modelMap){
@@ -81,6 +93,32 @@ public class PluginInfoController extends BaseController {
 		modelMap.put("bean", service.getById(id));
 	}
 
+
+
+	@RequestMapping(value = "/selectPicture")
+	public void list(@RequestParam("pluginInfoId") Long pluginInfoId, @RequestParam(value = "pageCurrent", defaultValue = "1") int pageCurrent, @RequestParam(value = "pageSize", defaultValue = "20") int pageSize, @ModelAttribute PictureUnitQO qo, ModelMap modelMap){
+		List<PluginImage> PluginInfoImageList =  pluginImageService.queryForList(PluginImageQO.builder().pluginId(pluginInfoId).build());
+		if(CollectionUtils.isNotEmpty(PluginInfoImageList)){
+			qo.setNotExcludeIds(PluginInfoImageList.stream().map(m->m.getImageId()).collect(Collectors.toList()));
+		}
+		modelMap.put("page", pictureUnitService.listForPage(pageCurrent, pageSize, qo));
+		modelMap.put("pageCurrent", pageCurrent);
+		modelMap.put("pageSize", pageSize);
+		modelMap.put("bean", qo);
+		modelMap.put("pluginInfoId", pluginInfoId);
+	}
+
+	@RequestMapping(value = "/set")
+	public String set(@RequestParam("pluginInfoId") Long pluginInfoId, @RequestParam("imageId")Long imageId){
+		PluginImageQO qo  = new PluginImageQO();
+		qo.setImageId(imageId);
+		qo.setPluginId(pluginInfoId);
+		if (pluginImageService.save(qo) > 0) {
+			return success(TARGETID);
+		}
+		return error("操作失败");
+
+	}
 
 	@ModelAttribute
 	public void enums(ModelMap modelMap) {

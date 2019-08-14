@@ -13,6 +13,8 @@ import com.roncoo.recharge.common.entity.PluginImage;
 import com.roncoo.recharge.common.entity.PluginImageExample;
 import com.roncoo.recharge.common.entity.PluginImageExample.Criteria;
 
+import java.util.List;
+
 /**
  *  
  *
@@ -55,5 +57,23 @@ public class PluginImageService {
         BeanUtils.copyProperties(qo, record);
 		return dao.updateById(record);
 	}
+
+	public List<PluginImage> queryForList(PluginImageQO qo){
+	  PluginImageExample example = 	generate(qo);
+	  return dao.listByExample(example);
+	}
+
+	public PluginImageExample generate(PluginImageQO qo){
+		PluginImageExample example = new PluginImageExample();
+		example.setOrderByClause("id desc");
+		PluginImageExample.Criteria c = example.createCriteria();
+		if(qo.getId() != null){
+			c.andIdEqualTo(qo.getId());
+		}
+		return example;
+
+	}
+
+
 	
 }
