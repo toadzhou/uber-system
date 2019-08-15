@@ -36,8 +36,7 @@ public class TemplateInfoService {
 	    	c.andNameLike(PageUtil.like(qo.getName()));
 		}
         Page<TemplateInfo> page = dao.listForPage(pageCurrent, pageSize, example);
-		Page<TemplateInfoVO> page1 =  PageUtil.transform(page, TemplateInfoVO.class);
-        return page1;
+        return PageUtil.transform(page, TemplateInfoVO.class);
 	}
 
 	public int save(TemplateInfoQO qo) {

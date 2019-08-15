@@ -45,7 +45,8 @@ div class="bjui-pageHeader">
                     <td>${bean.weight!}</td>
                     <td>
                         <a href="${base}/admin/pluginInfo/view?id=${bean.id}" class="btn btn-green" data-toggle="dialog" data-id="sysUserInfo-edit" data-options="{title:'查看', height:400}">查看</a>
-                        <a href="${base}/admin/pluginInfo/selectPicture?templateInfoId=${bean.id}" class="btn btn-blue" data-toggle="dialog" data-id="templateInfo-new" data-options="{title:'选择模版图片', height:400, width:600}">选图</a>
+                        <a href="${base}/admin/pluginInfo/selectPicture?pluginInfoId=${bean.id}" class="btn btn-blue" data-toggle="dialog" data-id="plugin-info-select" data-options="{title:'选择模版图片', height:400, width:600}">选图</a>
+                        <a href="${base}/admin/pluginInfo/showPluginInfo?pluginInfoId=${bean.id}" class="btn btn-blue" data-toggle="dialog" data-id="plugin-info-image" data-options="{title:'关联图片', height:400, width:600}">关联图片</a>
                     </td>
                 </tr>
             </#list>

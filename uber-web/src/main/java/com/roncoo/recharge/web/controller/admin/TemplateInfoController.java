@@ -1,5 +1,10 @@
 package com.roncoo.recharge.web.controller.admin;
 
+import com.roncoo.recharge.common.entity.PluginInfo;
+import com.roncoo.recharge.web.bean.enums.UnitEnum;
+import com.roncoo.recharge.web.bean.enums.YesOrNoEnum;
+import com.roncoo.recharge.web.bean.qo.PluginInfoQO;
+import com.roncoo.recharge.web.service.PluginInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -26,7 +31,10 @@ public class TemplateInfoController extends BaseController {
 
 	@Autowired
 	private TemplateInfoService service;
-	
+	@Autowired
+	private PluginInfoService pluginInfoService;
+
+
 	@RequestMapping(value = "/list")
 	public void list(@RequestParam(value = "pageCurrent", defaultValue = "1") int pageCurrent, @RequestParam(value = "pageSize", defaultValue = "20") int pageSize, @ModelAttribute TemplateInfoQO qo, ModelMap modelMap){
 		modelMap.put("page", service.listForPage(pageCurrent, pageSize, qo));
@@ -75,6 +83,34 @@ public class TemplateInfoController extends BaseController {
 	@RequestMapping(value = "/view")
 	public void view(@RequestParam(value = "id") Long id, ModelMap modelMap){
 		modelMap.put("bean", service.getById(id));
+	}
+
+	@RequestMapping(value = "bindView")
+	public void bindView(@RequestParam("templateInfoId") Long templateInfoId, @RequestParam(value = "pageCurrent", defaultValue = "1") int pageCurrent, @RequestParam(value = "pageSize", defaultValue = "20") int pageSize, @ModelAttribute PluginInfoQO qo, ModelMap modelMap){
+		modelMap.put("page", pluginInfoService.listForPage(pageCurrent, pageSize, qo));
+		modelMap.put("pageCurrent", pageCurrent);
+		modelMap.put("pageSize", pageSize);
+		modelMap.put("bean", qo);
+		modelMap.put("templateInfoId", templateInfoId);
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "/bind")
+	public String bind(@RequestParam(value = "id") Long id,@RequestParam("templateInfoId") Long templateInfoId) {
+		//TODO 模版绑定插件 插入功能
+		if (service.deleteById(id) > 0) {
+			return delete(TARGETID);
+		}
+		return error("删除失败");
+	}
+
+
+
+
+	@ModelAttribute
+	public void enums(ModelMap modelMap) {
+		modelMap.put("unitEnum", UnitEnum.values());
+		modelMap.put("statusIdEnums", YesOrNoEnum.values());
 	}
 	
 }

@@ -1,6 +1,6 @@
 <#include "/macro/base.ftl" />
 div class="bjui-pageHeader">
-<form id="pagerForm" data-toggle="ajaxsearch" action="${base}/admin/templateInfo/list" method="post">
+<form id="pagerForm" data-toggle="ajaxsearch" action="${base}/admin/templateInfo/bindView" method="post">
     <@pageHeadr />
     <input type="hidden" name="isLeaf" value="0"/>
     <div class="bjui-searchBar">
@@ -12,7 +12,7 @@ div class="bjui-pageHeader">
 
         <br />
         <br />
-        <a href="${base}/admin/templateInfo/add" class="btn btn-default" data-toggle="dialog" data-icon="plus" data-id="templateInfo-add" data-options="{title:'添加', height:350}">新增图片</a>
+        <a href="${base}/admin/pluginInfo/add" class="btn btn-default" data-toggle="dialog" data-icon="plus" data-id="sysUserInfo-add" data-options="{title:'添加', height:350}">新增图片</a>
     </div>
 </form>
 </div>
@@ -22,8 +22,12 @@ div class="bjui-pageHeader">
         <tr>
             <th width="30">序号</th>
             <th>名称</th>
+            <th>品牌</th>
+            <th>价格</th>
             <th>状态</th>
-            <th>模版图纸</th>
+            <th>长度</th>
+            <th>宽度</th>
+            <th>重量</th>
             <th>操作</th>
         </tr>
         </thead>
@@ -33,11 +37,14 @@ div class="bjui-pageHeader">
                 <tr>
                     <td align="center">${bean_index+1}</td>
                     <td>${bean.name!}</td>
+                    <td>${bean.brand!}</td>
+                    <th>${bean.price!}</th>
                     <td><#list yesOrNoEnum as enumvo><#if bean.status?? && bean.status==enumvo.code>${enumvo.description}</#if></#list></td>
-                    <img src="${bean.urlPath!}" width="95%" height="130"/>
+                    <td>${bean.width!}</td>
+                    <td>${bean.height!}</td>
+                    <td>${bean.weight!}</td>
                     <td>
-                        <a href="${base}/admin/templateInfo/view?id=${bean.id}" class="btn btn-green" data-toggle="dialog" data-id="templateInfo-view" data-options="{title:'查看', height:400}">查看</a>
-                        <a href="${base}/admin/templateInfo/bindView?templateInfoId=${bean.id}" class="btn btn-green" data-toggle="dialog" data-id="templateInfo-bind-plugin" data-options="{title:'查看', height:400}">绑定插件</a>
+                        <a href="${base}/admin/templateInfo/bind?id=${bean.id}&templateInfoId=${templateInfoId}" class="btn btn-orange" data-toggle="doajax" data-id="template-bind" data-options="{title:'查看', height:400}">绑定</a>
                     </td>
                 </tr>
             </#list>

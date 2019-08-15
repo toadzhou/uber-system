@@ -97,15 +97,24 @@ public class PluginInfoController extends BaseController {
 
 	@RequestMapping(value = "/selectPicture")
 	public void list(@RequestParam("pluginInfoId") Long pluginInfoId, @RequestParam(value = "pageCurrent", defaultValue = "1") int pageCurrent, @RequestParam(value = "pageSize", defaultValue = "20") int pageSize, @ModelAttribute PictureUnitQO qo, ModelMap modelMap){
-		List<PluginImage> PluginInfoImageList =  pluginImageService.queryForList(PluginImageQO.builder().pluginId(pluginInfoId).build());
-		if(CollectionUtils.isNotEmpty(PluginInfoImageList)){
-			qo.setNotExcludeIds(PluginInfoImageList.stream().map(m->m.getImageId()).collect(Collectors.toList()));
+		List<PluginImage> pluginInfoImageList =  pluginImageService.queryForList(PluginImageQO.builder().pluginId(pluginInfoId).build());
+		if(CollectionUtils.isNotEmpty(pluginInfoImageList)){
+			qo.setNotExcludeIds(pluginInfoImageList.stream().map(m->m.getImageId()).collect(Collectors.toList()));
 		}
 		modelMap.put("page", pictureUnitService.listForPage(pageCurrent, pageSize, qo));
 		modelMap.put("pageCurrent", pageCurrent);
 		modelMap.put("pageSize", pageSize);
 		modelMap.put("bean", qo);
 		modelMap.put("pluginInfoId", pluginInfoId);
+	}
+
+	@RequestMapping(value = "/showPluginImage")
+	public void showPluginImage(@RequestParam("pluginInfoId") Long pluginInfoId,  @ModelAttribute PluginInfoQO qo, ModelMap modelMap){
+		List<PluginImage> pluginInfoImageList =  pluginImageService.queryForList(PluginImageQO.builder().pluginId(pluginInfoId).build());
+		if(CollectionUtils.isNotEmpty(pluginInfoImageList)){
+			List<Long> imageIdList = pluginInfoImageList.stream().map(m->m.getImageId()).collect(Collectors.toList());
+			modelMap.put("list", pictureUnitService.queryForList(PictureUnitQO.builder().ids(imageIdList).build()));
+		}
 	}
 
 	@RequestMapping(value = "/set")
@@ -117,7 +126,6 @@ public class PluginInfoController extends BaseController {
 			return success(TARGETID);
 		}
 		return error("操作失败");
-
 	}
 
 	@ModelAttribute
