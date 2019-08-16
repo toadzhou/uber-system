@@ -37,7 +37,8 @@ div class="bjui-pageHeader">
                     <img src="${bean.urlPath!}" width="95%" height="130"/>
                     <td>
                         <a href="${base}/admin/templateInfo/view?id=${bean.id}" class="btn btn-green" data-toggle="dialog" data-id="templateInfo-view" data-options="{title:'查看', height:400}">查看</a>
-                        <a href="${base}/admin/templateInfo/bindView?templateInfoId=${bean.id}" class="btn btn-green" data-toggle="dialog" data-id="templateInfo-bind-plugin" data-options="{title:'查看', height:400}">绑定插件</a>
+                        <a href="${base}/admin/templateInfo/pluginList?templateInfoId=${bean.id}" class="btn btn-orange" data-toggle="dialog" data-id="templateInfo-bind-plugin--list" data-options="{title:'已绑插件', height:400}">已绑插件</a>
+                        <a href="${base}/admin/templateInfo/bindView?templateInfoId=${bean.id}" class="btn btn-green" data-toggle="dialog" data-id="templateInfo-bind-plugin-bind" data-options="{title:'查看', height:400}">绑定插件</a>
                     </td>
                 </tr>
             </#list>

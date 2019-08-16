@@ -140,7 +140,7 @@ public class Money implements Serializable, Comparable<Money> {
     /**
      * 以元的形式减少金额
      *
-     * @param cent 要减少的额度，以元表示
+     * @param yuan 要减少的额度，以元表示
      * @return 减少金额后的Money实例
      */
     public Money minusYuan(double yuan) {
