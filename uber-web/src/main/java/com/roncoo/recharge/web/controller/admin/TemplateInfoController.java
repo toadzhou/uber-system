@@ -1,10 +1,11 @@
 package com.roncoo.recharge.web.controller.admin;
 
-import com.roncoo.recharge.common.entity.PluginInfo;
 import com.roncoo.recharge.web.bean.enums.UnitEnum;
 import com.roncoo.recharge.web.bean.enums.YesOrNoEnum;
 import com.roncoo.recharge.web.bean.qo.PluginInfoQO;
+import com.roncoo.recharge.web.bean.qo.TemplatePluginQO;
 import com.roncoo.recharge.web.service.PluginInfoService;
+import com.roncoo.recharge.web.service.TemplatePluginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -12,7 +13,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import com.roncoo.recharge.web.service.TemplateInfoService;
 import com.roncoo.recharge.web.bean.qo.TemplateInfoQO;
 import com.roncoo.recharge.util.base.BaseController;
@@ -33,6 +33,8 @@ public class TemplateInfoController extends BaseController {
 	private TemplateInfoService service;
 	@Autowired
 	private PluginInfoService pluginInfoService;
+	@Autowired
+	private TemplatePluginService templatePluginService;
 
 
 	@RequestMapping(value = "/list")
@@ -97,15 +99,12 @@ public class TemplateInfoController extends BaseController {
 	@ResponseBody
 	@RequestMapping(value = "/bind")
 	public String bind(@RequestParam(value = "id") Long id,@RequestParam("templateInfoId") Long templateInfoId) {
-		//TODO 模版绑定插件 插入功能
-		if (service.deleteById(id) > 0) {
+		Integer count = templatePluginService.save(TemplatePluginQO.builder().pluginId(id).templateId(templateInfoId).build());
+		if (count > 0) {
 			return delete(TARGETID);
 		}
-		return error("删除失败");
+		return error("新增成功");
 	}
-
-
-
 
 	@ModelAttribute
 	public void enums(ModelMap modelMap) {
