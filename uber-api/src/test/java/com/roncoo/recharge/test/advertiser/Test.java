@@ -14,11 +14,11 @@ import org.assertj.core.util.Lists;
 public class Test {
 
     public static void main(String[] args) {
-        String token = "ae1a4778fd1a0aadec82b22fcbfdab74";
-        String dspId = "10203";
+        String token = "f2d78c6d0901602b938cc42297cbe411";
+        String dspId = "10259";
 
         Advertiser advertiser = new Advertiser();
-        advertiser.setAdvertiserid("98883734");
+        advertiser.setAdvertiserid("98883794");
         advertiser.setIndustry_id(5010);
         advertiser.setWeb_site("http://www.tuieeeea.cn");
         advertiser.setName("demo");
@@ -28,7 +28,7 @@ public class Test {
         req.setAdvertiser(Lists.newArrayList(advertiser));
 
         System.out.println(JSON.toJSONString(req));
-        String result = HttpRequest.post("http://adx.ms.zhangyue.net/index.php?r=openapi/Advertiser/upload").header("dspid",dspId).header("token",token).body(JSON.toJSONString(req)).execute().body();
+        String result = HttpRequest.post("http://www.adx.ms/index.php?r=openapi/Advertiser/upload").header("dspid",dspId).header("token",token).body(JSON.toJSONString(req)).execute().body();
         System.out.println(result);
     }
 }

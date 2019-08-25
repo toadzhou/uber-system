@@ -29,6 +29,10 @@ spring:
       host: 111.231.189.44
       port: 6379
       password:
+      pool:
+        max-active:
+        max-wait: 1
+
 security:
   oauth2:
     resource:
