@@ -1,11 +1,13 @@
 package com.roncoo.recharge;
 
 import com.baidu.aip.ocr.AipOcr;
+import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.util.ResourceUtils;
 
 import java.io.FileNotFoundException;
 import java.util.HashMap;
+import java.util.Map;
 
 public class OcrSample {
     //设置APPID/AK/SK
@@ -85,4 +87,41 @@ public class OcrSample {
         JSONObject res = client.drivingLicense(image, options);
         System.out.println(res.toString());
     }
+
+
+    public static Map<String,Object> parseLicence(AipOcr apiOcr, String path) {
+        Map<String,Object> result = new HashMap<>();
+        try{
+            JSONObject res2 = apiOcr.basicGeneral(path, new HashMap<String, String>());
+            JSONArray res = (org.json.JSONArray) res2.get("words_result");
+
+            if (res.length() > 0) {
+                for (int key = 0; key < res.length(); key++) {
+                    result.put("code","0");
+                    JSONObject object = (JSONObject) res.get(key);
+                    String value = object.getString("words");
+                    if(value.startsWith("法定代表人")){
+                        result.put("name",value.substring(5,value.length()));
+                    }
+                    if(value.trim().startsWith("名称")){
+                        result.put("companyName",value.substring(2,value.length()));
+                    }else if(value.trim().startsWith("称")){
+                        result.put("companyName",value.substring(1,value.length()));
+                    }
+                    if(value.startsWith("统一社会信用代码")){
+                        result.put("creditCode",value.substring(8,value.length()));
+                    }
+                }
+                return result;
+            }else{
+                result.put("code","-1");
+                result.put("creditCode","");
+            }
+        }catch (Exception e){
+
+        }
+        return result;
+    }
+
+
 }
