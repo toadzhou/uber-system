@@ -1,7 +1,8 @@
 package com.roncoo.recharge.web.spring.ioc.config;
 
-import org.jeecg.spring.service.OrderDao;
-import org.jeecg.spring.service.UserDao;
+
+import com.roncoo.recharge.web.spring.ioc.service.OrderDao;
+import com.roncoo.recharge.web.spring.ioc.service.UserDao;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
