@@ -3,9 +3,9 @@ package com.roncoo.recharge.web.bean.model;
 import lombok.Data;
 
 import java.io.Serializable;
-//import org.springframework.data.mongodb.core.mapping.Document;
-//
-//import java.io.Serializable;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+import java.io.Serializable;
 
 /**
  * @Auther: xierongli
@@ -13,7 +13,7 @@ import java.io.Serializable;
  * @Description:
  */
 @Data
-//@Document(collection="girl")
+@Document(collection="girl")
 public class GirlItem implements Serializable {
 
     private String title;
