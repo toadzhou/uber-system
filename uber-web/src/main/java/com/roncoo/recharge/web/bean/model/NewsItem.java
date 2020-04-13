@@ -1,7 +1,7 @@
 package com.roncoo.recharge.web.bean.model;
 
 import lombok.Data;
-import org.springframework.data.mongodb.core.mapping.Document;
+//import org.springframework.data.mongodb.core.mapping.Document;
 
 /**
  * @Auther: xierongli
@@ -9,7 +9,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
  * @Description: 新闻
  */
 @Data
-@Document(collection="NEWS")
+//@Document(collection="NEWS")
 public class NewsItem {
 
     private String _id;
